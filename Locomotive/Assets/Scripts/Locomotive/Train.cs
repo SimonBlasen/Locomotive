@@ -20,6 +20,12 @@ public class Train : MonoBehaviour
     [SerializeField]
     private float[] distancesBetween = null;
 
+    [Header("Settings")]
+    [SerializeField]
+    private float acceleration = 1f;
+    [SerializeField]
+    private float deceleration = 1f;
+
 
     public float curVelocity = 0f;
     public float curPos = 0f;
@@ -72,6 +78,29 @@ public class Train : MonoBehaviour
                 wagons[i].transform.position = curveSampleWagon.location;
                 wagons[i].transform.rotation = Quaternion.LookRotation(curveSampleWagon.tangent, curveSampleWagon.up);
             }
+        }
+
+        if (TargetSpeed > curVelocity)
+        {
+            curVelocity = Mathf.MoveTowards(curVelocity, TargetSpeed, Time.deltaTime * acceleration);
+        }
+        else
+        {
+            curVelocity = Mathf.MoveTowards(curVelocity, TargetSpeed, Time.deltaTime * deceleration);
+        }
+    }
+
+
+    public float TargetSpeed
+    {
+        get; set;
+    } = 0f;
+
+    public float CurrentSpeed
+    {
+        get
+        {
+            return curVelocity;
         }
     }
 }

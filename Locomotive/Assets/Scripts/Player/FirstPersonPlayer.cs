@@ -9,6 +9,8 @@ public class FirstPersonPlayer : MonoBehaviour
     private float mouseRotSpeed = 1f;
     [SerializeField]
     private float movementSpeed = 1f;
+    [SerializeField]
+    private float raycastDistance = 0.3f;
 
     [Space]
 
@@ -21,10 +23,14 @@ public class FirstPersonPlayer : MonoBehaviour
     [SerializeField]
     private Transform maxLocomotivePos = null;
 
+    private Camera cam;
+
+    private Interactable currentHoveredInteractable = null;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        cam = GetComponentInChildren<Camera>();
     }
 
     // Update is called once per frame
@@ -64,6 +70,34 @@ public class FirstPersonPlayer : MonoBehaviour
         if (transform.localPosition.z > maxLocomotivePos.localPosition.z)
         {
             transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, maxLocomotivePos.localPosition.z);
+        }
+
+        RaycastHit hit;
+        if (Physics.Raycast(cam.ScreenPointToRay(new Vector2(Screen.width * 0.5f, Screen.height * 0.5f)), out hit, raycastDistance, LayerMask.GetMask("Interactable")))
+        {
+            Interactable interactable = hit.transform.GetComponent<InteractableCollider>().Interactable;
+            if (currentHoveredInteractable != interactable && currentHoveredInteractable != null)
+            {
+                currentHoveredInteractable.Hovered = false;
+            }
+            currentHoveredInteractable = interactable;
+            currentHoveredInteractable.Hovered = true;
+        }
+        else
+        {
+            if (currentHoveredInteractable != null)
+            {
+                currentHoveredInteractable.Hovered = false;
+                currentHoveredInteractable = null;
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (currentHoveredInteractable != null)
+            {
+                currentHoveredInteractable.Interact();
+            }
         }
     }
 }
