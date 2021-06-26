@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="AudioFile" id="{39f83e6c-6b86-435b-8d09-f8d0bd4433ca}">
+		<property name="assetPath">
+			<value>Fire_Files/Fire_Hits 01.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>96</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.17617708333333335</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{29a80aed-39f0-4f1e-b0a5-df58b5de11ec}</destination>
+		</relationship>
+	</object>
+</objects>
