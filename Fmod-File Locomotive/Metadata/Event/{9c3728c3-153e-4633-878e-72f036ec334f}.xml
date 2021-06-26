@@ -237,10 +237,7 @@
 			<value>pitch</value>
 		</property>
 		<property name="root">
-			<value>50</value>
-		</property>
-		<property name="pitchAtMinimum">
-			<value>0.504999995</value>
+			<value>35</value>
 		</property>
 	</object>
 	<object class="MixerBusEffectChain" id="{f1259311-6dfb-4c37-8bc0-ca88a2f90918}">
