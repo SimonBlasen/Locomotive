@@ -7,7 +7,7 @@ public class Train : MonoBehaviour
 {
     [Header("Rails")]
     [SerializeField]
-    private Spline spline = null;
+    private Railroad railRoad = null;
 
     [Header("Locomotive")]
     [SerializeField]
@@ -21,15 +21,57 @@ public class Train : MonoBehaviour
     private float[] distancesBetween = null;
 
 
+    public float curVelocity = 0f;
+    public float curPos = 0f;
+
+    private float distanceTotalTrain = 0f;
+
+    private float[] summedDistances = null;
+
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        summedDistances = new float[distancesBetween.Length];
+
+        for (int i = 0; i < distancesBetween.Length; i++)
+        {
+            if (i == 0)
+            {
+                summedDistances[i] = distancesBetween[i];
+            }
+            else
+            {
+                summedDistances[i] = summedDistances[i - 1] + distancesBetween[i];
+            }
+            distanceTotalTrain += distancesBetween[i];
+        }
+
+        curPos = distanceTotalTrain + 1f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        curPos += curVelocity * Time.deltaTime;
+
+        CurveSample curveSample = railRoad.GetRailAt(curPos);
+
+        if (curveSample == null)
+        {
+            curVelocity = 0f;
+        }
+        else
+        {
+            locomotive.transform.position = curveSample.location;
+            locomotive.transform.rotation = Quaternion.LookRotation(curveSample.tangent, curveSample.up);
+
+            for (int i = 0; i < wagons.Length; i++)
+            {
+                CurveSample curveSampleWagon = railRoad.GetRailAt(curPos - summedDistances[i]);
+                wagons[i].transform.position = curveSampleWagon.location;
+                wagons[i].transform.rotation = Quaternion.LookRotation(curveSampleWagon.tangent, curveSampleWagon.up);
+            }
+        }
     }
 }
