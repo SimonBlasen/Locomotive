@@ -1656,7 +1656,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   audioFactor: 6
-  fmodEventTrainSound: event:/Lok/Lok_Eve
+  fmodEventTrainSound: event:/Lok/00_Lok_Event
   curVelocity: 0
   curPos: 0
 --- !u!1 &8286837207289450167
