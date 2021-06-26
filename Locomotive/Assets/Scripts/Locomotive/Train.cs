@@ -25,6 +25,10 @@ public class Train : MonoBehaviour
     private float acceleration = 1f;
     [SerializeField]
     private float deceleration = 1f;
+    [SerializeField]
+    private float topSpeed = 100f;
+    [SerializeField]
+    private AnimationCurve accelerationCurve = null;
 
 
     public float curVelocity = 0f;
@@ -80,18 +84,39 @@ public class Train : MonoBehaviour
             }
         }
 
-        if (TargetSpeed > curVelocity)
+
+        // Accelerating
+        float curAccStep = PressureWheels * Time.deltaTime * accelerationCurve.Evaluate(curVelocity);
+
+        curVelocity = Mathf.MoveTowards(curVelocity, topSpeed, curAccStep);
+
+        // Braking
+        float curDeceleration = BrakeStrength * Time.deltaTime * deceleration;
+        curVelocity = Mathf.MoveTowards(curVelocity, 0f, curDeceleration);
+
+
+        /*if (TargetSpeed > curVelocity)
         {
             curVelocity = Mathf.MoveTowards(curVelocity, TargetSpeed, Time.deltaTime * acceleration);
         }
         else
         {
             curVelocity = Mathf.MoveTowards(curVelocity, TargetSpeed, Time.deltaTime * deceleration);
-        }
+        }*/
     }
 
 
     public float TargetSpeed
+    {
+        get; set;
+    } = 0f;
+
+    public float PressureWheels
+    {
+        get; set;
+    } = 0f;
+
+    public float BrakeStrength
     {
         get; set;
     } = 0f;

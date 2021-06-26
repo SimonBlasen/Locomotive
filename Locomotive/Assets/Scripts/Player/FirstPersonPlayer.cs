@@ -87,6 +87,7 @@ public class FirstPersonPlayer : MonoBehaviour
         {
             if (currentHoveredInteractable != null)
             {
+                currentHoveredInteractable.InteractUp();
                 currentHoveredInteractable.Hovered = false;
                 currentHoveredInteractable = null;
             }
@@ -97,6 +98,13 @@ public class FirstPersonPlayer : MonoBehaviour
             if (currentHoveredInteractable != null)
             {
                 currentHoveredInteractable.Interact();
+            }
+        }
+        else if (Input.GetKeyUp(KeyCode.E))
+        {
+            if (currentHoveredInteractable != null)
+            {
+                currentHoveredInteractable.InteractUp();
             }
         }
     }

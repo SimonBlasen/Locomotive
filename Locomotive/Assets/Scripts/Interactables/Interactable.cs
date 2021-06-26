@@ -5,7 +5,7 @@ using UnityEngine;
 public class Interactable : MonoBehaviour
 {
     [SerializeField]
-    private InteractableCollider interactableCollider;
+    protected InteractableCollider interactableCollider;
 
     [SerializeField]
     private GameObject hoveredObj = null;
@@ -38,5 +38,10 @@ public class Interactable : MonoBehaviour
     public virtual void Interact()
     {
         Debug.Log("Interacted with something");
+    }
+
+    public virtual void InteractUp()
+    {
+
     }
 }
