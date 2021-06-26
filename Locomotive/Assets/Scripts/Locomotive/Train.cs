@@ -29,6 +29,11 @@ public class Train : MonoBehaviour
     private float topSpeed = 100f;
     [SerializeField]
     private AnimationCurve accelerationCurve = null;
+    [SerializeField]
+    private float audioFactor = 6f;
+
+    [FMODUnity.EventRef]
+    public string fmodEventTrainSound;
 
 
     public float curVelocity = 0f;
@@ -38,10 +43,14 @@ public class Train : MonoBehaviour
 
     private float[] summedDistances = null;
 
+    private FMOD.Studio.EventInstance instanceTrainSound;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        instanceTrainSound = FMODUnity.RuntimeManager.CreateInstance(fmodEventTrainSound);
+        instanceTrainSound.start();
         summedDistances = new float[distancesBetween.Length];
 
         for (int i = 0; i < distancesBetween.Length; i++)
@@ -58,6 +67,7 @@ public class Train : MonoBehaviour
         }
 
         curPos = distanceTotalTrain + 1f;
+
     }
 
     // Update is called once per frame
@@ -93,7 +103,8 @@ public class Train : MonoBehaviour
         // Braking
         float curDeceleration = BrakeStrength * Time.deltaTime * deceleration;
         curVelocity = Mathf.MoveTowards(curVelocity, 0f, curDeceleration);
-
+        
+        instanceTrainSound.setParameterByName("RPM", (CurrentSpeed / topSpeed) * 100f * audioFactor);
 
         /*if (TargetSpeed > curVelocity)
         {
