@@ -31,6 +31,8 @@ public class Train : MonoBehaviour
     private AnimationCurve accelerationCurve = null;
     [SerializeField]
     private float audioFactor = 6f;
+    [SerializeField]
+    private float actualPhysicalSpeedCorrection = 0.3f;
 
     [FMODUnity.EventRef]
     public string fmodEventTrainSound;
@@ -71,9 +73,9 @@ public class Train : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        curPos += curVelocity * Time.deltaTime;
+        curPos += curVelocity * Time.fixedDeltaTime * actualPhysicalSpeedCorrection;
 
         CurveSample curveSample = railRoad.GetRailAt(curPos);
 
@@ -96,12 +98,12 @@ public class Train : MonoBehaviour
 
 
         // Accelerating
-        float curAccStep = PressureWheels * Time.deltaTime * accelerationCurve.Evaluate(curVelocity);
+        float curAccStep = PressureWheels * Time.fixedDeltaTime * accelerationCurve.Evaluate(curVelocity);
 
         curVelocity = Mathf.MoveTowards(curVelocity, topSpeed, curAccStep);
 
         // Braking
-        float curDeceleration = BrakeStrength * Time.deltaTime * deceleration;
+        float curDeceleration = BrakeStrength * Time.fixedDeltaTime * deceleration;
         curVelocity = Mathf.MoveTowards(curVelocity, 0f, curDeceleration);
         
         instanceTrainSound.setParameterByName("RPM", (CurrentSpeed / topSpeed) * 100f * audioFactor);
