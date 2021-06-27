@@ -124,6 +124,26 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 0
+--- !u!114 &-2380795241367564065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/00_Lok_Event/RPM
+  m_EditorClassIdentifier: 
+  Name: RPM
+  Min: 0
+  Max: 100
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
 --- !u!114 &-453641424066467340
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144,7 +164,11 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 0
   Parameters:
+<<<<<<< Updated upstream
   - {fileID: -8492984153885492119}
+=======
+  - {fileID: 8931401584528285061}
+>>>>>>> Stashed changes
   MinDistance: 0
   MaxDistance: 0
   Length: 0
@@ -188,13 +212,21 @@ MonoBehaviour:
   - {fileID: 4304238683049895625}
   - {fileID: 7274261154050017653}
   - {fileID: -453641424066467340}
+<<<<<<< Updated upstream
   - {fileID: 738066447165729835}
+=======
+  - {fileID: 1805004395437790742}
+>>>>>>> Stashed changes
   EditorParameters: []
   MasterBanks:
   - {fileID: 4496372090749448722}
   StringsBanks:
   - {fileID: 3094317646622994495}
+<<<<<<< Updated upstream
   stringsBankWriteTime: 637603508886881631
+=======
+  stringsBankWriteTime: 637603375520321675
+>>>>>>> Stashed changes
   cacheVersion: 6
 --- !u!114 &738066447165729835
 MonoBehaviour:
@@ -240,9 +272,57 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 0
   Parameters:
+<<<<<<< Updated upstream
   - {fileID: -4502612976816102410}
+=======
+  - {fileID: 1458002292064517131}
+>>>>>>> Stashed changes
   MinDistance: 1
   MaxDistance: 20
+  Length: 0
+--- !u!114 &1458002292064517131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Fire_Event3D/FireValue
+  m_EditorClassIdentifier: 
+  Name: FireValue
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
+--- !u!114 &1805004395437790742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Lok/00_Lok_Event
+  m_EditorClassIdentifier: 
+  Path: event:/Lok/00_Lok_Event
+  guid: f09d5b79eccea942ba7a722897fb3de3
+  Banks:
+  - {fileID: 4496372090749448722}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -2380795241367564065}
+  MinDistance: 0
+  MaxDistance: 0
   Length: 0
 --- !u!114 &2651670097631298537
 MonoBehaviour:
@@ -279,7 +359,11 @@ MonoBehaviour:
   Path: ../Fmod-File Locomotive/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
+<<<<<<< Updated upstream
   lastModified: 637603508886881631
+=======
+  lastModified: 637603375520321675
+>>>>>>> Stashed changes
   LoadResult: 0
   FileSizes:
   - Name: Desktop
@@ -363,7 +447,11 @@ MonoBehaviour:
   Path: ../Fmod-File Locomotive/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
+<<<<<<< Updated upstream
   lastModified: 637603508886871627
+=======
+  lastModified: 637603375520172070
+>>>>>>> Stashed changes
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -445,6 +533,26 @@ MonoBehaviour:
   Name: FireValue
   Min: 0
   Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
+--- !u!114 &8931401584528285061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/SteamTest/RPM
+  m_EditorClassIdentifier: 
+  Name: RPM
+  Min: 0
+  Max: 100
   Default: 0
   ID:
     data1: 0
