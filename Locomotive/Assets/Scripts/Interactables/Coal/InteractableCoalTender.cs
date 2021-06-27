@@ -7,6 +7,9 @@ public class InteractableCoalTender : Interactable
     [SerializeField]
     private CoalTender coalTender = null;
 
+    [FMODUnity.EventRef]
+    public string fmodEventTrainSound;
+
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -23,5 +26,8 @@ public class InteractableCoalTender : Interactable
     public override void Interact()
     {
         coalTender.TakeCoal();
+        //FMOD.Studio.EventInstance instanceTrainSound = FMODUnity.RuntimeManager.CreateInstance(fmodEventTrainSound);
+        FMODUnity.RuntimeManager.PlayOneShot(fmodEventTrainSound, transform.position);
+
     }
 }

@@ -12,6 +12,8 @@ public class InteractableFire : Interactable
     private Transform fireMid = null;
     [SerializeField]
     private float flySpeed = 1f;
+    [FMODUnity.EventRef]
+    public string fmodEventTrainSound;
 
     private Transform flyingCoal = null;
 
@@ -48,6 +50,8 @@ public class InteractableFire : Interactable
     public void PutCoalIn(Transform coalTransform)
     {
         fire.AddCoal();
+        //FMOD.Studio.EventInstance instanceTrainSound = FMODUnity.RuntimeManager.CreateInstance(fmodEventTrainSound);
+        FMODUnity.RuntimeManager.PlayOneShot(fmodEventTrainSound, transform.position);
 
         coalTransform.parent = transform;
 
