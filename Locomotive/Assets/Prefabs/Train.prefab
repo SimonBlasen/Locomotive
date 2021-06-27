@@ -3399,9 +3399,9 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  generalPressureDecrease: 0.01
+  generalPressureDecrease: 0
   maxPressure: 400
-  releaseValveStrength: 5
+  releaseValveStrength: 11
 --- !u!1 &3984263947757043427
 GameObject:
   m_ObjectHideFlags: 0
@@ -7443,6 +7443,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   audioFactor: 6
+  actualPhysicalSpeedCorrection: 0.3
   fmodEventTrainSound: event:/Lok/00_Lok_Event
   curVelocity: 0
   curPos: 0
