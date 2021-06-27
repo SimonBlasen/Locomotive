@@ -31,19 +31,38 @@ public class FirstPersonPlayer : MonoBehaviour
     void Start()
     {
         cam = GetComponentInChildren<Camera>();
+        RaycastDistance = raycastDistance;
     }
 
     // Update is called once per frame
     void Update()
     {
-        yCamRot.Rotate(0f, mouseRotSpeed * Time.deltaTime * Input.GetAxis("Mouse X"), 0f);
-        xCamRot.Rotate(mouseRotSpeed * Time.deltaTime * Input.GetAxis("Mouse Y") * -1f, 0f, 0f);
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (currentHoveredInteractable != null)
+            {
+                currentHoveredInteractable.Interact();
+            }
+        }
+        else if (Input.GetKeyUp(KeyCode.E))
+        {
+            if (currentHoveredInteractable != null)
+            {
+                currentHoveredInteractable.InteractUp();
+            }
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        yCamRot.Rotate(0f, mouseRotSpeed * Time.fixedDeltaTime * Input.GetAxis("Mouse X"), 0f);
+        xCamRot.Rotate(mouseRotSpeed * Time.fixedDeltaTime * Input.GetAxis("Mouse Y") * -1f, 0f, 0f);
 
 
         Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
 
-        transform.position += yCamRot.forward * movementSpeed * movement.z;
-        transform.position += yCamRot.right * movementSpeed * movement.x;
+        transform.position += yCamRot.forward * movementSpeed * movement.z * Time.fixedDeltaTime;
+        transform.position += yCamRot.right * movementSpeed * movement.x * Time.fixedDeltaTime;
 
         if (transform.localPosition.x < minLocomotivePos.localPosition.x)
         {
@@ -72,6 +91,10 @@ public class FirstPersonPlayer : MonoBehaviour
             transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, maxLocomotivePos.localPosition.z);
         }
 
+
+
+        Debug.DrawRay(cam.ScreenPointToRay(new Vector2(Screen.width * 0.5f, Screen.height * 0.5f)).origin, cam.ScreenPointToRay(new Vector2(Screen.width * 0.5f, Screen.height * 0.5f)).direction * raycastDistance);
+
         RaycastHit hit;
         if (Physics.Raycast(cam.ScreenPointToRay(new Vector2(Screen.width * 0.5f, Screen.height * 0.5f)), out hit, raycastDistance, LayerMask.GetMask("Interactable")))
         {
@@ -92,20 +115,10 @@ public class FirstPersonPlayer : MonoBehaviour
                 currentHoveredInteractable = null;
             }
         }
+    }
 
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            if (currentHoveredInteractable != null)
-            {
-                currentHoveredInteractable.Interact();
-            }
-        }
-        else if (Input.GetKeyUp(KeyCode.E))
-        {
-            if (currentHoveredInteractable != null)
-            {
-                currentHoveredInteractable.InteractUp();
-            }
-        }
+    public static float RaycastDistance
+    {
+        get; protected set;
     }
 }

@@ -21,7 +21,10 @@ public class InteractableFullBrake : Interactable
     protected override void Update()
     {
         base.Update();
+    }
 
+    private void FixedUpdate()
+    {
         if (eDown)
         {
             float sliderVal = 0f;

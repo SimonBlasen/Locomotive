@@ -7,7 +7,7 @@
 [LOG] OutputWASAPI::init                       : Output buffer size: 4096 samples, latency: 0.00ms, period: 10.00ms, DSP buffer: 1024 * 4
 [LOG] Thread::initThread                       : Init FMOD stream thread. Affinity: 0x8000000000000003, Priority: 0xFFFF7FFB, Stack Size: 98304, Semaphore: No, Sleep Time: 10, Looping: Yes.
 [LOG] Thread::initThread                       : Init FMOD mixer thread. Affinity: 0x8000000000000001, Priority: 0xFFFF7FFA, Stack Size: 81920, Semaphore: No, Sleep Time: 0, Looping: Yes.
-[LOG] AsyncManager::init                       : manager 000001BC59E692A8 isAsync 0 updatePeriod 0.02
+[LOG] AsyncManager::init                       : manager 000002703D36C0B8 isAsync 0 updatePeriod 0.02
 [LOG] AsyncManager::init                       : done
 [LOG] PlaybackSystem::init                     : 
 [LOG] Thread::initThread                       : Init FMOD Studio sample load thread. Affinity: 0x8000000000000003, Priority: 0xFFFF7FFD, Stack Size: 98304, Semaphore: No, Sleep Time: 1, Looping: No.
@@ -16,54 +16,3 @@
 [LOG] Manager::init                            : done.
 [LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
 [LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
-[LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
-[LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
-[LOG] SystemI::createSound                     : filename = ../Fmod-File Locomotive/Build\Desktop/Master.bank : mode 02010082
-[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
-[LOG] SystemI::createSound                     : setdata soundi = 000001BCAB6EB128 : node = 000001BC594A8380
-[LOG] SystemI::createSound                     : add node to async list : head = 000001BC598EF638.  list count = 0
-[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 000001BCAB6EB128
-[LOG] SystemI::createSoundInternal             :     Create name='../Fmod-File Locomotive/Build\Desktop/Master.bank', mode=0x02010082
-[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
-[LOG] SystemI::createSoundInternal             :     exinfo->length             = 1316608
-[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 24192
-[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 000001BC594A8490
-[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
-[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
-[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Lok_Loop_Bewegung-Deep', format=5, channels=2, frequency=48000, lengthbytes=174752, lengthpcm=838512, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.092667.
-[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 000001BCAB6EB128
-[LOG] SoundI::release                          :  (000001BC397F3748)
-[LOG] SoundI::release                          :     Lok_LoopSteam-Slow (000001BC43CC4DE8)
-[LOG] SoundI::release                          :  (000001BC397F35D8)
-[LOG] SoundI::release                          :     Test_4erSteamLoop (000001BC43CC6308)
-[LOG] SoundI::release                          :  (000001BC397F60F8)
-[LOG] SoundI::release                          :     Test_4erSteamLoop-001 (000001BC43CC5608)
-[LOG] SoundI::release                          : Lok_Loop_Bewegung-Deep (000001BCAB6EB128)
-[LOG] SoundI::release                          :     Lok_Loop_Bewegung-Deep (000001BBAB1F3538)
-[LOG] SoundI::release                          :     Lok_Loop_Bewegung-Deep (000001BCAB6F08E8)
-[LOG] SoundI::release                          : Lok_Loop_Bewegung-High (000001BC4317E378)
-[LOG] SoundI::release                          :     Lok_Loop_Bewegung-High (000001BC43CC6B28)
-[LOG] SoundI::release                          :     Lok_Loop_Bewegung-High (000001BC4317CF38)
-[LOG] SoundI::release                          : Lok_Idle-Deep (000001BC431872E8)
-[LOG] SoundI::release                          :     Lok_Idle-Deep (000001BC43CC4908)
-[LOG] SoundI::release                          :     Lok_Idle-Deep (000001BC4317B0D8)
-[LOG] SoundI::release                          :  (000001BC397F38B8)
-[LOG] SoundI::release                          :     Test_4erSteamLoop-003 (000001BC43CC9568)
-[LOG] SoundI::release                          :  (000001BC397F45A8)
-[LOG] SoundI::release                          :     Lok_Loop_LowRPM-Deep (000001BC43CC4768)
-[LOG] SoundI::release                          :  (000001BC397F3468)
-[LOG] SoundI::release                          :     Lok_Loop_HighRPM-Deep (000001BC43CC6CC8)
-[LOG] SoundI::release                          :  (000001BC397F2048)
-[LOG] SoundI::release                          :     Lok_Loop_ReibungHoch (000001BC43CC6988)
-[LOG] Thread::callback                         : FMOD Studio update thread finished.
-[LOG] Thread::callback                         : FMOD Studio bank load thread finished.
-[LOG] Profile::disconnectAll                   : Profiler disconnecting all clients
-[LOG] Thread::callback                         : FMOD Studio sample load thread finished.
-[LOG] LiveUpdate::release                      : 
-[LOG] LiveUpdate::reset                        : Reset connection (reason Disconnected)
-[LOG] Thread::callback                         : FMOD stream thread finished.
-[LOG] Thread::callback                         : FMOD mixer thread finished.
-[LOG] Profile::disconnectAll                   : Profiler disconnecting all clients
-[LOG] SystemI::close                           : Closed.
