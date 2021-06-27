@@ -7959,7 +7959,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   audioFactor: 6
-  actualPhysicalSpeedCorrection: 0.3
+  actualPhysicalSpeedCorrection: 0.7
   fmodEventTrainSound: event:/Lok/00_Lok_Event
   curVelocity: 0
   curPos: 0
