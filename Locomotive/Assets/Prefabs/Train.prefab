@@ -112,6 +112,37 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &202463657048495458
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1101946810893509485}
+  m_Layer: 0
+  m_Name: Outside Y
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1101946810893509485
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 202463657048495458}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.55, z: 1.25}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 2088515289615145134}
+  m_Father: {fileID: 8286837207289450166}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &502235783733680953
 GameObject:
   m_ObjectHideFlags: 0
@@ -3528,6 +3559,11 @@ MonoBehaviour:
   xCamRot: {fileID: 179844251662725173}
   minLocomotivePos: {fileID: 3088884461862063964}
   maxLocomotivePos: {fileID: 6454353941942400311}
+  minOutsideDistance: 1
+  maxOutsideDistance: 50
+  scrollSpeed: -16
+  outsideCamTrans: {fileID: 2088515289615145134}
+  outsideCamTransY: {fileID: 1101946810893509485}
 --- !u!1 &3980784863753801658
 GameObject:
   m_ObjectHideFlags: 0
@@ -3574,7 +3610,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fire: {fileID: 5935794902618536634}
   tempLerpSpeed: 0.1
-  pressureIncreaseSpeed: 5
+  pressureIncreaseSpeed: 2
   generatedPressure:
     serializedVersion: 2
     m_Curve:
@@ -3701,6 +3737,36 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &4054800235705085819
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2088515289615145134}
+  m_Layer: 0
+  m_Name: Outside
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2088515289615145134
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4054800235705085819}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 3.118, z: -9.261}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1101946810893509485}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4156959016030641446
 GameObject:
   m_ObjectHideFlags: 0
@@ -6147,6 +6213,7 @@ MonoBehaviour:
   interactableCollider: {fileID: 8291242052511881250}
   hoveredObj: {fileID: 2598795193353338853}
   brakeLeaver: {fileID: 6342437783822671941}
+  colliderStretchFactor: 1
 --- !u!1 &6303958188262850321
 GameObject:
   m_ObjectHideFlags: 0
@@ -8191,6 +8258,7 @@ Transform:
   - {fileID: 339683384566646256}
   - {fileID: 6361255706732269439}
   - {fileID: 4658597806884979301}
+  - {fileID: 1101946810893509485}
   m_Father: {fileID: 8286837207063646560}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

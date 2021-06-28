@@ -64,7 +64,7 @@ public class Boiler : MonoBehaviour
 
     private void generatePressure()
     {
-        pressure += generatedPressure.Evaluate(curTemp) * Time.deltaTime;
+        pressure += generatedPressure.Evaluate(curTemp) * Time.deltaTime * pressureIncreaseSpeed;
 
         pressure -= Time.deltaTime * generalPressureDecrease;
     }

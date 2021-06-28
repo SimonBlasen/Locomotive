@@ -22,14 +22,33 @@ public class FirstPersonPlayer : MonoBehaviour
     private Transform minLocomotivePos = null;
     [SerializeField]
     private Transform maxLocomotivePos = null;
+    [SerializeField]
+    private float minOutsideDistance = 1f;
+    [SerializeField]
+    private float maxOutsideDistance = 5f;
+    [SerializeField]
+    private float scrollSpeed = 1f;
+
+    [SerializeField]
+    private Transform outsideCamTrans = null;
+    [SerializeField]
+    private Transform outsideCamTransY = null;
 
     private Camera cam;
 
     private Interactable currentHoveredInteractable = null;
 
+    private bool camOutside = false;
+
+    private Transform locomotiveTransform = null;
+
+    private float curOutsideDistance = 0f;
+
     // Start is called before the first frame update
     void Start()
     {
+        curOutsideDistance = minOutsideDistance;
+        locomotiveTransform = transform.parent;
         cam = GetComponentInChildren<Camera>();
         RaycastDistance = raycastDistance;
     }
@@ -51,11 +70,27 @@ public class FirstPersonPlayer : MonoBehaviour
                 currentHoveredInteractable.InteractUp();
             }
         }
+
+
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            camOutside = !camOutside;
+
+            if (camOutside)
+            {
+                cam.transform.parent = null;
+            }
+            else
+            {
+                cam.transform.parent = xCamRot;
+            }
+        }
     }
 
     private void FixedUpdate()
     {
         yCamRot.Rotate(0f, mouseRotSpeed * Time.fixedDeltaTime * Input.GetAxis("Mouse X"), 0f);
+        outsideCamTransY.Rotate(0f, mouseRotSpeed * Time.fixedDeltaTime * Input.GetAxis("Mouse X"), 0f);
         xCamRot.Rotate(mouseRotSpeed * Time.fixedDeltaTime * Input.GetAxis("Mouse Y") * -1f, 0f, 0f);
 
 
@@ -114,6 +149,29 @@ public class FirstPersonPlayer : MonoBehaviour
                 currentHoveredInteractable.Hovered = false;
                 currentHoveredInteractable = null;
             }
+        }
+
+
+
+
+
+
+
+
+        if (camOutside)
+        {
+            cam.transform.position = Vector3.Lerp(cam.transform.position, outsideCamTrans.position + (outsideCamTrans.position - locomotiveTransform.position).normalized * curOutsideDistance, Time.fixedDeltaTime * 20f);
+
+            cam.transform.rotation = Quaternion.Lerp(cam.transform.localRotation, Quaternion.LookRotation(locomotiveTransform.position - cam.transform.position, Vector3.up), Time.fixedDeltaTime * 40f);
+
+            curOutsideDistance += Input.GetAxis("Mouse ScrollWheel") * scrollSpeed;
+
+            curOutsideDistance = Mathf.Clamp(curOutsideDistance, minOutsideDistance, maxOutsideDistance);
+        }
+        else
+        {
+            cam.transform.position = Vector3.Lerp(cam.transform.position, xCamRot.position, Time.fixedDeltaTime * 20f);
+            cam.transform.localRotation = Quaternion.Lerp(cam.transform.localRotation, Quaternion.identity, Time.fixedDeltaTime * 40f);
         }
     }
 
