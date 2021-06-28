@@ -1,5 +1,48 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8558808975442367475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Lok/SchaufelAUF
+  m_EditorClassIdentifier: 
+  Path: event:/Lok/SchaufelAUF
+  guid: 43bdf2be2bff54498d99146b83455c14
+  Banks:
+  - {fileID: 7193177823907494411}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 10
+  Length: 1085
+--- !u!114 &-8214479490051827238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Fire_Event3D/FireValue
+  m_EditorClassIdentifier: 
+  Name: FireValue
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
 --- !u!114 &-7156601456946573120
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60,6 +103,49 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 1
+--- !u!114 &-6236377820570365988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Lok_Hupe/Parameter 1
+  m_EditorClassIdentifier: 
+  Name: Parameter 1
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
+--- !u!114 &-5173042806526669656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Lok/Ventil_Dampf
+  m_EditorClassIdentifier: 
+  Path: event:/Lok/Ventil_Dampf
+  guid: e4e67cddda342e48bb9dbf6f0c4fad6f
+  Banks:
+  - {fileID: 7193177823907494411}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 10
+  Length: 1789
 --- !u!114 &-4090768065522727802
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75,11 +161,11 @@ MonoBehaviour:
   Path: ../Fmod-File Locomotive/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637603375520321675
+  lastModified: 637604127887963488
   LoadResult: 0
   FileSizes:
   - Name: Desktop
-    Value: 1098
+    Value: 1394
   Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
@@ -100,14 +186,19 @@ MonoBehaviour:
   - {fileID: 8544319607124270408}
   - {fileID: 7664237102058060103}
   - {fileID: 8578761860804813979}
-  - {fileID: 5081925293421839700}
   - {fileID: 815471202420628831}
+  - {fileID: -8558808975442367475}
+  - {fileID: 5430040908209509116}
+  - {fileID: 2703931399044655178}
+  - {fileID: 4666523075427213415}
+  - {fileID: 3619931860466827541}
+  - {fileID: -5173042806526669656}
   EditorParameters: []
   MasterBanks:
   - {fileID: 7193177823907494411}
   StringsBanks:
   - {fileID: -4090768065522727802}
-  stringsBankWriteTime: 637603375520321675
+  stringsBankWriteTime: 637604127887963488
   cacheVersion: 6
 --- !u!114 &815471202420628831
 MonoBehaviour:
@@ -129,10 +220,54 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 4391521684656643935}
+  - {fileID: 1934532643492581606}
   MinDistance: 0
   MaxDistance: 0
   Length: 0
+--- !u!114 &1934532643492581606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/00_Lok_Event/RPM
+  m_EditorClassIdentifier: 
+  Name: RPM
+  Min: 0
+  Max: 100
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
+--- !u!114 &2703931399044655178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Lok/Lok_Hupe
+  m_EditorClassIdentifier: 
+  Path: event:/Lok/Lok_Hupe
+  guid: 9da036964efeae49af4e910c7048cb33
+  Banks:
+  - {fileID: 7193177823907494411}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -6236377820570365988}
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 2499
 --- !u!114 &2864993542692233063
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,6 +288,29 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 0
+--- !u!114 &3619931860466827541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Lok/SchaufelAB
+  m_EditorClassIdentifier: 
+  Path: event:/Lok/SchaufelAB
+  guid: bcbcc2d5d0dfa141a45e6af65bd1daeb
+  Banks:
+  - {fileID: 7193177823907494411}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 10
+  Length: 1048
 --- !u!114 &4391521684656643935
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,6 +331,29 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 1
+--- !u!114 &4666523075427213415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Lok/Hebel_Standard
+  m_EditorClassIdentifier: 
+  Path: event:/Lok/Hebel_Standard
+  guid: b72a36feca7a8447a4c7bbc86e01075e
+  Banks:
+  - {fileID: 7193177823907494411}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 10
+  Length: 762
 --- !u!114 &5081925293421839700
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197,6 +378,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 0
+--- !u!114 &5430040908209509116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Lok/Hebel_Weiche
+  m_EditorClassIdentifier: 
+  Path: event:/Lok/Hebel_Weiche
+  guid: 497773384ba9bb47a3d0dcc348009b71
+  Banks:
+  - {fileID: 7193177823907494411}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 10
+  Length: 1068
 --- !u!114 &7193177823907494411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212,7 +416,7 @@ MonoBehaviour:
   Path: ../Fmod-File Locomotive/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637603375520172070
+  lastModified: 637604127887963488
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -279,9 +483,9 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 0
   Parameters:
-  - {fileID: -6240755699559657268}
-  MinDistance: 1
-  MaxDistance: 20
+  - {fileID: -8214479490051827238}
+  MinDistance: 3
+  MaxDistance: 15
   Length: 0
 --- !u!114 &8578761860804813979
 MonoBehaviour:
