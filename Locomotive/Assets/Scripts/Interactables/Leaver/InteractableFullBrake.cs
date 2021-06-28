@@ -6,6 +6,8 @@ public class InteractableFullBrake : Interactable
 {
     [SerializeField]
     private BrakeLeaver brakeLeaver = null;
+    [SerializeField]
+    private float colliderStretchFactor = 1f;
 
     private bool eDown = false;
 
