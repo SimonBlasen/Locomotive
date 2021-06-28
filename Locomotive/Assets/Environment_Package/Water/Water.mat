@@ -91,17 +91,17 @@ Material:
     m_Ints: []
     m_Floats:
     - AO: 1
-    - Vector1_189d5afb2b2c47ac9dc0109eb9b20c62: 3
+    - Vector1_189d5afb2b2c47ac9dc0109eb9b20c62: 5.01
     - Vector1_55b902139a584006adc96564ed60aabd: 0.5
     - Vector1_72668e392f7149f489d93d4bd8373278: 1
-    - Vector1_757c2e715ae74ec398fcf8278e0bd078: 0.79
+    - Vector1_757c2e715ae74ec398fcf8278e0bd078: 1.18
     - Vector1_88fa9e632c32464fa578a7a07d49514a: 0.15
-    - Vector1_8998849f524941f3bc06d69e5753ef05: 3.94
+    - Vector1_8998849f524941f3bc06d69e5753ef05: 2
     - Vector1_93a0e1facc2f4aad9009497d6f3a900b: 2.09
     - Vector1_ac547112dcf04d8d89a29f4435a80de2: 0.2
-    - Vector1_b597a6ea096e43e0984fe9d5f83c1c63: 100
-    - Vector1_d8a5ff6760e94763bd0ce17e1a426ff5: 18.32
-    - Vector1_daab63229cc4485eb3ab45365118f4ad: 0
+    - Vector1_b597a6ea096e43e0984fe9d5f83c1c63: 1
+    - Vector1_d8a5ff6760e94763bd0ce17e1a426ff5: 13.79
+    - Vector1_daab63229cc4485eb3ab45365118f4ad: 0.001
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -123,14 +123,17 @@ Material:
     - _ReceiveShadows: 1
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
+    - _Specular: 1
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _Surface: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
+    - _ambient: 0
     - dispOffset: 0.001
     m_Colors:
-    - Color_505c3d5f69804dabb3c523a77784a8b5: {r: 0.16001803, g: 0.16600001, b: 0.12412614, a: 0}
+    - Base_COlor: {r: 0, g: 0, b: 0, a: 0}
+    - Color_505c3d5f69804dabb3c523a77784a8b5: {r: 0, g: 0, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
