@@ -60,3 +60,5 @@ crashlytics-build.properties
 
 /Locomotive/fmod_editor.log
 Locomotive/fmod_editor.log
+Locomotive\Assets\Plugins\FMOD\Cache\Editor\FMODStudioCache.asset
+Locomotive\Assets\Plugins\FMOD\Cache\Editor\FMODStudioCache.asset.meta
