@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FMODUnity;
 
 public class Fire : MonoBehaviour
 {
@@ -23,16 +24,21 @@ public class Fire : MonoBehaviour
 
     private float heat = 0f;
 
+    private StudioEventEmitter stevem = null;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        stevem = GetComponent<StudioEventEmitter>();
+        stevem.Play();
     }
 
     // Update is called once per frame
     void Update()
     {
         burnCoal();
+
+        stevem.SetParameter("FireValue", Mathf.Clamp((heat / 350f) * 3f, 0f, 1f));
     }
 
     private void burnCoal()
