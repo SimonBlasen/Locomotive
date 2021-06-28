@@ -499,6 +499,7 @@
     },
     "m_Path": "Sub Graphs",
     "m_ConcretePrecision": 0,
+    "m_PreviewMode": 2,
     "m_OutputNode": {
         "m_Id": "bb4b131047814d278ea8193abcc597e9"
     },
@@ -512,7 +513,6 @@
     "m_Id": 0,
     "m_DisplayName": "A",
     "m_SlotType": 0,
-    "m_Priority": 2147483647,
     "m_Hidden": false,
     "m_ShaderOutputName": "A",
     "m_StageCapability": 3,
@@ -586,6 +586,7 @@
     "synonyms": [],
     "m_Precision": 0,
     "m_PreviewExpanded": false,
+    "m_PreviewMode": 0,
     "m_CustomColors": {
         "m_SerializableColors": []
     }
@@ -598,7 +599,6 @@
     "m_Id": 0,
     "m_DisplayName": "Time",
     "m_SlotType": 1,
-    "m_Priority": 2147483647,
     "m_Hidden": false,
     "m_ShaderOutputName": "Time",
     "m_StageCapability": 3,
@@ -614,7 +614,6 @@
     "m_Id": 1,
     "m_DisplayName": "B",
     "m_SlotType": 0,
-    "m_Priority": 2147483647,
     "m_Hidden": false,
     "m_ShaderOutputName": "B",
     "m_StageCapability": 3,
@@ -639,7 +638,6 @@
     "m_Id": 2,
     "m_DisplayName": "Cosine Time",
     "m_SlotType": 1,
-    "m_Priority": 2147483647,
     "m_Hidden": false,
     "m_ShaderOutputName": "Cosine Time",
     "m_StageCapability": 3,
@@ -655,7 +653,6 @@
     "m_Id": 2,
     "m_DisplayName": "Out",
     "m_SlotType": 1,
-    "m_Priority": 2147483647,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
     "m_StageCapability": 3,
@@ -680,7 +677,6 @@
     "m_Id": 1,
     "m_DisplayName": "Clouds",
     "m_SlotType": 1,
-    "m_Priority": 2147483647,
     "m_Hidden": false,
     "m_ShaderOutputName": "Clouds",
     "m_StageCapability": 3,
@@ -696,7 +692,6 @@
     "m_Id": 2,
     "m_DisplayName": "Out",
     "m_SlotType": 1,
-    "m_Priority": 2147483647,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
     "m_StageCapability": 3,
@@ -745,7 +740,6 @@
     "m_Id": 1813812274,
     "m_DisplayName": "Morphing Speed",
     "m_SlotType": 0,
-    "m_Priority": 2147483647,
     "m_Hidden": false,
     "m_ShaderOutputName": "Vector1_39948e7f34d345609422450e4dce00ba",
     "m_StageCapability": 3,
@@ -755,18 +749,21 @@
 }
 
 {
-    "m_SGVersion": 0,
+    "m_SGVersion": 1,
     "m_Type": "UnityEditor.ShaderGraph.Internal.Vector2ShaderProperty",
     "m_ObjectId": "1731ab0aba314ac39edb9e2d08b87c4b",
     "m_Guid": {
         "m_GuidSerialized": "ecae33fe-785f-4eb6-ba45-31418c29f5e7"
     },
     "m_Name": "UV",
+    "m_DefaultRefNameVersion": 0,
+    "m_RefNameGeneratedByDisplayName": "",
     "m_DefaultReferenceName": "Vector2_1731ab0aba314ac39edb9e2d08b87c4b",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
     "m_Precision": 0,
-    "m_GPUInstanced": false,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
     "m_Hidden": false,
     "m_Value": {
         "x": 0.0,
@@ -783,7 +780,6 @@
     "m_Id": 0,
     "m_DisplayName": "A",
     "m_SlotType": 0,
-    "m_Priority": 2147483647,
     "m_Hidden": false,
     "m_ShaderOutputName": "A",
     "m_StageCapability": 3,
@@ -827,6 +823,7 @@
     "synonyms": [],
     "m_Precision": 0,
     "m_PreviewExpanded": true,
+    "m_PreviewMode": 0,
     "m_CustomColors": {
         "m_SerializableColors": []
     },
@@ -842,7 +839,6 @@
     "m_Id": 1,
     "m_DisplayName": "Sine Time",
     "m_SlotType": 1,
-    "m_Priority": 2147483647,
     "m_Hidden": false,
     "m_ShaderOutputName": "Sine Time",
     "m_StageCapability": 3,
@@ -858,7 +854,6 @@
     "m_Id": 1813812274,
     "m_DisplayName": "Morphing Speed",
     "m_SlotType": 0,
-    "m_Priority": 2147483647,
     "m_Hidden": false,
     "m_ShaderOutputName": "Vector1_39948e7f34d345609422450e4dce00ba",
     "m_StageCapability": 3,
@@ -874,7 +869,6 @@
     "m_Id": 2,
     "m_DisplayName": "Out",
     "m_SlotType": 1,
-    "m_Priority": 2147483647,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
     "m_StageCapability": 3,
@@ -899,7 +893,6 @@
     "m_Id": 2,
     "m_DisplayName": "Out",
     "m_SlotType": 1,
-    "m_Priority": 2147483647,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
     "m_StageCapability": 3,
@@ -949,6 +942,7 @@
     "synonyms": [],
     "m_Precision": 0,
     "m_PreviewExpanded": false,
+    "m_PreviewMode": 0,
     "m_CustomColors": {
         "m_SerializableColors": []
     }
@@ -961,7 +955,6 @@
     "m_Id": 1883249457,
     "m_DisplayName": "Scale Local",
     "m_SlotType": 0,
-    "m_Priority": 2147483647,
     "m_Hidden": false,
     "m_ShaderOutputName": "Vector1_36347c8efd6a495392ae7073762ef32d",
     "m_StageCapability": 3,
@@ -977,7 +970,6 @@
     "m_Id": 2,
     "m_DisplayName": "Out",
     "m_SlotType": 1,
-    "m_Priority": 2147483647,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
     "m_StageCapability": 3,
@@ -1030,6 +1022,7 @@
     "synonyms": [],
     "m_Precision": 0,
     "m_PreviewExpanded": true,
+    "m_PreviewMode": 0,
     "m_CustomColors": {
         "m_SerializableColors": []
     },
@@ -1056,6 +1049,9 @@
     },
     "m_Slots": [
         {
+            "m_Id": "6782bbf0445e4566a531c1cdfc00ba70"
+        },
+        {
             "m_Id": "ce36e1201cb44520abf2122da2bf94d5"
         },
         {
@@ -1069,14 +1065,12 @@
         },
         {
             "m_Id": "7228c9fe18db432aba036d22db761b41"
-        },
-        {
-            "m_Id": "6782bbf0445e4566a531c1cdfc00ba70"
         }
     ],
     "synonyms": [],
     "m_Precision": 0,
     "m_PreviewExpanded": true,
+    "m_PreviewMode": 0,
     "m_CustomColors": {
         "m_SerializableColors": []
     },
@@ -1104,7 +1098,6 @@
     "m_Id": 0,
     "m_DisplayName": "A",
     "m_SlotType": 0,
-    "m_Priority": 2147483647,
     "m_Hidden": false,
     "m_ShaderOutputName": "A",
     "m_StageCapability": 3,
@@ -1129,7 +1122,6 @@
     "m_Id": 0,
     "m_DisplayName": "Base",
     "m_SlotType": 0,
-    "m_Priority": 2147483647,
     "m_Hidden": false,
     "m_ShaderOutputName": "Base",
     "m_StageCapability": 3,
@@ -1154,7 +1146,6 @@
     "m_Id": 0,
     "m_DisplayName": "UV",
     "m_SlotType": 1,
-    "m_Priority": 2147483647,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
     "m_StageCapability": 3,
@@ -1176,7 +1167,6 @@
     "m_Id": -1594274566,
     "m_DisplayName": "UV",
     "m_SlotType": 0,
-    "m_Priority": 2147483647,
     "m_Hidden": false,
     "m_ShaderOutputName": "Vector2_596dd20b5cea4ca59628b3b3e27a43dd",
     "m_StageCapability": 3,
@@ -1198,7 +1188,6 @@
     "m_Id": 1813812274,
     "m_DisplayName": "Morphing Speed",
     "m_SlotType": 0,
-    "m_Priority": 2147483647,
     "m_Hidden": false,
     "m_ShaderOutputName": "Vector1_39948e7f34d345609422450e4dce00ba",
     "m_StageCapability": 3,
@@ -1214,7 +1203,6 @@
     "m_Id": 1,
     "m_DisplayName": "B",
     "m_SlotType": 0,
-    "m_Priority": 2147483647,
     "m_Hidden": false,
     "m_ShaderOutputName": "B",
     "m_StageCapability": 3,
@@ -1239,7 +1227,6 @@
     "m_Id": 1,
     "m_DisplayName": "B",
     "m_SlotType": 0,
-    "m_Priority": 2147483647,
     "m_Hidden": false,
     "m_ShaderOutputName": "B",
     "m_StageCapability": 3,
@@ -1288,7 +1275,6 @@
     "m_Id": 1,
     "m_DisplayName": "Blend",
     "m_SlotType": 0,
-    "m_Priority": 2147483647,
     "m_Hidden": false,
     "m_ShaderOutputName": "Blend",
     "m_StageCapability": 3,
@@ -1313,7 +1299,6 @@
     "m_Id": 2,
     "m_DisplayName": "Out",
     "m_SlotType": 1,
-    "m_Priority": 2147483647,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
     "m_StageCapability": 3,
@@ -1338,7 +1323,6 @@
     "m_Id": -2039255848,
     "m_DisplayName": "Moving Speed",
     "m_SlotType": 0,
-    "m_Priority": 2147483647,
     "m_Hidden": false,
     "m_ShaderOutputName": "Vector1_1c64dc067968464c82f9b3cf938d6686",
     "m_StageCapability": 3,
@@ -1354,7 +1338,6 @@
     "m_Id": 0,
     "m_DisplayName": "Base",
     "m_SlotType": 0,
-    "m_Priority": 2147483647,
     "m_Hidden": false,
     "m_ShaderOutputName": "Base",
     "m_StageCapability": 3,
@@ -1379,7 +1362,6 @@
     "m_Id": 1883249457,
     "m_DisplayName": "Scale Local",
     "m_SlotType": 0,
-    "m_Priority": 2147483647,
     "m_Hidden": false,
     "m_ShaderOutputName": "Vector1_36347c8efd6a495392ae7073762ef32d",
     "m_StageCapability": 3,
@@ -1395,7 +1377,6 @@
     "m_Id": 1,
     "m_DisplayName": "B",
     "m_SlotType": 0,
-    "m_Priority": 2147483647,
     "m_Hidden": false,
     "m_ShaderOutputName": "B",
     "m_StageCapability": 3,
@@ -1433,6 +1414,9 @@
     },
     "m_Slots": [
         {
+            "m_Id": "c1dd058f6d374ba5af3b4cb39263b209"
+        },
+        {
             "m_Id": "6c35e451c2fd4304ae8f5248800bc04f"
         },
         {
@@ -1446,14 +1430,12 @@
         },
         {
             "m_Id": "d466962501fc4930a2b59ff5bc70cbe4"
-        },
-        {
-            "m_Id": "c1dd058f6d374ba5af3b4cb39263b209"
         }
     ],
     "synonyms": [],
     "m_Precision": 0,
     "m_PreviewExpanded": true,
+    "m_PreviewMode": 0,
     "m_CustomColors": {
         "m_SerializableColors": []
     },
@@ -1481,7 +1463,6 @@
     "m_Id": 4,
     "m_DisplayName": "Smooth Delta",
     "m_SlotType": 1,
-    "m_Priority": 2147483647,
     "m_Hidden": false,
     "m_ShaderOutputName": "Smooth Delta",
     "m_StageCapability": 3,
@@ -1497,7 +1478,6 @@
     "m_Id": -1594274566,
     "m_DisplayName": "UV",
     "m_SlotType": 0,
-    "m_Priority": 2147483647,
     "m_Hidden": false,
     "m_ShaderOutputName": "Vector2_596dd20b5cea4ca59628b3b3e27a43dd",
     "m_StageCapability": 3,
@@ -1550,6 +1530,7 @@
     "synonyms": [],
     "m_Precision": 0,
     "m_PreviewExpanded": true,
+    "m_PreviewMode": 0,
     "m_CustomColors": {
         "m_SerializableColors": []
     }
@@ -1562,7 +1543,6 @@
     "m_Id": 1012054449,
     "m_DisplayName": "Scale Master",
     "m_SlotType": 0,
-    "m_Priority": 2147483647,
     "m_Hidden": false,
     "m_ShaderOutputName": "Vector1_c00cbb68ace34489a86a4378c51045a5",
     "m_StageCapability": 3,
@@ -1578,7 +1558,6 @@
     "m_Id": 1,
     "m_DisplayName": "Clouds",
     "m_SlotType": 1,
-    "m_Priority": 2147483647,
     "m_Hidden": false,
     "m_ShaderOutputName": "Clouds",
     "m_StageCapability": 3,
@@ -1588,18 +1567,21 @@
 }
 
 {
-    "m_SGVersion": 0,
+    "m_SGVersion": 1,
     "m_Type": "UnityEditor.ShaderGraph.Internal.Vector1ShaderProperty",
     "m_ObjectId": "7373f18033524f4d9da25c7184839e8a",
     "m_Guid": {
         "m_GuidSerialized": "3c8adc54-ed96-489b-91af-ff9db72e470e"
     },
     "m_Name": "Scale",
+    "m_DefaultRefNameVersion": 0,
+    "m_RefNameGeneratedByDisplayName": "",
     "m_DefaultReferenceName": "Vector1_7373f18033524f4d9da25c7184839e8a",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
     "m_Precision": 0,
-    "m_GPUInstanced": false,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
     "m_Hidden": false,
     "m_Value": 0.0,
     "m_FloatType": 0,
@@ -1616,7 +1598,6 @@
     "m_Id": 1883249457,
     "m_DisplayName": "Scale Local",
     "m_SlotType": 0,
-    "m_Priority": 2147483647,
     "m_Hidden": false,
     "m_ShaderOutputName": "Vector1_36347c8efd6a495392ae7073762ef32d",
     "m_StageCapability": 3,
@@ -1632,7 +1613,6 @@
     "m_Id": 1,
     "m_DisplayName": "Clouds",
     "m_SlotType": 1,
-    "m_Priority": 2147483647,
     "m_Hidden": false,
     "m_ShaderOutputName": "Clouds",
     "m_StageCapability": 3,
@@ -1648,7 +1628,6 @@
     "m_Id": 3,
     "m_DisplayName": "Opacity",
     "m_SlotType": 0,
-    "m_Priority": 2147483647,
     "m_Hidden": false,
     "m_ShaderOutputName": "Opacity",
     "m_StageCapability": 3,
@@ -1683,6 +1662,7 @@
     "synonyms": [],
     "m_Precision": 0,
     "m_PreviewExpanded": true,
+    "m_PreviewMode": 0,
     "m_CustomColors": {
         "m_SerializableColors": []
     },
@@ -1698,7 +1678,6 @@
     "m_Id": 0,
     "m_DisplayName": "Speed",
     "m_SlotType": 1,
-    "m_Priority": 2147483647,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
     "m_StageCapability": 3,
@@ -1714,7 +1693,6 @@
     "m_Id": 1883249457,
     "m_DisplayName": "Scale Local",
     "m_SlotType": 0,
-    "m_Priority": 2147483647,
     "m_Hidden": false,
     "m_ShaderOutputName": "Vector1_36347c8efd6a495392ae7073762ef32d",
     "m_StageCapability": 3,
@@ -1755,6 +1733,7 @@
     "synonyms": [],
     "m_Precision": 0,
     "m_PreviewExpanded": false,
+    "m_PreviewMode": 0,
     "m_CustomColors": {
         "m_SerializableColors": []
     }
@@ -1767,7 +1746,6 @@
     "m_Id": 2,
     "m_DisplayName": "Out",
     "m_SlotType": 1,
-    "m_Priority": 2147483647,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
     "m_StageCapability": 3,
@@ -1841,6 +1819,7 @@
     "synonyms": [],
     "m_Precision": 0,
     "m_PreviewExpanded": false,
+    "m_PreviewMode": 0,
     "m_CustomColors": {
         "m_SerializableColors": []
     }
@@ -1853,7 +1832,6 @@
     "m_Id": 1,
     "m_DisplayName": "B",
     "m_SlotType": 0,
-    "m_Priority": 2147483647,
     "m_Hidden": false,
     "m_ShaderOutputName": "B",
     "m_StageCapability": 3,
@@ -1921,6 +1899,7 @@
     "synonyms": [],
     "m_Precision": 0,
     "m_PreviewExpanded": true,
+    "m_PreviewMode": 0,
     "m_CustomColors": {
         "m_SerializableColors": []
     },
@@ -1936,7 +1915,6 @@
     "m_Id": 1,
     "m_DisplayName": "Blend",
     "m_SlotType": 0,
-    "m_Priority": 2147483647,
     "m_Hidden": false,
     "m_ShaderOutputName": "Blend",
     "m_StageCapability": 3,
@@ -1989,6 +1967,7 @@
     "synonyms": [],
     "m_Precision": 0,
     "m_PreviewExpanded": true,
+    "m_PreviewMode": 0,
     "m_CustomColors": {
         "m_SerializableColors": []
     },
@@ -2002,7 +1981,6 @@
     "m_Id": -2039255848,
     "m_DisplayName": "Moving Speed",
     "m_SlotType": 0,
-    "m_Priority": 2147483647,
     "m_Hidden": false,
     "m_ShaderOutputName": "Vector1_1c64dc067968464c82f9b3cf938d6686",
     "m_StageCapability": 3,
@@ -2018,7 +1996,6 @@
     "m_Id": 1012054449,
     "m_DisplayName": "Scale Master",
     "m_SlotType": 0,
-    "m_Priority": 2147483647,
     "m_Hidden": false,
     "m_ShaderOutputName": "Vector1_c00cbb68ace34489a86a4378c51045a5",
     "m_StageCapability": 3,
@@ -2034,7 +2011,6 @@
     "m_Id": 0,
     "m_DisplayName": "A",
     "m_SlotType": 0,
-    "m_Priority": 2147483647,
     "m_Hidden": false,
     "m_ShaderOutputName": "A",
     "m_StageCapability": 3,
@@ -2102,6 +2078,7 @@
     "synonyms": [],
     "m_Precision": 0,
     "m_PreviewExpanded": true,
+    "m_PreviewMode": 0,
     "m_CustomColors": {
         "m_SerializableColors": []
     },
@@ -2115,7 +2092,6 @@
     "m_Id": 3,
     "m_DisplayName": "Opacity",
     "m_SlotType": 0,
-    "m_Priority": 2147483647,
     "m_Hidden": false,
     "m_ShaderOutputName": "Opacity",
     "m_StageCapability": 3,
@@ -2131,7 +2107,6 @@
     "m_Id": -1594274566,
     "m_DisplayName": "UV",
     "m_SlotType": 0,
-    "m_Priority": 2147483647,
     "m_Hidden": false,
     "m_ShaderOutputName": "Vector2_596dd20b5cea4ca59628b3b3e27a43dd",
     "m_StageCapability": 3,
@@ -2166,6 +2141,9 @@
     },
     "m_Slots": [
         {
+            "m_Id": "ca1acec8a27d48a99073c89f11b9afbc"
+        },
+        {
             "m_Id": "df6c5761f0a249f0a8f71c5afa4416eb"
         },
         {
@@ -2179,14 +2157,12 @@
         },
         {
             "m_Id": "802a3f205a0e4c99ac134d03a12166ca"
-        },
-        {
-            "m_Id": "ca1acec8a27d48a99073c89f11b9afbc"
         }
     ],
     "synonyms": [],
     "m_Precision": 0,
     "m_PreviewExpanded": true,
+    "m_PreviewMode": 0,
     "m_CustomColors": {
         "m_SerializableColors": []
     },
@@ -2214,7 +2190,6 @@
     "m_Id": -2039255848,
     "m_DisplayName": "Moving Speed",
     "m_SlotType": 0,
-    "m_Priority": 2147483647,
     "m_Hidden": false,
     "m_ShaderOutputName": "Vector1_1c64dc067968464c82f9b3cf938d6686",
     "m_StageCapability": 3,
@@ -2230,7 +2205,6 @@
     "m_Id": -1594274566,
     "m_DisplayName": "UV",
     "m_SlotType": 0,
-    "m_Priority": 2147483647,
     "m_Hidden": false,
     "m_ShaderOutputName": "Vector2_596dd20b5cea4ca59628b3b3e27a43dd",
     "m_StageCapability": 3,
@@ -2252,7 +2226,6 @@
     "m_Id": 1,
     "m_DisplayName": "Blend",
     "m_SlotType": 0,
-    "m_Priority": 2147483647,
     "m_Hidden": false,
     "m_ShaderOutputName": "Blend",
     "m_StageCapability": 3,
@@ -2277,7 +2250,6 @@
     "m_Id": 0,
     "m_DisplayName": "A",
     "m_SlotType": 0,
-    "m_Priority": 2147483647,
     "m_Hidden": false,
     "m_ShaderOutputName": "A",
     "m_StageCapability": 3,
@@ -2302,7 +2274,6 @@
     "m_Id": 1012054449,
     "m_DisplayName": "Scale Master",
     "m_SlotType": 0,
-    "m_Priority": 2147483647,
     "m_Hidden": false,
     "m_ShaderOutputName": "Vector1_c00cbb68ace34489a86a4378c51045a5",
     "m_StageCapability": 3,
@@ -2312,18 +2283,21 @@
 }
 
 {
-    "m_SGVersion": 0,
+    "m_SGVersion": 1,
     "m_Type": "UnityEditor.ShaderGraph.Internal.Vector1ShaderProperty",
     "m_ObjectId": "ce9fea26730546feab386985ff42643c",
     "m_Guid": {
         "m_GuidSerialized": "41f6e5f8-5f05-49f4-9640-a4f1363af31e"
     },
     "m_Name": "Speed",
+    "m_DefaultRefNameVersion": 0,
+    "m_RefNameGeneratedByDisplayName": "",
     "m_DefaultReferenceName": "Vector1_ce9fea26730546feab386985ff42643c",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
     "m_Precision": 0,
-    "m_GPUInstanced": false,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
     "m_Hidden": false,
     "m_Value": 0.0,
     "m_FloatType": 0,
@@ -2340,7 +2314,6 @@
     "m_Id": 2,
     "m_DisplayName": "Out",
     "m_SlotType": 1,
-    "m_Priority": 2147483647,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
     "m_StageCapability": 3,
@@ -2365,7 +2338,6 @@
     "m_Id": 3,
     "m_DisplayName": "Delta Time",
     "m_SlotType": 1,
-    "m_Priority": 2147483647,
     "m_Hidden": false,
     "m_ShaderOutputName": "Delta Time",
     "m_StageCapability": 3,
@@ -2381,7 +2353,6 @@
     "m_Id": 1,
     "m_DisplayName": "Clouds",
     "m_SlotType": 1,
-    "m_Priority": 2147483647,
     "m_Hidden": false,
     "m_ShaderOutputName": "Clouds",
     "m_StageCapability": 3,
@@ -2397,7 +2368,6 @@
     "m_Id": 3,
     "m_DisplayName": "Opacity",
     "m_SlotType": 0,
-    "m_Priority": 2147483647,
     "m_Hidden": false,
     "m_ShaderOutputName": "Opacity",
     "m_StageCapability": 3,
@@ -2413,7 +2383,6 @@
     "m_Id": 1813812274,
     "m_DisplayName": "Morphing Speed",
     "m_SlotType": 0,
-    "m_Priority": 2147483647,
     "m_Hidden": false,
     "m_ShaderOutputName": "Vector1_39948e7f34d345609422450e4dce00ba",
     "m_StageCapability": 3,
@@ -2429,7 +2398,6 @@
     "m_Id": 1012054449,
     "m_DisplayName": "Scale Master",
     "m_SlotType": 0,
-    "m_Priority": 2147483647,
     "m_Hidden": false,
     "m_ShaderOutputName": "Vector1_c00cbb68ace34489a86a4378c51045a5",
     "m_StageCapability": 3,
@@ -2458,6 +2426,9 @@
     },
     "m_Slots": [
         {
+            "m_Id": "4a1ba5e3aed04d968ce247777a694fca"
+        },
+        {
             "m_Id": "af2cf5a198734f7ca607a939c2dcf866"
         },
         {
@@ -2471,14 +2442,12 @@
         },
         {
             "m_Id": "1023105e4e354895805074473b181635"
-        },
-        {
-            "m_Id": "4a1ba5e3aed04d968ce247777a694fca"
         }
     ],
     "synonyms": [],
     "m_Precision": 0,
     "m_PreviewExpanded": true,
+    "m_PreviewMode": 0,
     "m_CustomColors": {
         "m_SerializableColors": []
     },
@@ -2534,6 +2503,7 @@
     "synonyms": [],
     "m_Precision": 0,
     "m_PreviewExpanded": true,
+    "m_PreviewMode": 0,
     "m_CustomColors": {
         "m_SerializableColors": []
     },
@@ -2547,7 +2517,6 @@
     "m_Id": 0,
     "m_DisplayName": "Base",
     "m_SlotType": 0,
-    "m_Priority": 2147483647,
     "m_Hidden": false,
     "m_ShaderOutputName": "Base",
     "m_StageCapability": 3,
@@ -2572,7 +2541,6 @@
     "m_Id": -2039255848,
     "m_DisplayName": "Moving Speed",
     "m_SlotType": 0,
-    "m_Priority": 2147483647,
     "m_Hidden": false,
     "m_ShaderOutputName": "Vector1_1c64dc067968464c82f9b3cf938d6686",
     "m_StageCapability": 3,
@@ -2613,6 +2581,7 @@
     "synonyms": [],
     "m_Precision": 0,
     "m_PreviewExpanded": false,
+    "m_PreviewMode": 0,
     "m_CustomColors": {
         "m_SerializableColors": []
     }
@@ -2625,7 +2594,6 @@
     "m_Id": 0,
     "m_DisplayName": "Scale",
     "m_SlotType": 1,
-    "m_Priority": 2147483647,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
     "m_StageCapability": 3,
@@ -2641,7 +2609,6 @@
     "m_Id": 1,
     "m_DisplayName": "Clouds_Detailed",
     "m_SlotType": 0,
-    "m_Priority": 2147483647,
     "m_Hidden": false,
     "m_ShaderOutputName": "Clouds_Detailed",
     "m_StageCapability": 3,
