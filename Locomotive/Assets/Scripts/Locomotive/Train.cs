@@ -105,6 +105,10 @@ public class Train : MonoBehaviour
         {
             stepNextSpline();
         }
+        else if (usedSegment == -1)
+        {
+            stepPreviousSpline();
+        }
 
 
         if (curveSample == null)
@@ -162,7 +166,15 @@ public class Train : MonoBehaviour
 
     private void stepPreviousSpline()
     {
+        nextRailSeg = curRailSeg;
+        curRailSeg = prevRailSeg;
 
+        int curSwitch = switchSetting.CurrentSetting;
+        curSwitch = Mathf.Clamp(curSwitch, 0, curRailSeg.PreviousSegments.Length - 1);
+
+        prevRailSeg = curRailSeg.PreviousSegments[curSwitch];
+
+        curPos += curRailSeg.Length;
     }
 
     private void SwitchSetting_SwitchChange(int oldSwitchPos, int newSwitchPos)
