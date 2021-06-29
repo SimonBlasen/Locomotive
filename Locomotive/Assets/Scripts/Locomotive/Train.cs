@@ -8,6 +8,8 @@ public class Train : MonoBehaviour
     [Header("Rails")]
     [SerializeField]
     private Railroad railRoad = null;
+    [SerializeField]
+    private RailSegment startRailSegment = null;
 
     [Header("Locomotive")]
     [SerializeField]
@@ -34,6 +36,12 @@ public class Train : MonoBehaviour
     [SerializeField]
     private float actualPhysicalSpeedCorrection = 0.3f;
 
+    [Space]
+
+    [Header("References")]
+    [SerializeField]
+    private SwitchSetting switchSetting = null;
+
     [FMODUnity.EventRef]
     public string fmodEventTrainSound;
 
@@ -47,6 +55,9 @@ public class Train : MonoBehaviour
 
     private FMOD.Studio.EventInstance instanceTrainSound;
 
+    private RailSegment prevRailSeg = null;
+    private RailSegment curRailSeg = null;
+    private RailSegment nextRailSeg = null;
 
     // Start is called before the first frame update
     void Start()
@@ -70,6 +81,16 @@ public class Train : MonoBehaviour
 
         curPos = distanceTotalTrain + 1f;
 
+        if (startRailSegment == null)
+        {
+            startRailSegment = railRoad.FirstSegment;
+        }
+
+        curRailSeg = startRailSegment;
+        prevRailSeg = startRailSegment.PreviousSegments[0];
+        nextRailSeg = startRailSegment.FollowingSegments[0];
+
+        switchSetting.SwitchChange += SwitchSetting_SwitchChange;
     }
 
     // Update is called once per frame
@@ -77,7 +98,14 @@ public class Train : MonoBehaviour
     {
         curPos += curVelocity * Time.fixedDeltaTime * actualPhysicalSpeedCorrection;
 
-        CurveSample curveSample = railRoad.GetRailAt(curPos);
+        //CurveSample curveSample = railRoad.GetRailAt(curPos);
+        int usedSegment;
+        CurveSample curveSample = railRoad.GetRailAt(prevRailSeg, curRailSeg, nextRailSeg, curPos, out usedSegment);
+        if (usedSegment == 1)
+        {
+            stepNextSpline();
+        }
+
 
         if (curveSample == null)
         {
@@ -90,7 +118,8 @@ public class Train : MonoBehaviour
 
             for (int i = 0; i < wagons.Length; i++)
             {
-                CurveSample curveSampleWagon = railRoad.GetRailAt(curPos - summedDistances[i]);
+                CurveSample curveSampleWagon = railRoad.GetRailAt(prevRailSeg, curRailSeg, nextRailSeg, curPos - summedDistances[i], out usedSegment);
+                //CurveSample curveSampleWagon = railRoad.GetRailAt(curPos - summedDistances[i]);
                 wagons[i].transform.position = curveSampleWagon.location;
                 wagons[i].transform.rotation = Quaternion.LookRotation(curveSampleWagon.tangent, curveSampleWagon.up);
             }
@@ -116,6 +145,32 @@ public class Train : MonoBehaviour
         {
             curVelocity = Mathf.MoveTowards(curVelocity, TargetSpeed, Time.deltaTime * deceleration);
         }*/
+    }
+
+    private void stepNextSpline()
+    {
+        prevRailSeg = curRailSeg;
+        curRailSeg = nextRailSeg;
+
+        int curSwitch = switchSetting.CurrentSetting;
+        curSwitch = Mathf.Clamp(curSwitch, 0, curRailSeg.FollowingSegments.Length - 1);
+
+        nextRailSeg = curRailSeg.FollowingSegments[curSwitch];
+
+        curPos -= prevRailSeg.Length;
+    }
+
+    private void stepPreviousSpline()
+    {
+
+    }
+
+    private void SwitchSetting_SwitchChange(int oldSwitchPos, int newSwitchPos)
+    {
+        int curSwitch = newSwitchPos;
+        curSwitch = Mathf.Clamp(curSwitch, 0, curRailSeg.FollowingSegments.Length - 1);
+
+        nextRailSeg = curRailSeg.FollowingSegments[curSwitch];
     }
 
 

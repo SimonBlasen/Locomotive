@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class SwitchSetting : MonoBehaviour
 {
+    public delegate void SwitchChangeEvent(int oldSwitchPos, int newSwitchPos);
+
+    public event SwitchChangeEvent SwitchChange;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +28,9 @@ public class SwitchSetting : MonoBehaviour
 
     public void SetSwitch(int val)
     {
+        int oldSetting = CurrentSetting;
         CurrentSetting = val;
+
+        SwitchChange?.Invoke(oldSetting, CurrentSetting);
     }
 }

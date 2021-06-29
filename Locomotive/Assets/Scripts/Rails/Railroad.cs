@@ -32,6 +32,32 @@ public class Railroad : MonoBehaviour
         
     }
 
+    public CurveSample GetRailAt(RailSegment prevSeg, RailSegment curSeg, RailSegment nextSeg, float localDistance, out int usedSegment)
+    {
+        // Previous Segment
+        if (localDistance < 0f)
+        {
+            float splineDist = prevSeg.Length + localDistance;
+            usedSegment = -1;
+            return prevSeg.Spline.GetSampleAtDistance(splineDist);
+        }
+
+        // Current Segment
+        else if (localDistance < curSeg.Length)
+        {
+            usedSegment = 0;
+            return curSeg.Spline.GetSampleAtDistance(localDistance);
+        }
+
+        // Next Segment
+        else
+        {
+            float splineDist = localDistance - curSeg.Length;
+            usedSegment = 1;
+            return nextSeg.Spline.GetSampleAtDistance(splineDist);
+        }
+    }
+
     public CurveSample GetRailAt(float distance)
     {
         for (int i = 1; i < summedDistances.Count; i++)
@@ -75,6 +101,14 @@ public class Railroad : MonoBehaviour
             Debug.Log("Train reached end");
 
             return true;
+        }
+    }
+
+    public RailSegment FirstSegment
+    {
+        get
+        {
+            return firstSegment;
         }
     }
 }
