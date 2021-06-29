@@ -1,3 +1,4 @@
+using FMODUnity;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,6 +18,7 @@ public class InteractableRailroadSwitch : Interactable
     [SerializeField]
     private float switchAngle = 20f;
 
+    private StudioEventEmitter stevem = null;
 
     private float s = 0f;
 
@@ -24,6 +26,7 @@ public class InteractableRailroadSwitch : Interactable
     protected override void Start()
     {
         base.Start();
+        stevem = GetComponent<StudioEventEmitter>();
 
         switchSetting.SetSwitch(0);
     }
@@ -51,5 +54,6 @@ public class InteractableRailroadSwitch : Interactable
     public override void Interact()
     {
         switchSetting.SetSwitch(1 - switchSetting.CurrentSetting);
+        stevem.Play();
     }
 }

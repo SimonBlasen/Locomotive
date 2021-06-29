@@ -7615,8 +7615,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3123286977244923159}
   - component: {fileID: 9092664734392154819}
+  - component: {fileID: 2515979435038698407}
   m_Layer: 0
-  m_Name: Brake Leaver (1)
+  m_Name: Railsegment Switcher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7630,7 +7631,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6754949411430665286}
   m_LocalRotation: {x: 0.49999997, y: -0.50000006, z: 0.49999997, w: 0.5000001}
-  m_LocalPosition: {x: 0.82299995, y: 1.191, z: -1.1380001}
+  m_LocalPosition: {x: 0.7208, y: 1.191, z: -1.0663}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6020390813420468621}
@@ -7681,6 +7682,29 @@ MonoBehaviour:
   animationTime: 0.8
   switchTransform: {fileID: 7557561486081317546}
   switchAngle: 25
+--- !u!114 &2515979435038698407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6754949411430665286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  Event: event:/Lok/Hebel_Weiche
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 10
 --- !u!1 &7101380729752308415
 GameObject:
   m_ObjectHideFlags: 0

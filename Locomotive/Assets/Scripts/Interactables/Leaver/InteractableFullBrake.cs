@@ -36,7 +36,7 @@ public class InteractableFullBrake : Interactable
             {
                 sliderVal = interactableCollider.transform.InverseTransformPoint(hit.point).y;
 
-                Debug.Log(sliderVal.ToString("n2"));
+                //Debug.Log(sliderVal.ToString("n2"));
 
                 float brakeVal = (sliderVal * 1.5f + 0.5f);
                 brakeVal = Mathf.Clamp(brakeVal, 0f, 1f);
