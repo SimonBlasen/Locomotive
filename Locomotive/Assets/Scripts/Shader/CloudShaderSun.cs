@@ -37,8 +37,8 @@ public class CloudShaderSun : MonoBehaviour
         matCopy.SetFloat(shaderPropertyXID, sin);
         matCopy.SetFloat(shaderPropertyYID, cos);
 
-        Debug.Log("Sin: " + sin.ToString("n2"));
-        Debug.Log("Cos: " + cos.ToString("n2"));
+        //Debug.Log("Sin: " + sin.ToString("n2"));
+        //Debug.Log("Cos: " + cos.ToString("n2"));
     }
 
     private float make0_360(float angleVal)
