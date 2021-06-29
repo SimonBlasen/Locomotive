@@ -16,9 +16,9 @@ public class CloudShaderSun : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        matCopy = cloudShaderMeshRenderer.sharedMaterial;
-        //matCopy = new Material(cloudShaderMeshRenderer.sharedMaterial);
-        //cloudShaderMeshRenderer.sharedMaterial = matCopy;
+        //matCopy = cloudShaderMeshRenderer.sharedMaterial;
+        matCopy = new Material(cloudShaderMeshRenderer.sharedMaterial);
+        cloudShaderMeshRenderer.sharedMaterial = matCopy;
     }
 
     // Update is called once per frame
