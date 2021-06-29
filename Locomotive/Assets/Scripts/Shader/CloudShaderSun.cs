@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[ExecuteInEditMode]
+
 public class CloudShaderSun : MonoBehaviour
 {
     [SerializeField]
@@ -13,8 +15,9 @@ public class CloudShaderSun : MonoBehaviour
 
     private Material matCopy = null;
 
+    
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         //matCopy = cloudShaderMeshRenderer.sharedMaterial;
         matCopy = new Material(cloudShaderMeshRenderer.sharedMaterial);
