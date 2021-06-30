@@ -66,6 +66,28 @@ public class RailSegment : MonoBehaviour
 
             Destroy(tempTrans);
         }
+
+
+        if (previousSegments.Length >= 2)
+        {
+            GameObject tempTrans = new GameObject("Temp Trans");
+            CurveSample curveEnd = spline.GetSampleAtDistance(1f);
+            tempTrans.transform.position = curveEnd.location;
+            tempTrans.transform.up = Vector3.Cross(Vector3.up, curveEnd.tangent);
+
+            float yPos0 = tempTrans.transform.InverseTransformPoint(previousSegments[0].Spline.GetSampleAtDistance(previousSegments[0].Spline.Length - 5f).location).y;
+            float yPos1 = tempTrans.transform.InverseTransformPoint(previousSegments[1].Spline.GetSampleAtDistance(previousSegments[1].Spline.Length - 5f).location).y;
+
+            if (yPos0 <= yPos1)
+            {
+                Debug.Log("Switched segments");
+                RailSegment cached = previousSegments[1];
+                previousSegments[1] = previousSegments[0];
+                previousSegments[0] = cached;
+            }
+
+            Destroy(tempTrans);
+        }
     }
 
     // Update is called once per frame

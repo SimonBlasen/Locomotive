@@ -141,13 +141,13 @@ public class Train : MonoBehaviour
         // Accelerating
         float curAccStep = PressureWheels * Time.fixedDeltaTime * accelerationCurve.Evaluate(curVelocity);
 
-        curVelocity = Mathf.MoveTowards(curVelocity, topSpeed, curAccStep);
+        curVelocity = Mathf.MoveTowards(curVelocity, DriveDirectionForward ? topSpeed : -topSpeed, curAccStep);
 
         // Braking
         float curDeceleration = BrakeStrength * Time.fixedDeltaTime * deceleration;
         curVelocity = Mathf.MoveTowards(curVelocity, 0f, curDeceleration);
         
-        instanceTrainSound.setParameterByName("RPM", (CurrentSpeed / topSpeed) * 100f * audioFactor);
+        instanceTrainSound.setParameterByName("RPM", Mathf.Abs((CurrentSpeed / topSpeed) * 100f * audioFactor));
 
         /*if (TargetSpeed > curVelocity)
         {
@@ -191,6 +191,10 @@ public class Train : MonoBehaviour
         curSwitch = Mathf.Clamp(curSwitch, 0, curRailSeg.FollowingSegments.Length - 1);
 
         nextRailSeg = curRailSeg.FollowingSegments[curSwitch];
+
+        curSwitch = Mathf.Clamp(curSwitch, 0, curRailSeg.PreviousSegments.Length - 1);
+
+        prevRailSeg = curRailSeg.PreviousSegments[curSwitch];
     }
 
     private void OnDestroy()
@@ -257,4 +261,9 @@ public class Train : MonoBehaviour
             return curVelocity;
         }
     }
+
+    public bool DriveDirectionForward
+    {
+        get; set;
+    } = true;
 }
