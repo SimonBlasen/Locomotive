@@ -91,6 +91,14 @@ public class Train : MonoBehaviour
         nextRailSeg = startRailSegment.FollowingSegments[0];
 
         switchSetting.SwitchChange += SwitchSetting_SwitchChange;
+
+
+        // Register in train stations
+        TrainStation[] trainStations = FindObjectsOfType<TrainStation>();
+        for (int i = 0; i < trainStations.Length; i++)
+        {
+            trainStations[i].RegisterTrain(this);
+        }
     }
 
     // Update is called once per frame
@@ -185,6 +193,15 @@ public class Train : MonoBehaviour
         nextRailSeg = curRailSeg.FollowingSegments[curSwitch];
     }
 
+    private void OnDestroy()
+    {
+        TrainStation[] trainStations = FindObjectsOfType<TrainStation>();
+        for (int i = 0; i < trainStations.Length; i++)
+        {
+            trainStations[i].DeregisterTrain(this);
+        }
+    }
+
 
     public float TargetSpeed
     {
@@ -200,6 +217,38 @@ public class Train : MonoBehaviour
     {
         get; set;
     } = 0f;
+
+    public float CurPosOnSPline
+    {
+        get
+        {
+            return curPos;
+        }
+    }
+
+    public float PosOfLastWagon
+    {
+        get
+        {
+            return curPos - LengthOfWholeTrain;
+        }
+    }
+
+    public float LengthOfWholeTrain
+    {
+        get
+        {
+            return distanceTotalTrain;
+        }
+    }
+
+    public RailSegment CurrentRailSegment
+    {
+        get
+        {
+            return curRailSeg;
+        }
+    }
 
     public float CurrentSpeed
     {

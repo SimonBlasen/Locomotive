@@ -56,7 +56,7 @@ public class RailSegment : MonoBehaviour
             float yPos0 = tempTrans.transform.InverseTransformPoint(followingSegments[0].Spline.GetSampleAtDistance(5f).location).y;
             float yPos1 = tempTrans.transform.InverseTransformPoint(followingSegments[1].Spline.GetSampleAtDistance(5f).location).y;
 
-            if (yPos0 > yPos1)
+            if (yPos0 <= yPos1)
             {
                 Debug.Log("Switched segments");
                 RailSegment cached = followingSegments[1];
