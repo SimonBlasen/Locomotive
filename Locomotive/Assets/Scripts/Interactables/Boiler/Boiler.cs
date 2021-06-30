@@ -50,6 +50,11 @@ public class Boiler : MonoBehaviour
         {
             pressure = maxPressure;
         }
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            pressure = maxPressure * 0.75f;
+        }
     }
 
     private void releaseSteam()
