@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="AudioFile" id="{8d832bb8-a8aa-4873-b858-29279774180a}">
+		<property name="assetPath">
+			<value>Lok_SteamLoops/Lok_LoopSub  _55-60.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>96</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>1.2499791666666666</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{29a80aed-39f0-4f1e-b0a5-df58b5de11ec}</destination>
+		</relationship>
+	</object>
+</objects>
