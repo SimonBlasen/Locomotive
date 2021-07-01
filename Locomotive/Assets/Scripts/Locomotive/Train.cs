@@ -35,6 +35,8 @@ public class Train : MonoBehaviour
     private float audioFactor = 6f;
     [SerializeField]
     private float actualPhysicalSpeedCorrection = 0.3f;
+    [SerializeField]
+    private float gravitySlopeStrength = 0.3f;
 
     [Space]
 
@@ -48,6 +50,8 @@ public class Train : MonoBehaviour
 
     public float curVelocity = 0f;
     public float curPos = 0f;
+
+    private float totalWeight = 0f;
 
     private float distanceTotalTrain = 0f;
 
@@ -99,12 +103,20 @@ public class Train : MonoBehaviour
         {
             trainStations[i].RegisterTrain(this);
         }
+
+        totalWeight += locomotive.Weight;
+        for (int i = 0; i < wagons.Length; i++)
+        {
+            totalWeight += wagons[i].Weight;
+        }
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
         curPos += curVelocity * Time.fixedDeltaTime * actualPhysicalSpeedCorrection;
+
+        float slopedGravityMass = 0f;
 
         //CurveSample curveSample = railRoad.GetRailAt(curPos);
         int usedSegment;
@@ -128,12 +140,16 @@ public class Train : MonoBehaviour
             locomotive.transform.position = curveSample.location;
             locomotive.transform.rotation = Quaternion.LookRotation(curveSample.tangent, curveSample.up);
 
+            slopedGravityMass += curveSample.tangent.normalized.y * Mathf.Sign(curVelocity) * locomotive.Weight * -1f;
+
             for (int i = 0; i < wagons.Length; i++)
             {
                 CurveSample curveSampleWagon = railRoad.GetRailAt(prevRailSeg, curRailSeg, nextRailSeg, curPos - summedDistances[i], out usedSegment);
                 //CurveSample curveSampleWagon = railRoad.GetRailAt(curPos - summedDistances[i]);
                 wagons[i].transform.position = curveSampleWagon.location;
                 wagons[i].transform.rotation = Quaternion.LookRotation(curveSampleWagon.tangent, curveSampleWagon.up);
+
+                slopedGravityMass += curveSampleWagon.tangent.normalized.y * Mathf.Sign(curVelocity) * wagons[i].Weight * -1f;
             }
         }
 
@@ -143,10 +159,13 @@ public class Train : MonoBehaviour
 
         curVelocity = Mathf.MoveTowards(curVelocity, DriveDirectionForward ? topSpeed : -topSpeed, curAccStep);
 
+        // Slopes Gravity
+        curVelocity += slopedGravityMass * gravitySlopeStrength;
+
         // Braking
         float curDeceleration = BrakeStrength * Time.fixedDeltaTime * deceleration;
         curVelocity = Mathf.MoveTowards(curVelocity, 0f, curDeceleration);
-        
+
         instanceTrainSound.setParameterByName("RPM", Mathf.Abs((CurrentSpeed / topSpeed) * 100f * audioFactor));
 
         /*if (TargetSpeed > curVelocity)
