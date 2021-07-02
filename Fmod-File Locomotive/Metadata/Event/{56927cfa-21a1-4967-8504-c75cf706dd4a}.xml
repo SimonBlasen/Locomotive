@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.01.00">
 	<object class="Event" id="{56927cfa-21a1-4967-8504-c75cf706dd4a}">
 		<property name="name">
-			<value>Steam 2</value>
+			<value>Steam 3D</value>
 		</property>
 		<property name="outputFormat">
 			<value>5</value>
