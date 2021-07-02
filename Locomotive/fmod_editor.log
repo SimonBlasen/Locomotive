@@ -1,0 +1,209 @@
+[LOG] System::create                           : Header version = 2.01.09. Current version = 2.01.09.
+[LOG] Manager::init                            : maxchannels = 256 studioflags = 00000006 flags 00000000 extradriverdata 0x0.
+[LOG] SystemI::init                            : Initialize version=20109 (115889), maxchannels=256, flags=0x00020000
+[LOG] SystemI::setOutputInternal               : Setting output to 'FMOD Core Audio Output'
+[LOG] OutputCoreAudio::init                    : Output running 2 channels at 96000Hz sample rate.
+[LOG] OutputCoreAudio::init                    : Maximum hardware read size: 1024 samples, Software buffer size: 512 samples, Number of software buffers: 4.
+[LOG] SystemI::init                            : Output requires a sample rate of 96000Hz, resampling will occur.
+[LOG] Thread::initThread                       : Init FMOD stream thread. Affinity: 0x8000000000000003, Priority: 0xFFFF7FFB, Stack Size: 98304, Semaphore: No, Sleep Time: 10, Looping: Yes.
+[LOG] Thread::initThread                       : Init FMOD mixer thread. Affinity: 0x8000000000000001, Priority: 0xFFFF7FFA, Stack Size: 81920, Semaphore: Yes, Sleep Time: 0, Looping: Yes.
+[LOG] AsyncManager::init                       : manager 0x7fc744d24008 isAsync 0 updatePeriod 0.02
+[LOG] AsyncManager::init                       : done
+[LOG] PlaybackSystem::init                     : 
+[LOG] Thread::initThread                       : Init FMOD Studio sample load thread. Affinity: 0x8000000000000003, Priority: 0xFFFF7FFD, Stack Size: 98304, Semaphore: No, Sleep Time: 1, Looping: No.
+[LOG] PlaybackSystem::init                     : done
+[LOG] Thread::initThread                       : Init FMOD Studio bank load thread. Affinity: 0x8000000000000003, Priority: 0xFFFF7FFD, Stack Size: 98304, Semaphore: No, Sleep Time: 1, Looping: No.
+[LOG] Manager::init                            : done.
+[LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
+[LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 1355424
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 57856
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 0x70000beeb954
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 0x198684782
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 0x198684839
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 0x198684866
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 0x19868490a
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0x7fc73379feb8
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Lok_Prop_SchaufelAUF-01', format=5, channels=1, frequency=48000, lengthbytes=8672, lengthpcm=52114, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.586058.
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 1355424
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 57856
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 0x70000beeb954
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 0x198684782
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 0x198684839
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 0x198684866
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 0x19868490a
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0x7fc73379feb8
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Lok_Prop_SchaufelAUF-02', format=5, channels=1, frequency=48000, lengthbytes=8128, lengthpcm=46537, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.711485.
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 1355424
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 57856
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 0x70000beeb954
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 0x198684782
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 0x198684839
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 0x198684866
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 0x19868490a
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0x7fc7344dbfd8
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Lok_DampfVentil', format=5, channels=2, frequency=48000, lengthbytes=16832, lengthpcm=85918, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.424950.
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 1355424
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 57856
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 0x70000beeb954
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 0x198684782
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 0x198684839
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 0x198684866
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 0x19868490a
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0x7fc73273efa8
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Lok_Prop_HebelWeiche', format=5, channels=1, frequency=48000, lengthbytes=9184, lengthpcm=51284, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.660829.
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 1355424
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 57856
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 0x70000beeb954
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 0x198684782
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 0x198684839
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 0x198684866
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 0x19868490a
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0x7fc7337a9e08
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Lok_Prop_SchaufelAB-02', format=5, channels=1, frequency=48000, lengthbytes=9408, lengthpcm=50318, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.424666.
+[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
+[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             : exinfo->length             = 1355424
+[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 57856
+[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 0x70000beeb954
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 0x198684782
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 0x198684839
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 0x198684866
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 0x19868490a
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0x7fc7337a9e08
+[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
+[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
+[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Lok_Prop_SchaufelAB-01', format=5, channels=1, frequency=48000, lengthbytes=6912, lengthpcm=39708, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.434613.
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0x7fc737b2f238
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0x7fc737b2f238
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0x7fc737b3d2d8
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0x7fc737b3d2d8
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0x7fc737b54a58
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0x7fc737b54a58
+[LOG] SystemI::createSound                     : filename = ../Fmod-File Locomotive/Build/Desktop/Master.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSound                     : setdata soundi = 0x7fc733742dd8 : node = 0x7fc733742f90
+[LOG] SystemI::createSound                     : add node to async list : head = 0x7fc7374d1e68.  list count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0x7fc733742dd8
+[LOG] SystemI::createSoundInternal             :     Create name='../Fmod-File Locomotive/Build/Desktop/Master.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 1355424
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 57856
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 0x7fc7337430a0
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Lok_Loop_Bewegung-Deep', format=5, channels=2, frequency=48000, lengthbytes=174752, lengthpcm=838512, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.092667.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0x7fc733742dd8
+[LOG] SoundI::release                          : Lok_Idle-Deep (0x7fc7374c8c68)
+[LOG] SoundI::release                          :     Lok_Idle-Deep (0x7fc737b40e98)
+[LOG] SoundI::release                          :     Lok_Idle-Deep (0x7fc737b3d2d8)
+[LOG] SoundI::release                          :  (0x7fc7337a6648)
+[LOG] SoundI::release                          :     Lok_Prop_SchaufelAUF-01 (0x7fc7337a67b8)
+[LOG] SoundI::release                          :  (0x7fc7337a6af8)
+[LOG] SoundI::release                          :     Lok_Prop_SchaufelAUF-02 (0x7fc7337a6c68)
+[LOG] SoundI::release                          :  (0x7fc7337aae68)
+[LOG] SoundI::release                          :     Lok_Prop_SchaufelAB-01 (0x7fc7337aafd8)
+[LOG] SoundI::release                          :  (0x7fc7337aa538)
+[LOG] SoundI::release                          :     Lok_Prop_SchaufelAB-02 (0x7fc7337aab28)
+[LOG] SoundI::release                          :  (0x7fc737b67db8)
+[LOG] SoundI::release                          :     Lok_LoopSteam-Fast (0x7fc737b3bca8)
+[LOG] SoundI::release                          :  (0x7fc737b83dc8)
+[LOG] SoundI::release                          :     Lok_LoopSteam-Mid (0x7fc737b4aee8)
+[LOG] SoundI::release                          :  (0x7fc737b56b68)
+[LOG] SoundI::release                          :     Lok_LoopSteam-Slow (0x7fc737b14678)
+[LOG] SoundI::release                          :  (0x7fc737b2d788)
+[LOG] SoundI::release                          :     Lok_Loop_LowRPM-Deep (0x7fc737b1ac58)
+[LOG] SoundI::release                          :  (0x7fc7377e4f68)
+[LOG] SoundI::release                          :     Lok_Loop_HighRPM-Deep (0x7fc7377e7108)
+[LOG] SoundI::release                          :  (0x7fc7377e5e88)
+[LOG] SoundI::release                          :     Lok_Loop_ReibungHoch (0x7fc7377e5ff8)
+[LOG] SoundI::release                          : Fire_Loop 01 high (0x7fc7374d3388)
+[LOG] SoundI::release                          :     Fire_Loop 01 high (0x7fc737b13688)
+[LOG] SoundI::release                          :     Fire_Loop 01 high (0x7fc737b63ec8)
+[LOG] SoundI::release                          : Fire_Loop 03 WN (0x7fc7374d1a38)
+[LOG] SoundI::release                          :     Fire_Loop 03 WN (0x7fc737b85e68)
+[LOG] SoundI::release                          :     Fire_Loop 03 WN (0x7fc737b2f238)
+[LOG] SoundI::release                          : Lok_Loop_Bewegung-Deep (0x7fc733742dd8)
+[LOG] SoundI::release                          :     Lok_Loop_Bewegung-Deep (0x7fc7400ff868)
+[LOG] SoundI::release                          :     Lok_Loop_Bewegung-Deep (0x7fc7400ff9f8)
+[LOG] SoundI::release                          : Lok_Loop_Bewegung-High (0x7fc7374c3c18)
+[LOG] SoundI::release                          :     Lok_Loop_Bewegung-High (0x7fc737b7dc88)
+[LOG] SoundI::release                          :     Lok_Loop_Bewegung-High (0x7fc737b54a58)
+[LOG] SoundI::release                          :  (0x7fc7377e3fa8)
+[LOG] SoundI::release                          :     Fire_Loop 02 low (0x7fc7377e6eb8)
+[LOG] SoundI::release                          :  (0x7fc737b9fed8)
+[LOG] SoundI::release                          :     Fire_Hits 01 (0x7fc737b50f48)
+[LOG] SoundI::release                          :  (0x7fc737b6aad8)
+[LOG] SoundI::release                          :     Fire_Hits 02 (0x7fc737b4b448)
+[LOG] SoundI::release                          :  (0x7fc7377e7a28)
+[LOG] SoundI::release                          :     Fire_Hits 03 (0x7fc737b6bc78)
+[LOG] SoundI::release                          :  (0x7fc7377e6808)
+[LOG] SoundI::release                          :     Fire_Hits 04 (0x7fc7377e6978)
+[LOG] SoundI::release                          :  (0x7fc737b53718)
+[LOG] SoundI::release                          :     Fire_Hits 05 (0x7fc737b2cd18)
+[LOG] SoundI::release                          :  (0x7fc7377e6338)
+[LOG] SoundI::release                          :     Fire_Hits 06 (0x7fc7377e64a8)
+[LOG] SoundI::release                          :  (0x7fc737b20458)
+[LOG] SoundI::release                          :     Fire_Hits 07 (0x7fc737b14048)
+[LOG] SoundI::release                          :  (0x7fc737b2e908)
+[LOG] SoundI::release                          :     Fire_Hits 08 (0x7fc737b71b38)
+[LOG] SoundI::release                          :  (0x7fc7379d45e8)
+[LOG] SoundI::release                          :     Lok_DampfVentil (0x7fc73445e9f8)
+[LOG] SoundI::release                          :  (0x7fc7e076c088)
+[LOG] SoundI::release                          :     Lok_Prop_HebelWeiche (0x7fc73273d858)
+[LOG] SoundI::release                          :  (0x7fc7377e7448)
+[LOG] SoundI::release                          :     Lok_Hupe_LOOP-001 (0x7fc7377e76e8)
+[LOG] SoundI::release                          :  (0x7fc737b82798)
+[LOG] SoundI::release                          :     Lok_Hupe_FadeOUT (0x7fc737b7c518)
+[LOG] SoundI::release                          :  (0x7fc737b9e978)
+[LOG] SoundI::release                          :     Lok_Hupe_FadeIN (0x7fc737b60e88)
+[LOG] Thread::callback                         : FMOD Studio update thread finished.
+[LOG] Thread::callback                         : FMOD Studio bank load thread finished.
+[LOG] Profile::disconnectAll                   : Profiler disconnecting all clients
+[LOG] Thread::callback                         : FMOD Studio sample load thread finished.
+[LOG] LiveUpdate::release                      : 
+[LOG] LiveUpdate::reset                        : Reset connection (reason Disconnected)
+[LOG] Thread::callback                         : FMOD stream thread finished.
+[LOG] Thread::callback                         : FMOD mixer thread finished.
+[LOG] Profile::disconnectAll                   : Profiler disconnecting all clients
+[LOG] SystemI::close                           : Closed.

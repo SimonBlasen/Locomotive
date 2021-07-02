@@ -1,0 +1,46 @@
+[LOG] System::create                           : Header version = 2.01.09. Current version = 2.01.09.
+[LOG] Manager::init                            : maxchannels = 256 studioflags = 00000006 flags 00000000 extradriverdata 0x0.
+[LOG] SystemI::init                            : Initialize version=20109 (115889), maxchannels=256, flags=0x00020000
+[LOG] SystemI::setOutputInternal               : Setting output to 'FMOD Core Audio Output'
+[LOG] OutputCoreAudio::init                    : Output running 2 channels at 96000Hz sample rate.
+[LOG] OutputCoreAudio::init                    : Maximum hardware read size: 512 samples, Software buffer size: 512 samples, Number of software buffers: 4.
+[LOG] SystemI::init                            : Output requires a sample rate of 96000Hz, resampling will occur.
+[LOG] Thread::initThread                       : Init FMOD stream thread. Affinity: 0x8000000000000003, Priority: 0xFFFF7FFB, Stack Size: 98304, Semaphore: No, Sleep Time: 10, Looping: Yes.
+[LOG] Thread::initThread                       : Init FMOD mixer thread. Affinity: 0x8000000000000001, Priority: 0xFFFF7FFA, Stack Size: 81920, Semaphore: Yes, Sleep Time: 0, Looping: Yes.
+[LOG] AsyncManager::init                       : manager 0x7fb29ec09008 isAsync 0 updatePeriod 0.02
+[LOG] AsyncManager::init                       : done
+[LOG] PlaybackSystem::init                     : 
+[LOG] Thread::initThread                       : Init FMOD Studio sample load thread. Affinity: 0x8000000000000003, Priority: 0xFFFF7FFD, Stack Size: 98304, Semaphore: No, Sleep Time: 1, Looping: No.
+[LOG] PlaybackSystem::init                     : done
+[LOG] Thread::initThread                       : Init FMOD Studio bank load thread. Affinity: 0x8000000000000003, Priority: 0xFFFF7FFD, Stack Size: 98304, Semaphore: No, Sleep Time: 1, Looping: No.
+[LOG] Manager::init                            : done.
+[LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
+[LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
+[LOG] SoundI::release                          : Lok_Loop_Bewegung-High (0x7fb29b17f548)
+[LOG] SoundI::release                          :     Lok_Loop_Bewegung-High (0x7fb2b931a748)
+[LOG] SoundI::release                          :     Lok_Loop_Bewegung-High (0x7fb2b93190f8)
+[LOG] SoundI::release                          : Lok_Idle-Deep (0x7fb29b1870c8)
+[LOG] SoundI::release                          :     Lok_Idle-Deep (0x7fb2b9319ec8)
+[LOG] SoundI::release                          :     Lok_Idle-Deep (0x7fb2b931a5a8)
+[LOG] SoundI::release                          :  (0x7fb2b9719c58)
+[LOG] SoundI::release                          :     Lok_LoopSteam-Fast (0x7fb2b9719dc8)
+[LOG] SoundI::release                          :  (0x7fb2b97197a8)
+[LOG] SoundI::release                          :     Lok_LoopSteam-Mid (0x7fb2b9719918)
+[LOG] SoundI::release                          :  (0x7fb2b971a108)
+[LOG] SoundI::release                          :     Lok_LoopSteam-Slow (0x7fb2b971a278)
+[LOG] SoundI::release                          :  (0x7fb2b971a5b8)
+[LOG] SoundI::release                          :     Lok_Loop_LowRPM-Deep (0x7fb2b971a728)
+[LOG] SoundI::release                          :  (0x7fb2b8a4fe58)
+[LOG] SoundI::release                          :     Lok_Loop_HighRPM-Deep (0x7fb2b8a4ffc8)
+[LOG] SoundI::release                          :  (0x7fb2b8a4f9a8)
+[LOG] SoundI::release                          :     Lok_Loop_ReibungHoch (0x7fb2b8a4fb18)
+[LOG] Thread::callback                         : FMOD Studio update thread finished.
+[LOG] Thread::callback                         : FMOD Studio bank load thread finished.
+[LOG] Profile::disconnectAll                   : Profiler disconnecting all clients
+[LOG] Thread::callback                         : FMOD Studio sample load thread finished.
+[LOG] LiveUpdate::release                      : 
+[LOG] LiveUpdate::reset                        : Reset connection (reason Disconnected)
+[LOG] Thread::callback                         : FMOD stream thread finished.
+[LOG] Thread::callback                         : FMOD mixer thread finished.
+[LOG] Profile::disconnectAll                   : Profiler disconnecting all clients
+[LOG] SystemI::close                           : Closed.

@@ -134,6 +134,9 @@
 	</object>
 	<object class="MixerBusPanner" id="{a4c54e08-a37e-411c-a263-d83d86093ec4}" />
 	<object class="EventMixerGroup" id="{06cbabed-327d-4822-81a1-7c979311a7a5}">
+		<property name="volume">
+			<value>10</value>
+		</property>
 		<property name="name">
 			<value>BUS Movement</value>
 		</property>
@@ -519,7 +522,7 @@
 			<value>62.018348623853214</value>
 		</property>
 		<property name="value">
-			<value>-20</value>
+			<value>-14.5</value>
 		</property>
 	</object>
 	<object class="AutomationPoint" id="{c40ab184-f4e0-47e3-8e2e-7e56f0922b2b}">
@@ -527,7 +530,7 @@
 			<value>48.899082568807344</value>
 		</property>
 		<property name="value">
-			<value>-25</value>
+			<value>-18</value>
 		</property>
 	</object>
 	<object class="AutomationCurve" id="{3b1a24d4-d310-43f1-907a-e6ec229a4b3b}">

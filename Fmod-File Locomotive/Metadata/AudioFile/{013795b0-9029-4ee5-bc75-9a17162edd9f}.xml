@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.01.00">
 	<object class="AudioFile" id="{013795b0-9029-4ee5-bc75-9a17162edd9f}">
 		<property name="assetPath">
-			<value>Lok_Prop_SchaufelAB-01.wav</value>
+			<value>Props/Lok_Prop_SchaufelAB-01.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>96</value>
