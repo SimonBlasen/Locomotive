@@ -8,7 +8,8 @@ namespace SplineMesh {
     /// <summary>
     /// Imutable class containing all data about a point on a cubic bezier curve.
     /// </summary>
-    public class CurveSample {
+    public struct CurveSample
+    {
         public readonly Vector3 location;
         public readonly Vector3 tangent;
         public readonly Vector3 up;
@@ -16,23 +17,24 @@ namespace SplineMesh {
         public readonly float roll;
         public readonly float distanceInCurve;
         public readonly float timeInCurve;
+        public readonly CubicBezierCurve curve;
 
-        private Quaternion rotation = Quaternion.identity;
+        private Quaternion rotation;
 
         /// <summary>
         /// Rotation is a look-at quaternion calculated from the tangent, roll and up vector. Mixing non zero roll and custom up vector is not advised.
         /// </summary>
         public Quaternion Rotation {
             get {
-                if (rotation.Equals(Quaternion.identity)) {
+                if (rotation == Quaternion.identity) {
                     var upVector = Vector3.Cross(tangent, Vector3.Cross(Quaternion.AngleAxis(roll, Vector3.forward) * up, tangent).normalized);
-                    rotation =  Quaternion.LookRotation(tangent, upVector);
+                    rotation = Quaternion.LookRotation(tangent, upVector);
                 }
                 return rotation;
             }
         }
 
-        public CurveSample(Vector3 location, Vector3 tangent, Vector3 up, Vector2 scale, float roll, float distanceInCurve, float timeInCurve) {
+        public CurveSample(Vector3 location, Vector3 tangent, Vector3 up, Vector2 scale, float roll, float distanceInCurve, float timeInCurve, CubicBezierCurve curve) {
             this.location = location;
             this.tangent = tangent;
             this.up = up;
@@ -40,6 +42,35 @@ namespace SplineMesh {
             this.scale = scale;
             this.distanceInCurve = distanceInCurve;
             this.timeInCurve = timeInCurve;
+            this.curve = curve;
+            rotation = Quaternion.identity;
+        }
+
+        public override bool Equals(object obj) {
+            if (obj == null || GetType() != obj.GetType()) {
+                return false;
+            }
+            CurveSample other = (CurveSample)obj;
+            return location == other.location &&
+                tangent == other.tangent &&
+                up == other.up &&
+                scale == other.scale &&
+                roll == other.roll &&
+                distanceInCurve == other.distanceInCurve &&
+                timeInCurve == other.timeInCurve;
+
+        }
+
+        public override int GetHashCode() {
+            return base.GetHashCode();
+        }
+
+        public static bool operator ==(CurveSample cs1, CurveSample cs2) {
+            return cs1.Equals(cs2);
+        }
+
+        public static bool operator !=(CurveSample cs1, CurveSample cs2) {
+            return !cs1.Equals(cs2);
         }
 
         /// <summary>
@@ -57,7 +88,8 @@ namespace SplineMesh {
                 Vector2.Lerp(a.scale, b.scale, t),
                 Mathf.Lerp(a.roll, b.roll, t),
                 Mathf.Lerp(a.distanceInCurve, b.distanceInCurve, t),
-                Mathf.Lerp(a.timeInCurve, b.timeInCurve, t));
+                Mathf.Lerp(a.timeInCurve, b.timeInCurve, t),
+                a.curve);
         }
 
         public MeshVertex GetBent(MeshVertex vert) {
@@ -79,6 +111,5 @@ namespace SplineMesh {
             res.normal = q * res.normal;
             return res;
         }
-
     }
 }

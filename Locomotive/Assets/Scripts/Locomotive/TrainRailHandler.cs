@@ -89,7 +89,7 @@ public class TrainRailHandler
         if (segmentsFlippsd[index])
         {
             CurveSample curveSample = runningSegments[index].Spline.GetSampleAtDistance(runningSegments[index].Spline.Length - sDistance);
-            return new CurveSample(curveSample.location, -curveSample.tangent, curveSample.up, curveSample.scale, curveSample.roll, curveSample.distanceInCurve, curveSample.timeInCurve);
+            return new CurveSample(curveSample.location, -curveSample.tangent, curveSample.up, curveSample.scale, curveSample.roll, curveSample.distanceInCurve, curveSample.timeInCurve, curveSample.curve);
         }
         else
         {

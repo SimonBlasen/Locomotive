@@ -77,7 +77,7 @@ public class Railroad : MonoBehaviour
             return GetRailAt(distance);
         }
 
-        return null;
+        return new CurveSample();
     }
 
     private bool appendNewSegment()
