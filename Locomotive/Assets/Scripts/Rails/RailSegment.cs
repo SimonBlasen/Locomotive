@@ -126,4 +126,9 @@ public class RailSegment : MonoBehaviour
             return previousSegments;
         }
     }
+
+    public RailSegment[] FlippedSegments(bool flipped)
+    {
+        return flipped ? previousSegments : followingSegments;
+    }
 }

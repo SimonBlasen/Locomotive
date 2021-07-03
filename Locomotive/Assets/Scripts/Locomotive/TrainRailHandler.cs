@@ -159,9 +159,9 @@ public class TrainRailHandler
     private float addNewSegmentFront()
     {
         int curSwitch = switchSetting.CurrentSetting;
-        curSwitch = Mathf.Clamp(curSwitch, 0, runningSegments[0].FollowingSegments.Length - 1);
+        curSwitch = Mathf.Clamp(curSwitch, 0, runningSegments[0].FlippedSegments(segmentsFlippsd[0]).Length - 1);
 
-        RailSegment nextSegment = runningSegments[0].FollowingSegments[curSwitch];
+        RailSegment nextSegment = runningSegments[0].FlippedSegments(segmentsFlippsd[0])[curSwitch];
 
         List<RailSegment> newRunningSegments = new List<RailSegment>();
         newRunningSegments.Add(nextSegment);
@@ -198,6 +198,7 @@ public class TrainRailHandler
         float length = runningSegments[1].Length;
 
         runningSegments.RemoveAt(0);
+        segmentsFlippsd.RemoveAt(0);
 
         return length;
     }
@@ -205,9 +206,9 @@ public class TrainRailHandler
     private float addNewSegmentBack()
     {
         int curSwitch = switchSetting.CurrentSetting;
-        curSwitch = Mathf.Clamp(curSwitch, 0, runningSegments[runningSegments.Count - 1].PreviousSegments.Length - 1);
+        curSwitch = Mathf.Clamp(curSwitch, 0, runningSegments[runningSegments.Count - 1].FlippedSegments(!segmentsFlippsd[runningSegments.Count - 1]).Length - 1);
 
-        RailSegment nextSegment = runningSegments[runningSegments.Count - 1].PreviousSegments[curSwitch];
+        RailSegment nextSegment = runningSegments[runningSegments.Count - 1].FlippedSegments(!segmentsFlippsd[runningSegments.Count - 1])[curSwitch];
 
         runningSegments.Add(nextSegment);
 
@@ -229,6 +230,7 @@ public class TrainRailHandler
     private float removeSegmentBack()
     {
         runningSegments.RemoveAt(runningSegments.Count - 1);
+        segmentsFlippsd.RemoveAt(segmentsFlippsd.Count - 1);
 
         return runningSegments[runningSegments.Count - 1].Length;
     }
