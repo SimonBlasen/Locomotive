@@ -7,6 +7,8 @@ public class RailSegment : MonoBehaviour
 {
     [SerializeField]
     private RailSegment[] followingSegments = null;
+    [SerializeField]
+    private bool[] followingSegmentsReversed = null;
 
     private Spline spline = null;
 
