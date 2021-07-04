@@ -823,7 +823,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.05
-  far clip plane: 1000
+  far clip plane: 100000
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -2376,7 +2376,7 @@ MonoBehaviour:
   speedValve: {fileID: 808544288255282989}
   boiler: {fileID: 5025350137992398721}
   train: {fileID: 8286837207063646559}
-  pressureUseFactor: 0.03
+  pressureUseFactor: 0.012
   pressureDriveFactor: 0.1
   pressureOnWheels: 1
 --- !u!1 &2324207974446588277
