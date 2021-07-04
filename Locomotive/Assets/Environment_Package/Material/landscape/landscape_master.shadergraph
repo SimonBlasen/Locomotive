@@ -12000,7 +12000,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "f89946c331ca4cdea742f6ad4861b34a",
     "m_Id": 0,
-    "m_DisplayName": "Float",
+    "m_DisplayName": "maskUVOffset",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
