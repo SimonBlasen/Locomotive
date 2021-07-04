@@ -7,46 +7,50 @@ public class RailSegment : MonoBehaviour
 {
     [SerializeField]
     private RailSegment[] followingSegments = null;
-    [SerializeField]
-    private bool[] followingSegmentsReversed = null;
 
     private Spline spline = null;
 
+    [SerializeField]
     private RailSegment[] previousSegments = null;
 
-    // Start is called before the first frame update
-    void Awake()
+
+    public void CalculateFollowingPrevious(RailSegment[] allRailSegments)
     {
-        spline = GetComponentInChildren<Spline>();
-        Length = spline.Length;
+        float epsilon = 2.3f;
+        Vector3 beginPos = Spline.GetSampleAtDistance(0.1f).location;
+        Vector3 endPos = Spline.GetSampleAtDistance(spline.Length - 0.1f).location;
 
-        RailSegment[] allRailSegments = FindObjectsOfType<RailSegment>();
+        List<RailSegment> followingSegs = new List<RailSegment>();
+        List<RailSegment> previousSegs = new List<RailSegment>();
 
-        List<RailSegment> prevRailSegments = new List<RailSegment>();
         for (int i = 0; i < allRailSegments.Length; i++)
         {
-            for (int j = 0; j < allRailSegments[i].followingSegments.Length; j++)
+            if (allRailSegments[i].transform.GetInstanceID() != transform.GetInstanceID())
             {
-                if (allRailSegments[i].followingSegments[j].transform.GetInstanceID() == transform.GetInstanceID())
+                if ((Vector3.Distance(beginPos, allRailSegments[i].Spline.GetSampleAtDistance(0.1f).location) <= epsilon
+                        && Vector3.Angle(-Spline.GetSampleAtDistance(0.1f).tangent, -allRailSegments[i].Spline.GetSampleAtDistance(0.1f).tangent) > 90f)
+                    || (Vector3.Distance(beginPos, allRailSegments[i].Spline.GetSampleAtDistance(allRailSegments[i].Spline.Length - 0.1f).location) <= epsilon
+                        && Vector3.Angle(-Spline.GetSampleAtDistance(0.1f).tangent, allRailSegments[i].Spline.GetSampleAtDistance(allRailSegments[i].Spline.Length - 0.1f).tangent) > 90f))
                 {
-                    prevRailSegments.Add(allRailSegments[i]);
+                    previousSegs.Add(allRailSegments[i]);
+                }
+                else if ((Vector3.Distance(endPos, allRailSegments[i].Spline.GetSampleAtDistance(0.1f).location) <= epsilon
+                        && Vector3.Angle(Spline.GetSampleAtDistance(Spline.Length - 0.1f).tangent, -allRailSegments[i].Spline.GetSampleAtDistance(0.1f).tangent) > 90f)
+                    || (Vector3.Distance(endPos, allRailSegments[i].Spline.GetSampleAtDistance(allRailSegments[i].Spline.Length - 0.1f).location) <= epsilon
+                        && Vector3.Angle(Spline.GetSampleAtDistance(Spline.Length - 0.1f).tangent, allRailSegments[i].Spline.GetSampleAtDistance(allRailSegments[i].Spline.Length - 0.1f).tangent) > 90f))
+                {
+                    followingSegs.Add(allRailSegments[i]);
                 }
             }
         }
 
-        previousSegments = prevRailSegments.ToArray();
+        followingSegments = followingSegs.ToArray();
+        previousSegments = previousSegs.ToArray();
 
-
-
-
-        // TODO
-        // Check, which way is right and which way is left
-
-        //CurveSample endSpline = spline.GetSampleAtDistance(spline.Length - 1f);
-        //Plane planeEnd = new Plane(Vector3.Cross(endSpline.tangent, Vector3.up), endSpline.location);
+        checkLeftRight();
     }
 
-    private void Start()
+    private void checkLeftRight()
     {
         if (followingSegments.Length >= 2)
         {
@@ -80,7 +84,7 @@ public class RailSegment : MonoBehaviour
             float yPos0 = tempTrans.transform.InverseTransformPoint(previousSegments[0].Spline.GetSampleAtDistance(previousSegments[0].Spline.Length - 5f).location).y;
             float yPos1 = tempTrans.transform.InverseTransformPoint(previousSegments[1].Spline.GetSampleAtDistance(previousSegments[1].Spline.Length - 5f).location).y;
 
-            if (yPos0 <= yPos1)
+            if (yPos0 >= yPos1)
             {
                 Debug.Log("Switched segments");
                 RailSegment cached = previousSegments[1];
@@ -102,13 +106,20 @@ public class RailSegment : MonoBehaviour
     {
         get
         {
+            if (spline == null)
+            {
+                spline = GetComponentInChildren<Spline>();
+            }
             return spline;
         }
     }
 
     public float Length
     {
-        get; protected set;
+        get
+        {
+            return Spline.Length;
+        }
     }
 
     public RailSegment[] FollowingSegments

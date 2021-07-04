@@ -59,6 +59,8 @@ public class Train : MonoBehaviour
 
     private TrainRailHandler railHandler = null;
 
+    private bool inited = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -79,55 +81,63 @@ public class Train : MonoBehaviour
             totalWeight += wagons[i].Weight;
         }
 
-        railHandler = new TrainRailHandler(distancesBetween, railRoad, startRailSegment, switchSetting);
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        float velocityStep = curVelocity * Time.fixedDeltaTime * actualPhysicalSpeedCorrection;
-
-        float slopedGravityMass = 0f;
-
-        CurveSample[] curveSamples = railHandler.GetCurves(velocityStep);
-        CurveSample curveSample = curveSamples[0];
-
-
-        if (curveSample == null)
+        if (!inited && railRoad.IsReady)
         {
-            curVelocity = 0f;
+            inited = true;
+            railHandler = new TrainRailHandler(distancesBetween, railRoad, startRailSegment, switchSetting);
         }
-        else
+
+        if (inited)
         {
-            locomotive.transform.position = curveSample.location;
-            locomotive.transform.rotation = Quaternion.LookRotation(curveSample.tangent, curveSample.up);
+            float velocityStep = curVelocity * Time.fixedDeltaTime * actualPhysicalSpeedCorrection;
 
-            slopedGravityMass += curveSample.tangent.normalized.y * Mathf.Sign(curVelocity) * locomotive.Weight * -1f;
+            float slopedGravityMass = 0f;
 
-            for (int i = 0; i < wagons.Length; i++)
+            CurveSample[] curveSamples = railHandler.GetCurves(velocityStep);
+            CurveSample curveSample = curveSamples[0];
+
+
+            if (curveSample == null)
             {
-                CurveSample curveSampleWagon = curveSamples[i + 1];
-                wagons[i].transform.position = curveSampleWagon.location;
-                wagons[i].transform.rotation = Quaternion.LookRotation(curveSampleWagon.tangent, curveSampleWagon.up);
-
-                slopedGravityMass += curveSampleWagon.tangent.normalized.y * Mathf.Sign(curVelocity) * wagons[i].Weight * -1f;
+                curVelocity = 0f;
             }
+            else
+            {
+                locomotive.transform.position = curveSample.location;
+                locomotive.transform.rotation = Quaternion.LookRotation(curveSample.tangent, curveSample.up);
+
+                slopedGravityMass += curveSample.tangent.normalized.y * Mathf.Sign(curVelocity) * locomotive.Weight * -1f;
+
+                for (int i = 0; i < wagons.Length; i++)
+                {
+                    CurveSample curveSampleWagon = curveSamples[i + 1];
+                    wagons[i].transform.position = curveSampleWagon.location;
+                    wagons[i].transform.rotation = Quaternion.LookRotation(curveSampleWagon.tangent, curveSampleWagon.up);
+
+                    slopedGravityMass += curveSampleWagon.tangent.normalized.y * Mathf.Sign(curVelocity) * wagons[i].Weight * -1f;
+                }
+            }
+
+
+            // Accelerating
+            float curAccStep = PressureWheels * Time.fixedDeltaTime * accelerationCurve.Evaluate(curVelocity);
+
+            curVelocity = Mathf.MoveTowards(curVelocity, DriveDirectionForward ? topSpeed : -topSpeed, curAccStep);
+
+            // Slopes Gravity
+            curVelocity += slopedGravityMass * gravitySlopeStrength;
+
+            // Braking
+            float curDeceleration = BrakeStrength * Time.fixedDeltaTime * deceleration;
+            curVelocity = Mathf.MoveTowards(curVelocity, 0f, curDeceleration);
+
+            instanceTrainSound.setParameterByName("RPM", Mathf.Abs((CurrentSpeed / topSpeed) * 100f * audioFactor));
         }
-
-
-        // Accelerating
-        float curAccStep = PressureWheels * Time.fixedDeltaTime * accelerationCurve.Evaluate(curVelocity);
-
-        curVelocity = Mathf.MoveTowards(curVelocity, DriveDirectionForward ? topSpeed : -topSpeed, curAccStep);
-
-        // Slopes Gravity
-        curVelocity += slopedGravityMass * gravitySlopeStrength;
-
-        // Braking
-        float curDeceleration = BrakeStrength * Time.fixedDeltaTime * deceleration;
-        curVelocity = Mathf.MoveTowards(curVelocity, 0f, curDeceleration);
-
-        instanceTrainSound.setParameterByName("RPM", Mathf.Abs((CurrentSpeed / topSpeed) * 100f * audioFactor));
     }
 
 
