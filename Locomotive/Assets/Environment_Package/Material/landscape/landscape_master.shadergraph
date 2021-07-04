@@ -4434,7 +4434,7 @@
     "m_Guid": {
         "m_GuidSerialized": "45702f93-52fa-43c3-b099-8a03d0edbb52"
     },
-    "m_Name": "Float",
+    "m_Name": "maskUVOffset",
     "m_DefaultReferenceName": "Vector1_3d16c0d7ce934ebcb8c9c3cd3c893232",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
