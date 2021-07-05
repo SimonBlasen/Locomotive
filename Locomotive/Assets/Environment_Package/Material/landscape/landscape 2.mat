@@ -191,6 +191,7 @@ Material:
     m_Floats:
     - Vector1_1: 0.05
     - Vector1_15f647c4f0614165a053b4ec4793c60e: 100
+    - Vector1_19cb7356fd6d4fbba71883d6086438a9: 1.55
     - Vector1_1b68c86725664122bac737008349d52b: 5.95
     - Vector1_2: 1
     - Vector1_3: 0.06
