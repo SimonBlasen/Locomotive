@@ -43,6 +43,8 @@ public class Train : MonoBehaviour
     [Header("References")]
     [SerializeField]
     private SwitchSetting switchSetting = null;
+    [SerializeField]
+    private FMODUnity.StudioEventEmitter tunnelEmitter = null;
 
     [FMODUnity.EventRef]
     public string fmodEventTrainSound;
@@ -81,6 +83,21 @@ public class Train : MonoBehaviour
             totalWeight += wagons[i].Weight;
         }
 
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            if (tunnelEmitter.IsPlaying())
+            {
+                tunnelEmitter.Stop();
+            }
+            else
+            {
+                tunnelEmitter.Play();
+            }
+        }
     }
 
     // Update is called once per frame

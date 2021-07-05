@@ -34,6 +34,9 @@ public class FirstPersonPlayer : MonoBehaviour
     [SerializeField]
     private Transform outsideCamTransY = null;
 
+    [SerializeField]
+    private FMODUnity.StudioEventEmitter snapshotOutsideCam = null;
+
     private Camera cam;
 
     private Interactable currentHoveredInteractable = null;
@@ -78,10 +81,12 @@ public class FirstPersonPlayer : MonoBehaviour
 
             if (camOutside)
             {
+                snapshotOutsideCam.Play();
                 cam.transform.parent = null;
             }
             else
             {
+                snapshotOutsideCam.Stop();
                 cam.transform.parent = xCamRot;
             }
         }
