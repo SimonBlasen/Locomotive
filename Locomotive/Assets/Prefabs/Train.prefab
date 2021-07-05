@@ -10193,7 +10193,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   audioFactor: 6
   actualPhysicalSpeedCorrection: 0.7
-  gravitySlopeStrength: 0
+  gravitySlopeStrength: 0.0001
   switchSetting: {fileID: 5417111265049859097}
   fmodEventTrainSound: event:/Lok/00_Lok_Event
   curVelocity: 0

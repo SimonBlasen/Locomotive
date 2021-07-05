@@ -111,7 +111,8 @@ public class Train : MonoBehaviour
                 locomotive.transform.position = curveSample.location;
                 locomotive.transform.rotation = Quaternion.LookRotation(curveSample.tangent, curveSample.up);
 
-                slopedGravityMass += curveSample.tangent.normalized.y * Mathf.Sign(curVelocity) * locomotive.Weight * -1f;
+                float xAngle = Vector3.Angle(Vector3.up, locomotive.transform.forward) - 90f;
+                slopedGravityMass += xAngle * locomotive.Weight;
 
                 for (int i = 0; i < wagons.Length; i++)
                 {
@@ -119,7 +120,8 @@ public class Train : MonoBehaviour
                     wagons[i].transform.position = curveSampleWagon.location;
                     wagons[i].transform.rotation = Quaternion.LookRotation(curveSampleWagon.tangent, curveSampleWagon.up);
 
-                    slopedGravityMass += curveSampleWagon.tangent.normalized.y * Mathf.Sign(curVelocity) * wagons[i].Weight * -1f;
+                    xAngle = Vector3.Angle(Vector3.up, wagons[i].transform.forward) - 90f;
+                    slopedGravityMass += xAngle * wagons[i].Weight;
                 }
             }
 
@@ -129,8 +131,11 @@ public class Train : MonoBehaviour
 
             curVelocity = Mathf.MoveTowards(curVelocity, DriveDirectionForward ? topSpeed : -topSpeed, curAccStep);
 
+
+            Debug.Log("SlopedGravMass: " + slopedGravityMass.ToString("n2"));
+
             // Slopes Gravity
-            curVelocity += slopedGravityMass * gravitySlopeStrength;
+            curVelocity += slopedGravityMass * gravitySlopeStrength * Time.fixedDeltaTime;
 
             // Braking
             float curDeceleration = BrakeStrength * Time.fixedDeltaTime * deceleration;
