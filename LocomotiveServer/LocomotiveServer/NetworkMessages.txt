@@ -1,0 +1,134 @@
+﻿								data[0]		data[1]		data[2]		data[3]		data[4]		data[5]		data[6]		data[7]		data[8]		data[9]		data[10]	data[11]	data[12]	data[13]	data[14]	data[15]	data[16]	data[17]	data[18]	data[19]	data[20]	data[21]	data[22]	data[23]	data[24]	data[25]	data[26]	data[27]	data[28]	data[29]	data[30]	data[31]	data[32]	data[33]	data[34]	data[35]	data[36]	data[37]	data[38]	data[39]	data[40]	data[41]	data[42]	data[43]	data[44]	data[45]	data[46]	data[47]
+
+UDP Messages
+
+	Zum Server:
+
+	 Connect					0			0			[addLen<<24][addLen<<16][addLen<<8]	[addLen]	[Additional Bytes...]	[SPLITSCREEN][addLen<<24][addLen<<16][addLen<<8]	[addLen]	[Additional Bytes...]
+	 Own Position				0			1			[playerID]	...
+	 Self Ready					0			2			[playerID]	[selSkill]	
+	 Self In Goal				0			3			[playerID]	[othPlay]	[deadly<<8]	[deadly]	[helpf<<8]	[helpf]		[othPlay]	
+	 Built obstacles			0			4			[playerID]	[obsID<<24]	[obsID<<16]	[obsID<<8]	[obsID]		[serLen<<24][serLen<<16][serLen<<8]	[serLen]	bytes...
+	 Got All Obstacles			0			5			[playerID]	
+	 Request All Obstacles		0			6			[playerID]
+	 Points Screen is Finished	0			7			[playerID]	
+	 Play Sound					0			8			[playerID]	[sound<<24]	[sound<<16]	[sound<<8]	[sound]		[x<<24]		[x<<16]		[x<<8]		[x]			[y<<24]		[y<<16]		[y<<8]		[y]			[z<<24]		[z<<16]		[z<<8]		[z]			[plIDFollow]
+	 Self Jump					0			9			[playerID]
+	 Surrender					0			10			[playerID]	[othPlay]	[deadly<<8]	[deadly]	[helpf<<8]	[helpf]		[othPlay]
+	 Admin Settings				0			11			[playerID]	[map<<24]	[map<<16]	[map<<8]	[map]		[reset0,1]	
+	 Map Votes					0			12			[voted0,1]	[voteIndex]	
+	 // Re-Connect				0			13			[playerID]	[addLen<<24][addLen<<16][addLen<<8]	[addLen]	[Additional Bytes...]	[SPLITSCREEN][addLen<<24][addLen<<16][addLen<<8]	[addLen]	[Additional Bytes...]
+	 Self Disconnect			0			14			[playerID]	...
+	 Chat Message				0			15			[playerID]	[isGlobal]	[len<<24]	[len<<16]	[len<<8]	[len]		[bytes...]
+	 Play Emote					0			16			[playerID]	[emote<<24]	[emote<<16]	[emote<<8]	[emote]			
+	 Currently Building Obs		0			17			[playerID]	[obsID<<24]	[obsID<<16]	[obsID<<8]	[obsID]		[insID<<24]	[insID<<16]	[insID<<8]	[insID]		[serLen<<24][serLen<<16][serLen<<8]	[serLen]	bytes...
+	 Own Building Camera Pos	0			18			[playerID]	[x<<24]		[x<<16]		[x<<8]		[x]			[y<<24]		[y<<16]		[y<<8]		[y]			[z<<24]		[z<<16]		[z<<8]		[z]			
+	 Update Player Info			0			19			[playerID]	[addLen<<24][addLen<<16][addLen<<8]	[addLen]	[Additional Bytes...]	[SPLITSCREEN][addLen<<24][addLen<<16][addLen<<8]	[addLen]	[Additional Bytes...]
+	 Building Ping				0			20			[playerID]	[x<<24]		[x<<16]		[x<<8]		[x]			[y<<24]		[y<<16]		[y<<8]		[y]			[z<<24]		[z<<16]		[z<<8]		[z]			
+	 Obstacle Passthrough Data	0			21			[playerID]	[instID<<24][instID<<16][instID<<8]	[instID]	[bytes...]	
+	 Skill Passthrough Data		0			22			[playerID]	[skillID]	[instID]	[bytes...]	
+	 Self Current Checkpoint	0			23			[playerID]	[cpIndex]	
+	 Self Current Checkpoint	0			24			[playerID]	[vote]
+	 CubeGal Bomb Drop			0			25			[playerID]	[playerTarg]
+	 CubeGal Bomb Explode		0			26			[playerID]	[x<<24]		[x<<16]		[x<<8]		[x]			[y<<24]		[y<<16]		[y<<8]		[y]			[z<<24]		[z<<16]		[z<<8]		[z]			
+	 Ping						0			27			[playerID]	
+	 Create Decal				0			28			[playerID]	[x<<24]		[x<<16]		[x<<8]		[x]			[y<<24]		[y<<16]		[y<<8]		[y]			[z<<24]		[z<<16]		[z<<8]		[z]			[x<<24]		[x<<16]		[x<<8]		[x]			[y<<24]		[y<<16]		[y<<8]		[y]			[z<<24]		[z<<16]		[z<<8]		[z]		
+	 Custom Skin Data			0			29			[playerID]	[amnt<<24]	[amnt<<16]	[amnt<<8]	[amnt]		[indx<<24]	[indx<<16]	[indx<<8]	[indx]		[bytes...]
+	 Custom Skin Data			0			30			[playerID]	[len<<24]	[len<<16]	[len<<8]	[len]		[meta string bytes...]
+	 Custom Skins Request		0			31			[playerID]	
+	 HighlightInstances			0			32			[playerID]	[amnt]		[len<<24]	[len<<16]	[len<<8]	[len]		[ser bytes]	...
+	 Chat Command Vote			0			33			[playerID]	[voteID]	[add_info]	...
+	 Ready State				0			34			[playerID]	[readyState]
+
+
+
+	Vom Server:
+	
+	 Connect Successfull		128			0			[playerID]	[splitscreenPlayerIDs]	...
+	 Playerlist					128			1			[playerID]	[addLen<<24][addLen<<16][addLen<<8]	[addLen]	[Additional Bytes...]
+	 Current State				128			2			[state]
+	 Players Ready List			128			3			[id]		[isReady0,1]...
+	 All Ready Countdown		128			4			[countdown]
+	 Ampel State				128			5			[state]
+	 Server Info				128			6			[map<<24]	[map<<16]	[map<<8]	[map]		[maxPlayers][curRound]	[maxRounds]	[skillsEn]	
+	 Player Positions			128			7			[playerID]	[x<<24]		[x<<16]		[x<<8]		[x]			[y<<24]		[y<<16]		[y<<8]		[y]			[z<<24]		[z<<16]		[z<<8]		[z]			[rx<<24]	[rx<<16]	[rx<<8]		[rx]		[ry<<24]	[ry<<16]	[ry<<8]		[ry]		[rz<<24]	[rz<<16]	[rz<<8]		[rz]		[vel<<24]	[vel<<16]	[vel<<8]	[vel]		
+	 All Obstacles				128			8			[obsID<<24]	[obsID<<16]	[obsID<<8]	[obsID]		[insID<<24]	[insID<<16]	[insID<<8]	[insID]		[serLen<<24][serLen<<16][serLen<<8]	[serLen]	bytes...
+	 Obstacles Sync Counter		128			9			[time<<24]	[time<<16]	[time<<8]	[time]	
+	 Players In Goal			128			10			[playerID]	[time<<24]	[time<<16]	[time<<8]	[time]		...
+	 Build Time Left			128			11			[time<<24]	[time<<16]	[time<<8]	[time]	
+	 Player Race Points			128			12			[playerID]	[points<<24][points<<16][points<<8]	[points]	...
+	 Time Left Reach Goal		128			13			[time<<24]	[time<<16]	[time<<8]	[time]	
+	 AllPoints					128			14			[playerID]	[pClass]	[p Amnt]	254			[nP Class]	[nP Amnt]	255			[playerID]	...
+	 Play Sound					128			15			[playerID]	[sound<<24]	[sound<<16]	[sound<<8]	[sound]		[x<<24]		[x<<16]		[x<<8]		[x]			[y<<24]		[y<<16]		[y<<8]		[y]			[z<<24]		[z<<16]		[z<<8]		[z]			
+	 Player Building Credits	128			16			[playerID]	[crdits<<24][crdits<<16][credits<<8][credits]	...
+	 Player Jumps				128			17			[playerID]
+	 Time Left					128			18			[time<<24]	[time<<16]	[time<<8]	[time]		
+	 Map vote options			128			19			[amounts]	[map<<24]	[map<<16]	[map<<8]	[map]		...
+	 Map Votes Already			128			20			[votesM0]	[votesM1]	...
+
+	 Obstacles Amounts			128			21			[obsAmt<<24][obsAmt<<16][obsAmt<<8]	[obsAmt]	[dstrID<<24][dstrID<<16][dstrID<<8]	[dstrID]	...
+	 Some Obstacles				128			22			[obsID<<24]	[obsID<<16]	[obsID<<8]	[obsID]		[insID<<24]	[insID<<16]	[insID<<8]	[insID]		[serLen<<24][serLen<<16][serLen<<8]	[serLen]	bytes...
+	 
+	 Current Weather			128			23			[index]		[randByte]
+	 Chat Message				128			24			[playerID]	[len<<24]	[len<<16]	[len<<8]	[len]		[bytes...]
+	 Play Emote					128			25			[playerID]	[emote<<24]	[emote<<16]	[emote<<8]	[emote]			
+	 Remote Obstacles			128			26			[obsID<<24]	[obsID<<16]	[obsID<<8]	[obsID]		[insID<<24]	[insID<<16]	[insID<<8]	[insID]		[serLen<<24][serLen<<16][serLen<<8]	[serLen]	bytes...
+	 Player Teams				128			27			[teamsAmnt]	[playerID]	[team]		...
+	 Building Camera Positions	128			28			[playerID]	[x<<24]		[x<<16]		[x<<8]		[x]			[y<<24]		[y<<16]		[y<<8]		[y]			[z<<24]		[z<<16]		[z<<8]		[z]			...
+	 Building Ping				128			29			[playerID]	[x<<24]		[x<<16]		[x<<8]		[x]			[y<<24]		[y<<16]		[y<<8]		[y]			[z<<24]		[z<<16]		[z<<8]		[z]			
+	 Obstacle Passthrough Data	128			30			[playerID]	[instID<<24][instID<<16][instID<<8]	[instID]	[bytes...]	
+	 Skill Passthrough Data		128			31			[playerID]	[skillID]	[instID]	[bytes...]	
+	 Players Checkpoints		128			32			[playerID]	[cpIndex]	...
+	 Players Skill List			128			33			[playerID]	[selSkill]	...
+	 Teams Vote State			128			34			[state]		[timeLeft]	[amntLeft]	[amntRight]	
+	 CubeGal Bomb Drop			128			35			[playerTarg]
+	 CubeGal Bomb Explode		128			36			[x<<24]		[x<<16]		[x<<8]		[x]			[y<<24]		[y<<16]		[y<<8]		[y]			[z<<24]		[z<<16]		[z<<8]		[z]		
+	 Ping Back					128			37			0
+	 Create Decal				128			38			[playerID]	[x<<24]		[x<<16]		[x<<8]		[x]			[y<<24]		[y<<16]		[y<<8]		[y]			[z<<24]		[z<<16]		[z<<8]		[z]			[x<<24]		[x<<16]		[x<<8]		[x]			[y<<24]		[y<<16]		[y<<8]		[y]			[z<<24]		[z<<16]		[z<<8]		[z]		
+	 Custom Skin completely Rec	128			39			[playerID]	
+	 Custom Skin Data			128			40			[playerID]	[amnt<<24]	[amnt<<16]	[amnt<<8]	[amnt]		[indx<<24]	[indx<<16]	[indx<<8]	[indx]		[bytes...]
+	 Custom Skin Data			128			41			[playerID]	[len<<24]	[len<<16]	[len<<8]	[len]		[meta string bytes...]
+	 HighlightInstances			128			42			[amnt]		[len<<24]	[len<<16]	[len<<8]	[len]		[ser bytes]	...
+	 Highlight Playback State	128			43			[state]		
+	 Chat Command Vote			128			44			[playerID]	[0,1=active][voteID]	[add_info]	...
+	 Active disconnect			128			45			[playerID]
+	 
+
+
+
+	Incoming vom Matchmaking Server
+
+	 Ping						0			0			0
+	 Ping For Port Check		127			0			0
+
+
+	An den Matchmaking Server
+
+	 Watchdog					128			0			[port<<24]	[port<<16]	[port<<8]	[port]		[maxPlay]	[curPlay]	[map<<24]	[map<<16]	[map<<8]	[map]		[elo<<24]	[elo<<16]	[elo<<8]	[elo]		[curRound]	[maxRounds]	[state]		[versionHash]	.... len=16
+	 Ping Port Check Validation	128			1			[port<<24]	[port<<16]	[port<<8]	[port]		
+
+
+
+
+
+
+
+	 Client to Matchmaking
+
+	  Queue Solo				0			0			[cStmID<<56]	...		[lCode<<56]	...		
+	  Create Lobby				0			1			[cStmID<<56]	...		[lCode<<56]	...		
+	  Join Lobby				0			2			[cStmID<<56]	...		[lobyID<<24][lobyID<<16][lobyID<<8]	[lobyID]	[lCode<<56]	...		
+	  Leave Lobby				0			3			[cStmID<<56]	...		[lobyID<<24][lobyID<<16][lobyID<<8]	[lobyID]	[lCode<<56]	...		
+	  Lobby Watchdog Ack		0			4			[cStmID<<56]	...		[lobyID<<24][lobyID<<16][lobyID<<8]	[lobyID]	[lCode<<56]	...		
+	  Queue Lobby				0			5			[cStmID<<56]	...		[lobyID<<24][lobyID<<16][lobyID<<8]	[lobyID]	[lCode<<56]	...		
+	  Stop Queueing				0			6			[cStmID<<56]	...		[lobyID<<24][lobyID<<16][lobyID<<8]	[lobyID]	[lCode<<56]	...		
+
+	Matchmaking to Client
+	
+	 Queue state				128			0			[queueing]	[]
+	 Lobby info					128			1			[queue0,1]	[lobyID<<24][lobyID<<16][lobyID<<8]	[lobyID]	[lCode<<56]	...		[cStmID<<56]	...				
+	 Matched Server				128			2			[port<<24]	[port<<16]	[port<<8]	[port]		[ipLen]		[ip adress bytes]	...
+	 Servers State				128			3			
+
+
+

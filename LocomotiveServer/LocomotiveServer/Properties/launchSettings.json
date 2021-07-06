@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "CubeRacer2Server": {
+      "commandName": "Project"
+    },
+    "LovomotiveServer": {
+      "commandName": "Project"
+    }
+  }
+}
