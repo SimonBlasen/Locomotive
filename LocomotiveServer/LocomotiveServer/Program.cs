@@ -1,5 +1,6 @@
 ﻿using CubeRacer2Server.Games;
 using CubeRacer2Server.Utils;
+using LocomotiveServer.Games;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UDPServer.UDPServer;
 
-namespace CubeRacer2Server
+namespace LocomotiveServer
 {
     class Program
     {
@@ -17,6 +18,7 @@ namespace CubeRacer2Server
         private static int udpPort = 38000;
 
         private static Server server;
+        private static Game game = null;
 
         static void Main(string[] args)
         {
@@ -66,6 +68,8 @@ namespace CubeRacer2Server
             
 
             server = new Server(udpPort);
+
+            game = new Game(server, udpPort);
 
             Write("Started on port " + udpPort.ToString(), ConsoleColor.Green);
 

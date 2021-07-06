@@ -1,0 +1,32 @@
+								data[0]		data[1]		data[2]		data[3]		data[4]		data[5]		data[6]		data[7]		data[8]		data[9]		data[10]	data[11]	data[12]	data[13]	data[14]	data[15]	data[16]	data[17]	data[18]	data[19]	data[20]	data[21]	data[22]	data[23]	data[24]	data[25]	data[26]	data[27]	data[28]	data[29]	data[30]	data[31]	data[32]	data[33]	data[34]	data[35]	data[36]	data[37]	data[38]	data[39]	data[40]	data[41]	data[42]	data[43]	data[44]	data[45]	data[46]	data[47]
+
+UDP Messages
+
+	Zum Server:
+
+	 State changed				1			0			[id]		[state<<24]	[state<<16]	[state<<8]	[state]	
+
+	 Ping						0			0			[id]		
+	 Connect					0			1			0			[additionalInfo...]
+	 Controls					0			2			[id]		[xAxe<<24]	[xAxe<<16]	[xAxe<<8]	[xAxe]		[yAxe<<24]	[yAxe<<16]	[yAxe<<8]	[yAxe]		[keymap_0]	[keymap_1]	[keymap_2]	[keymap_3]	[keymap_4]	[keymap_5]	[keymap_6]	[keymap_7]	
+
+	Vom Server:
+	
+	 Ping Response				128			0			
+	 Connect Response			128			1			[id]
+	 Distribute Objects			128			2			[id << 8]	[id]		[posX<<24]	[posX<<16]	[posX<<8]	[posX]		[posY<<24]	[posY<<16]	[posY<<8]	[posY]		[posZ<<24]	[posZ<<16]	[posZ<<8]	[posZ]		[rotX<<24]	[rotX<<16]	[rotX<<8]	[rotX]		[rotY<<24]	[rotY<<16]	[rotY<<8]	[rotY]		[rotZ<<24]	[rotZ<<16]	[rotZ<<8]	[rotZ]		[velX<<24]	[velX<<16]	[velX<<8]	[velX]		[velY<<24]	[velY<<16]	[velY<<8]	[velY]		[velZ<<24]	[velZ<<16]	[velZ<<8]	[velZ]		[angX<<24]	[angX<<16]	[angX<<8]	[angX]		[angY<<24]	[angY<<16]	[angY<<8]	[angY]		[angZ<<24]	[angZ<<16]	[angZ<<8]	[angZ]		
+	 Player List				128			3			[id]		[additionalInfo...]		...
+	 Controls					128			4			[len]		[id]		[xAxe<<24]	[xAxe<<16]	[xAxe<<8]	[xAxe]		[yAxe<<24]	[yAxe<<16]	[yAxe<<8]	[yAxe]		[keymap_0]	[keymap_1]	[keymap_2]	[keymap_3]	[keymap_4]	[keymap_5]	[keymap_6]	[keymap_7]	
+
+	 
+
+Zum Server
+
+
+	Rel Udp						255			254			[numb]		...
+	Ack							255			252			[numb]
+
+Vom Server:
+
+	 Ack						255			255			[numb]
+	 Rel Udp					255			253			[numb]

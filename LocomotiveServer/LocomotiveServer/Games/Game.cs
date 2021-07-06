@@ -35,6 +35,7 @@ namespace LocomotiveServer.Games
         {
             this.port = runningPort;
             this.server = server;
+            server.ReceiveUdpData += ReceiveBytes;
 
             timer = new System.Timers.Timer();
             timer.Interval = 10.0;
@@ -81,7 +82,9 @@ namespace LocomotiveServer.Games
                 // Connect
                 if (data[0] == 0 && data[1] == 0)
                 {
-                    
+                    Program.Write("Got message: " + data.Length.ToString());
+
+                    server.SendUdp(ip, port, data);
                 }
             }
         }
