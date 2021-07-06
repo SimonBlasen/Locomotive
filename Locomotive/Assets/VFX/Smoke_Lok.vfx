@@ -1743,7 +1743,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.AnimationCurve, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"frames":[{"time":-0.0038523219991475345,"value":0.0016509434208273888,"inTangent":0.008475546725094319,"outTangent":0.008475546725094319,"tangentMode":0,"leftTangentMode":0,"rightTangentMode":0,"broken":false},{"time":0.11146704107522965,"value":0.011255765333771706,"inTangent":-0.0019032052950933576,"outTangent":-0.0019032052950933576,"tangentMode":0,"leftTangentMode":0,"rightTangentMode":0,"broken":false},{"time":0.5315353274345398,"value":0.014873983338475228,"inTangent":0.0034821736626327039,"outTangent":0.0034821736626327039,"tangentMode":0,"leftTangentMode":0,"rightTangentMode":0,"broken":false},{"time":0.9626219272613525,"value":0.015589607879519463,"inTangent":0.0006530636455863714,"outTangent":0.0006530636455863714,"tangentMode":0,"leftTangentMode":0,"rightTangentMode":0,"broken":false}],"preWrapMode":8,"postWrapMode":8,"version":1}'
+      m_SerializableObject: '{"frames":[{"time":-0.0038523219991475345,"value":0.0016509434208273888,"inTangent":0.008475546725094319,"outTangent":0.008475546725094319,"tangentMode":0,"leftTangentMode":0,"rightTangentMode":0,"broken":false},{"time":0.0562073290348053,"value":0.003946805372834206,"inTangent":-0.0019032052950933576,"outTangent":-0.0019032052950933576,"tangentMode":0,"leftTangentMode":0,"rightTangentMode":0,"broken":false},{"time":0.15380877256393434,"value":0.025740455836057664,"inTangent":-0.010989985428750515,"outTangent":-0.010989985428750515,"tangentMode":0,"leftTangentMode":0,"rightTangentMode":0,"broken":false},{"time":0.211488276720047,"value":-0.0010168720036745072,"inTangent":0.12415006756782532,"outTangent":0.12415006756782532,"tangentMode":0,"leftTangentMode":0,"rightTangentMode":0,"broken":false},{"time":0.4228469729423523,"value":0.014843465760350228,"inTangent":0.0034821736626327039,"outTangent":0.0034821736626327039,"tangentMode":0,"leftTangentMode":0,"rightTangentMode":0,"broken":false},{"time":0.888235330581665,"value":0.024546517059206964,"inTangent":0.0006530636455863714,"outTangent":0.0006530636455863714,"tangentMode":0,"leftTangentMode":0,"rightTangentMode":0,"broken":false}],"preWrapMode":8,"postWrapMode":8,"version":1}'
     m_Space: 2147483647
   m_Property:
     name: Size
@@ -2379,7 +2379,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 3
+      m_SerializableObject: 3.649
     m_Space: 2147483647
   m_Property:
     name: frequency
@@ -2413,7 +2413,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 1
+      m_SerializableObject: 4
     m_Space: 2147483647
   m_Property:
     name: octaves
