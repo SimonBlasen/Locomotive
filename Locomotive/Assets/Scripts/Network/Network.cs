@@ -181,6 +181,7 @@ public class Network : MonoBehaviour
                     // Connect Successfull
                     if (data[0] == 128 && data[1] == 0)
                     {
+                        OwnID = data[2];
                         Debug.Log("Connected! OwnID: " + OwnID.ToString());
                     }
 
