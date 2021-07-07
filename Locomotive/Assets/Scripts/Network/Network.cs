@@ -41,6 +41,7 @@ public class Network : MonoBehaviour
     private float waitForPingBack = -1f;
     private int receivedPingCount = 0;
 
+    private PlayerInfo[] playerInfos = new PlayerInfo[256];
 
     public static Network Inst
     {
@@ -75,9 +76,15 @@ public class Network : MonoBehaviour
     {
         inst = this;
 
+        for (int i = 0; i < playerInfos.Length; i++)
+        {
+            playerInfos[i] = new PlayerInfo();
+            playerInfos[i].ID = (byte)i;
+        }
+
         OwnID = 255;
 
-        
+
     }
 
     // Update is called once per frame
@@ -108,7 +115,7 @@ public class Network : MonoBehaviour
 
     public static void Stop()
     {
-        
+
     }
 
     private void sendConnectMessage()
@@ -145,6 +152,18 @@ public class Network : MonoBehaviour
     {
         get; set;
     } = 255;
+
+    public PlayerInfo[] PlayerInfos
+    {
+        get
+        {
+            return playerInfos;
+        }
+        set
+        {
+            playerInfos = value;
+        }
+    }
 
     private List<byte[]> messages = new List<byte[]>();
 
@@ -185,7 +204,51 @@ public class Network : MonoBehaviour
                         Debug.Log("Connected! OwnID: " + OwnID.ToString());
                     }
 
-                    
+
+                    // Train Bytes
+                    else if (data[0] == 128 && data[1] == 1)
+                    {
+                        if (data[2] != OwnID)
+                        {
+                            byte[] cropped = new byte[data.Length - 3];
+                            for (int i = 0; i < cropped.Length; i++)
+                            {
+                                cropped[i] = data[i + 3];
+                            }
+                            TrainsManager.ReceiveTrainBytes(cropped);
+                        }
+                    }
+
+                    // Ping Measurement
+                    else if (data[0] == 128 && data[1] == 2)
+                    {
+                        server.SendUdp(new byte[] { 0, 2, OwnID });
+                    }
+
+                    // Player Pings
+                    else if (data[0] == 128 && data[1] == 3)
+                    {
+                        List<byte> playersConnected = new List<byte>();
+
+                        for (int i = 2; i < data.Length; i += 5)
+                        {
+                            byte playerID = data[i];
+                            float ping = BitConverter.ToSingle(data, i + 1);
+
+                            playerInfos[playerID].Ping = ping;
+                            playerInfos[playerID].IsConnected = true;
+
+                            playersConnected.Add(playerID);
+                        }
+
+                        for (int i = 0; i < playerInfos.Length; i++)
+                        {
+                            if (playersConnected.Contains((byte)i) == false)
+                            {
+                                playerInfos[i].IsConnected = false;
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -201,6 +264,20 @@ public class Network : MonoBehaviour
 
 
 
+    public void SendTrainBytes(byte[] trainBytes)
+    {
+        byte[] bytes = new byte[trainBytes.Length + 3];
+        bytes[0] = 0;
+        bytes[1] = 1;
+        bytes[2] = OwnID;
+        for (int i = 0; i < trainBytes.Length; i++)
+        {
+            bytes[3 + i] = trainBytes[i];
+        }
+
+        server.SendUdp(bytes);
+    }
+
 
 
     public static string GetLocalIPAddress()
@@ -215,4 +292,9 @@ public class Network : MonoBehaviour
         }
         throw new Exception("No network adapters with an IPv4 address in the system!");
     }
+
+    public TrainsManager TrainsManager
+    {
+        get; set;
+    } = null;
 }

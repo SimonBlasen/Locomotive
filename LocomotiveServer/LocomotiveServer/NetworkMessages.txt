@@ -6,10 +6,12 @@ UDP Messages
 
 	 Connect					0			0			[addLen<<24][addLen<<16][addLen<<8]	[addLen]	[Additional Bytes...]
 	 Passthrough Data Train		0			1			[playerID]	[Bytes...]
-
+	 Ping Measure Back			0			2			[playerID]
 
 
 	Vom Server:
 	
 	 Connect Successfull		128			0			[playerID]	
 	 Passthrough Data Train		128			1			[playerID]	[Bytes...]
+	 Ping Measure				128			2			0
+	 Player Pings				128			3			[playerID]	[ping<<24]	[ping<<16]	[ping<<8]	[ping]		...

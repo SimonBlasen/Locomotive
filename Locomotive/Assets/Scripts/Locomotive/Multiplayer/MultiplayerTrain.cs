@@ -12,6 +12,8 @@ public class MultiplayerTrain : MonoBehaviour
     private byte localTrainID = 0;
     private byte trainOwnerID = 255;
 
+    private float curPing = 0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +23,10 @@ public class MultiplayerTrain : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (trainOwnerID != 255)
+        {
+            curPing = Network.Inst.PlayerInfos[trainOwnerID].Ping;
+        }
     }
 
     public void Init(bool isOwnTrain)
@@ -29,6 +34,10 @@ public class MultiplayerTrain : MonoBehaviour
         this.isOwnTrain = isOwnTrain;
         localTrainID = localTrainCounter;
         localTrainCounter++;
+
+        serBytes = new byte[2];
+        serBytes[0] = Network.OwnID;
+        serBytes[1] = localTrainID;
     }
 
     public byte OwnerID
@@ -41,5 +50,35 @@ public class MultiplayerTrain : MonoBehaviour
         {
             trainOwnerID = value;
         }
+    }
+
+    public byte LocalTrainID
+    {
+        get
+        {
+            return localTrainID;
+        }
+    }
+
+    public bool IsOwnTrain
+    {
+        get
+        {
+            return isOwnTrain;
+        }
+    }
+
+    private byte[] serBytes = new byte[0];
+    public byte[] Serialized
+    {
+        get
+        {
+            return serBytes;
+        }
+    }
+
+    public void ReceivedBytes(byte[] bytes)
+    {
+
     }
 }

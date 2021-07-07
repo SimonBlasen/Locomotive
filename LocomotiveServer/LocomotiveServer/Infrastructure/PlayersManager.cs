@@ -51,6 +51,8 @@ namespace LocomotiveServer.Infrastructure
 
             addNewPlayer(newID);
 
+            refreshPlayersArray();
+
             return players[newID];
         }
 
@@ -59,13 +61,49 @@ namespace LocomotiveServer.Infrastructure
             connectedPlayers[id] = false;
             players[id] = null;
 
+            refreshPlayersArray();
+
             Program.Write("Disconnected player [" + id.ToString() + "]");
         }
 
 
 
+        public Player GetPlayer(byte id)
+        {
+            if (connectedPlayers[id])
+            {
+                return players[id];
+            }
+
+            return null;
+        }
+
+        public Player[] Players
+        {
+            get; set;
+        } = new Player[0];
+
+        public bool IsPlayerConnected(byte id)
+        {
+            return connectedPlayers[id];
+        }
 
 
+
+        private void refreshPlayersArray()
+        {
+            List<Player> playersList = new List<Player>();
+
+            for (int i = 0; i < connectedPlayers.Length; i++)
+            {
+                if (connectedPlayers[i])
+                {
+                    playersList.Add(players[i]);
+                }
+            }
+
+            Players = playersList.ToArray();
+        }
 
         private void addNewPlayer(byte id)
         {

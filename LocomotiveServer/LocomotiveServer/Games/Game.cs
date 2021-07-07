@@ -28,6 +28,7 @@ namespace LocomotiveServer.Games
         private int timerCounter = 0;
 
         private PlayersManager playersManager;
+        private PingsMeasure pingsMeasure;
 
         public delegate void TimerElapsEvent(float passedTime, int timerCounter);
         public event TimerElapsEvent TimerElapsed;
@@ -46,12 +47,16 @@ namespace LocomotiveServer.Games
             timer.Start();
 
             playersManager = new PlayersManager();
+            pingsMeasure = new PingsMeasure(playersManager, server);
 
             // Not neccessary, but for testing purpose
             TimerListener timerListenerPlayersManager = (TimerListener)playersManager;
             TimerElapsed += timerListenerPlayersManager.TimerElapsed;
 
+            TimerElapsed += pingsMeasure.TimerElapsed;
+
             messageListeners.Add(playersManager);
+            messageListeners.Add(pingsMeasure);
 
         }
 
@@ -99,18 +104,21 @@ namespace LocomotiveServer.Games
                 }
                 else
                 {
-                    foreach (MessageListener listener in messageListeners)
+                    if (playersManager.IsPlayerConnected(data[2]))
                     {
-                        listener.RecMessage(ip, port, data);
-                    }
+                        foreach (MessageListener listener in messageListeners)
+                        {
+                            listener.RecMessage(ip, port, data);
+                        }
 
-                    // Passthrough Train
-                    if (data[0] == 0 && data[1] == 1)
-                    {
-                        data[0] = 128;
-                        data[1] = 1;
+                        // Passthrough Train
+                        if (data[0] == 0 && data[1] == 1)
+                        {
+                            data[0] = 128;
+                            data[1] = 1;
 
-                        server.SendUdpAll(data);
+                            server.SendUdpAll(data);
+                        }
                     }
                 }
             }
