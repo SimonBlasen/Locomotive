@@ -221,6 +221,14 @@ public class Train : MonoBehaviour
         }
     }
 
+    public TrainRailHandler TrainRailHandler
+    {
+        get
+        {
+            return railHandler;
+        }
+    }
+
     public float CurrentSpeed
     {
         get

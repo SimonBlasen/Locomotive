@@ -19,6 +19,7 @@ public class Railroad : MonoBehaviour
 
     private RailSegment[] allRailSegments = null;
 
+    private int runningRailSegIndex = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +29,9 @@ public class Railroad : MonoBehaviour
         {
             allRailSegments[i].CalculateFollowingPrevious(allRailSegments);
         }
+
+        runningRailSegIndex = 0;
+        assignRailsegmentIDs();
 
         IsReady = true;
     }
@@ -51,4 +55,55 @@ public class Railroad : MonoBehaviour
     {
         get; protected set;
     } = false;
+
+    private void assignRailsegmentIDs()
+    {
+        Vector3 min = new Vector3(float.MaxValue, float.MaxValue, float.MaxValue);
+        int minIndex = -1;
+
+        for (int i = 0; i < allRailSegments.Length; i++)
+        {
+            if (allRailSegments[i].Spline.GetSample(0f).location.x + allRailSegments[i].Spline.GetSample(1f).location.x < min.x && allRailSegments[i].ID == -1)
+            {
+                min = new Vector3(allRailSegments[i].Spline.GetSample(0f).location.x + allRailSegments[i].Spline.GetSample(1f).location.x, allRailSegments[i].Spline.GetSample(0f).location.y, allRailSegments[i].Spline.GetSample(0f).location.z);
+                minIndex = i;
+            }
+        }
+
+        assignRailsegIDRec(allRailSegments[minIndex]);
+
+        if (haveAllRailsegmentsIDs() == false)
+        {
+            assignRailsegmentIDs();
+        }
+    }
+
+    private void assignRailsegIDRec(RailSegment railSegment)
+    {
+        if (railSegment.ID != -1)
+        {
+            return;
+        }
+
+        railSegment.ID = runningRailSegIndex;
+        runningRailSegIndex++;
+
+        for (int i = 0; i < railSegment.FollowingSegments.Length; i++)
+        {
+            assignRailsegIDRec(railSegment.FollowingSegments[i]);
+        }
+    }
+
+    private bool haveAllRailsegmentsIDs()
+    {
+        for (int i = 0; i < allRailSegments.Length; i++)
+        {
+            if (allRailSegments[i].ID == -1)
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
 }

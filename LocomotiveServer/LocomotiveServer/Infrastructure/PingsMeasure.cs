@@ -28,7 +28,7 @@ namespace LocomotiveServer.Infrastructure
             {
                 Player player = playersManager.GetPlayer(data[2]);
 
-                player.AddPingMeasure(stopwatch.ElapsedMilliseconds / 1000f);
+                player.AddPingMeasure((stopwatch.ElapsedMilliseconds / 1000f) * 0.5f);
             }
         }
 

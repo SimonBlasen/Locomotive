@@ -114,6 +114,13 @@ public class RailSegment : MonoBehaviour
         }
     }
 
+    /*public int ID
+    {
+        get; set;
+    } = -1;*/
+
+    public int ID = -1;
+
     public float Length
     {
         get

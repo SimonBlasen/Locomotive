@@ -19,6 +19,8 @@ public class TrainRailHandler
     private List<RailSegment> runningSegments = new List<RailSegment>();
     private List<bool> segmentsFlippsd = new List<bool>();
 
+    private TrainPartPose[] curTrainPartPoses;
+
     public TrainRailHandler(float[] distancesBetween, Railroad railRoad, RailSegment startSegment, SwitchSetting switchSetting)
     {
         this.distancesBetween = distancesBetween;
@@ -81,6 +83,8 @@ public class TrainRailHandler
             }
         }
 
+        curTrainPartPoses = new TrainPartPose[distancesBetween.Length + 1];
+
         Debug.Log("Initial running segments: " + runningSegments.Count.ToString());
     }
 
@@ -124,6 +128,9 @@ public class TrainRailHandler
         }
 
         curveSamples[0] = flippedAcc(0, curPos);
+        curTrainPartPoses[0].splineS = curPos;
+        curTrainPartPoses[0].flipped = segmentsFlippsd[0];
+        curTrainPartPoses[0].splineID = runningSegments[0].ID;
 
         for (int i = 0; i < distancesBetween.Length; i++)
         {
@@ -144,6 +151,9 @@ public class TrainRailHandler
             }
 
             curveSamples[i + 1] = flippedAcc(runningIndex, offsetPos);
+            curTrainPartPoses[i + 1].splineS = offsetPos;
+            curTrainPartPoses[i + 1].flipped = segmentsFlippsd[runningIndex];
+            curTrainPartPoses[i + 1].splineID = runningSegments[runningIndex].ID;
 
             // Last segment is not used anymore
             if (i == distancesBetween.Length - 1 && runningIndex < runningSegments.Count - 1)
@@ -154,6 +164,11 @@ public class TrainRailHandler
         }
 
         return curveSamples;
+    }
+
+    public TrainPartPose[] GetTrainPoses()
+    {
+        return curTrainPartPoses;
     }
 
     private float addNewSegmentFront()
