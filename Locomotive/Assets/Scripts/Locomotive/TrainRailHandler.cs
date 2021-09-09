@@ -84,6 +84,10 @@ public class TrainRailHandler
         }
 
         curTrainPartPoses = new TrainPartPose[distancesBetween.Length + 1];
+        for (int i = 0; i < curTrainPartPoses.Length; i++)
+        {
+            curTrainPartPoses[i] = new TrainPartPose();
+        }
 
         Debug.Log("Initial running segments: " + runningSegments.Count.ToString());
     }
