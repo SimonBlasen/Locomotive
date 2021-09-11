@@ -1,0 +1,6 @@
+[submodule "Assets/SappAnim"]
+	path = Assets/SappAnim
+	url = https://github.com/SimonBlasen/SappAnim.git
+[submodule "Locomotive/Assets/SappAnim"]
+	path = Locomotive/Assets/SappAnim
+	url = https://github.com/SimonBlasen/SappAnim.git

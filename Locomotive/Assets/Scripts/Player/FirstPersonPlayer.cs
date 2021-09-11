@@ -74,6 +74,29 @@ public class FirstPersonPlayer : MonoBehaviour
             }
         }
 
+        if (Input.GetMouseButtonDown(0))
+        {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+            if (currentHoveredInteractable != null)
+            {
+                currentHoveredInteractable.Interact();
+            }
+        }
+        else if (Input.GetMouseButtonUp(0))
+        {
+            if (currentHoveredInteractable != null)
+            {
+                currentHoveredInteractable.InteractUp();
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
+
 
         if (Input.GetKeyDown(KeyCode.C))
         {

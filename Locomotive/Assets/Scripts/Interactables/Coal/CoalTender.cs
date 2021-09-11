@@ -22,7 +22,7 @@ public class CoalTender : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.E) && coalInHand != null)
+        if ((Input.GetKeyUp(KeyCode.E) || Input.GetMouseButtonUp(0)) && coalInHand != null)
         {
             RaycastHit hit;
             if (Physics.Raycast(cam.ScreenPointToRay(new Vector2(Screen.width * 0.5f, Screen.height * 0.5f)), out hit, FirstPersonPlayer.RaycastDistance, LayerMask.GetMask("Interactable")))
