@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6091983718637767153}
   - component: {fileID: 4430577189097702031}
   - component: {fileID: 4507622072963915205}
+  - component: {fileID: 8339998189906751097}
   m_Layer: 0
   m_Name: Trainstation_001 (4)
   m_TagString: Untagged
@@ -26,11 +27,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 544258843290921648}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0.00087, y: 0.06719, z: 0.00038}
+  m_LocalPosition: {x: 0.00087, y: 0.06719, z: 0}
   m_LocalScale: {x: 0.01, y: 0.001, z: 0.01}
   m_Children: []
   m_Father: {fileID: 3114713894521397242}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!33 &4430577189097702031
 MeshFilter:
@@ -81,6 +82,22 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &8339998189906751097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 544258843290921648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfa701c03dd5d96478ed378ec2734264, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  segmentsOfTrainstation: []
+  trainStation: {fileID: 0}
+  textMeshTrainstationInfo: {fileID: 0}
+  blinkingMeshRenderer: {fileID: 4507622072963915205}
 --- !u!1 &1205678961553136231
 GameObject:
   m_ObjectHideFlags: 0
@@ -118,12 +135,13 @@ Transform:
   - {fileID: 7721290728928588759}
   - {fileID: 3791798394284870411}
   - {fileID: 851264685032980268}
-  - {fileID: 9183184841911392583}
   - {fileID: 5216479021215470962}
   - {fileID: 6611011452910497418}
   - {fileID: 5107497525370444358}
   - {fileID: 6091983718637767153}
   - {fileID: 5752834333128988434}
+  - {fileID: 7529214805223668601}
+  - {fileID: 6294835831931667408}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -225,7 +243,7 @@ MonoBehaviour:
   animMovingMap: {fileID: 4114907491813816163}
   movingMapBackPos: {fileID: 0}
   movingMapFrontPos: {fileID: 0}
---- !u!1 &1683048110743371318
+--- !u!1 &1672290026696558938
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -233,79 +251,97 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 9183184841911392583}
-  - component: {fileID: 4966585136791453179}
-  - component: {fileID: 6915373683621041760}
-  m_Layer: 0
-  m_Name: Trainstation_001
+  - component: {fileID: 7529214805223668601}
+  - component: {fileID: 8082802715667497720}
+  - component: {fileID: 5888226646681070476}
+  - component: {fileID: 1152648470242308072}
+  m_Layer: 5
+  m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &9183184841911392583
-Transform:
+--- !u!224 &7529214805223668601
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1683048110743371318}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0.07604, y: -0.00552, z: 0.00043}
-  m_LocalScale: {x: 0.01, y: 0.001, z: 0.01}
+  m_GameObject: {fileID: 1672290026696558938}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 3114713894521397242}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!33 &4966585136791453179
-MeshFilter:
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 0}
+--- !u!223 &8082802715667497720
+Canvas:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1683048110743371318}
-  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &6915373683621041760
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1683048110743371318}
+  m_GameObject: {fileID: 1672290026696558938}
   m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 39f44981dcb1af64da0dc0e2e6f15329, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
+  serializedVersion: 3
+  m_RenderMode: 0
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingLayer: 0
   m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
+  m_TargetDisplay: 0
+--- !u!114 &5888226646681070476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1672290026696558938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UiScaleMode: 0
+  m_ReferencePixelsPerUnit: 100
+  m_ScaleFactor: 1
+  m_ReferenceResolution: {x: 800, y: 600}
+  m_ScreenMatchMode: 0
+  m_MatchWidthOrHeight: 0
+  m_PhysicalUnit: 3
+  m_FallbackScreenDPI: 96
+  m_DefaultSpriteDPI: 96
+  m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 0
+--- !u!114 &1152648470242308072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1672290026696558938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!1 &2607618095385406786
 GameObject:
   m_ObjectHideFlags: 0
@@ -317,6 +353,7 @@ GameObject:
   - component: {fileID: 3791798394284870411}
   - component: {fileID: 1971869225768631113}
   - component: {fileID: 4917945806203396471}
+  - component: {fileID: 7478047489471434177}
   m_Layer: 0
   m_Name: Track_005
   m_TagString: Untagged
@@ -387,6 +424,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &7478047489471434177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2607618095385406786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 159890498725e14438326339be376d4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  accordingRailSegments: []
 --- !u!1 &2716557910643150047
 GameObject:
   m_ObjectHideFlags: 0
@@ -479,6 +529,7 @@ GameObject:
   - component: {fileID: 7721290728928588759}
   - component: {fileID: 7697580866400374062}
   - component: {fileID: 7213550274030074398}
+  - component: {fileID: 4201962059878899349}
   m_Layer: 0
   m_Name: Track_004
   m_TagString: Untagged
@@ -549,6 +600,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &4201962059878899349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3923665230077045827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 159890498725e14438326339be376d4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  accordingRailSegments: []
 --- !u!1 &4688216333480332094
 GameObject:
   m_ObjectHideFlags: 0
@@ -560,6 +624,7 @@ GameObject:
   - component: {fileID: 5752834333128988434}
   - component: {fileID: 2557384819576981211}
   - component: {fileID: 7067992748199542051}
+  - component: {fileID: 7211221512317362451}
   m_Layer: 0
   m_Name: Trainstation_001 (5)
   m_TagString: Untagged
@@ -575,11 +640,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4688216333480332094}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0.08217, y: 0.07689, z: 0.00038}
+  m_LocalPosition: {x: 0.08217, y: 0.07689, z: 0}
   m_LocalScale: {x: 0.01, y: 0.001, z: 0.01}
   m_Children: []
   m_Father: {fileID: 3114713894521397242}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!33 &2557384819576981211
 MeshFilter:
@@ -630,6 +695,22 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &7211221512317362451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4688216333480332094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfa701c03dd5d96478ed378ec2734264, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  segmentsOfTrainstation: []
+  trainStation: {fileID: 0}
+  textMeshTrainstationInfo: {fileID: 0}
+  blinkingMeshRenderer: {fileID: 7067992748199542051}
 --- !u!1 &4907701652025879249
 GameObject:
   m_ObjectHideFlags: 0
@@ -641,6 +722,7 @@ GameObject:
   - component: {fileID: 8008144783288767637}
   - component: {fileID: 4941813358322400368}
   - component: {fileID: 8314929930753693170}
+  - component: {fileID: 3104684674532026267}
   m_Layer: 0
   m_Name: Track_002
   m_TagString: Untagged
@@ -711,6 +793,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &3104684674532026267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4907701652025879249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 159890498725e14438326339be376d4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  accordingRailSegments: []
 --- !u!1 &6082197509309271337
 GameObject:
   m_ObjectHideFlags: 0
@@ -722,6 +817,7 @@ GameObject:
   - component: {fileID: 4293013681805881975}
   - component: {fileID: 3018380336018713788}
   - component: {fileID: 5193902072082582741}
+  - component: {fileID: 7755718073846278235}
   m_Layer: 0
   m_Name: Track_003
   m_TagString: Untagged
@@ -792,6 +888,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &7755718073846278235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6082197509309271337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 159890498725e14438326339be376d4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  accordingRailSegments: []
 --- !u!1 &8298194655518477773
 GameObject:
   m_ObjectHideFlags: 0
@@ -803,6 +912,7 @@ GameObject:
   - component: {fileID: 851264685032980268}
   - component: {fileID: 3660278150431608612}
   - component: {fileID: 4514191100375840964}
+  - component: {fileID: 570670251723583308}
   m_Layer: 0
   m_Name: Track_006
   m_TagString: Untagged
@@ -873,6 +983,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &570670251723583308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8298194655518477773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 159890498725e14438326339be376d4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  accordingRailSegments: []
 --- !u!1 &8696163958163098482
 GameObject:
   m_ObjectHideFlags: 0
@@ -884,6 +1007,7 @@ GameObject:
   - component: {fileID: 6611011452910497418}
   - component: {fileID: 5133296783243868148}
   - component: {fileID: 4054483714109563464}
+  - component: {fileID: 244018598673577040}
   m_Layer: 0
   m_Name: Trainstation_001 (2)
   m_TagString: Untagged
@@ -899,11 +1023,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8696163958163098482}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0.06987, y: -0.01551, z: 0.00038}
+  m_LocalPosition: {x: 0.06987, y: -0.01551, z: 0}
   m_LocalScale: {x: 0.01, y: 0.001, z: 0.01}
   m_Children: []
   m_Father: {fileID: 3114713894521397242}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!33 &5133296783243868148
 MeshFilter:
@@ -954,6 +1078,22 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &244018598673577040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8696163958163098482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfa701c03dd5d96478ed378ec2734264, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  segmentsOfTrainstation: []
+  trainStation: {fileID: 0}
+  textMeshTrainstationInfo: {fileID: 0}
+  blinkingMeshRenderer: {fileID: 4054483714109563464}
 --- !u!1 &8762217495733315315
 GameObject:
   m_ObjectHideFlags: 0
@@ -965,6 +1105,7 @@ GameObject:
   - component: {fileID: 5107497525370444358}
   - component: {fileID: 9149704515368826069}
   - component: {fileID: 4844591270152451676}
+  - component: {fileID: 295004067450038100}
   m_Layer: 0
   m_Name: Trainstation_001 (3)
   m_TagString: Untagged
@@ -980,11 +1121,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8762217495733315315}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0.05447, y: 0.03599, z: 0.00038}
+  m_LocalPosition: {x: 0.05447, y: 0.03599, z: 0}
   m_LocalScale: {x: 0.01, y: 0.001, z: 0.01}
   m_Children: []
   m_Father: {fileID: 3114713894521397242}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!33 &9149704515368826069
 MeshFilter:
@@ -1035,6 +1176,22 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &295004067450038100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8762217495733315315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfa701c03dd5d96478ed378ec2734264, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  segmentsOfTrainstation: []
+  trainStation: {fileID: 0}
+  textMeshTrainstationInfo: {fileID: 0}
+  blinkingMeshRenderer: {fileID: 4844591270152451676}
 --- !u!1 &9001789164186821491
 GameObject:
   m_ObjectHideFlags: 0
@@ -1046,6 +1203,7 @@ GameObject:
   - component: {fileID: 1118190305755021228}
   - component: {fileID: 511812991049823199}
   - component: {fileID: 665070899397635489}
+  - component: {fileID: 1548244283604857321}
   m_Layer: 0
   m_Name: Track_001
   m_TagString: Untagged
@@ -1116,6 +1274,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &1548244283604857321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9001789164186821491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 159890498725e14438326339be376d4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  accordingRailSegments: []
 --- !u!1 &9207923068846762137
 GameObject:
   m_ObjectHideFlags: 0
@@ -1127,6 +1298,7 @@ GameObject:
   - component: {fileID: 5216479021215470962}
   - component: {fileID: 3081758585765152378}
   - component: {fileID: 8161376965433801348}
+  - component: {fileID: 3010998248606534414}
   m_Layer: 0
   m_Name: Trainstation_001 (1)
   m_TagString: Untagged
@@ -1142,11 +1314,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9207923068846762137}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0.02283, y: -0.06901, z: 0.00038}
+  m_LocalPosition: {x: -0.02283, y: -0.06901, z: 0}
   m_LocalScale: {x: 0.01, y: 0.001, z: 0.01}
   m_Children: []
   m_Father: {fileID: 3114713894521397242}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!33 &3081758585765152378
 MeshFilter:
@@ -1197,3 +1369,81 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &3010998248606534414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9207923068846762137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfa701c03dd5d96478ed378ec2734264, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  segmentsOfTrainstation: []
+  trainStation: {fileID: 0}
+  textMeshTrainstationInfo: {fileID: 0}
+  blinkingMeshRenderer: {fileID: 8161376965433801348}
+--- !u!1001 &2319188244371855812
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 3114713894521397242}
+    m_Modifications:
+    - target: {fileID: 7369033443829008712, guid: bab70e78cdc5aaa45b2cad4a3a0a9741, type: 3}
+      propertyPath: m_Name
+      value: Map Trainstation
+      objectReference: {fileID: 0}
+    - target: {fileID: 8607740898282560020, guid: bab70e78cdc5aaa45b2cad4a3a0a9741, type: 3}
+      propertyPath: m_RootOrder
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 8607740898282560020, guid: bab70e78cdc5aaa45b2cad4a3a0a9741, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.07604
+      objectReference: {fileID: 0}
+    - target: {fileID: 8607740898282560020, guid: bab70e78cdc5aaa45b2cad4a3a0a9741, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.00552
+      objectReference: {fileID: 0}
+    - target: {fileID: 8607740898282560020, guid: bab70e78cdc5aaa45b2cad4a3a0a9741, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8607740898282560020, guid: bab70e78cdc5aaa45b2cad4a3a0a9741, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8607740898282560020, guid: bab70e78cdc5aaa45b2cad4a3a0a9741, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8607740898282560020, guid: bab70e78cdc5aaa45b2cad4a3a0a9741, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8607740898282560020, guid: bab70e78cdc5aaa45b2cad4a3a0a9741, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8607740898282560020, guid: bab70e78cdc5aaa45b2cad4a3a0a9741, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8607740898282560020, guid: bab70e78cdc5aaa45b2cad4a3a0a9741, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8607740898282560020, guid: bab70e78cdc5aaa45b2cad4a3a0a9741, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: bab70e78cdc5aaa45b2cad4a3a0a9741, type: 3}
+--- !u!4 &6294835831931667408 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8607740898282560020, guid: bab70e78cdc5aaa45b2cad4a3a0a9741, type: 3}
+  m_PrefabInstance: {fileID: 2319188244371855812}
+  m_PrefabAsset: {fileID: 0}

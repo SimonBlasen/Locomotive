@@ -50,6 +50,10 @@ public class Train : MonoBehaviour
     public string fmodEventTrainSound;
 
 
+    public delegate void RailHandlerInitEvent(TrainRailHandler railHandler);
+    public event RailHandlerInitEvent RailHandlerInit;
+
+
     public float curVelocity = 0f;
     public float curPos = 0f;
 
@@ -62,6 +66,7 @@ public class Train : MonoBehaviour
     private TrainRailHandler railHandler = null;
 
     private bool inited = false;
+
 
 
     // Start is called before the first frame update
@@ -108,6 +113,7 @@ public class Train : MonoBehaviour
         {
             inited = true;
             railHandler = new TrainRailHandler(distancesBetween, railRoad, startRailSegment, switchSetting);
+            RailHandlerInit?.Invoke(railHandler);
         }
 
         if (inited)
@@ -193,7 +199,8 @@ public class Train : MonoBehaviour
     {
         get
         {
-            return curPos;
+            return railHandler.CurPosFlipped;
+            //return curPos;
         }
     }
 
@@ -201,7 +208,7 @@ public class Train : MonoBehaviour
     {
         get
         {
-            return curPos - LengthOfWholeTrain;
+            return railHandler.CurPosFlippedLastWaggon;// curPos - LengthOfWholeTrain;
         }
     }
 

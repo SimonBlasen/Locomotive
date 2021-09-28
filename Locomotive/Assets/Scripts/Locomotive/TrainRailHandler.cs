@@ -105,6 +105,37 @@ public class TrainRailHandler
         }
     }
 
+    public float CurPosFlipped
+    {
+        get
+        {
+            if (segmentsFlippsd[0])
+            {
+                return runningSegments[0].Spline.Length - curPos;
+            }
+            else
+            {
+                return curPos;
+            }
+        }
+    }
+
+    public float CurPosFlippedLastWaggon
+    {
+        get
+        {
+            float waggonOffset = summedDistances[summedDistances.Length - 1];
+            if (segmentsFlippsd[0])
+            {
+                return CurPosFlipped + waggonOffset;
+            }
+            else
+            {
+                return CurPosFlipped - waggonOffset;
+            }
+        }
+    }
+
     private void SwitchSetting_SwitchChange(int oldSwitchPos, int newSwitchPos)
     {
 

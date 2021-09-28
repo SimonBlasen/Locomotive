@@ -39,6 +39,11 @@ public class TrainStation : MonoBehaviour
         }
     }
 
+    public Train[] GetTrainsInStation(out Platform[] platformsOn)
+    {
+        return getTrainsInsidePlatform(out platformsOn);
+    }
+
     private Train[] getTrainsInsidePlatform(out Platform[] platformsOn)
     {
         List<Train> trainsIn = new List<Train>();
@@ -90,6 +95,24 @@ public class TrainStation : MonoBehaviour
     public void DeregisterTrain(Train train)
     {
         allTrains.Remove(train);
+    }
+
+    public int PeopleWaiting
+    {
+        get; set;
+    } = 0;
+
+    public int PeopleWaitingPlatform
+    {
+        get; set;
+    } = 0;
+
+    public int PlatformsAmount
+    {
+        get
+        {
+            return platforms.Length;
+        }
     }
 }
 
