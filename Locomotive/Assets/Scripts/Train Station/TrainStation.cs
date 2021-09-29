@@ -14,6 +14,8 @@ public class TrainStation : MonoBehaviour
 
     private float checkTrainsCounter = 0f;
 
+    private List<TrainstationPerson> instPersons = new List<TrainstationPerson>();
+
     // Start is called before the first frame update
     void Start()
     {
@@ -99,8 +101,21 @@ public class TrainStation : MonoBehaviour
 
     public int PeopleWaiting
     {
-        get; set;
-    } = 0;
+        get
+        {
+            return instPersons.Count;
+        }
+    }
+
+    public void SpawnPerson(int platform)
+    {
+        GameObject instPerson = Instantiate(Resources.Load<GameObject>("Train Station/TrainstationPerson"), transform);
+
+        TrainstationPerson person = instPerson.GetComponent<TrainstationPerson>();
+        person.WaitingPlatform = platforms[platform];
+
+        instPersons.Add(person);
+    }
 
     public int PeopleWaitingPlatform
     {
@@ -123,4 +138,5 @@ public class Platform
     public Spline spline= null;
     public float trainStationBegin = 0f;
     public float trainStationEnd = 0f;
+    public Transform[] waitingAreas = null;
 }

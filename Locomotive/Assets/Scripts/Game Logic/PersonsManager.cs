@@ -38,6 +38,6 @@ public class PersonsManager : MonoBehaviour
         {
             trainStations[randomTrainstation].PeopleWaitingPlatform = Random.Range(0, trainStations[randomTrainstation].PlatformsAmount);
         }
-        trainStations[randomTrainstation].PeopleWaiting++;
+        trainStations[randomTrainstation].SpawnPerson(trainStations[randomTrainstation].PeopleWaitingPlatform);
     }
 }

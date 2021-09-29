@@ -156,7 +156,7 @@ public class Train : MonoBehaviour
             curVelocity = Mathf.MoveTowards(curVelocity, DriveDirectionForward ? topSpeed : -topSpeed, curAccStep);
 
 
-            Debug.Log("SlopedGravMass: " + slopedGravityMass.ToString("n2"));
+            //Debug.Log("SlopedGravMass: " + slopedGravityMass.ToString("n2"));
 
             // Slopes Gravity
             curVelocity += slopedGravityMass * gravitySlopeStrength * Time.fixedDeltaTime;
