@@ -44,6 +44,27 @@ public class RailroadMapTrainstation : MonoBehaviour
         materialInStation = new Material(materialNormal);
         materialOnTrack.color = colorOnTrack;
         materialInStation.color = colorStoppedInStation;
+
+        fillStaticTrainstations();
+
+        // Only for debug purpose
+        if (trainStation != null)
+        {
+            train.PersonEntersTrain(null, trainStation);
+            train.PersonEntersTrain(null, trainStation);
+            train.PersonEntersTrain(null, trainStation);
+        }
+    }
+
+    private void fillStaticTrainstations()
+    {
+        if (trainStation != null)
+        {
+            List<TrainStation> trainStationsYet = new List<TrainStation>();
+            trainStationsYet.AddRange(TrainStation.AllTrainstations);
+            trainStationsYet.Add(trainStation);
+            TrainStation.AllTrainstations = trainStationsYet.ToArray();
+        }
     }
 
     private void Train_RailHandlerInit(TrainRailHandler railHandler)
@@ -136,6 +157,6 @@ public class RailroadMapTrainstation : MonoBehaviour
     {
         textMeshTrainstationInfo.text = "Pltfrm: " + (trainStation.PeopleWaitingPlatform + 1).ToString()
                                         + "\nWaiting: " + trainStation.PeopleWaiting.ToString()
-                                        + "\nDestination: " + 0.ToString();
+                                        + "\nDestination: " + train.GetPersonsWithTarget(trainStation).ToString();
     }
 }

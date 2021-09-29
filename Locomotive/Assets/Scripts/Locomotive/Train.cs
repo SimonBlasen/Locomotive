@@ -67,6 +67,7 @@ public class Train : MonoBehaviour
 
     private bool inited = false;
 
+    private Dictionary<TrainStation, int> personsInTrain = new Dictionary<TrainStation, int>();
 
 
     // Start is called before the first frame update
@@ -248,4 +249,39 @@ public class Train : MonoBehaviour
     {
         get; set;
     } = true;
+
+    public void PersonEntersTrain(TrainstationPerson person, TrainStation destination)
+    {
+        if (personsInTrain.ContainsKey(destination) == false)
+        {
+            personsInTrain.Add(destination, 0);
+        }
+
+        personsInTrain[destination]++;
+    }
+
+    public int GetPersonsWithTarget(TrainStation trainStation)
+    {
+        if (personsInTrain.ContainsKey(trainStation) == false)
+        {
+            return 0;
+        }
+        return personsInTrain[trainStation];
+    }
+
+    public void ReducePersonsWithTarget(TrainStation trainStation)
+    {
+        if (personsInTrain.ContainsKey(trainStation))
+        {
+            personsInTrain[trainStation]--;
+        }
+    }
+
+    public Wagon[] Wagons
+    {
+        get
+        {
+            return wagons;
+        }
+    }
 }

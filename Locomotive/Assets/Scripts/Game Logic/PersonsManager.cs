@@ -24,7 +24,7 @@ public class PersonsManager : MonoBehaviour
 
         if (personSpawnCounter <= 0f)
         {
-            personSpawnCounter = Random.Range(1f, 4f);
+            personSpawnCounter = Random.Range(20f, 21f);
 
             spawnRandomPerson();
         }

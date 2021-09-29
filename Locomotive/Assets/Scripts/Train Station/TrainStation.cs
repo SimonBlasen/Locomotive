@@ -9,12 +9,21 @@ public class TrainStation : MonoBehaviour
     [Header("Settings")]
     [SerializeField]
     private Platform[] platforms = null;
+    [SerializeField]
+    private float personsExitSpeedMin = 0.1f;
+    [SerializeField]
+    private float personsExitSpeedMax = 0.3f;
 
     private List<Train> allTrains = new List<Train>();
 
     private float checkTrainsCounter = 0f;
 
     private List<TrainstationPerson> instPersons = new List<TrainstationPerson>();
+
+    private float personExitTrainCounter = 0f;
+
+    private Train[] currentTrainsInStation = new Train[0];
+    private Platform[] platformsOn = new Platform[0];
 
     // Start is called before the first frame update
     void Start()
@@ -31,14 +40,59 @@ public class TrainStation : MonoBehaviour
         {
             checkTrainsCounter = 0f;
 
-            Platform[] platformsOn;
+            
             Train[] trainsInStation = getTrainsInsidePlatform(out platformsOn);
+
+            currentTrainsInStation = trainsInStation;
 
             if (platformsOn.Length > 0)
             {
                 Debug.Log("Train is in station");
             }
         }
+
+        personExitTrainCounter -= Time.deltaTime;
+        if (personExitTrainCounter <= 0f)
+        {
+            personExitTrainCounter = UnityEngine.Random.Range(personsExitSpeedMin, personsExitSpeedMax);
+
+            for (int i = 0; i < currentTrainsInStation.Length; i++)
+            {
+                if (currentTrainsInStation[i].GetPersonsWithTarget(this) > 0)
+                {
+                    ejectPersonFromTrain(currentTrainsInStation[i], platformsOn[i]);
+                }
+                else
+                {
+                    // Send person after person into train
+                }
+            }
+        }
+    }
+
+    private void ejectPersonFromTrain(Train train, Platform platform)
+    {
+        train.ReducePersonsWithTarget(this);
+        // Spawn person
+
+
+        GameObject instPerson = Instantiate(Resources.Load<GameObject>("Train Station/TrainstationPerson"), transform);
+
+        TrainstationPerson person = instPerson.GetComponent<TrainstationPerson>();
+        person.WaitingPlatform = platform;
+
+        //Vector3 randomPos = Vector3.Lerp(platform.waitingAreaMinPos.position, platform.waitingAreaMaxPos.position, UnityEngine.Random.Range(0f, 1f));
+        //person.transform.position = randomPos;
+        person.CanEnterTrain = true;
+
+        Vector3 spawnPos = Vector3.zero;
+        Wagon spawnWagon = train.Wagons[UnityEngine.Random.Range(0, train.Wagons.Length)];
+        spawnPos = spawnWagon.RandomDoor().position;
+        person.IsExitingTrain = true;
+
+        person.transform.position = spawnPos;
+
+        instPersons.Add(person);
     }
 
     public Train[] GetTrainsInStation(out Platform[] platformsOn)
@@ -114,6 +168,10 @@ public class TrainStation : MonoBehaviour
         TrainstationPerson person = instPerson.GetComponent<TrainstationPerson>();
         person.WaitingPlatform = platforms[platform];
 
+        Vector3 randomPos = Vector3.Lerp(platforms[platform].waitingAreaMinPos.position, platforms[platform].waitingAreaMaxPos.position, UnityEngine.Random.Range(0f, 1f));
+        person.transform.position = randomPos;
+        person.CanEnterTrain = false;
+
         instPersons.Add(person);
     }
 
@@ -129,6 +187,11 @@ public class TrainStation : MonoBehaviour
             return platforms.Length;
         }
     }
+
+    public static TrainStation[] AllTrainstations
+    {
+        get; set;
+    } = new TrainStation[0];
 }
 
 [Serializable]
@@ -138,5 +201,7 @@ public class Platform
     public Spline spline= null;
     public float trainStationBegin = 0f;
     public float trainStationEnd = 0f;
-    public Transform[] waitingAreas = null;
+    public Transform waitingArea = null;
+    public Transform waitingAreaMinPos = null;
+    public Transform waitingAreaMaxPos = null;
 }
