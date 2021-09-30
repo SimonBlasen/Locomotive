@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class PersonsManager : MonoBehaviour
 {
-    [Header("References")]
-    [SerializeField]
-    private TrainStation[] trainStations = null;
-
-
     private float personSpawnCounter = 10f;
 
     // Start is called before the first frame update
@@ -24,7 +19,7 @@ public class PersonsManager : MonoBehaviour
 
         if (personSpawnCounter <= 0f)
         {
-            personSpawnCounter = Random.Range(20f, 21f);
+            personSpawnCounter = Random.Range(5f, 21f);
 
             spawnRandomPerson();
         }
@@ -32,12 +27,27 @@ public class PersonsManager : MonoBehaviour
 
     private void spawnRandomPerson()
     {
-        int randomTrainstation = Random.Range(0, trainStations.Length);
-
-        if (trainStations[randomTrainstation].PeopleWaiting == 0)
+        List<TrainStation> possibleTrainstations = new List<TrainStation>();
+        possibleTrainstations.AddRange(TrainStation.AllTrainstations);
+        for (int i = 0; i < possibleTrainstations.Count; i++)
         {
-            trainStations[randomTrainstation].PeopleWaitingPlatform = Random.Range(0, trainStations[randomTrainstation].PlatformsAmount);
+            Platform[] platforms;
+            if (possibleTrainstations[i].GetTrainsInStation(out platforms).Length > 0)
+            {
+                possibleTrainstations.RemoveAt(i);
+                i--;
+            }
         }
-        trainStations[randomTrainstation].SpawnPerson(trainStations[randomTrainstation].PeopleWaitingPlatform);
+
+        if (possibleTrainstations.Count > 0)
+        {
+            int randomTrainstation = Random.Range(0, possibleTrainstations.Count);
+
+            if (possibleTrainstations[randomTrainstation].PeopleWaiting == 0)
+            {
+                possibleTrainstations[randomTrainstation].PeopleWaitingPlatform = Random.Range(0, possibleTrainstations[randomTrainstation].PlatformsAmount);
+            }
+            possibleTrainstations[randomTrainstation].SpawnPerson(possibleTrainstations[randomTrainstation].PeopleWaitingPlatform);
+        }
     }
 }

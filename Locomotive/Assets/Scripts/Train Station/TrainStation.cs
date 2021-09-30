@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class TrainStation : MonoBehaviour
 {
@@ -64,6 +65,7 @@ public class TrainStation : MonoBehaviour
                 }
                 else
                 {
+                    sendPersonIntoTrain(currentTrainsInStation[i], platformsOn[i]);
                     // Send person after person into train
                 }
             }
@@ -87,12 +89,52 @@ public class TrainStation : MonoBehaviour
 
         Vector3 spawnPos = Vector3.zero;
         Wagon spawnWagon = train.Wagons[UnityEngine.Random.Range(0, train.Wagons.Length)];
-        spawnPos = spawnWagon.RandomDoor().position;
+        Transform selectedDoor = spawnWagon.RandomDoor();
+        spawnPos = selectedDoor.position;
         person.IsExitingTrain = true;
+        person.HasPreviouslyExitedTrain = true;
 
         person.transform.position = spawnPos;
+        person.GetComponent<NavMeshAgent>().enabled = false;
+
+        person.NavDestination = selectedDoor.position + selectedDoor.right * 3f;
 
         instPersons.Add(person);
+    }
+
+    private void sendPersonIntoTrain(Train train, Platform platform)
+    {
+        List<TrainstationPerson> personsThisPlatform = new List<TrainstationPerson>();
+        for (int i = 0; i < instPersons.Count; i++)
+        {
+            if (instPersons[i].WaitingPlatform == platform && instPersons[i].HasPreviouslyExitedTrain == false)
+            {
+                personsThisPlatform.Add(instPersons[i]);
+            }
+        }
+
+        if (personsThisPlatform.Count > 0)
+        {
+            Vector3 waggonPos = Vector3.zero;
+            Wagon spawnWagon = train.Wagons[UnityEngine.Random.Range(0, train.Wagons.Length)];
+            Transform selectedDoor = spawnWagon.RandomDoor();
+            waggonPos = selectedDoor.position;
+
+            int randomPerson = UnityEngine.Random.Range(0, personsThisPlatform.Count);
+
+            TrainstationPerson person = personsThisPlatform[randomPerson];
+            person.IsEnteringTrain = true;
+            person.CanEnterTrain = true;
+            person.NavDestination = waggonPos;
+            person.DestinationTrain = train;
+            person.OriginTrainstation = this;
+
+            instPersons.Remove(person);
+        }
+        else
+        {
+            Debug.Log("Did send all persons into train");
+        }
     }
 
     public Train[] GetTrainsInStation(out Platform[] platformsOn)
@@ -171,6 +213,7 @@ public class TrainStation : MonoBehaviour
         Vector3 randomPos = Vector3.Lerp(platforms[platform].waitingAreaMinPos.position, platforms[platform].waitingAreaMaxPos.position, UnityEngine.Random.Range(0f, 1f));
         person.transform.position = randomPos;
         person.CanEnterTrain = false;
+        person.GetComponent<NavMeshAgent>().enabled = false;
 
         instPersons.Add(person);
     }
