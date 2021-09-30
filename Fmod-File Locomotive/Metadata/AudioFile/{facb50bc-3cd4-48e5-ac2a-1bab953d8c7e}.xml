@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.01.00">
 	<object class="AudioFile" id="{facb50bc-3cd4-48e5-ac2a-1bab953d8c7e}">
 		<property name="assetPath">
-			<value>Lok_SteamLoopsNEU/Lok_LoopSub_35-40-01.wav</value>
+			<value>Lok_SteamLoopsALT/Lok_LoopSub_35-40-01.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>96</value>

@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.01.00">
 	<object class="EventFolder" id="{2ce3dbf1-e9f1-49c1-ab18-ac701bec8e4f}">
 		<property name="name">
-			<value>LokRef</value>
+			<value>References</value>
 		</property>
 		<relationship name="folder">
 			<destination>{cddbb473-9f80-4feb-9a0c-5ace0da4521f}</destination>

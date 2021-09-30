@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.01.00">
 	<object class="Event" id="{9636a09d-fe4e-49ae-af4e-910c7048cb33}">
 		<property name="name">
-			<value>Lok_Hupe</value>
+			<value>Lok_Hupe2D</value>
 		</property>
 		<property name="outputFormat">
 			<value>1</value>
@@ -36,9 +36,6 @@
 		</relationship>
 		<relationship name="parameters">
 			<destination>{aad18e52-fc43-4ad0-b9e7-57d47b60f08b}</destination>
-		</relationship>
-		<relationship name="banks">
-			<destination>{f72a1e21-bfaf-4fbd-9cb2-5952d3997c06}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixer" id="{3ed4001e-550f-4141-a864-1ab9522024aa}">

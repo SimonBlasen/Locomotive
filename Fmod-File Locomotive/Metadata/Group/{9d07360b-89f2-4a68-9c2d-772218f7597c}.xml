@@ -24,6 +24,9 @@
 	<object class="MixerBusPanner" id="{8fb0bfd2-d729-49c2-88a9-9a6a44eca799}" />
 	<object class="MixerBusFader" id="{a25ed0bf-d56f-4850-8938-39d1925e3ae1}" />
 	<object class="SFXReverbEffect" id="{9a66d19b-83c2-4516-ad5b-bc106c276df2}">
+		<property name="bypass">
+			<value>true</value>
+		</property>
 		<property name="earlyDelay">
 			<value>7</value>
 		</property>

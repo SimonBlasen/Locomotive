@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="EventFolder" id="{3e79f4e0-7a20-4f94-aa25-ee56131e463c}">
+		<property name="name">
+			<value>SteamRefs</value>
+		</property>
+		<relationship name="folder">
+			<destination>{2ce3dbf1-e9f1-49c1-ab18-ac701bec8e4f}</destination>
+		</relationship>
+	</object>
+</objects>

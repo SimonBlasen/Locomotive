@@ -24,6 +24,9 @@
 	<object class="MixerBusPanner" id="{8085b815-abba-4615-82eb-ff62448fb341}" />
 	<object class="MixerBusFader" id="{eea18d8e-6cca-49eb-8ffa-fd25b8143eae}" />
 	<object class="SFXReverbEffect" id="{10089afd-c3e1-4ebb-bae5-241c4d2937b6}">
+		<property name="bypass">
+			<value>true</value>
+		</property>
 		<property name="decayTime">
 			<value>1700</value>
 		</property>
@@ -48,7 +51,7 @@
 	</object>
 	<object class="MixerSend" id="{3d69634f-2972-4aa2-8961-c67538a22ae2}">
 		<property name="inputFormat">
-			<value>1</value>
+			<value>5</value>
 		</property>
 		<relationship name="mixerReturn">
 			<destination>{aaf1a115-a5b1-47f9-9a20-ba07f7829dfb}</destination>
