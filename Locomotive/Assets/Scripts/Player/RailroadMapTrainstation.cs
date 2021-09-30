@@ -7,6 +7,15 @@ using UnityEngine;
 
 public class RailroadMapTrainstation : MonoBehaviour
 {
+    [Header("Settings")]
+    [SerializeField]
+    private Material materialIdle = null;
+    [SerializeField]
+    private Material materialOnRails = null;
+    [SerializeField]
+    private Material materialStoppedStation = null;
+
+
     [Header("References")]
     [SerializeField]
     private RailSegment[] segmentsOfTrainstation = null;
@@ -29,21 +38,11 @@ public class RailroadMapTrainstation : MonoBehaviour
     private RailSegment currentRailSegment = null;
     private float checkCounter = 0f;
 
-    private Material materialNormal = null;
-    private Material materialOnTrack = null;
-    private Material materialInStation = null;
-
     // Start is called before the first frame update
     void Start()
     {
         train = GetComponentInParent<Train>();
         train.RailHandlerInit += Train_RailHandlerInit;
-
-        materialNormal = new Material(blinkingMeshRenderer.sharedMaterial);
-        materialOnTrack = new Material(materialNormal);
-        materialInStation = new Material(materialNormal);
-        materialOnTrack.color = colorOnTrack;
-        materialInStation.color = colorStoppedInStation;
 
         fillStaticTrainstations();
 
@@ -133,7 +132,7 @@ public class RailroadMapTrainstation : MonoBehaviour
         {
             isTrainOnSegment = value;
 
-            blinkingMeshRenderer.sharedMaterial = isTrainInStation ? materialInStation : (isTrainOnSegment ? materialOnTrack : materialNormal);
+            blinkingMeshRenderer.sharedMaterial = isTrainInStation ? materialStoppedStation : (isTrainOnSegment ? materialOnRails : materialIdle);
         }
     }
 
@@ -149,7 +148,7 @@ public class RailroadMapTrainstation : MonoBehaviour
         {
             isTrainInStation = value;
 
-            blinkingMeshRenderer.sharedMaterial = isTrainInStation ? materialInStation : (isTrainOnSegment ? materialOnTrack : materialNormal);
+            blinkingMeshRenderer.sharedMaterial = isTrainInStation ? materialStoppedStation : (isTrainOnSegment ? materialOnRails : materialIdle);
         }
     }
 

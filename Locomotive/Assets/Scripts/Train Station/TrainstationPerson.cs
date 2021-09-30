@@ -39,16 +39,31 @@ public class TrainstationPerson : MonoBehaviour
         {
             randomWalkTimer = Random.Range(1f, 15f);
 
-            //if (navAgent.velocity.magnitude < 0.05f)
-            //{
+            if (HasPreviouslyExitedTrain)
+            {
+                navAgent.SetDestination(WaitingPlatform.platformExit.position);
+            }
+            else
+            {
+                //if (navAgent.velocity.magnitude < 0.05f)
+                //{
                 navAgent.SetDestination(Vector3.Lerp(WaitingPlatform.waitingAreaMinPos.position, WaitingPlatform.waitingAreaMaxPos.position, UnityEngine.Random.Range(0f, 1f)));
-            //}
+                //}
+            }
         }
 
         checkAreaCounter += Time.deltaTime;
 
         if (checkAreaCounter >= 0.1f)
         {
+            if (HasPreviouslyExitedTrain)
+            {
+                if (Vector3.Distance(transform.position, navAgent.destination) <= 2f)
+                {
+                    Destroy(gameObject);
+                }
+            }
+
             checkAreaCounter = 0f;
 
             if (IsExitingTrain)

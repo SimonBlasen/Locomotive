@@ -21,6 +21,8 @@ public class TrainStation : MonoBehaviour
 
     private List<TrainstationPerson> instPersons = new List<TrainstationPerson>();
 
+    private List<TrainstationPerson> personsExitingTrain = new List<TrainstationPerson>();
+
     private float personExitTrainCounter = 0f;
 
     private Train[] currentTrainsInStation = new Train[0];
@@ -65,8 +67,18 @@ public class TrainStation : MonoBehaviour
                 }
                 else
                 {
-                    sendPersonIntoTrain(currentTrainsInStation[i], platformsOn[i]);
-                    // Send person after person into train
+                    for (int j = 0; j < personsExitingTrain.Count; j++)
+                    {
+                        if (personsExitingTrain[j] == null || personsExitingTrain[j].IsExitingTrain == false)
+                        {
+                            personsExitingTrain.RemoveAt(j);
+                            j--;
+                        }
+                    }
+                    if (personsExitingTrain.Count == 0)
+                    {
+                        sendPersonIntoTrain(currentTrainsInStation[i], platformsOn[i]);
+                    }
                 }
             }
         }
@@ -106,6 +118,7 @@ public class TrainStation : MonoBehaviour
             person.NavDestination = selectedDoor.position + selectedDoor.right * -3f;
         }
 
+        personsExitingTrain.Add(person);
         //instPersons.Add(person);
     }
 
@@ -254,4 +267,5 @@ public class Platform
     public Transform waitingArea = null;
     public Transform waitingAreaMinPos = null;
     public Transform waitingAreaMaxPos = null;
+    public Transform platformExit = null;
 }
