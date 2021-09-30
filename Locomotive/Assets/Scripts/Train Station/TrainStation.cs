@@ -97,9 +97,16 @@ public class TrainStation : MonoBehaviour
         person.transform.position = spawnPos;
         person.GetComponent<NavMeshAgent>().enabled = false;
 
-        person.NavDestination = selectedDoor.position + selectedDoor.right * 3f;
+        if (Vector3.Distance(platform.waitingAreaMinPos.position, selectedDoor.position + selectedDoor.right * 3f) < Vector3.Distance(platform.waitingAreaMinPos.position, selectedDoor.position + selectedDoor.right * -3f))
+        {
+            person.NavDestination = selectedDoor.position + selectedDoor.right * 3f;
+        }
+        else
+        {
+            person.NavDestination = selectedDoor.position + selectedDoor.right * -3f;
+        }
 
-        instPersons.Add(person);
+        //instPersons.Add(person);
     }
 
     private void sendPersonIntoTrain(Train train, Platform platform)

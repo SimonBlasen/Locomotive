@@ -39,10 +39,10 @@ public class TrainstationPerson : MonoBehaviour
         {
             randomWalkTimer = Random.Range(1f, 15f);
 
-            if (navAgent.velocity.magnitude < 0.05f)
-            {
+            //if (navAgent.velocity.magnitude < 0.05f)
+            //{
                 navAgent.SetDestination(Vector3.Lerp(WaitingPlatform.waitingAreaMinPos.position, WaitingPlatform.waitingAreaMaxPos.position, UnityEngine.Random.Range(0f, 1f)));
-            }
+            //}
         }
 
         checkAreaCounter += Time.deltaTime;
@@ -54,14 +54,14 @@ public class TrainstationPerson : MonoBehaviour
             if (IsExitingTrain)
             {
                 NavMeshHit hit;
-                if (NavMesh.SamplePosition(transform.position, out hit, 0.1f, NavMesh.AllAreas))
+                if (NavMesh.SamplePosition(transform.position, out hit, 3f, NavMesh.AllAreas))
                 {
-                    if (hit.mask != NavMesh.GetAreaFromName("InTrain"))
+                    if ((hit.mask & (0x01 << NavMesh.GetAreaFromName("InTrain"))) == 0x0)
                     {
                         Debug.Log("Exiting person has existed");
                         IsExitingTrain = false;
                         CanEnterTrain = false;
-                        randomWalkTimer = 0f;
+                        randomWalkTimer = 1f;
 
                         Destroy(gameObject, Random.Range(5f, 10f));
                     }
@@ -86,9 +86,9 @@ public class TrainstationPerson : MonoBehaviour
                 else
                 {
                     NavMeshHit hit;
-                    if (NavMesh.SamplePosition(transform.position, out hit, 0.1f, NavMesh.AllAreas))
+                    if (NavMesh.SamplePosition(transform.position, out hit, 3f, NavMesh.AllAreas))
                     {
-                        if (hit.mask == NavMesh.GetAreaFromName("InTrain"))
+                        if ((hit.mask & (0x01 << NavMesh.GetAreaFromName("InTrain"))) != 0x0)
                         {
                             ticksOnTrainArea++;
                         }
@@ -107,6 +107,7 @@ public class TrainstationPerson : MonoBehaviour
                 navAgent.enabled = true;
                 if (toSetDestination != Vector3.zero)
                 {
+                    CanEnterTrain = canEnterTrain;
                     navAgent.SetDestination(toSetDestination);
                     toSetDestination = Vector3.zero;
                 }
