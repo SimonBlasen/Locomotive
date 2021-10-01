@@ -497,6 +497,7 @@ GameObject:
   - component: {fileID: 6600520219289961562}
   - component: {fileID: 7929910598704974882}
   - component: {fileID: 5041573755948623214}
+  - component: {fileID: 8450503722049123645}
   m_Layer: 0
   m_Name: Button Horn
   m_TagString: Untagged
@@ -583,7 +584,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactableCollider: {fileID: 5682660158364022187}
   hoveredObj: {fileID: 8510942660632495331}
-  fmodEventTrainSound: event:/Lok/Lok_Hupe
+--- !u!114 &8450503722049123645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 717922975668011977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  Event: event:/Lok/Lok_Hupe
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 10
+  OverrideMaxDistance: 500
 --- !u!1 &720138643783950350
 GameObject:
   m_ObjectHideFlags: 0
@@ -1997,7 +2020,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CollisionTag: 
-  Event: event:/Fire/Fire_Event3D
+  Event: event:/Lok/Fire_Event
   PlayEvent: 0
   StopEvent: 0
   AllowFadeout: 1
@@ -11222,6 +11245,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8286837205978442556}
   - component: {fileID: 8286837205978442555}
+  - component: {fileID: 6635786073480118585}
   m_Layer: 0
   m_Name: Wagon 1
   m_TagString: Untagged
@@ -11265,6 +11289,29 @@ MonoBehaviour:
   doorPositions:
   - {fileID: 484918521634974628}
   - {fileID: 6913616229342645061}
+--- !u!114 &6635786073480118585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8286837205978442557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  Event: event:/Lok/Waggon_Mov
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &8286837206400914853
 GameObject:
   m_ObjectHideFlags: 0
@@ -11275,6 +11322,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8286837206400914852}
   - component: {fileID: 8286837206400914851}
+  - component: {fileID: 4659119273989592855}
   m_Layer: 0
   m_Name: Wagon 2
   m_TagString: Untagged
@@ -11318,6 +11366,29 @@ MonoBehaviour:
   doorPositions:
   - {fileID: 5334134730561163525}
   - {fileID: 7387925580318289600}
+--- !u!114 &4659119273989592855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8286837206400914853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  Event: event:/Lok/Waggon_Mov
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &8286837207063492273
 GameObject:
   m_ObjectHideFlags: 0
@@ -11489,7 +11560,11 @@ MonoBehaviour:
   gravitySlopeStrength: 0.0001
   switchSetting: {fileID: 5417111265049859097}
   tunnelEmitter: {fileID: 4246907443002524206}
-  fmodEventTrainSound: event:/Lok/00_Lok_Event
+  eventEmitterLokSound: {fileID: 5914160223184028836}
+  waggonsEventEmitterSounds:
+  - {fileID: 6635786073480118585}
+  - {fileID: 4659119273989592855}
+  fmodEventAmbientSound: event:/World/Ambience
   curVelocity: 0
   curPos: 0
 --- !u!1 &8286837207289450167
@@ -11502,6 +11577,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8286837207289450166}
   - component: {fileID: 8286837207289450165}
+  - component: {fileID: 5914160223184028836}
   m_Layer: 0
   m_Name: Locomotive
   m_TagString: Untagged
@@ -11556,6 +11632,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weight: 210
+--- !u!114 &5914160223184028836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8286837207289450167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  Event: event:/Lok/Lok_Mov
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 20
+  OverrideMaxDistance: 450
 --- !u!1 &8286837207356578639
 GameObject:
   m_ObjectHideFlags: 0
@@ -12928,14 +13027,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e73323ebeddd6a941a5330a7eacc3297, type: 3}
+--- !u!1 &6763823084130130905 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -9074493335336340659, guid: e73323ebeddd6a941a5330a7eacc3297, type: 3}
+  m_PrefabInstance: {fileID: 6903175048757602452}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2300614339852883421 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4620813804653034825, guid: e73323ebeddd6a941a5330a7eacc3297, type: 3}
-  m_PrefabInstance: {fileID: 6903175048757602452}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1020291464565469982 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -3322024232556110966, guid: e73323ebeddd6a941a5330a7eacc3297, type: 3}
   m_PrefabInstance: {fileID: 6903175048757602452}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &7311648772950001006 stripped
@@ -12943,14 +13042,9 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: -4993030803956797958, guid: e73323ebeddd6a941a5330a7eacc3297, type: 3}
   m_PrefabInstance: {fileID: 6903175048757602452}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &6763823084130130905 stripped
+--- !u!1 &4175478342921538523 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: -9074493335336340659, guid: e73323ebeddd6a941a5330a7eacc3297, type: 3}
-  m_PrefabInstance: {fileID: 6903175048757602452}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &4010038779571360553 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -1699119128068146243, guid: e73323ebeddd6a941a5330a7eacc3297, type: 3}
+  m_CorrespondingSourceObject: {fileID: -1855687212064726193, guid: e73323ebeddd6a941a5330a7eacc3297, type: 3}
   m_PrefabInstance: {fileID: 6903175048757602452}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &3922969432127148761 stripped
@@ -12958,24 +13052,29 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7619016106957535821, guid: e73323ebeddd6a941a5330a7eacc3297, type: 3}
   m_PrefabInstance: {fileID: 6903175048757602452}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &5796275226031066733 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -8089167817448626439, guid: e73323ebeddd6a941a5330a7eacc3297, type: 3}
+  m_PrefabInstance: {fileID: 6903175048757602452}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4010038779571360553 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -1699119128068146243, guid: e73323ebeddd6a941a5330a7eacc3297, type: 3}
+  m_PrefabInstance: {fileID: 6903175048757602452}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6361255706732269439 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e73323ebeddd6a941a5330a7eacc3297, type: 3}
   m_PrefabInstance: {fileID: 6903175048757602452}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &4175478342921538523 stripped
+--- !u!1 &1020291464565469982 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: -1855687212064726193, guid: e73323ebeddd6a941a5330a7eacc3297, type: 3}
+  m_CorrespondingSourceObject: {fileID: -3322024232556110966, guid: e73323ebeddd6a941a5330a7eacc3297, type: 3}
   m_PrefabInstance: {fileID: 6903175048757602452}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &142898176126807250 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -2434569417370139578, guid: e73323ebeddd6a941a5330a7eacc3297, type: 3}
-  m_PrefabInstance: {fileID: 6903175048757602452}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &5796275226031066733 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -8089167817448626439, guid: e73323ebeddd6a941a5330a7eacc3297, type: 3}
   m_PrefabInstance: {fileID: 6903175048757602452}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7016110874019447128

@@ -1,3 +1,4 @@
+using FMODUnity;
 using SplineMesh;
 using System.Collections;
 using System.Collections.Generic;
@@ -44,10 +45,14 @@ public class Train : MonoBehaviour
     [SerializeField]
     private SwitchSetting switchSetting = null;
     [SerializeField]
-    private FMODUnity.StudioEventEmitter tunnelEmitter = null;
+    private StudioEventEmitter tunnelEmitter = null;
+    [SerializeField]
+    private StudioEventEmitter eventEmitterLokSound = null;
+    [SerializeField]
+    private StudioEventEmitter[] waggonsEventEmitterSounds = null;
 
     [FMODUnity.EventRef]
-    public string fmodEventTrainSound;
+    public string fmodEventAmbientSound;
 
 
     public delegate void RailHandlerInitEvent(TrainRailHandler railHandler);
@@ -61,7 +66,7 @@ public class Train : MonoBehaviour
 
     private float distanceTotalTrain = 0f;
 
-    private FMOD.Studio.EventInstance instanceTrainSound;
+    private FMOD.Studio.EventInstance instanceAmbientSound;
 
     private TrainRailHandler railHandler = null;
 
@@ -73,8 +78,15 @@ public class Train : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        instanceTrainSound = FMODUnity.RuntimeManager.CreateInstance(fmodEventTrainSound);
-        instanceTrainSound.start();
+        instanceAmbientSound = FMODUnity.RuntimeManager.CreateInstance(fmodEventAmbientSound);
+        instanceAmbientSound.start();
+
+        //eventEmitterLokSound = GetComponent<StudioEventEmitter>();
+        eventEmitterLokSound.Play();
+        for (int i = 0; i < waggonsEventEmitterSounds.Length; i++)
+        {
+            waggonsEventEmitterSounds[i].Play();
+        }
 
 
         // Register in train stations
@@ -166,7 +178,20 @@ public class Train : MonoBehaviour
             float curDeceleration = BrakeStrength * Time.fixedDeltaTime * deceleration;
             curVelocity = Mathf.MoveTowards(curVelocity, 0f, curDeceleration);
 
-            instanceTrainSound.setParameterByName("RPM", Mathf.Abs((CurrentSpeed / topSpeed) * 100f * audioFactor));
+            int rpmInt = (int)Mathf.Abs((CurrentSpeed / topSpeed) * 100f * audioFactor);
+            Debug.Log("Rpm Val: " + rpmInt.ToString());
+            eventEmitterLokSound.SetParameter("RPM", Mathf.Abs((CurrentSpeed / topSpeed) * 100f * audioFactor));
+            for (int i = 0; i < waggonsEventEmitterSounds.Length; i++)
+            {
+                waggonsEventEmitterSounds[i].SetParameter("RPM", Mathf.Abs((CurrentSpeed / topSpeed) * 100f * audioFactor));
+            }
+
+            instanceAmbientSound.setParameterByName("Altitude", (locomotive.transform.position.y - 874.934f) * 10f);
+
+            //float rpmOut;
+            //instanceTrainSound.getParameterByName("RPM", out rpmOut);
+            //Debug.Log("Rpm Out: " + rpmOut.ToString());
+
         }
     }
 

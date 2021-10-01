@@ -1,3 +1,4 @@
+using FMODUnity;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,17 +6,18 @@ using UnityEngine;
 public class InteractableHorn : Interactable
 {
 
-    [FMODUnity.EventRef]
-    public string fmodEventTrainSound;
+    //[FMODUnity.EventRef]
+    //public string fmodEventTrainSound;
 
-    private FMOD.Studio.EventInstance instanceTrainSound;
+    //private FMOD.Studio.EventInstance instanceTrainSound;
+    private StudioEventEmitter eventEmitterLokSound = null;
 
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
-        instanceTrainSound = FMODUnity.RuntimeManager.CreateInstance(fmodEventTrainSound);
 
+        eventEmitterLokSound = GetComponent<StudioEventEmitter>();
     }
 
     // Update is called once per frame
@@ -28,15 +30,11 @@ public class InteractableHorn : Interactable
 
     public override void Interact()
     {
-
-        instanceTrainSound.setParameterByName("Parameter 1", 1f);
-        instanceTrainSound.start();
-
+        eventEmitterLokSound.Play();
     }
 
     public override void InteractUp()
     {
-
-        instanceTrainSound.setParameterByName("Parameter 1", 0f);
+        eventEmitterLokSound.StopInstance();
     }
 }
