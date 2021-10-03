@@ -119,7 +119,10 @@ public class FirstPersonPlayer : MonoBehaviour
     {
         yCamRot.Rotate(0f, mouseRotSpeed * Time.fixedDeltaTime * Input.GetAxis("Mouse X"), 0f);
         outsideCamTransY.Rotate(0f, mouseRotSpeed * Time.fixedDeltaTime * Input.GetAxis("Mouse X"), 0f);
-        xCamRot.Rotate(mouseRotSpeed * Time.fixedDeltaTime * Input.GetAxis("Mouse Y") * -1f, 0f, 0f);
+        if (camOutside == false)
+        {
+            xCamRot.Rotate(mouseRotSpeed * Time.fixedDeltaTime * Input.GetAxis("Mouse Y") * -1f, 0f, 0f);
+        }
 
 
         Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
@@ -164,6 +167,7 @@ public class FirstPersonPlayer : MonoBehaviour
             Interactable interactable = hit.transform.GetComponent<InteractableCollider>().Interactable;
             if (currentHoveredInteractable != interactable && currentHoveredInteractable != null)
             {
+                currentHoveredInteractable.InteractUp();
                 currentHoveredInteractable.Hovered = false;
             }
             currentHoveredInteractable = interactable;

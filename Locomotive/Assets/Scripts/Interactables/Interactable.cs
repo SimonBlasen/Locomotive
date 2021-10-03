@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Interactable : MonoBehaviour
@@ -9,6 +10,9 @@ public class Interactable : MonoBehaviour
 
     [SerializeField]
     private GameObject hoveredObj = null;
+
+    [SerializeField]
+    protected TextMeshPro textMeshHint = null;
 
     // Start is called before the first frame update
     protected virtual void Start()
@@ -32,6 +36,11 @@ public class Interactable : MonoBehaviour
         set
         {
             hoveredObj.SetActive(value);
+
+            if (textMeshHint != null)
+            {
+                textMeshHint.enabled = value;
+            }
         }
     }
 

@@ -41,3 +41,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: TextHint
+    uniqueID: 2859132865
+    locked: 0

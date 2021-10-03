@@ -179,7 +179,7 @@ public class Train : MonoBehaviour
             curVelocity = Mathf.MoveTowards(curVelocity, 0f, curDeceleration);
 
             int rpmInt = (int)Mathf.Abs((CurrentSpeed / topSpeed) * 100f * audioFactor);
-            Debug.Log("Rpm Val: " + rpmInt.ToString());
+            //Debug.Log("Rpm Val: " + rpmInt.ToString());
             eventEmitterLokSound.SetParameter("RPM", Mathf.Abs((CurrentSpeed / topSpeed) * 100f * audioFactor));
             for (int i = 0; i < waggonsEventEmitterSounds.Length; i++)
             {
