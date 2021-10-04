@@ -29,6 +29,7 @@ public class MissionManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Radio = playerTrain.GetComponentInChildren<Radio>();
         StartMission(0);
     }
 
@@ -70,5 +71,12 @@ public class MissionManager : MonoBehaviour
         runningMission = instMission.GetComponent<MissionInstance>();
 
         runningMission.PlayerTrain = playerTrain;
+        runningMission.Fire = playerTrain.GetComponentInChildren<Fire>();
+        runningMission.MissionManager = this;
     }
+
+    public Radio Radio
+    {
+        get; protected set;
+    } = null;
 }

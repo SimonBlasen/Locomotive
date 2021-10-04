@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class MissionInstance : MonoBehaviour
 {
+    [SerializeField]
+    private ScrDialogues dialogues = null;
+
     private int[] missionTriggersSides = null;
     private MissionTrigger[] missionTriggers = null;
 
@@ -30,7 +33,17 @@ public class MissionInstance : MonoBehaviour
         }
     }
 
+    public MissionManager MissionManager
+    {
+        get; set;
+    } = null;
+
     public Train PlayerTrain
+    {
+        get; set;
+    } = null;
+
+    public Fire Fire
     {
         get; set;
     } = null;
@@ -70,6 +83,27 @@ public class MissionInstance : MonoBehaviour
                 }
                 missionTriggersSides[i] = newValue;
             }
+        }
+    }
+
+    protected void showDialogue(string dialogueName)
+    {
+        bool found = false;
+        for (int i = 0; i < dialogues.dialogues.Length; i++)
+        {
+            if (dialogues.dialogues[i].name == dialogueName)
+            {
+                found = true;
+
+                MissionManager.Radio.ShowDialogue(dialogues.dialogues[i]);
+
+                break;
+            }
+        }
+
+        if (!found)
+        {
+            Debug.LogError("Dialogue not found with name \"" + dialogueName + "\"");
         }
     }
 

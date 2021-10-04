@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca0c662d695bd14449c1e2e97109ad73, type: 3}
+  m_Name: Dialogues Test Mission
+  m_EditorClassIdentifier: 
+  dialogues:
+  - name: Hello Text
+    fmodEventAmbientSound: event:/Lok/Hebel_Standard
+    dialogueText: '*Yaaaaawn* ... good morning driver! Already had your coffee? Gotta
+      get that locomotive ready to drive!'
+  - name: Coal Introduction
+    fmodEventAmbientSound: event:/Lok/Hebel_Standard
+    dialogueText: Oh this is your first time driving a locomotive? Allright then,
+      you know first you have to heat the boiler up to temperature. So get some coal
+      from the back and put it in the fire!
+  - name: Fire Temperature Reached
+    fmodEventAmbientSound: event:/Lok/Hebel_Standard
+    dialogueText: Great, we're getting some temperature in there.
