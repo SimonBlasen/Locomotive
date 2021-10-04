@@ -106,4 +106,25 @@ public class Railroad : MonoBehaviour
 
         return true;
     }
+
+    public RailSegment[] AllRailSegments
+    {
+        get
+        {
+            return allRailSegments;
+        }
+    }
+
+    public RailSegment GetRailSegment(int id)
+    {
+        for (int i = 0; i < allRailSegments.Length; i++)
+        {
+            if (allRailSegments[i].ID == id)
+            {
+                return allRailSegments[i];
+            }
+        }
+
+        return null;
+    }
 }

@@ -46,6 +46,16 @@ public class TrainStation : MonoBehaviour
             
             Train[] trainsInStation = getTrainsInsidePlatform(out platformsOn);
 
+            // Remove train station from old trains, add to current trains
+            for (int i = 0; i < currentTrainsInStation.Length; i++)
+            {
+                currentTrainsInStation[i].CurrentTrainStation = null;
+            }
+            for (int i = 0; i < trainsInStation.Length; i++)
+            {
+                trainsInStation[i].CurrentTrainStation = this;
+            }
+
             currentTrainsInStation = trainsInStation;
 
             if (platformsOn.Length > 0)

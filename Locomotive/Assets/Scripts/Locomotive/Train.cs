@@ -270,6 +270,11 @@ public class Train : MonoBehaviour
         }
     }
 
+    public TrainStation CurrentTrainStation
+    {
+        get; set;
+    } = null;
+
     public bool DriveDirectionForward
     {
         get; set;
