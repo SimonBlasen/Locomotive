@@ -205,10 +205,10 @@ public class TrainStation : MonoBehaviour
         for (int i = 0; i < platforms.Length; i++)
         {
             Gizmos.color = Color.yellow;
-            Gizmos.DrawSphere(platforms[i].spline.GetSampleAtDistance(platforms[i].trainStationBegin).location, 2f);
+            Gizmos.DrawSphere(platforms[i].spline.GetSampleAtDistance(platforms[i].trainStationBegin).location + GlobalOffsetManager.Inst.GlobalOffset, 2f);
 
             Gizmos.color = Color.red;
-            Gizmos.DrawSphere(platforms[i].spline.GetSampleAtDistance(platforms[i].trainStationEnd).location, 2f);
+            Gizmos.DrawSphere(platforms[i].spline.GetSampleAtDistance(platforms[i].trainStationEnd).location + GlobalOffsetManager.Inst.GlobalOffset, 2f);
         }
     }
 

@@ -67,8 +67,8 @@ public class TrainRailHandler
                 RailSegment prev = runningSegments[runningSegments.Count - 1].PreviousSegments[UnityEngine.Random.Range(0, runningSegments[runningSegments.Count - 1].PreviousSegments.Length)];
                 runningSegments.Add(prev);
 
-                float distance0 = Vector3.Distance(flippedAcc(runningSegments.Count - 2, 1f).location, prev.Spline.GetSampleAtDistance(1f).location);
-                float distance1 = Vector3.Distance(flippedAcc(runningSegments.Count - 2, 1f).location, prev.Spline.GetSampleAtDistance(prev.Spline.Length - 1f).location);
+                float distance0 = Vector3.Distance(flippedAcc(runningSegments.Count - 2, 1f).location + GlobalOffsetManager.Inst.GlobalOffset, prev.Spline.GetSampleAtDistance(1f).location + GlobalOffsetManager.Inst.GlobalOffset);
+                float distance1 = Vector3.Distance(flippedAcc(runningSegments.Count - 2, 1f).location + GlobalOffsetManager.Inst.GlobalOffset, prev.Spline.GetSampleAtDistance(prev.Spline.Length - 1f).location + GlobalOffsetManager.Inst.GlobalOffset);
 
                 if (distance0 < distance1)
                 {
@@ -223,8 +223,8 @@ public class TrainRailHandler
         newFlipped.AddRange(segmentsFlippsd);
         segmentsFlippsd = newFlipped;
 
-        float distance0 = Vector3.Distance(flippedAcc(1, runningSegments[1].Length - 1f).location, nextSegment.Spline.GetSampleAtDistance(1f).location);
-        float distance1 = Vector3.Distance(flippedAcc(1, runningSegments[1].Length - 1f).location, nextSegment.Spline.GetSampleAtDistance(nextSegment.Spline.Length - 1f).location);
+        float distance0 = Vector3.Distance(flippedAcc(1, runningSegments[1].Length - 1f).location + GlobalOffsetManager.Inst.GlobalOffset, nextSegment.Spline.GetSampleAtDistance(1f).location + GlobalOffsetManager.Inst.GlobalOffset);
+        float distance1 = Vector3.Distance(flippedAcc(1, runningSegments[1].Length - 1f).location + GlobalOffsetManager.Inst.GlobalOffset, nextSegment.Spline.GetSampleAtDistance(nextSegment.Spline.Length - 1f).location + GlobalOffsetManager.Inst.GlobalOffset);
 
         if (distance0 > distance1)
         {
@@ -262,8 +262,8 @@ public class TrainRailHandler
 
         runningSegments.Add(nextSegment);
 
-        float distance0 = Vector3.Distance(flippedAcc(runningSegments.Count - 2, 1f).location, nextSegment.Spline.GetSampleAtDistance(1f).location);
-        float distance1 = Vector3.Distance(flippedAcc(runningSegments.Count - 2, 1f).location, nextSegment.Spline.GetSampleAtDistance(nextSegment.Spline.Length - 1f).location);
+        float distance0 = Vector3.Distance(flippedAcc(runningSegments.Count - 2, 1f).location + GlobalOffsetManager.Inst.GlobalOffset, nextSegment.Spline.GetSampleAtDistance(1f).location + GlobalOffsetManager.Inst.GlobalOffset);
+        float distance1 = Vector3.Distance(flippedAcc(runningSegments.Count - 2, 1f).location + GlobalOffsetManager.Inst.GlobalOffset, nextSegment.Spline.GetSampleAtDistance(nextSegment.Spline.Length - 1f).location + GlobalOffsetManager.Inst.GlobalOffset);
 
         if (distance0 < distance1)
         {

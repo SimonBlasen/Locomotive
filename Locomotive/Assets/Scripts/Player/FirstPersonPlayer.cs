@@ -45,6 +45,7 @@ public class FirstPersonPlayer : MonoBehaviour
 
     private Transform locomotiveTransform = null;
 
+    private float lerpToInsideFor = 0f;
     private float curOutsideDistance = 0f;
 
     // Start is called before the first frame update
@@ -106,11 +107,14 @@ public class FirstPersonPlayer : MonoBehaviour
             {
                 snapshotOutsideCam.Play();
                 cam.transform.parent = null;
+                GlobalOffsetManager.Inst.RegisterQuickfireTransform(cam.transform);
             }
             else
             {
                 snapshotOutsideCam.Stop();
                 cam.transform.parent = xCamRot;
+                GlobalOffsetManager.Inst.DeregisterQuickfireTransform(cam.transform);
+                lerpToInsideFor = 0.3f;
             }
         }
     }
@@ -127,8 +131,8 @@ public class FirstPersonPlayer : MonoBehaviour
 
         Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
 
-        transform.position += yCamRot.forward * movementSpeed * movement.z * Time.fixedDeltaTime;
-        transform.position += yCamRot.right * movementSpeed * movement.x * Time.fixedDeltaTime;
+        transform.localPosition += transform.InverseTransformVector(yCamRot.forward * movementSpeed * movement.z * Time.fixedDeltaTime);
+        transform.localPosition += transform.InverseTransformVector(yCamRot.right * movementSpeed * movement.x * Time.fixedDeltaTime);
 
         if (transform.localPosition.x < minLocomotivePos.localPosition.x)
         {
@@ -202,8 +206,12 @@ public class FirstPersonPlayer : MonoBehaviour
         }
         else
         {
-            cam.transform.position = Vector3.Lerp(cam.transform.position, xCamRot.position, Time.fixedDeltaTime * 20f);
-            cam.transform.localRotation = Quaternion.Lerp(cam.transform.localRotation, Quaternion.identity, Time.fixedDeltaTime * 40f);
+            lerpToInsideFor -= Time.fixedDeltaTime;
+            if (lerpToInsideFor > 0f)
+            {
+                cam.transform.position = Vector3.Lerp(cam.transform.position, xCamRot.position, Time.fixedDeltaTime * 20f);
+                cam.transform.localRotation = Quaternion.Lerp(cam.transform.localRotation, Quaternion.identity, Time.fixedDeltaTime * 40f);
+            }
         }
     }
 

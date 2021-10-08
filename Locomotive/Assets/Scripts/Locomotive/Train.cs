@@ -145,7 +145,7 @@ public class Train : MonoBehaviour
             }
             else
             {
-                locomotive.transform.position = curveSample.location;
+                locomotive.transform.position = curveSample.location + GlobalOffsetManager.Inst.GlobalOffset;
                 locomotive.transform.rotation = Quaternion.LookRotation(curveSample.tangent, curveSample.up);
 
                 float xAngle = Vector3.Angle(Vector3.up, locomotive.transform.forward) - 90f;
@@ -154,7 +154,7 @@ public class Train : MonoBehaviour
                 for (int i = 0; i < wagons.Length; i++)
                 {
                     CurveSample curveSampleWagon = curveSamples[i + 1];
-                    wagons[i].transform.position = curveSampleWagon.location;
+                    wagons[i].transform.position = curveSampleWagon.location + GlobalOffsetManager.Inst.GlobalOffset;
                     wagons[i].transform.rotation = Quaternion.LookRotation(curveSampleWagon.tangent, curveSampleWagon.up);
 
                     xAngle = Vector3.Angle(Vector3.up, wagons[i].transform.forward) - 90f;

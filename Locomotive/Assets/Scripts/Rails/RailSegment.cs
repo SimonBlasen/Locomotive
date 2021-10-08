@@ -17,8 +17,8 @@ public class RailSegment : MonoBehaviour
     public void CalculateFollowingPrevious(RailSegment[] allRailSegments)
     {
         float epsilon = 2.3f;
-        Vector3 beginPos = Spline.GetSampleAtDistance(0.1f).location;
-        Vector3 endPos = Spline.GetSampleAtDistance(spline.Length - 0.1f).location;
+        Vector3 beginPos = Spline.GetSampleAtDistance(0.1f).location + GlobalOffsetManager.Inst.GlobalOffset;
+        Vector3 endPos = Spline.GetSampleAtDistance(spline.Length - 0.1f).location + GlobalOffsetManager.Inst.GlobalOffset;
 
         List<RailSegment> followingSegs = new List<RailSegment>();
         List<RailSegment> previousSegs = new List<RailSegment>();
@@ -27,16 +27,16 @@ public class RailSegment : MonoBehaviour
         {
             if (allRailSegments[i].transform.GetInstanceID() != transform.GetInstanceID())
             {
-                if ((Vector3.Distance(beginPos, allRailSegments[i].Spline.GetSampleAtDistance(0.1f).location) <= epsilon
+                if ((Vector3.Distance(beginPos, allRailSegments[i].Spline.GetSampleAtDistance(0.1f).location + GlobalOffsetManager.Inst.GlobalOffset) <= epsilon
                         && Vector3.Angle(-Spline.GetSampleAtDistance(0.1f).tangent, -allRailSegments[i].Spline.GetSampleAtDistance(0.1f).tangent) > 90f)
-                    || (Vector3.Distance(beginPos, allRailSegments[i].Spline.GetSampleAtDistance(allRailSegments[i].Spline.Length - 0.1f).location) <= epsilon
+                    || (Vector3.Distance(beginPos, allRailSegments[i].Spline.GetSampleAtDistance(allRailSegments[i].Spline.Length - 0.1f).location + GlobalOffsetManager.Inst.GlobalOffset) <= epsilon
                         && Vector3.Angle(-Spline.GetSampleAtDistance(0.1f).tangent, allRailSegments[i].Spline.GetSampleAtDistance(allRailSegments[i].Spline.Length - 0.1f).tangent) > 90f))
                 {
                     previousSegs.Add(allRailSegments[i]);
                 }
-                else if ((Vector3.Distance(endPos, allRailSegments[i].Spline.GetSampleAtDistance(0.1f).location) <= epsilon
+                else if ((Vector3.Distance(endPos, allRailSegments[i].Spline.GetSampleAtDistance(0.1f).location + GlobalOffsetManager.Inst.GlobalOffset) <= epsilon
                         && Vector3.Angle(Spline.GetSampleAtDistance(Spline.Length - 0.1f).tangent, -allRailSegments[i].Spline.GetSampleAtDistance(0.1f).tangent) > 90f)
-                    || (Vector3.Distance(endPos, allRailSegments[i].Spline.GetSampleAtDistance(allRailSegments[i].Spline.Length - 0.1f).location) <= epsilon
+                    || (Vector3.Distance(endPos, allRailSegments[i].Spline.GetSampleAtDistance(allRailSegments[i].Spline.Length - 0.1f).location + GlobalOffsetManager.Inst.GlobalOffset) <= epsilon
                         && Vector3.Angle(Spline.GetSampleAtDistance(Spline.Length - 0.1f).tangent, allRailSegments[i].Spline.GetSampleAtDistance(allRailSegments[i].Spline.Length - 0.1f).tangent) > 90f))
                 {
                     followingSegs.Add(allRailSegments[i]);
@@ -56,11 +56,11 @@ public class RailSegment : MonoBehaviour
         {
             GameObject tempTrans = new GameObject("Temp Trans");
             CurveSample curveEnd = spline.GetSampleAtDistance(spline.Length - 1f);
-            tempTrans.transform.position = curveEnd.location;
+            tempTrans.transform.position = curveEnd.location + GlobalOffsetManager.Inst.GlobalOffset;
             tempTrans.transform.up = Vector3.Cross(Vector3.up, curveEnd.tangent);
 
-            float yPos0 = tempTrans.transform.InverseTransformPoint(followingSegments[0].Spline.GetSampleAtDistance(5f).location).y;
-            float yPos1 = tempTrans.transform.InverseTransformPoint(followingSegments[1].Spline.GetSampleAtDistance(5f).location).y;
+            float yPos0 = tempTrans.transform.InverseTransformPoint(followingSegments[0].Spline.GetSampleAtDistance(5f).location + GlobalOffsetManager.Inst.GlobalOffset).y;
+            float yPos1 = tempTrans.transform.InverseTransformPoint(followingSegments[1].Spline.GetSampleAtDistance(5f).location + GlobalOffsetManager.Inst.GlobalOffset).y;
 
             if (yPos0 <= yPos1)
             {
@@ -78,11 +78,11 @@ public class RailSegment : MonoBehaviour
         {
             GameObject tempTrans = new GameObject("Temp Trans");
             CurveSample curveEnd = spline.GetSampleAtDistance(1f);
-            tempTrans.transform.position = curveEnd.location;
+            tempTrans.transform.position = curveEnd.location + GlobalOffsetManager.Inst.GlobalOffset;
             tempTrans.transform.up = Vector3.Cross(Vector3.up, curveEnd.tangent);
 
-            float yPos0 = tempTrans.transform.InverseTransformPoint(previousSegments[0].Spline.GetSampleAtDistance(previousSegments[0].Spline.Length - 5f).location).y;
-            float yPos1 = tempTrans.transform.InverseTransformPoint(previousSegments[1].Spline.GetSampleAtDistance(previousSegments[1].Spline.Length - 5f).location).y;
+            float yPos0 = tempTrans.transform.InverseTransformPoint(previousSegments[0].Spline.GetSampleAtDistance(previousSegments[0].Spline.Length - 5f).location + GlobalOffsetManager.Inst.GlobalOffset).y;
+            float yPos1 = tempTrans.transform.InverseTransformPoint(previousSegments[1].Spline.GetSampleAtDistance(previousSegments[1].Spline.Length - 5f).location + GlobalOffsetManager.Inst.GlobalOffset).y;
 
             if (yPos0 >= yPos1)
             {

@@ -49,7 +49,7 @@ public class MissionTrigger : MonoBehaviour
                 float s = j;
                 CurveSample sample = allRailSegments[i].Spline.GetSampleAtDistance(s);
 
-                float distance = Vector3.Distance(transform.position, sample.location);
+                float distance = Vector3.Distance(transform.position, sample.location + GlobalOffsetManager.Inst.GlobalOffset);
                 if (distance < closestDistance)
                 {
                     closestDistance = distance;
@@ -67,7 +67,7 @@ public class MissionTrigger : MonoBehaviour
         {
             CurveSample sample = allRailSegments[closestIndex].Spline.GetSampleAtDistance(j);
 
-            float distance = Vector3.Distance(transform.position, sample.location);
+            float distance = Vector3.Distance(transform.position, sample.location + GlobalOffsetManager.Inst.GlobalOffset);
             if (distance < closestDistance)
             {
                 closestDistance = distance;

@@ -19,6 +19,7 @@ public class GlobalOffsetManager : MonoBehaviour
 
 
     private List<GlobalOffsetTransform> globalOffsetTransforms = new List<GlobalOffsetTransform>();
+    private List<Transform> quickFireOffsetTransforms= new List<Transform>();
     private float refreshCounter = 0f;
 
     private Vector3Int globalOffset = Vector3Int.zero;
@@ -52,10 +53,21 @@ public class GlobalOffsetManager : MonoBehaviour
         globalOffsetTransforms.Remove(globalOffsetTransform);
     }
 
+    public void RegisterQuickfireTransform(Transform quickFireTransform)
+    {
+        quickFireOffsetTransforms.Add(quickFireTransform);
+    }
+
+    public void DeregisterQuickfireTransform(Transform quickFireTransform)
+    {
+        quickFireOffsetTransforms.Remove(quickFireTransform);
+    }
+
     private void refresh()
     {
         Vector3Int clampedPlayerPos = new Vector3Int((int)(playerTransform.position.x / moveThresh), (int)(playerTransform.position.y / moveThresh), (int)(playerTransform.position.z / moveThresh));
         clampedPlayerPos *= moveThresh;
+        clampedPlayerPos -= globalOffset;
 
         Vector3Int negativeGlobalOffset = -globalOffset;
 
@@ -65,11 +77,28 @@ public class GlobalOffsetManager : MonoBehaviour
         }
     }
 
+    public Vector3Int GlobalOffset
+    {
+        get
+        {
+            return globalOffset;
+        }
+    }
+
     private void moveGlobalOffset(Vector3Int newGlobalOffset)
     {
+        Vector3Int delta = newGlobalOffset - globalOffset;
         globalOffset = newGlobalOffset;
 
+        for (int i = 0; i < globalOffsetTransforms.Count; i++)
+        {
+            globalOffsetTransforms[i].ApplyGlobalOffset(globalOffset);
+        }
 
+        for (int i = 0; i < quickFireOffsetTransforms.Count; i++)
+        {
+            quickFireOffsetTransforms[i].position += delta;
+        }
     }
 
 

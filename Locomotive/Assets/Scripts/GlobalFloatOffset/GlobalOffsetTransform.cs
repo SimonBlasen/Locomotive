@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class GlobalOffsetTransform : MonoBehaviour
 {
-    private 
+    private Vector3 originalPosition = Vector3.zero;
 
     // Start is called before the first frame update
     void Start()
     {
+        originalPosition = transform.position;
+
         if (GlobalOffsetManager.Inst != null)
         {
             GlobalOffsetManager.Inst.RegisterTransform(this);
@@ -35,5 +37,10 @@ public class GlobalOffsetTransform : MonoBehaviour
         {
             Debug.LogError("Didn't find GlobalOffsetManager for deregistration");
         }
+    }
+
+    public void ApplyGlobalOffset(Vector3Int globalOffset)
+    {
+        transform.position = originalPosition + globalOffset;
     }
 }
