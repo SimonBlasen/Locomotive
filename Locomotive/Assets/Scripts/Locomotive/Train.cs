@@ -206,6 +206,14 @@ public class Train : MonoBehaviour
     }
 
 
+    public Locomotive Locomotive
+    {
+        get
+        {
+            return locomotive;
+        }
+    }
+
     public float TargetSpeed
     {
         get; set;

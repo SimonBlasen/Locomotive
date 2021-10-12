@@ -14,6 +14,7 @@ public class GlobalOffsetTransform : MonoBehaviour
         if (GlobalOffsetManager.Inst != null)
         {
             GlobalOffsetManager.Inst.RegisterTransform(this);
+            originalPosition -= GlobalOffsetManager.Inst.GlobalOffset;
         }
         else
         {
