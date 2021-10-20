@@ -6,6 +6,7 @@ using UnityEngine;
 public class TerrainMaterialAssigner : MonoBehaviour
 {
     public Material toAssignMaterial = null;
+    public float pixelError = 1f;
 
     public bool assign = false;
 
@@ -27,6 +28,7 @@ public class TerrainMaterialAssigner : MonoBehaviour
             for (int i = 0; i < terrains.Length; i++)
             {
                 terrains[i].materialTemplate = toAssignMaterial;
+                terrains[i].heightmapPixelError = pixelError;
             }
         }
     }
