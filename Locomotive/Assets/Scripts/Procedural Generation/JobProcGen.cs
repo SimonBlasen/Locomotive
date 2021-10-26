@@ -1,3 +1,5 @@
+using noise.module;
+using Sappph;
 using SplineMesh;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,6 +11,9 @@ public class JobProcGen : ThreadedJob
     public long seed = 0;
     public Vector2Int startPos;
     public Vector2Int endPos;
+    public int[] onlyLowResSteps = null;
+
+    public bool onlyMakeOneAreaType = false;
 
     public ProcTerrainGen procTerrainGen;
 
@@ -17,109 +22,212 @@ public class JobProcGen : ThreadedJob
     {
         PerlinNoise perlin = new PerlinNoise(0);
 
+        Billow billow = new Billow();
+        billow.Frequency = 1.0;
+        billow.Lacunarity = 2.0;
+        billow.OctaveCount = 6;
+        billow.NoiseQuality = noise.NoiseQuality.QUALITY_STD;
+        billow.Persistence = 0.5;
+
+        RidgedMulti ridgedMulti = new RidgedMulti();
+        ridgedMulti.Frequency = 1.0;
+        ridgedMulti.Lacunarity = 2.0;
+        ridgedMulti.OctaveCount = 6;
+        ridgedMulti.NoiseQuality = noise.NoiseQuality.QUALITY_STD;
+        ridgedMulti.CalculateSpectralWeights();
+        ScaleBias scaleBias = new ScaleBias();
+        Select select = new Select();
+        Perlin perlinLib = new Perlin();
+
         for (int x = startPos.x; x < endPos.x; x++)
         {
             Progress = (x - startPos.x) / ((float)(endPos.x - startPos.x));
 
             for (int y = startPos.y; y < endPos.y; y++)
             {
-                float height = 0f;
-
-                /*float height = (perlin.noise2(x * procTerrainGen.perlinFrequency, y * procTerrainGen.perlinFrequency) * 0.5f + 0.5f) * procTerrainGen.perlinAmplitude;
-                height += (perlin.noise2(x * procTerrainGen.perlinFrequency * 2f, y * procTerrainGen.perlinFrequency * 2f) * 0.5f + 0.5f) * procTerrainGen.perlinAmplitude * 0.5f;
-                height += (perlin.noise2(x * procTerrainGen.perlinFrequency * 4f, y * procTerrainGen.perlinFrequency * 4f) * 0.5f + 0.5f) * procTerrainGen.perlinAmplitude * 0.25f;
-                height += (perlin.noise2(x * procTerrainGen.perlinFrequency * 8f, y * procTerrainGen.perlinFrequency * 8f) * 0.5f + 0.5f) * procTerrainGen.perlinAmplitude * 0.125f;
-                height += (perlin.noise2(x * procTerrainGen.perlinFrequency * 16f, y * procTerrainGen.perlinFrequency * 16f) * 0.5f + 0.5f) * procTerrainGen.perlinAmplitude * 0.125f * 0.5f;
-
-                float mountain = perlin.noise2(x * procTerrainGen.mountainPerlinFrequency, y * procTerrainGen.mountainPerlinFrequency) * 0.5f + 0.5f;
-                mountain = mountain * mountain * mountain * mountain;
-                mountain *= procTerrainGen.mountainPerlinAmplitude;
-
-                height += mountain;
-
-                //height += procTerrainGen.inputTextureHeight.GetValue(new Vector2(x, y));
-
-                height = Mathf.Clamp(height, 0f, 1f);*/
-
-
-
-
-
-
-
-
-
-
-
-                /*
-                float closestDistance = float.MaxValue;
-                AreaBorder closestArea = null;
-                for (int i = 0; i < procTerrainGen.areaBorders.Length; i++)
+                if (onlyLowResSteps == null || onlyLowResSteps.Length == 0
+                    || (Utils.IsInIntArray(onlyLowResSteps, x) && Utils.IsInIntArray(onlyLowResSteps, y)))
                 {
-                    float distance = 0f;// distanceToBorder(procTerrainGen.areaBorders[i], new Vector2(x, y));
+                    float height = 0f;
 
-                    if (Mathf.Abs(distance) < closestDistance)
+                    /*float height = (perlin.noise2(x * procTerrainGen.perlinFrequency, y * procTerrainGen.perlinFrequency) * 0.5f + 0.5f) * procTerrainGen.perlinAmplitude;
+                    height += (perlin.noise2(x * procTerrainGen.perlinFrequency * 2f, y * procTerrainGen.perlinFrequency * 2f) * 0.5f + 0.5f) * procTerrainGen.perlinAmplitude * 0.5f;
+                    height += (perlin.noise2(x * procTerrainGen.perlinFrequency * 4f, y * procTerrainGen.perlinFrequency * 4f) * 0.5f + 0.5f) * procTerrainGen.perlinAmplitude * 0.25f;
+                    height += (perlin.noise2(x * procTerrainGen.perlinFrequency * 8f, y * procTerrainGen.perlinFrequency * 8f) * 0.5f + 0.5f) * procTerrainGen.perlinAmplitude * 0.125f;
+                    height += (perlin.noise2(x * procTerrainGen.perlinFrequency * 16f, y * procTerrainGen.perlinFrequency * 16f) * 0.5f + 0.5f) * procTerrainGen.perlinAmplitude * 0.125f * 0.5f;
+
+                    float mountain = perlin.noise2(x * procTerrainGen.mountainPerlinFrequency, y * procTerrainGen.mountainPerlinFrequency) * 0.5f + 0.5f;
+                    mountain = mountain * mountain * mountain * mountain;
+                    mountain *= procTerrainGen.mountainPerlinAmplitude;
+
+                    height += mountain;
+
+                    //height += procTerrainGen.inputTextureHeight.GetValue(new Vector2(x, y));
+
+                    height = Mathf.Clamp(height, 0f, 1f);*/
+
+
+
+
+
+
+
+
+
+
+
+                    /*
+                    float closestDistance = float.MaxValue;
+                    AreaBorder closestArea = null;
+                    for (int i = 0; i < procTerrainGen.areaBorders.Length; i++)
                     {
-                        closestDistance = distance;
-                        closestArea = procTerrainGen.areaBorders[i];
+                        float distance = 0f;// distanceToBorder(procTerrainGen.areaBorders[i], new Vector2(x, y));
+
+                        if (Mathf.Abs(distance) < closestDistance)
+                        {
+                            closestDistance = distance;
+                            closestArea = procTerrainGen.areaBorders[i];
+                        }
                     }
+
+                    List<ProcAreaType> areas = new List<ProcAreaType>();
+                    List<float> areaWeights = new List<float>();
+
+                    if (Mathf.Abs(closestDistance) >= procTerrainGen.minDistanceToBorder)
+                    {
+                        areas.Add(closestDistance >= 0f ? closestArea.areaLeft : closestArea.areaRight);
+                        areaWeights.Add(1f);
+                    }
+                    else
+                    {
+                        float interpol = Mathf.InverseLerp(procTerrainGen.minDistanceToBorder, -procTerrainGen.minDistanceToBorder, closestDistance);
+
+                        areas.Add(closestArea.areaLeft);
+                        areaWeights.Add(1f - interpol);
+                        areas.Add(closestArea.areaRight);
+                        areaWeights.Add(interpol);
+                    }
+
+
+
+                    for (int i = 0; i < areas.Count; i++)
+                    {
+                        if (areas[i] == ProcAreaType.MOUNTAINS)
+                        {
+                            height += mountain_height(perlin, x, y) * areaWeights[i];
+                        }
+                        else if (areas[i] == ProcAreaType.PLANE)
+                        {
+                            height += plane_height(perlin, x, y) * areaWeights[i];
+                        }
+                    }*/
+
+                    float[] areaWeights = calcAreaWeights(perlin, procTerrainGen, x, y);
+
+
+
+
+                    for (int i = 0; i < areaWeights.Length; i++)
+                    {
+                        bool doAddHeight = true;
+                        if (onlyMakeOneAreaType)
+                        {
+                            doAddHeight = (i == (int)procTerrainGen.areaPreview);
+                        }
+
+                        if (doAddHeight)
+                        {
+                            if (i == (int)ProcAreaType.MOUNTAINS)
+                            {
+                                height += mountain_height(perlin, ridgedMulti, billow, x, y) * areaWeights[i];
+                            }
+                            else if (i == (int)ProcAreaType.PLANE)
+                            {
+                                height += plane_height(perlin, x, y) * areaWeights[i];
+                            }
+                            else if (i == (int)ProcAreaType.FORREST)
+                            {
+                                height += forrest_height(procTerrainGen, perlinLib, perlin, billow, ridgedMulti, x, y) * areaWeights[i];
+                            }
+                        }
+
+                    }
+
+
+
+                    terrainAccessor.SetHeight(new Vector2(x, y), height);
                 }
-
-                List<ProcAreaType> areas = new List<ProcAreaType>();
-                List<float> areaWeights = new List<float>();
-
-                if (Mathf.Abs(closestDistance) >= procTerrainGen.minDistanceToBorder)
-                {
-                    areas.Add(closestDistance >= 0f ? closestArea.areaLeft : closestArea.areaRight);
-                    areaWeights.Add(1f);
-                }
-                else
-                {
-                    float interpol = Mathf.InverseLerp(procTerrainGen.minDistanceToBorder, -procTerrainGen.minDistanceToBorder, closestDistance);
-
-                    areas.Add(closestArea.areaLeft);
-                    areaWeights.Add(1f - interpol);
-                    areas.Add(closestArea.areaRight);
-                    areaWeights.Add(interpol);
-                }
-
-
-
-                for (int i = 0; i < areas.Count; i++)
-                {
-                    if (areas[i] == ProcAreaType.MOUNTAINS)
-                    {
-                        height += mountain_height(perlin, x, y) * areaWeights[i];
-                    }
-                    else if (areas[i] == ProcAreaType.PLANE)
-                    {
-                        height += plane_height(perlin, x, y) * areaWeights[i];
-                    }
-                }*/
-
-                float[] areaWeights = calcAreaWeights(perlin, procTerrainGen, x, y);
-
-
-
-
-                for (int i = 0; i < areaWeights.Length; i++)
-                {
-                    if (i == (int)ProcAreaType.MOUNTAINS)
-                    {
-                        height += mountain_height(perlin, x, y) * areaWeights[i];
-                    }
-                    else if (i == (int)ProcAreaType.PLANE)
-                    {
-                        height += plane_height(perlin, x, y) * areaWeights[i];
-                    }
-                }
-
-
-
-                terrainAccessor.SetHeight(new Vector2(x, y), height);
             }
         }
     }
+
+    public static float forrest_height(ProcTerrainGen procTerrainGen, Perlin perlinLib, PerlinNoise perlin, Billow billow, RidgedMulti ridgedMulti, int x, int y)
+    {
+        perlinLib.Frequency = 1.0;
+        perlinLib.Lacunarity = 2.0;
+        perlinLib.Persistence = 0.5;
+        perlinLib.OctaveCount = 3;
+        perlinLib.NoiseQuality = noise.NoiseQuality.QUALITY_STD;
+
+
+        float height = 0f;
+        //height += (perlin.noise2(x * procTerrainGen.perlinFrequency, y * procTerrainGen.perlinFrequency) * 0.5f + 0.5f) * procTerrainGen.perlinAmplitude;
+        //height += (perlin.noise2(x * procTerrainGen.perlinFrequency * 2f, y * procTerrainGen.perlinFrequency * 2f) * 0.5f + 0.5f) * procTerrainGen.perlinAmplitude * 0.5f;
+
+        height += (perlin.noise2(x * procTerrainGen.forrestPerlinFreq * 4f, y * procTerrainGen.forrestPerlinFreq * 4f) * 0.5f + 0.5f) * procTerrainGen.forrestPerlinAmpl * 0.25f;
+        height += (perlin.noise2(x * procTerrainGen.forrestPerlinFreq * 8f, y * procTerrainGen.forrestPerlinFreq * 8f) * 0.5f + 0.5f) * procTerrainGen.forrestPerlinAmpl * 0.125f;
+        height += (perlin.noise2(x * procTerrainGen.forrestPerlinFreq * 16f, y * procTerrainGen.forrestPerlinFreq * 16f) * 0.5f + 0.5f) * procTerrainGen.forrestPerlinAmpl * 0.125f * 0.5f;
+
+        //float mountain = perlin.noise2(x * procTerrainGen.mountainPerlinFrequency, y * procTerrainGen.mountainPerlinFrequency) * 0.5f + 0.5f;
+        //mountain = mountain * mountain * mountain * mountain;
+        //mountain *= procTerrainGen.mountainPerlinAmplitude;
+
+        //height += mountain;
+
+
+        // Low frequency stuff
+        //height += ((float)perlinLib.GetValue(x * 0.00054987312, y * 0.00054987312, 0.0) * 0.4f + 0.5f) * 0.5f;
+
+
+        // Rare spikes
+        float spikes = ((float)perlinLib.GetValue(x * 0.0054987312, y * 0.0054987312, 0.0) * 0.4f + 0.5f) * 0.5f;
+        float spikes2 = ((float)perlinLib.GetValue(x * 0.0064987312, y * 0.0064987312, 0.0) * 0.4f + 0.5f) * 0.5f;
+
+        spikes = spikes * spikes2;
+
+        spikes = (Mathf.Atan((spikes - procTerrainGen.aTanXOffset) * procTerrainGen.aTanX) * 0.3f + 0.5f) * procTerrainGen.aTanY;
+
+
+        //height += spikes;
+
+
+
+
+
+        // Low frequency stuff
+
+        float lowFreq = ((float)ridgedMulti.GetValue(x * procTerrainGen.forrestRigFreq, y * procTerrainGen.forrestRigFreq, 0.0) * procTerrainGen.forrestRigAmpl + procTerrainGen.forrestRigOffset);
+        lowFreq *= ((float)perlinLib.GetValue(x * procTerrainGen.forrestLowFreqPerlinFreq, y * procTerrainGen.forrestLowFreqPerlinFreq, 0.0) * procTerrainGen.forrestLowFreqPerlinAmpl + procTerrainGen.forrestLowFreqPerlinAmplOffset);
+
+
+        height += lowFreq * procTerrainGen.forrestLowFreqInfluence;
+
+
+
+        //height += ((float)ridgedMulti.GetValue(x * 0.000054987312, y * 0.000054987312, 0.0) * 0.4f + 0.5f) * procTerrainGen.ridgedMultiAmplitude;
+
+
+        height = Mathf.Clamp(height, 0f, 1f); 
+
+
+
+
+
+
+
+        return height;
+    }
+
 
     public static float[] calcAreaWeights(PerlinNoise perlin, ProcTerrainGen procTerrainGen, int x, int y)
     {
@@ -163,34 +271,47 @@ public class JobProcGen : ThreadedJob
         return val;
     }
 
-    private float mountain_height(PerlinNoise perlin, int x, int y)
+    private float mountain_height(PerlinNoise perlin, RidgedMulti ridgedMulti, Billow billow, int x, int y)
     {
-        float height = (perlin.noise2(x * procTerrainGen.perlinFrequency, y * procTerrainGen.perlinFrequency) * 0.5f + 0.5f) * procTerrainGen.perlinAmplitude;
-        height += (perlin.noise2(x * procTerrainGen.perlinFrequency * 2f, y * procTerrainGen.perlinFrequency * 2f) * 0.5f + 0.5f) * procTerrainGen.perlinAmplitude * 0.5f;
-        height += (perlin.noise2(x * procTerrainGen.perlinFrequency * 4f, y * procTerrainGen.perlinFrequency * 4f) * 0.5f + 0.5f) * procTerrainGen.perlinAmplitude * 0.25f;
-        height += (perlin.noise2(x * procTerrainGen.perlinFrequency * 8f, y * procTerrainGen.perlinFrequency * 8f) * 0.5f + 0.5f) * procTerrainGen.perlinAmplitude * 0.125f;
-        height += (perlin.noise2(x * procTerrainGen.perlinFrequency * 16f, y * procTerrainGen.perlinFrequency * 16f) * 0.5f + 0.5f) * procTerrainGen.perlinAmplitude * 0.125f * 0.5f;
 
-        float mountain = perlin.noise2(x * procTerrainGen.mountainPerlinFrequency, y * procTerrainGen.mountainPerlinFrequency) * 0.5f + 0.5f;
-        mountain = mountain * mountain * mountain * mountain;
-        mountain *= procTerrainGen.mountainPerlinAmplitude;
+        float height = 0f;
+        //height += (perlin.noise2(x * procTerrainGen.perlinFrequency, y * procTerrainGen.perlinFrequency) * 0.5f + 0.5f) * procTerrainGen.perlinAmplitude;
+        //height += (perlin.noise2(x * procTerrainGen.perlinFrequency * 2f, y * procTerrainGen.perlinFrequency * 2f) * 0.5f + 0.5f) * procTerrainGen.perlinAmplitude * 0.5f;
+        
+        height += (perlin.noise2(x * procTerrainGen.perlinMountainFrequency * 4f, y * procTerrainGen.perlinMountainFrequency * 4f) * 0.5f + 0.5f) * procTerrainGen.perlinMountainAmplitude * 0.25f;
+        height += (perlin.noise2(x * procTerrainGen.perlinMountainFrequency * 8f, y * procTerrainGen.perlinMountainFrequency * 8f) * 0.5f + 0.5f) * procTerrainGen.perlinMountainAmplitude * 0.125f;
+        height += (perlin.noise2(x * procTerrainGen.perlinMountainFrequency * 16f, y * procTerrainGen.perlinMountainFrequency * 16f) * 0.5f + 0.5f) * procTerrainGen.perlinMountainAmplitude * 0.125f * 0.5f;
 
-        height += mountain;
+        //float mountain = perlin.noise2(x * procTerrainGen.mountainPerlinFrequency, y * procTerrainGen.mountainPerlinFrequency) * 0.5f + 0.5f;
+        //mountain = mountain * mountain * mountain * mountain;
+        //mountain *= procTerrainGen.mountainPerlinAmplitude;
 
-        //height += procTerrainGen.inputTextureHeight.GetValue(new Vector2(x, y));
+        //height += mountain;
+
+
+        height += ((float)ridgedMulti.GetValue(x * 0.000054987312, y * 0.000054987312, 0.0) * 0.4f + 0.5f) * procTerrainGen.ridgedMultiAmplitude;
+
+        //height += ((float)billow.GetValue(x * 0.000054987312, y * 0.000054987312, 0.0) * 0.4f + 0.5f) * procTerrainGen.billowAmplitude;
+
 
         height = Mathf.Clamp(height, 0f, 1f);
+
+
+
+
+
+
 
         return height;
     }
 
     private float plane_height(PerlinNoise perlin, int x, int y)
     {
-        float height = (perlin.noise2(x * procTerrainGen.perlinFrequency, y * procTerrainGen.perlinFrequency) * 0.5f + 0.5f) * procTerrainGen.perlinAmplitude;
+        float height = (perlin.noise2(x * procTerrainGen.perlinFrequency, y * procTerrainGen.perlinFrequency) * 0.5f + 0.5f) * procTerrainGen.perlinAmplitude * 0.2f + 0.1f;
 
         height = Mathf.Clamp(height, 0f, 1f);
 
-        return height;
+        return height; 
     }
 
     /*

@@ -42,6 +42,14 @@ public class GlobalOffsetTransform : MonoBehaviour
 
     public void ApplyGlobalOffset(Vector3Int globalOffset)
     {
-        transform.position = originalPosition + globalOffset;
+        if (IsActive)
+        {
+            transform.position = originalPosition + globalOffset;
+        }
     }
+
+    public bool IsActive
+    {
+        get; set;
+    } = true;
 }

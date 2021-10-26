@@ -1,3 +1,4 @@
+using noise.module;
 using SplineMesh;
 using System;
 using System.Collections;
@@ -18,6 +19,28 @@ public class ProcTerrainGen : MonoBehaviour
     private bool generatePreview = false;
     [SerializeField]
     public ProcAreaType areaPreview = ProcAreaType.MOUNTAINS;
+
+
+    [Space]
+
+    [SerializeField]
+    private bool generateCurve = false;
+    [SerializeField]
+    public ProcAreaType areaTypeCurve = ProcAreaType.MOUNTAINS;
+    [SerializeField]
+    public int metersAmount = 100;
+    [SerializeField]
+    public AnimationCurve animCurve;
+
+
+    [Space]
+
+    [SerializeField]
+    private bool computePreview = false;
+    [SerializeField]
+    private bool showAreaPreview = false;
+    [SerializeField]
+    public ProcAreaType areaPreviewBlending = ProcAreaType.MOUNTAINS;
     [SerializeField]
     private bool applyTerrain = false;
     [SerializeField]
@@ -25,13 +48,48 @@ public class ProcTerrainGen : MonoBehaviour
     [SerializeField]
     public float perlinAmplitude = 0.5f;
     [SerializeField]
-    public float mountainPerlinFrequency = 0.000045f;
+    public float perlinMountainFrequency = 0.4f;
     [SerializeField]
-    public float mountainPerlinAmplitude = 0.2f;
+    public float perlinMountainAmplitude = 0.5f;
+    [SerializeField]
+    public float ridgedMultiAmplitude = 0.2f;
+    [SerializeField]
+    public float billowAmplitude = 0.2f;
+    [SerializeField]
+    public float mountainPerlinFrequency = 0.000045f;
     public AnimationCurve mountainCurve;
     public ProcTerrainInputTexture inputTextureHeight = null;
     [SerializeField]
     public float areaFrequency = 0.000045f;
+
+    [Space]
+
+    [Header("Forrest")]
+
+    [SerializeField]
+    public float aTanX = 0.5f;
+    [SerializeField]
+    public float aTanXOffset = 0.5f;
+    [SerializeField]
+    public float aTanY = 0.5f;
+    [SerializeField]
+    public float forrestPerlinFreq = 0.5f;
+    [SerializeField]
+    public float forrestPerlinAmpl = 0.5f;
+    [SerializeField]
+    public float forrestRigFreq = 0.5f;
+    [SerializeField]
+    public float forrestRigAmpl = 0.5f;
+    [SerializeField]
+    public float forrestRigOffset = 0.5f;
+    [SerializeField]
+    public float forrestLowFreqPerlinFreq = 0.5f;
+    [SerializeField]
+    public float forrestLowFreqPerlinAmpl = 0.5f;
+    [SerializeField]
+    public float forrestLowFreqPerlinAmplOffset = 0.5f;
+    [SerializeField]
+    public float forrestLowFreqInfluence = 1f;
 
     public float minDistanceToBorder = 50f;
     public int amountOfAreas = 6;
@@ -61,11 +119,49 @@ public class ProcTerrainGen : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (showAreaPreview)
+        {
+            showAreaPreview = false;
+
+            showOnlyAreaPreview();
+        }
+
+
+        if (computePreview)
+        {
+            computePreview = false;
+
+            previewRender(false);
+        }
+
+        if (generateCurve)
+        {
+            generateCurve = false;
+
+            showAnimGraph();
+        }
+
         if (generatePreview)
         {
             generatePreview = false;
 
-            previewRender();
+
+            renderSmallChunk();
+
+            /*
+            noise.module.RidgedMulti ridgedMulti = new noise.module.RidgedMulti();
+
+            ridgedMulti.Frequency = 1.0;
+            ridgedMulti.Lacunarity = 2.0;
+            ridgedMulti.OctaveCount = 6;
+            ridgedMulti.NoiseQuality = noise.NoiseQuality.QUALITY_STD;
+            ridgedMulti.CalculateSpectralWeights();
+            Debug.Log(ridgedMulti.GetValue(50, 70, 60).ToString("n2"));
+            Debug.Log(ridgedMulti.GetValue(50.02, 70, 60).ToString("n2"));
+            Debug.Log(ridgedMulti.GetValue(0.1, 2, -80).ToString("n2"));
+
+            */
+            //previewRender(true);
         }
         if (applyTerrain)
         {
@@ -103,7 +199,42 @@ public class ProcTerrainGen : MonoBehaviour
         terrainAccessor.CloseData();
     }
 
-    private void previewRender()
+    private void showAnimGraph()
+    {
+        PerlinNoise perlin = new PerlinNoise(0);
+
+        Billow billow = new Billow();
+        billow.Frequency = 1.0;
+        billow.Lacunarity = 2.0;
+        billow.OctaveCount = 6;
+        billow.NoiseQuality = noise.NoiseQuality.QUALITY_STD;
+        billow.Persistence = 0.5;
+
+        RidgedMulti ridgedMulti = new RidgedMulti();
+        ridgedMulti.Frequency = 1.0;
+        ridgedMulti.Lacunarity = 2.0;
+        ridgedMulti.OctaveCount = 6;
+        ridgedMulti.NoiseQuality = noise.NoiseQuality.QUALITY_STD;
+        ridgedMulti.CalculateSpectralWeights();
+        ScaleBias scaleBias = new ScaleBias();
+        Select select = new Select();
+        Perlin perlinLib = new Perlin();
+
+        Keyframe[] keyframes = new Keyframe[2000];
+        for (int i = 0; i < 2000; i++)
+        {
+            float height = 0f;
+            if (areaTypeCurve == ProcAreaType.FORREST)
+            {
+                height = JobProcGen.forrest_height(this, perlinLib, perlin, billow, ridgedMulti, (int)((i / 2000f) * metersAmount), 0);
+            }
+            keyframes[i] = new Keyframe(i, height);
+        }
+
+        animCurve.keys = keyframes;
+    }
+
+    private void renderSmallChunk()
     {
         terrainAccessor.OpenData();
 
@@ -117,15 +248,21 @@ public class ProcTerrainGen : MonoBehaviour
 
         jobsRunning = true;
 
+        List<int> onlyLowResSteps = new List<int>();
+        for (int i = 0; i < 4096; i++)
+        {
+            onlyLowResSteps.Add((int)((i / 4096f) * 100000f));
+        }
+
         //PerlinNoise perlin = new PerlinNoise(0);
 
-        int steps = 5000;
+        int steps = 2500;
         long seed = 0;
 
 
-        for (int x = 0; x < 50000; x += steps)
+        for (int x = 0; x < 10000 * 1; x += steps)
         {
-            for (int y = 0; y < 50000; y += steps)
+            for (int y = 0; y < 10000 * 1; y += steps)
             {
                 JobProcGen jobProcGen = new JobProcGen();
                 jobProcGen.startPos = new Vector2Int(x, y);
@@ -133,6 +270,56 @@ public class ProcTerrainGen : MonoBehaviour
                 jobProcGen.procTerrainGen = this;
                 jobProcGen.seed = seed;
                 jobProcGen.terrainAccessor = terrainAccessor;
+                jobProcGen.onlyMakeOneAreaType = true;
+
+                jobProcGen.Start();
+                runningJobs.Add(jobProcGen);
+
+
+            }
+        }
+    }
+
+    private void previewRender(bool onlyPreview)
+    {
+        terrainAccessor.OpenData();
+
+        inputTextureHeight.OpenData();
+
+        for (int i = 0; i < areaBorders.Length; i++)
+        {
+            areaBorders[i].position = areaBorders[i].transform.position;
+        }
+
+
+        jobsRunning = true;
+
+        List<int> onlyLowResSteps = new List<int>();
+        for (int i = 0; i < 4096; i++)
+        {
+            onlyLowResSteps.Add((int)((i / 4096f) * 100000f));
+        }
+
+        //PerlinNoise perlin = new PerlinNoise(0);
+
+        int steps = 5000;
+        long seed = 0;
+
+
+        for (int x = 0; x < 50000 * 1; x += steps)
+        {
+            for (int y = 0; y < 50000 * 1; y += steps)
+            {
+                JobProcGen jobProcGen = new JobProcGen();
+                jobProcGen.startPos = new Vector2Int(x, y);
+                jobProcGen.endPos = new Vector2Int(x + steps, y + steps);
+                jobProcGen.procTerrainGen = this;
+                jobProcGen.seed = seed;
+                jobProcGen.terrainAccessor = terrainAccessor;
+                if (onlyPreview)
+                {
+                    jobProcGen.onlyLowResSteps = onlyLowResSteps.ToArray();
+                }
 
                 jobProcGen.Start();
                 runningJobs.Add(jobProcGen);
@@ -181,7 +368,7 @@ public class ProcTerrainGen : MonoBehaviour
             {
                 Vector2 globalPos = new Vector2((x / ((float)textureArea.width)) * 100000f, (y / ((float)textureArea.width)) * 100000f);
 
-                float height = JobProcGen.calcAreaWeights(perlin, this, (int)globalPos.x, (int)globalPos.y)[(int)areaPreview];
+                float height = JobProcGen.calcAreaWeights(perlin, this, (int)globalPos.x, (int)globalPos.y)[(int)areaPreviewBlending];
                 textureArea.SetPixel(x, y, new Color(height, height, height));
             }
         }
@@ -190,5 +377,29 @@ public class ProcTerrainGen : MonoBehaviour
 
         matArea.mainTexture = textureArea;
         //mat.SetTexture("_MainTex", texture);
+    }
+
+    private void showOnlyAreaPreview()
+    {
+        PerlinNoise perlin = new PerlinNoise(0);
+        Material matArea = areaRenderPlane.sharedMaterial;
+
+        Texture2D textureArea = new Texture2D(4096 * 1, 4096 * 1);
+
+        for (int x = 0; x < textureArea.width; x++)
+        {
+            for (int y = 0; y < textureArea.height; y++)
+            {
+                Vector2 globalPos = new Vector2((x / ((float)textureArea.width)) * 100000f, (y / ((float)textureArea.width)) * 100000f);
+
+                float height = JobProcGen.calcAreaWeights(perlin, this, (int)globalPos.x, (int)globalPos.y)[(int)areaPreviewBlending];
+                textureArea.SetPixel(x, y, new Color(height, height, height));
+            }
+        }
+
+        textureArea.Apply();
+
+        matArea.mainTexture = textureArea;
+        matArea.mainTexture = textureArea;
     }
 }

@@ -19,6 +19,8 @@ public class MultiTerrainManager : MonoBehaviour
     void Start()
     {
         allTerrains = FindObjectsOfType<SingleTerrain>();
+
+        Debug.Log("[Mutli Terrain Manager]: Found single terrains: " + allTerrains.Length.ToString());
     }
 
     // Update is called once per frame
@@ -40,6 +42,7 @@ public class MultiTerrainManager : MonoBehaviour
                     if (allTerrains[i].Terrain.gameObject.activeSelf == false)
                     {
                         allTerrains[i].Terrain.gameObject.SetActive(true);
+                        allTerrains[i].IsEnabled = true;
                     }
                 }
                 else
@@ -47,6 +50,7 @@ public class MultiTerrainManager : MonoBehaviour
                     if (allTerrains[i].Terrain.gameObject.activeSelf)
                     {
                         allTerrains[i].Terrain.gameObject.SetActive(false);
+                        allTerrains[i].IsEnabled = false;
                     }
                 }
             }

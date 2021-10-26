@@ -57,7 +57,10 @@ public class ProcTerrainAccessor : MonoBehaviour
         {
             for (int y = 0; y < terrains2D.GetLength(1); y++)
             {
-                terrains2D[x, y].terrainData.SetHeights(0, 0, chunks[x, y].heights);
+                if (chunks[x, y].isDirty)
+                {
+                    terrains2D[x, y].terrainData.SetHeights(0, 0, chunks[x, y].heights);
+                }
             }
         }
     }
@@ -69,6 +72,7 @@ public class ProcTerrainAccessor : MonoBehaviour
                                                     Mathf.Clamp((int)(((pos.y - chunkPos2D.y * terrainsSpacing) / terrainsSpacing) * heightmapRes), 0, heightmapRes - 1));
 
         chunks[chunkPos2D.x, chunkPos2D.y].heights[heightmapPos.y, heightmapPos.x] = height;
+        chunks[chunkPos2D.x, chunkPos2D.y].isDirty = true;
     }
 
     public float GetHeight(Vector2 pos)
@@ -85,6 +89,7 @@ public class ProcTerrainAccessor : MonoBehaviour
 public class TerrainChunkHeights
 {
     public float[,] heights;
+    public bool isDirty = false;
 
     public TerrainChunkHeights(int heightmapResolution)
     {
