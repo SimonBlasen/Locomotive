@@ -7,7 +7,9 @@ public class BrakeLeaver : MonoBehaviour
     [SerializeField]
     private Transform leaver = null;
     [SerializeField]
-    private float angleFactor = 0f;
+    private Transform leaverPosOpened = null;
+    [SerializeField]
+    private Transform leaverPosBraked = null;
     [SerializeField]
     private Train train = null;
 
@@ -20,7 +22,7 @@ public class BrakeLeaver : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        leaver.transform.localRotation = Quaternion.Euler(BrakeLevel * angleFactor, 0f, 0f);
+        leaver.transform.localRotation = Quaternion.Lerp(leaverPosOpened.localRotation, leaverPosBraked.localRotation, BrakeLevel);
 
         train.BrakeStrength = 1f - BrakeLevel;
     }

@@ -14,6 +14,12 @@ public class InteractableSpeedValve : Interactable
     private float pressureUseFactor = 1f;
     [SerializeField]
     private float pressureDriveFactor = 1f;
+    [SerializeField]
+    private bool newSlideMode = true;
+    [SerializeField]
+    private bool useXAxe = true;
+    [SerializeField]
+    private float slideFactor = 0.01f;
 
     public float pressureOnWheels = 0f;
 
@@ -22,6 +28,9 @@ public class InteractableSpeedValve : Interactable
     private float sliderVal = 0f;
     private float sliderStartVal = 0f;
     private float sliderStartValOld = 0f;
+
+    private Vector2 mousePosStart = Vector2.zero;
+    private float startSpeedValue = 0f;
 
     // Start is called before the first frame update
     protected override void Start()
@@ -36,33 +45,56 @@ public class InteractableSpeedValve : Interactable
     protected override void Update()
     {
         base.Update();
+
+        if (newSlideMode)
+        {
+            if (eDown)
+            {
+                Vector2 absDelta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+                mousePosStart += absDelta * slideFactor;
+
+
+                float slideVal = useXAxe ? mousePosStart.x : mousePosStart.y;
+
+                speedValve.ValveOpening = Mathf.Clamp(startSpeedValue + slideVal, 0f, 1f);
+                setTextMeshHint();
+            }
+
+
+            float usedPressure = boiler.UseUpPressure(speedValve.ValveOpening * pressureUseFactor);
+            pressureOnWheels = speedValve.ValveOpening * boiler.Pressure * usedPressure * pressureDriveFactor;
+            train.PressureWheels = pressureOnWheels;
+        }
     }
 
     private void FixedUpdate()
     {
-        if (eDown)
+        if (!newSlideMode)
         {
-
-            RaycastHit hit;
-            if (Physics.Raycast(Camera.main.ScreenPointToRay(new Vector2(Screen.width * 0.5f, Screen.height * 0.5f)), out hit, 2f, LayerMask.GetMask("Interactable")))
+            if (eDown)
             {
-                sliderVal = interactableCollider.transform.InverseTransformPoint(hit.point).y + (sliderStartValOld - sliderStartVal);
 
-                //Debug.Log(sliderVal.ToString("n2"));
+                RaycastHit hit;
+                if (Physics.Raycast(Camera.main.ScreenPointToRay(new Vector2(Screen.width * 0.5f, Screen.height * 0.5f)), out hit, 2f, LayerMask.GetMask("Interactable")))
+                {
+                    sliderVal = interactableCollider.transform.InverseTransformPoint(hit.point).y + (sliderStartValOld - sliderStartVal);
 
-                float brakeVal = (sliderVal * 1.5f + 0.5f);
-                brakeVal = Mathf.Clamp(brakeVal, 0f, 1f);
+                    //Debug.Log(sliderVal.ToString("n2"));
 
-                speedValve.ValveOpening = brakeVal;
-                setTextMeshHint();
+                    float brakeVal = (sliderVal * 1.5f + 0.5f);
+                    brakeVal = Mathf.Clamp(brakeVal, 0f, 1f);
 
-                //brakeLeaver.BrakeLevel = brakeVal;
+                    speedValve.ValveOpening = brakeVal;
+                    setTextMeshHint();
+
+                    //brakeLeaver.BrakeLevel = brakeVal;
+                }
             }
-        }
 
-        float usedPressure = boiler.UseUpPressure(speedValve.ValveOpening * pressureUseFactor);
-        pressureOnWheels = speedValve.ValveOpening * boiler.Pressure * usedPressure * pressureDriveFactor;
-        train.PressureWheels = pressureOnWheels;
+            float usedPressure = boiler.UseUpPressure(speedValve.ValveOpening * pressureUseFactor);
+            pressureOnWheels = speedValve.ValveOpening * boiler.Pressure * usedPressure * pressureDriveFactor;
+            train.PressureWheels = pressureOnWheels;
+        }
     }
 
 
@@ -78,6 +110,13 @@ public class InteractableSpeedValve : Interactable
     {
         eDown = true;
 
+        mousePosStart = Vector2.zero;
+        if (newSlideMode)
+        {
+            startSpeedValue = speedValve.ValveOpening;
+            FirstPersonPlayer.RotationsBlocked = true;
+        }
+
         RaycastHit hit;
         if (Physics.Raycast(Camera.main.ScreenPointToRay(new Vector2(Screen.width * 0.5f, Screen.height * 0.5f)), out hit, 2f, LayerMask.GetMask("Interactable")))
         {
@@ -87,6 +126,11 @@ public class InteractableSpeedValve : Interactable
 
     public override void InteractUp()
     {
+        if (newSlideMode)
+        {
+            FirstPersonPlayer.RotationsBlocked = false;
+        }
+
         sliderStartValOld = sliderVal;
         eDown = false;
     }

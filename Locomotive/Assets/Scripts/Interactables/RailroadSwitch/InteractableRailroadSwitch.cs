@@ -16,7 +16,9 @@ public class InteractableRailroadSwitch : Interactable
     [SerializeField]
     private Transform switchTransform = null;
     [SerializeField]
-    private float switchAngle = 20f;
+    private Transform leftPosTransform = null;
+    [SerializeField]
+    private Transform rightPosTransform = null;
 
     private StudioEventEmitter stevem = null;
 
@@ -47,7 +49,7 @@ public class InteractableRailroadSwitch : Interactable
 
         s = Mathf.Clamp(s, 0f, 1f);
 
-        switchTransform.localRotation = Quaternion.Euler(Mathf.Lerp(-switchAngle, switchAngle, curveFlipSwitch.Evaluate(s)), 0f, 0f);
+        switchTransform.localRotation = Quaternion.Lerp(leftPosTransform.localRotation, rightPosTransform.localRotation, curveFlipSwitch.Evaluate(s));
     }
 
 
