@@ -61,6 +61,9 @@ public class InteractableSpeedValve : Interactable
             }
 
 
+            float usedPressure = boiler.UseUpPressure(speedValve.ValveOpening * pressureUseFactor);
+            pressureOnWheels = speedValve.ValveOpening * boiler.Pressure * usedPressure * pressureDriveFactor;
+            train.PressureWheels = pressureOnWheels;
         }
     }
 
