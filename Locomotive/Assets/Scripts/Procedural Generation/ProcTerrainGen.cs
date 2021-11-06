@@ -52,7 +52,13 @@ public class ProcTerrainGen : MonoBehaviour
     [SerializeField]
     public float perlinMountainAmplitude = 0.5f;
     [SerializeField]
+    public float perlinSnowMountainFrequency = 0.4f;
+    [SerializeField]
+    public float perlinSnowMountainAmplitude = 0.5f;
+    [SerializeField]
     public float ridgedMultiAmplitude = 0.2f;
+    [SerializeField]
+    public float ridgedMultiAmplitudeSnow = 0.2f;
     [SerializeField]
     public float billowAmplitude = 0.2f;
     [SerializeField]
@@ -90,6 +96,35 @@ public class ProcTerrainGen : MonoBehaviour
     public float forrestLowFreqPerlinAmplOffset = 0.5f;
     [SerializeField]
     public float forrestLowFreqInfluence = 1f;
+
+    [Space]
+
+    [Header("Forrest")]
+
+    [SerializeField]
+    public float aTanPlanesX = 0.5f;
+    [SerializeField]
+    public float aTanPlanesXOffset = 0.5f;
+    [SerializeField]
+    public float aTanPlanesY = 0.5f;
+    [SerializeField]
+    public float planesPerlinFreq = 0.5f;
+    [SerializeField]
+    public float planesPerlinAmpl = 0.5f;
+    [SerializeField]
+    public float planesRigFreq = 0.5f;
+    [SerializeField]
+    public float planesRigAmpl = 0.5f;
+    [SerializeField]
+    public float planesRigOffset = 0.5f;
+    [SerializeField]
+    public float planesLowFreqPerlinFreq = 0.5f;
+    [SerializeField]
+    public float planesLowFreqPerlinAmpl = 0.5f;
+    [SerializeField]
+    public float planesLowFreqPerlinAmplOffset = 0.5f;
+    [SerializeField]
+    public float planesLowFreqInfluence = 1f;
 
     public float minDistanceToBorder = 50f;
     public int amountOfAreas = 6;
@@ -308,7 +343,7 @@ public class ProcTerrainGen : MonoBehaviour
 
         for (int x = 0; x < 50000 * 1; x += steps)
         {
-            for (int y = 0; y < 50000 * 1; y += steps)
+            for (int y = 50000; y < 50000 * 2; y += steps)
             {
                 JobProcGen jobProcGen = new JobProcGen();
                 jobProcGen.startPos = new Vector2Int(x, y);
