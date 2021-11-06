@@ -15,11 +15,17 @@ public class TrainstationsConnector : MonoBehaviour
 
     [Header("References")]
     [SerializeField]
-    private float maxSlopeAngle = 20f;
+    private float slopeAngleLimit = 20f;
+    [SerializeField]
+    private float maxSlopeAngleUntilCatch = 20f;
     [SerializeField]
     private float slopeImportance = 20f;
     [SerializeField]
     private float stepDistance = 100f;
+    [SerializeField]
+    private float smoothYHeightsSelfWeight = 0.5f;
+    [SerializeField]
+    private int smoothYHeightsSteps = 1;
 
     // Between 0 and 1. If is equal 1, then offset target is always the same distance away from train station, as current pos is away from train station
     // If is equal to 0, the target is always equal the train station
@@ -96,9 +102,13 @@ public class TrainstationsConnector : MonoBehaviour
 
             Vector2 desiredDirVec = ((curPoint.DirVec2.normalized + vec2FromCurPosToOffsetTarget.normalized) * 0.5f).normalized;
 
+            float remainingHeightDiff = finalTarget.pos.y - curPoint.pos.y;
+
             float bestVal = float.MaxValue;
+            float bestValHeightOnly = float.MaxValue;
             float bestAngle = 0f;
             Vector3 nextPointVec = Vector3.zero;
+            Vector3 nextPointVecHeightOnly = Vector3.zero;
             for (int angle = 0; angle < maxAnglePerStep; angle += angleStepSize)
             {
                 for (int i = 0; i < 2; i++)
@@ -128,14 +138,22 @@ public class TrainstationsConnector : MonoBehaviour
                         }
 
 
-                        float angleHeight = Mathf.Atan((curPoint.pos.y - hitPoint.y) / (Vector2.Distance(curPoint.Pos2, nextCP2)));
+                        float angleHeight = Mathf.Atan((hitPoint.y - curPoint.pos.y) / (Vector2.Distance(curPoint.Pos2, nextCP2)));
 
-                        angleHeight = Mathf.Min(maxSlopeAngle, Mathf.Abs(angleHeight));
-                        float weightHeight = Mathf.Sin(angleHeight * 90f / maxSlopeAngle) * slopeImportance;
+                        angleHeight = Mathf.Min(slopeAngleLimit * Mathf.Deg2Rad, Mathf.Abs(angleHeight));
+                        //angleHeight = Mathf.Abs(angleHeight);
+                        float weightHeight = Mathf.Sin(Mathf.Abs(angleHeight) * 90f / slopeAngleLimit) * slopeImportance;
+
+                        /*float weightHeightDifference = 0f;
+                        if (angleHeight < slopeAngleLimit)
+                        {
+                            weightHeight = 0f;
+                            weightHeightDifference = Mathf.Sign(angleHeight) == Mathf.Sign(remainingHeightDiff) ? 1f : 0f;
+                        }*/
 
                         float weight = weightAngle + weightHeight;
 
-                        if (weight < bestVal)
+                        if (weight < bestVal && angleHeight < maxSlopeAngleUntilCatch * Mathf.Deg2Rad)
                         {
                             bestVal = weight;
                             bestAngle = actualAngle;
@@ -172,6 +190,30 @@ public class TrainstationsConnector : MonoBehaviour
         for (int i = 2; i < points.Count; i++)
         {
             toAdjustSpline.AddNode(new SplineNode(points[i].pos, points[i].dir));
+        }
+
+        for (int steps = 0; steps < smoothYHeightsSteps; steps++)
+        {
+            for (int i = 1; i < toAdjustSpline.nodes.Count - 1; i++)
+            {
+                float newHeight = (toAdjustSpline.nodes[i - 1].Position.y + toAdjustSpline.nodes[i + 1].Position.y) * 0.5f;
+                newHeight = (newHeight * (1f - smoothYHeightsSelfWeight)) + (toAdjustSpline.nodes[i].Position.y * smoothYHeightsSelfWeight);
+
+                toAdjustSpline.nodes[i].Position = new Vector3(toAdjustSpline.nodes[i].Position.x, newHeight, toAdjustSpline.nodes[i].Position.z);
+            }
+        }
+
+
+        for (int i = 1; i < toAdjustSpline.nodes.Count - 1; i++)
+        {
+            float targetSlope = toAdjustSpline.nodes[i + 1].Position.y - toAdjustSpline.nodes[i - 1].Position.y;
+            targetSlope /= Vector2.Distance(new Vector2(toAdjustSpline.nodes[i + 1].Position.x, toAdjustSpline.nodes[i + 1].Position.z),
+                new Vector2(toAdjustSpline.nodes[i - 1].Position.x, toAdjustSpline.nodes[i - 1].Position.z));
+
+            float dirY = Vector2.Distance(new Vector2(toAdjustSpline.nodes[i].Direction.x, toAdjustSpline.nodes[i].Direction.z),
+                                    new Vector2(toAdjustSpline.nodes[i].Position.x, toAdjustSpline.nodes[i].Position.z)) * targetSlope;
+
+            toAdjustSpline.nodes[i].Direction = new Vector3(toAdjustSpline.nodes[i].Direction.x, toAdjustSpline.nodes[i].Position.y + dirY, toAdjustSpline.nodes[i].Direction.z);
         }
 
         toAdjustSpline.RefreshCurves();

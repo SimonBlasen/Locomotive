@@ -117,10 +117,10 @@ public class Train : MonoBehaviour
                 tunnelEmitter.Play();
             }
         }
+
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
+    private void moveTrain(float deltaTime)
     {
         if (!inited && railRoad.IsReady)
         {
@@ -131,7 +131,7 @@ public class Train : MonoBehaviour
 
         if (inited)
         {
-            float velocityStep = curVelocity * Time.fixedDeltaTime * actualPhysicalSpeedCorrection;
+            float velocityStep = curVelocity * deltaTime * actualPhysicalSpeedCorrection;
 
             float slopedGravityMass = 0f;
 
@@ -164,7 +164,7 @@ public class Train : MonoBehaviour
 
 
             // Accelerating
-            float curAccStep = PressureWheels * Time.fixedDeltaTime * accelerationCurve.Evaluate(curVelocity);
+            float curAccStep = PressureWheels * deltaTime * accelerationCurve.Evaluate(curVelocity);
 
             curVelocity = Mathf.MoveTowards(curVelocity, DriveDirectionForward ? topSpeed : -topSpeed, curAccStep);
 
@@ -172,10 +172,10 @@ public class Train : MonoBehaviour
             //Debug.Log("SlopedGravMass: " + slopedGravityMass.ToString("n2"));
 
             // Slopes Gravity
-            curVelocity += slopedGravityMass * gravitySlopeStrength * Time.fixedDeltaTime;
+            curVelocity += slopedGravityMass * gravitySlopeStrength * deltaTime;
 
             // Braking
-            float curDeceleration = BrakeStrength * Time.fixedDeltaTime * deceleration;
+            float curDeceleration = BrakeStrength * deltaTime * deceleration;
             curVelocity = Mathf.MoveTowards(curVelocity, 0f, curDeceleration);
 
             int rpmInt = (int)Mathf.Abs((CurrentSpeed / topSpeed) * 100f * audioFactor);
@@ -193,6 +193,12 @@ public class Train : MonoBehaviour
             //Debug.Log("Rpm Out: " + rpmOut.ToString());
 
         }
+    }
+
+    // Update is called once per frame
+    void FixedUpdate()
+    {
+        moveTrain(Time.fixedDeltaTime);
     }
 
 

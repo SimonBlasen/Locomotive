@@ -33,6 +33,8 @@ public class FirstPersonPlayer : MonoBehaviour
     private Transform outsideCamTrans = null;
     [SerializeField]
     private Transform outsideCamTransY = null;
+    [SerializeField]
+    private Transform debugRaycast = null;
 
     [SerializeField]
     private FMODUnity.StudioEventEmitter snapshotOutsideCam = null;
@@ -121,6 +123,45 @@ public class FirstPersonPlayer : MonoBehaviour
 
     private void FixedUpdate()
     {
+
+
+
+        Debug.DrawRay(cam.ScreenPointToRay(new Vector2(Screen.width * 0.5f, Screen.height * 0.5f)).origin, cam.ScreenPointToRay(new Vector2(Screen.width * 0.5f, Screen.height * 0.5f)).direction * raycastDistance);
+
+        debugRaycast.position = cam.transform.position;
+        debugRaycast.forward = cam.transform.forward;
+
+        RaycastHit hit;
+        //if (Physics.Raycast(cam.ScreenPointToRay(new Vector2(Screen.width * 0.5f, Screen.height * 0.5f)), out hit, raycastDistance, LayerMask.GetMask("Interactable")))
+        if (Physics.Raycast(new Ray(cam.transform.position, cam.transform.forward), out hit, raycastDistance, LayerMask.GetMask("Interactable")))
+        {
+            Interactable interactable = hit.transform.GetComponent<InteractableCollider>().Interactable;
+            if (currentHoveredInteractable != interactable && currentHoveredInteractable != null)
+            {
+                currentHoveredInteractable.InteractUp();
+                currentHoveredInteractable.Hovered = false;
+            }
+            currentHoveredInteractable = interactable;
+            currentHoveredInteractable.Hovered = true;
+        }
+        else
+        {
+            if (currentHoveredInteractable != null)
+            {
+                currentHoveredInteractable.InteractUp();
+                currentHoveredInteractable.Hovered = false;
+                currentHoveredInteractable = null;
+            }
+        }
+
+
+
+
+
+
+
+
+
         yCamRot.Rotate(0f, mouseRotSpeed * Time.fixedDeltaTime * Input.GetAxis("Mouse X"), 0f);
         outsideCamTransY.Rotate(0f, mouseRotSpeed * Time.fixedDeltaTime * Input.GetAxis("Mouse X"), 0f);
         if (camOutside == false)
@@ -159,32 +200,6 @@ public class FirstPersonPlayer : MonoBehaviour
         if (transform.localPosition.z > maxLocomotivePos.localPosition.z)
         {
             transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, maxLocomotivePos.localPosition.z);
-        }
-
-
-
-        Debug.DrawRay(cam.ScreenPointToRay(new Vector2(Screen.width * 0.5f, Screen.height * 0.5f)).origin, cam.ScreenPointToRay(new Vector2(Screen.width * 0.5f, Screen.height * 0.5f)).direction * raycastDistance);
-
-        RaycastHit hit;
-        if (Physics.Raycast(cam.ScreenPointToRay(new Vector2(Screen.width * 0.5f, Screen.height * 0.5f)), out hit, raycastDistance, LayerMask.GetMask("Interactable")))
-        {
-            Interactable interactable = hit.transform.GetComponent<InteractableCollider>().Interactable;
-            if (currentHoveredInteractable != interactable && currentHoveredInteractable != null)
-            {
-                currentHoveredInteractable.InteractUp();
-                currentHoveredInteractable.Hovered = false;
-            }
-            currentHoveredInteractable = interactable;
-            currentHoveredInteractable.Hovered = true;
-        }
-        else
-        {
-            if (currentHoveredInteractable != null)
-            {
-                currentHoveredInteractable.InteractUp();
-                currentHoveredInteractable.Hovered = false;
-                currentHoveredInteractable = null;
-            }
         }
 
 

@@ -65,9 +65,26 @@ public class GlobalOffsetManager : MonoBehaviour
 
     private void refresh()
     {
-        Vector3Int clampedPlayerPos = new Vector3Int((int)(playerTransform.position.x / moveThresh), (int)(playerTransform.position.y / moveThresh), (int)(playerTransform.position.z / moveThresh));
+        Vector3 pos = new Vector3(playerTransform.position.x + moveThresh * 0.5f, playerTransform.position.y + moveThresh * 0.5f, playerTransform.position.z + moveThresh * 0.5f);
+        Vector3Int clampedPlayerPos = new Vector3Int((int)(pos.x / moveThresh), (int)(pos.y / moveThresh), (int)(pos.z / moveThresh));
+        if (pos.x < 0f)
+        {
+            clampedPlayerPos.x = (int)((pos.x / moveThresh) - 1f);
+        }
+        if (pos.y < 0f)
+        {
+            clampedPlayerPos.y = (int)((pos.y / moveThresh) - 1f);
+        }
+        if (pos.z < 0f)
+        {
+            clampedPlayerPos.z = (int)((pos.z / moveThresh) - 1f);
+        }
+
+
         clampedPlayerPos *= moveThresh;
         clampedPlayerPos -= globalOffset;
+
+        //Debug.Log("player pos: " + (playerTransform.position - globalOffset).ToString());
 
         Vector3Int negativeGlobalOffset = -globalOffset;
 
@@ -75,6 +92,26 @@ public class GlobalOffsetManager : MonoBehaviour
         {
             moveGlobalOffset(-clampedPlayerPos);
         }
+    }
+
+    public Vector3Int GetPotentialGlobalOffset(Vector3 pos)
+    {
+        pos += new Vector3(moveThresh * 0.5f, moveThresh * 0.5f, moveThresh * 0.5f);
+        Vector3Int clampedPlayerPos = new Vector3Int((int)(pos.x / moveThresh), (int)(pos.y / moveThresh), (int)(pos.z / moveThresh));
+        if (pos.x < 0f)
+        {
+            clampedPlayerPos.x = (int)((pos.x / moveThresh) - 1f);
+        }
+        if (pos.y < 0f)
+        {
+            clampedPlayerPos.y = (int)((pos.y / moveThresh) - 1f);
+        }
+        if (pos.z < 0f)
+        {
+            clampedPlayerPos.z = (int)((pos.z / moveThresh) - 1f);
+        }
+        clampedPlayerPos *= moveThresh;
+        return clampedPlayerPos;
     }
 
     public Vector3Int GlobalOffset

@@ -84,7 +84,7 @@ public class TerrainLevelerSpline : MonoBehaviour
         {
             calculate = false;
 
-            terrain.transform.position = Vector3.zero;
+            //terrain.transform.position = Vector3.zero;
 
             int nodeCount = spline.nodes.Count;
             float splineScale = spline.transform.localScale.x;
@@ -150,7 +150,7 @@ public class TerrainLevelerSpline : MonoBehaviour
 
                             float offsetDown = epsilon + epsilonTiltedFactor * (1f - Mathf.Cos(Vector3.Angle(Vector3.up, vecUp)));
 
-                            setTerrainHeight(destVect.x, destVect.z, destVect.y - offsetDown, 1f);
+                            setTerrainHeight(destVect.x - terrain.transform.position.x, destVect.z - terrain.transform.position.z, destVect.y - offsetDown, 1f);
                         }
 
 
@@ -162,8 +162,8 @@ public class TerrainLevelerSpline : MonoBehaviour
                             Vector3 destVectLeft = splineOutLeft + toLeft * distanceOut;
                             Vector3 destVectRight = splineOutRight + toRight * distanceOut;
 
-                            setTerrainHeight(destVectLeft.x, destVectLeft.z, destVectLeft.y, weight);
-                            setTerrainHeight(destVectRight.x, destVectRight.z, destVectRight.y, weight);
+                            setTerrainHeight(destVectLeft.x - terrain.transform.position.x, destVectLeft.z - terrain.transform.position.z, destVectLeft.y, weight);
+                            setTerrainHeight(destVectRight.x - terrain.transform.position.x, destVectRight.z - terrain.transform.position.z, destVectRight.y, weight);
                         }
                         //GameObject go = Instantiate(cubeDebug, transform);
                         //go.transform.position = splineOutLeft;

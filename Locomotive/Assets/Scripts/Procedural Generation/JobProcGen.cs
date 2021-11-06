@@ -289,7 +289,7 @@ public class JobProcGen : ThreadedJob
         //height += mountain;
 
 
-        height += ((float)ridgedMulti.GetValue(x * 0.000054987312, y * 0.000054987312, 0.0) * 0.4f + 0.5f) * procTerrainGen.ridgedMultiAmplitude;
+        height += ((float)ridgedMulti.GetValue(x * 0.000054987312, y * 0.000054987312, 0.0) * 0.4f + 0.5f) * procTerrainGen.ridgedMultiAmplitude; 
 
         //height += ((float)billow.GetValue(x * 0.000054987312, y * 0.000054987312, 0.0) * 0.4f + 0.5f) * procTerrainGen.billowAmplitude;
 
