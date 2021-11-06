@@ -11,7 +11,7 @@ public class SpeedValve : MonoBehaviour
     [Space]
 
     [SerializeField]
-    private Transform pointer = null;
+    private Transform[] pointers = null;
 
 
 
@@ -24,7 +24,10 @@ public class SpeedValve : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        pointer.localRotation = Quaternion.Euler(0f, 0f, ValveOpening * angleFactor);
+        for (int i = 0; i < pointers.Length; i++)
+        {
+            pointers[i].localRotation = Quaternion.Euler(0f, 0f, ValveOpening * angleFactor);
+        }
     }
 
     public float ValveOpening
