@@ -7,6 +7,8 @@ public class InteractablePressureRelease : Interactable
 {
     [SerializeField]
     private Boiler boiler = null;
+    [SerializeField]
+    private PressureReleaseValve pressureReleaseValve = null;
 
     [FMODUnity.EventRef]
     public string fmodEventTrainSound;
@@ -33,6 +35,7 @@ public class InteractablePressureRelease : Interactable
     public override void Interact()
     {
         boiler.ReleaseSteam = true;
+        pressureReleaseValve.ReleasingAir = true;
 
         stevem.Play();
         //instanceTrainSound.start();
@@ -41,6 +44,7 @@ public class InteractablePressureRelease : Interactable
     public override void InteractUp()
     {
         boiler.ReleaseSteam = false;
+        pressureReleaseValve.ReleasingAir = false;
 
         //stevem.Stop();
 
