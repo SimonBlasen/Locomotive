@@ -8,6 +8,13 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class RailsLODManager : MonoBehaviour
 {
+    [Header("Re-Generate MeshBend meshes")]
+    [SerializeField]
+    private bool regenMeshbendMeshes = false;
+    [SerializeField]
+    private Transform[] regenMeshbendMeshParents = null;
+
+    [Space]
 
     [Header("Making mesh assets")]
     [SerializeField]
@@ -36,13 +43,36 @@ public class RailsLODManager : MonoBehaviour
     [SerializeField]
     private bool computeAllMeshes = false;
 
+
+    [Space]
+    [Header("Spline Comp Deleter")]
+    [SerializeField]
+    private bool deleteSplineComponents = false;
+    [SerializeField]
+    private Transform[] railMeshesToDelete = null;
+    [SerializeField]
+    private int deleteIndex = 0;
+    [SerializeField]
+    private int deleteState = 0;
+
+
     [Space]
 
     [SerializeField]
     private PairedRailSegmentMesh[] pairedRailSegmentMeshes;
 
+    [Space]
+
+    public int genLODs = 0;
+
+
+    [SerializeField]
+    private bool testResources = false;
+    [SerializeField]
+    private string resPathTest = "";
 
     private int curIndex = 0;
+
 
 
 
@@ -78,6 +108,28 @@ public class RailsLODManager : MonoBehaviour
 
             createAssetsMesh();
         }
+        if (deleteSplineComponents)
+        {
+            deleteSplineComponents = false;
+
+            deleteSplineComponentsM();
+        }
+        if (regenMeshbendMeshes)
+        {
+            regenMeshbendMeshes = false;
+
+            regenMeshbendMeshesM();
+        }
+        if (testResources)
+        {
+            testResources = false;
+
+            Mesh m = (Mesh)Resources.Load(resPathTest);
+
+            Debug.Log(m == null ? "Is Null" : "NOT NULL");
+
+            int fdjksljf = 0;
+        }
     }
 
 
@@ -90,9 +142,79 @@ public class RailsLODManager : MonoBehaviour
         }
     }
 
+
+    private void regenMeshbendMeshesM()
+    {
+        List<MeshBender> meshBenders = new List<MeshBender>();
+
+        for (int i = 0; i < regenMeshbendMeshParents.Length; i++)
+        {
+            meshBenders.AddRange(regenMeshbendMeshParents[i].GetComponentsInChildren<MeshBender>());
+        }
+
+
+        for (int i = 0; i < meshBenders.Count; i++)
+        {
+            meshBenders[i].RegenMesh();
+        }
+    }
+
+    private void deleteSplineComponentsM()
+    {
+        if (deleteState == 0)
+        {
+            for (int i = 0; i < railMeshesToDelete.Length; i++)
+            {
+                railMeshesToDelete[i].gameObject.SetActive(false);
+            }
+            deleteState++;
+        }
+        else if (deleteState == 1)
+        {
+            railMeshesToDelete[deleteIndex].gameObject.SetActive(true);
+            railMeshesToDelete[deleteIndex].GetComponentInChildren<Spline>().RefreshCurves();
+            deleteState++;
+        }
+        else if (deleteState == 2)
+        {
+            DestroyImmediate(railMeshesToDelete[deleteIndex].GetComponentInChildren<SplineExtrusion>());
+            DestroyImmediate(railMeshesToDelete[deleteIndex].GetComponentInChildren<SplineMeshTiling>());
+
+            ExtrusionSegment[] extrusionSegments = railMeshesToDelete[deleteIndex].GetComponentsInChildren<ExtrusionSegment>();
+            MeshBender[] meshBenders = railMeshesToDelete[deleteIndex].GetComponentsInChildren<MeshBender>();
+            MeshCollider[] meshColliders = railMeshesToDelete[deleteIndex].GetComponentsInChildren<MeshCollider>();
+
+            for (int j = 0; j < extrusionSegments.Length; j++)
+            {
+                DestroyImmediate(extrusionSegments[j]);
+            }
+            for (int j = 0; j < meshBenders.Length; j++)
+            {
+                DestroyImmediate(meshBenders[j]);
+            }
+            for (int j = 0; j < meshColliders.Length; j++)
+            {
+                DestroyImmediate(meshColliders[j]);
+            }
+
+
+            meshifySpline(railMeshesToDelete[deleteIndex].GetComponentInChildren<Spline>());
+
+            deleteState++;
+        }
+        else if (deleteState == 3)
+        {
+            railMeshesToDelete[deleteIndex].gameObject.SetActive(false);
+            deleteIndex++;
+            deleteState = 0;
+        }
+
+
+
+    }
+
     private void createAssetsMesh()
     {
-        int genLODs = 0;
         for (int i = 0; i < meshAssetsParents.Length; i++)
         {
             RailSegment[] railSegments = meshAssetsParents[i].GetComponentsInChildren<RailSegment>();
@@ -103,17 +225,7 @@ public class RailsLODManager : MonoBehaviour
 
                 if (splineChild != null)
                 {
-                    MeshFilter[] mfs = splineChild.GetComponentsInChildren<MeshFilter>();
-                    
-                    for (int k = 0; k < mfs.Length; k++)
-                    {
-                        AssetDatabase.CreateAsset(mfs[k].sharedMesh, "Assets/" + assetsPath + "/" + genLODs.ToString() + ".asset");
-
-                        Mesh resourcesMesh = (Mesh) Resources.Load(assetsPath + "/" + genLODs.ToString() + ".asset");
-                        //mfs[k].mesh = resourcesMesh;
-
-                        genLODs++;
-                    }
+                    meshifySpline(splineChild);
                 }
                 else
                 {
@@ -124,6 +236,39 @@ public class RailsLODManager : MonoBehaviour
         }
 
         Debug.Log("Generated " + genLODs.ToString() + " LOD splines");
+    }
+
+
+    private void meshifySpline(Spline spline)
+    {
+        MeshFilter[] mfs = spline.GetComponentsInChildren<MeshFilter>();
+
+        for (int k = 0; k < mfs.Length; k++)
+        {
+            if (mfs[k].sharedMesh != null)
+            {
+                AssetDatabase.CreateAsset(mfs[k].sharedMesh, "Assets/" + assetsPath + "/" + genLODs.ToString() + ".asset");
+
+                Mesh resourcesMesh = (Mesh)Resources.Load(assetsPath.Replace("Resources/", "") + "/" + genLODs.ToString() + "");
+
+                /*
+                GameObject go = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                MeshFilter mf = go.GetComponent<MeshFilter>();
+                Mesh mesh = Instantiate(mf.mesh) as Mesh;
+                mf = mfs[k];
+                mf.mesh = mesh;
+                DestroyImmediate(go);
+
+
+                */
+
+
+
+                mfs[k].mesh = resourcesMesh;
+
+                genLODs++;
+            }
+        }
     }
 
 
@@ -141,6 +286,9 @@ public class RailsLODManager : MonoBehaviour
                 if (splineChild != null)
                 {
                     GameObject duplicated = Instantiate(splineChild.gameObject, railSegLODsParent);
+
+                    GameObject railing = duplicated.GetComponentInChildren<SplineMeshTiling>().gameObject;
+                    DestroyImmediate(railing);
 
                     Spline duplicatedSpline = duplicated.GetComponent<Spline>();
                     SplineExtrusion splineExtrusion = duplicatedSpline.GetComponent<SplineExtrusion>();
