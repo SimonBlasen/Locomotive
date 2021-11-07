@@ -9812,8 +9812,8 @@ MonoBehaviour:
     m_RotationOrder: 4
   animationTime: 0.8
   switchTransform: {fileID: 7927864877633254018}
-  leftPosTransform: {fileID: 1132202763470756471}
-  rightPosTransform: {fileID: 9026780226709712804}
+  leftPosTransform: {fileID: 9026780226709712804}
+  rightPosTransform: {fileID: 1132202763470756471}
 --- !u!114 &2515979435038698407
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10873,8 +10873,8 @@ MonoBehaviour:
     m_RotationOrder: 4
   animationTime: 0.43
   switchTransform: {fileID: 7586400154107710474}
-  forwardPosTransform: {fileID: 6426464207267310992}
-  backwardsPosTransform: {fileID: 1739283123086243350}
+  forwardPosTransform: {fileID: 1739283123086243350}
+  backwardsPosTransform: {fileID: 6426464207267310992}
 --- !u!1 &7662282777975420699
 GameObject:
   m_ObjectHideFlags: 0
