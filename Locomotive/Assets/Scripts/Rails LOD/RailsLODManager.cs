@@ -2,11 +2,37 @@ using SplineMesh;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 [ExecuteInEditMode]
 public class RailsLODManager : MonoBehaviour
 {
+
+    [Header("Making mesh assets")]
+    [SerializeField]
+    private bool createMeshAssets = false;
+    [SerializeField]
+    private Transform[] meshAssetsParents = null;
+    [SerializeField]
+    private string assetsPath = "";
+
+    [Space]
+
+    [Header("Duplicate LOD splines")]
+    [SerializeField]
+    private bool createLODSplines = false;
+    [SerializeField]
+    private Transform[] railSegmentParents = null;
+    [SerializeField]
+    private Transform railSegLODsParent = null;
+    [SerializeField]
+    private Material railsLODMaterial = null;
+
+
+    [Space]
+
+    [Header("Create LOD array data")]
     [SerializeField]
     private bool computeAllMeshes = false;
 
@@ -34,11 +60,23 @@ public class RailsLODManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (createLODSplines)
+        {
+            createLODSplines = false;
+
+            createLODSplinesM();
+        }
         if (computeAllMeshes)
         {
             computeAllMeshes = false;
 
             computeMeshes();
+        }
+        if (createMeshAssets)
+        {
+            createMeshAssets = false;
+
+            createAssetsMesh();
         }
     }
 
@@ -50,6 +88,79 @@ public class RailsLODManager : MonoBehaviour
         {
             return pairedRailSegmentMeshes;
         }
+    }
+
+    private void createAssetsMesh()
+    {
+        int genLODs = 0;
+        for (int i = 0; i < meshAssetsParents.Length; i++)
+        {
+            RailSegment[] railSegments = meshAssetsParents[i].GetComponentsInChildren<RailSegment>();
+
+            for (int j = 0; j < railSegments.Length; j++)
+            {
+                Spline splineChild = railSegments[j].GetComponentInChildren<Spline>();
+
+                if (splineChild != null)
+                {
+                    MeshFilter[] mfs = splineChild.GetComponentsInChildren<MeshFilter>();
+                    
+                    for (int k = 0; k < mfs.Length; k++)
+                    {
+                        AssetDatabase.CreateAsset(mfs[k].sharedMesh, "Assets/" + assetsPath + "/" + genLODs.ToString() + ".asset");
+
+                        Mesh resourcesMesh = (Mesh) Resources.Load(assetsPath + "/" + genLODs.ToString() + ".asset");
+                        //mfs[k].mesh = resourcesMesh;
+
+                        genLODs++;
+                    }
+                }
+                else
+                {
+                    Debug.LogError("No spline child found");
+                }
+
+            }
+        }
+
+        Debug.Log("Generated " + genLODs.ToString() + " LOD splines");
+    }
+
+
+    private void createLODSplinesM()
+    {
+        int genLODs = 0;
+        for (int i = 0; i < railSegmentParents.Length; i++)
+        {
+            RailSegment[] railSegments = railSegmentParents[i].GetComponentsInChildren<RailSegment>();
+
+            for (int j = 0; j < railSegments.Length; j++)
+            {
+                Spline splineChild = railSegments[j].GetComponentInChildren<Spline>();
+
+                if (splineChild != null)
+                {
+                    GameObject duplicated = Instantiate(splineChild.gameObject, railSegLODsParent);
+
+                    Spline duplicatedSpline = duplicated.GetComponent<Spline>();
+                    SplineExtrusion splineExtrusion = duplicatedSpline.GetComponent<SplineExtrusion>();
+                    splineExtrusion.material = railsLODMaterial;
+                    splineExtrusion.shapeVertices = new List<ExtrusionSegment.Vertex>();
+                    splineExtrusion.shapeVertices.Add(new ExtrusionSegment.Vertex(new Vector2(-1.2f, 0f), new Vector2(0f, 1f), 0f));
+                    splineExtrusion.shapeVertices.Add(new ExtrusionSegment.Vertex(new Vector2(1.2f, 0f), new Vector2(0f, 1f), 1f));
+                    duplicatedSpline.RefreshCurves();
+
+                    genLODs++;
+                }
+                else
+                {
+                    Debug.LogError("No spline child found");
+                }
+
+            }
+        }
+
+        Debug.Log("Generated " + genLODs.ToString() + " LOD splines");
     }
 
     private void computeMeshes()
