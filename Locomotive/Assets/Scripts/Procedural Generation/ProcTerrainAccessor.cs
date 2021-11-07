@@ -51,6 +51,22 @@ public class ProcTerrainAccessor : MonoBehaviour
 
     }
 
+    public int HeightmapRes
+    {
+        get
+        {
+            return terrains[0].terrainData.heightmapResolution;
+        }
+    }
+
+    public int TerrainsSpacing
+    {
+        get
+        {
+            return terrainsSpacing;
+        }
+    }
+
     public void CloseData()
     {
         for (int x = 0; x < terrains2D.GetLength(0); x++)
@@ -70,6 +86,16 @@ public class ProcTerrainAccessor : MonoBehaviour
         Vector2Int chunkPos2D = new Vector2Int((int)(pos.x / terrainsSpacing), (int)(pos.y / terrainsSpacing));
         Vector2Int heightmapPos = new Vector2Int(   Mathf.Clamp((int)(((pos.x - chunkPos2D.x * terrainsSpacing) / terrainsSpacing) * heightmapRes), 0, heightmapRes - 1), 
                                                     Mathf.Clamp((int)(((pos.y - chunkPos2D.y * terrainsSpacing) / terrainsSpacing) * heightmapRes), 0, heightmapRes - 1));
+
+        chunks[chunkPos2D.x, chunkPos2D.y].heights[heightmapPos.y, heightmapPos.x] = height;
+        chunks[chunkPos2D.x, chunkPos2D.y].isDirty = true;
+    }
+
+
+    public void SetHeight(Vector2Int terrainIndex, Vector2Int terrainHeightmapPos, float height)
+    {
+        Vector2Int chunkPos2D = terrainIndex;
+        Vector2Int heightmapPos = terrainHeightmapPos;
 
         chunks[chunkPos2D.x, chunkPos2D.y].heights[heightmapPos.y, heightmapPos.x] = height;
         chunks[chunkPos2D.x, chunkPos2D.y].isDirty = true;

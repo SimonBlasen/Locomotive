@@ -337,17 +337,19 @@ public class ProcTerrainGen : MonoBehaviour
 
         //PerlinNoise perlin = new PerlinNoise(0);
 
-        int steps = 5000;
+        int steps = 10000;
         long seed = 0;
 
 
-        for (int x = 0; x < 50000 * 1; x += steps)
+        for (int x = 50000; x < 50000 * 2; x += steps)
         {
             for (int y = 50000; y < 50000 * 2; y += steps)
             {
                 JobProcGen jobProcGen = new JobProcGen();
-                jobProcGen.startPos = new Vector2Int(x, y);
-                jobProcGen.endPos = new Vector2Int(x + steps, y + steps);
+                jobProcGen.useTerrainIndices = true;
+                //jobProcGen.startPos = new Vector2Int(x, y);
+                //jobProcGen.endPos = new Vector2Int(x + steps, y + steps);
+                jobProcGen.terrainIndex = new Vector2Int(x / steps, y / steps);
                 jobProcGen.procTerrainGen = this;
                 jobProcGen.seed = seed;
                 jobProcGen.terrainAccessor = terrainAccessor;
