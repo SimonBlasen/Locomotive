@@ -255,7 +255,7 @@ public class TrainRailHandler
 
     private float addNewSegmentBack()
     {
-        int curSwitch = switchSetting.CurrentSetting;
+        int curSwitch = 1 - switchSetting.CurrentSetting;
         curSwitch = Mathf.Clamp(curSwitch, 0, runningSegments[runningSegments.Count - 1].FlippedSegments(!segmentsFlippsd[runningSegments.Count - 1]).Length - 1);
 
         RailSegment nextSegment = runningSegments[runningSegments.Count - 1].FlippedSegments(!segmentsFlippsd[runningSegments.Count - 1])[curSwitch];
