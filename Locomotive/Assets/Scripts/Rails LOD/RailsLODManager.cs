@@ -8,7 +8,7 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class RailsLODManager : MonoBehaviour
 {
-    [Header("Re-Generate MeshBend meshes")]
+    [Header("Re-Generate MeshBend meshes [0]")]
     [SerializeField]
     private bool regenMeshbendMeshes = false;
     [SerializeField]
@@ -26,7 +26,7 @@ public class RailsLODManager : MonoBehaviour
 
     [Space]
 
-    [Header("Duplicate LOD splines")]
+    [Header("Duplicate LOD splines [1]")]
     [SerializeField]
     private bool createLODSplines = false;
     [SerializeField]
@@ -45,7 +45,7 @@ public class RailsLODManager : MonoBehaviour
 
 
     [Space]
-    [Header("Spline Comp Deleter")]
+    [Header("Spline Comp Deleter [2]")]
     [SerializeField]
     private bool deleteSplineComponents = false;
     [SerializeField]
@@ -178,7 +178,10 @@ public class RailsLODManager : MonoBehaviour
         else if (deleteState == 2)
         {
             DestroyImmediate(railMeshesToDelete[deleteIndex].GetComponentInChildren<SplineExtrusion>());
-            DestroyImmediate(railMeshesToDelete[deleteIndex].GetComponentInChildren<SplineMeshTiling>());
+            if (railMeshesToDelete[deleteIndex].GetComponentInChildren<SplineMeshTiling>() != null)
+            {
+                DestroyImmediate(railMeshesToDelete[deleteIndex].GetComponentInChildren<SplineMeshTiling>());
+            }
 
             ExtrusionSegment[] extrusionSegments = railMeshesToDelete[deleteIndex].GetComponentsInChildren<ExtrusionSegment>();
             MeshBender[] meshBenders = railMeshesToDelete[deleteIndex].GetComponentsInChildren<MeshBender>();
