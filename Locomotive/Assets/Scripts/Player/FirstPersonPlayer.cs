@@ -38,6 +38,8 @@ public class FirstPersonPlayer : MonoBehaviour
     [SerializeField]
     private float outsideHeightMax = 1f;
     [SerializeField]
+    private float outsideHeightSpeed = 1f;
+    [SerializeField]
     private Transform debugRaycast = null;
 
     [SerializeField]
@@ -170,6 +172,7 @@ public class FirstPersonPlayer : MonoBehaviour
         {
             yCamRot.Rotate(0f, mouseRotSpeed * Time.fixedDeltaTime * Input.GetAxis("Mouse X"), 0f);
             outsideCamTransY.Rotate(0f, mouseRotSpeed * Time.fixedDeltaTime * Input.GetAxis("Mouse X"), 0f);
+            outsideCamTrans.localPosition += new Vector3(0f, mouseRotSpeed * Time.fixedDeltaTime * Input.GetAxis("Mouse Y"), 0f);
             if (camOutside == false)
             {
                 xCamRot.Rotate(mouseRotSpeed * Time.fixedDeltaTime * Input.GetAxis("Mouse Y") * -1f, 0f, 0f);
