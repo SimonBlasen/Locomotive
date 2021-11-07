@@ -34,6 +34,10 @@ public class FirstPersonPlayer : MonoBehaviour
     [SerializeField]
     private Transform outsideCamTransY = null;
     [SerializeField]
+    private float outsideHeightMin = 1f;
+    [SerializeField]
+    private float outsideHeightMax = 1f;
+    [SerializeField]
     private Transform debugRaycast = null;
 
     [SerializeField]

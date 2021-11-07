@@ -348,11 +348,21 @@ public class RailsLODManager : MonoBehaviour
                 Spline splineRail = allSplines[i];
                 Spline splineLOD = foundFirstSpline;
 
-                if (splineRail.GetComponentInChildren<SplineMeshTiling>() == false)
+                Transform[] childTrans = splineLOD.GetComponentsInChildren<Transform>();
+                for (int j = 0; j < childTrans.Length; j++)
+                {
+                    if (childTrans[j].gameObject.name.Contains("LeftRailing"))
+                    {
+                        splineRail = foundFirstSpline;
+                        splineLOD = allSplines[i];
+                        break;
+                    }
+                }
+                /*if (splineRail.GetComponentInChildren<SplineMeshTiling>() == false)
                 {
                     splineRail = foundFirstSpline;
                     splineLOD = allSplines[i];
-                }
+                }*/
 
 
 
