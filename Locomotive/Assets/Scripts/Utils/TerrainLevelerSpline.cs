@@ -1,4 +1,5 @@
 ﻿using SplineMesh;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -44,6 +45,8 @@ public class TerrainLevelerSpline : MonoBehaviour
     private AnimationCurve weightCurve;
     [SerializeField]
     private float positiveYOffset = 0.03f;
+    [SerializeField]
+    private TerrainLevelerExclude[] excludes = new TerrainLevelerExclude[0];
 
     [SerializeField]
     private GameObject cubeDebug;
@@ -81,7 +84,7 @@ public class TerrainLevelerSpline : MonoBehaviour
         {
             calculate = false;
 
-            terrain.transform.position = Vector3.zero;
+            //terrain.transform.position = Vector3.zero;
 
             int nodeCount = spline.nodes.Count;
             float splineScale = spline.transform.localScale.x;
@@ -116,44 +119,58 @@ public class TerrainLevelerSpline : MonoBehaviour
                 {
                     float s = ((float)i) / stepsPerSpline;
 
-
-                    Vector3 splinePos = spline.GetCurve(Mathf.Clamp(s + node, 0f, nodeCount - 1)).GetSample(s).location * splineScale + spline.transform.position;
-                    Vector3 vecUp = spline.GetCurve(Mathf.Clamp(s + node, 0f, nodeCount - 1)).GetSample(s).up;
-
-                    Vector3 toLeft = Vector3.Cross(spline.GetCurve(Mathf.Clamp(s + node, 0f, nodeCount - 1)).GetSample(s).tangent, spline.GetCurve(Mathf.Clamp(s + node, 0f, nodeCount - 1)).GetSample(s).up).normalized;
-                    Vector3 toRight = -Vector3.Cross(spline.GetCurve(Mathf.Clamp(s + node, 0f, nodeCount - 1)).GetSample(s).tangent, spline.GetCurve(Mathf.Clamp(s + node, 0f, nodeCount - 1)).GetSample(s).up).normalized;
-
-                    Vector3 splineOutLeft = splinePos + toLeft * splineScale;
-                    Vector3 splineOutRight = splinePos + toRight * splineScale;
-
-
-                    float rightLeftDistance = Vector3.Distance(splineOutLeft, splineOutRight);
-                    for (int j = 0; j <= stepsInsideTrack; j++)
+                    bool excluded = false;
+                    for (int j = 0; j < excludes.Length; j++)
                     {
-                        float sIn = (j / ((float)stepsInsideTrack));
-                        Vector3 destVect = splineOutLeft + toRight * rightLeftDistance * sIn;
-
-                        float offsetDown = epsilon + epsilonTiltedFactor * (1f - Mathf.Cos(Vector3.Angle(Vector3.up, vecUp)));
-
-                        setTerrainHeight(destVect.x, destVect.z, destVect.y - offsetDown, 1f);
+                        if (((excludes[j].nodeBegin <= node && excludes[j].begin <= s) || (excludes[j].nodeBegin < node))
+                            && ((excludes[j].nodeEnd >= node && excludes[j].end >= s) || (excludes[j].nodeEnd > node)))
+                        {
+                            excluded = true;
+                            break;
+                        }
                     }
 
-
-                    for (int j = 0; j < stepsOutside; j++)
+                    if (!excluded)
                     {
-                        float weight = 1f - (j / ((float)stepsOutside));
-                        float distanceOut = widthExtendOutside * (1f - weight);
+                        Vector3 splinePos = spline.GetCurve(Mathf.Clamp(s + node, 0f, nodeCount - 1)).GetSample(s).location * splineScale + spline.transform.position;
+                        Vector3 vecUp = spline.GetCurve(Mathf.Clamp(s + node, 0f, nodeCount - 1)).GetSample(s).up;
 
-                        Vector3 destVectLeft = splineOutLeft + toLeft * distanceOut;
-                        Vector3 destVectRight = splineOutRight + toRight * distanceOut;
+                        Vector3 toLeft = Vector3.Cross(spline.GetCurve(Mathf.Clamp(s + node, 0f, nodeCount - 1)).GetSample(s).tangent, spline.GetCurve(Mathf.Clamp(s + node, 0f, nodeCount - 1)).GetSample(s).up).normalized;
+                        Vector3 toRight = -Vector3.Cross(spline.GetCurve(Mathf.Clamp(s + node, 0f, nodeCount - 1)).GetSample(s).tangent, spline.GetCurve(Mathf.Clamp(s + node, 0f, nodeCount - 1)).GetSample(s).up).normalized;
 
-                        setTerrainHeight(destVectLeft.x, destVectLeft.z, destVectLeft.y, weight);
-                        setTerrainHeight(destVectRight.x, destVectRight.z, destVectRight.y, weight);
+                        Vector3 splineOutLeft = splinePos + toLeft * splineScale;
+                        Vector3 splineOutRight = splinePos + toRight * splineScale;
+
+
+                        float rightLeftDistance = Vector3.Distance(splineOutLeft, splineOutRight);
+                        for (int j = 0; j <= stepsInsideTrack; j++)
+                        {
+                            float sIn = (j / ((float)stepsInsideTrack));
+                            Vector3 destVect = splineOutLeft + toRight * rightLeftDistance * sIn;
+
+                            float offsetDown = epsilon + epsilonTiltedFactor * (1f - Mathf.Cos(Vector3.Angle(Vector3.up, vecUp)));
+
+                            setTerrainHeight(destVect.x - terrain.transform.position.x, destVect.z - terrain.transform.position.z, destVect.y - offsetDown, 1f);
+                        }
+
+
+                        for (int j = 0; j < stepsOutside; j++)
+                        {
+                            float weight = 1f - (j / ((float)stepsOutside));
+                            float distanceOut = widthExtendOutside * (1f - weight);
+
+                            Vector3 destVectLeft = splineOutLeft + toLeft * distanceOut;
+                            Vector3 destVectRight = splineOutRight + toRight * distanceOut;
+
+                            setTerrainHeight(destVectLeft.x - terrain.transform.position.x, destVectLeft.z - terrain.transform.position.z, destVectLeft.y, weight);
+                            setTerrainHeight(destVectRight.x - terrain.transform.position.x, destVectRight.z - terrain.transform.position.z, destVectRight.y, weight);
+                        }
+                        //GameObject go = Instantiate(cubeDebug, transform);
+                        //go.transform.position = splineOutLeft;
+                        //GameObject go2 = Instantiate(cubeDebug, transform);
+                        //go2.transform.position = splinePos;
                     }
-                    //GameObject go = Instantiate(cubeDebug, transform);
-                    //go.transform.position = splineOutLeft;
-                    //GameObject go2 = Instantiate(cubeDebug, transform);
-                    //go2.transform.position = splinePos;
+
                 }
             }
 
@@ -224,4 +241,26 @@ public class TerrainLevelerSpline : MonoBehaviour
 
         }
     }
+
+    private void OnDrawGizmosSelected()
+    {
+        for (int i = 0; i < excludes.Length; i++)
+        {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawSphere(spline.GetCurve(excludes[i].begin + excludes[i].nodeBegin).GetSample(excludes[i].begin).location + GlobalOffsetManager.Inst.GlobalOffset, 2f);
+
+            Gizmos.color = Color.red;
+            Gizmos.DrawSphere(spline.GetCurve(excludes[i].end + excludes[i].nodeEnd).GetSample(excludes[i].end).location + GlobalOffsetManager.Inst.GlobalOffset, 2f);
+        }
+    }
+}
+
+
+[Serializable]
+public class TerrainLevelerExclude
+{
+    public int nodeBegin;
+    public int nodeEnd;
+    public float begin;
+    public float end;
 }

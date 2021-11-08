@@ -16,7 +16,9 @@ public class InteractableDirectionSwitch : Interactable
     [SerializeField]
     private Transform switchTransform = null;
     [SerializeField]
-    private float switchAngle = 20f;
+    private Transform forwardPosTransform = null;
+    [SerializeField]
+    private Transform backwardsPosTransform = null;
 
     private StudioEventEmitter stevem = null;
 
@@ -47,7 +49,7 @@ public class InteractableDirectionSwitch : Interactable
 
         s = Mathf.Clamp(s, 0f, 1f);
 
-        switchTransform.localRotation = Quaternion.Euler(Mathf.Lerp(-switchAngle, switchAngle, curveFlipSwitch.Evaluate(s)), 0f, 0f);
+        switchTransform.localRotation = Quaternion.Lerp(backwardsPosTransform.localRotation, forwardPosTransform.localRotation, curveFlipSwitch.Evaluate(s));
     }
 
 

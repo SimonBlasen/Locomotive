@@ -35,7 +35,7 @@ public class SpeedGauge : MonoBehaviour
 
         //train.PressureWheels = TargetSpeed * 0.1f;
 
-        pointer.localRotation = Quaternion.Euler(0f, 0f, train.CurrentSpeed * angleFactor);
+        pointer.localRotation = Quaternion.Euler(0f, 0f, Mathf.Abs(train.CurrentSpeed) * angleFactor);
     }
 
     public float TargetSpeed

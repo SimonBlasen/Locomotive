@@ -8,8 +8,21 @@ public class InteractableFullBrake : Interactable
     private BrakeLeaver brakeLeaver = null;
     [SerializeField]
     private float colliderStretchFactor = 1f;
+    [SerializeField]
+    private bool newSlideMode = true;
+    [SerializeField]
+    private bool useXAxe = true;
+    [SerializeField]
+    private float slideFactor = 0.01f;
 
     private bool eDown = false;
+
+    private float sliderVal = 0f;
+    private float sliderStartVal = 0f;
+    private float sliderStartValOld = 0f;
+
+    private Vector2 mousePosStart = Vector2.zero;
+    private float startBrakeVal = 0f;
 
     // Start is called before the first frame update
     protected override void Start()
@@ -17,32 +30,60 @@ public class InteractableFullBrake : Interactable
         base.Start();
 
         brakeLeaver.BrakeLevel = 0f;
+        setTextMeshHint();
     }
 
     // Update is called once per frame
     protected override void Update()
     {
         base.Update();
+
+        if (newSlideMode)
+        {
+            if (eDown)
+            {
+                Vector2 absDelta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+                mousePosStart += absDelta * slideFactor;
+
+
+                float slideVal = useXAxe ? mousePosStart.x : mousePosStart.y;
+
+                brakeLeaver.BrakeLevel = Mathf.Clamp(startBrakeVal + slideVal, 0f, 1f);
+                setTextMeshHint();
+            }
+
+
+        }
     }
 
     private void FixedUpdate()
     {
-        if (eDown)
+        if (!newSlideMode)
         {
-            float sliderVal = 0f;
-
-            RaycastHit hit;
-            if (Physics.Raycast(Camera.main.ScreenPointToRay(new Vector2(Screen.width * 0.5f, Screen.height * 0.5f)), out hit, 2f, LayerMask.GetMask("Interactable")))
+            if (eDown)
             {
-                sliderVal = interactableCollider.transform.InverseTransformPoint(hit.point).y;
+                RaycastHit hit;
+                if (Physics.Raycast(Camera.main.ScreenPointToRay(new Vector2(Screen.width * 0.5f, Screen.height * 0.5f)), out hit, 2f, LayerMask.GetMask("Interactable")))
+                {
+                    sliderVal = interactableCollider.transform.InverseTransformPoint(hit.point).y + (sliderStartValOld - sliderStartVal);
 
-                //Debug.Log(sliderVal.ToString("n2"));
+                    //Debug.Log(sliderVal.ToString("n2"));
 
-                float brakeVal = (sliderVal * 1.5f + 0.5f);
-                brakeVal = Mathf.Clamp(brakeVal, 0f, 1f);
+                    float brakeVal = (sliderVal * 1.5f + 0.5f);
+                    brakeVal = Mathf.Clamp(brakeVal, 0f, 1f);
 
-                brakeLeaver.BrakeLevel = brakeVal;
+                    brakeLeaver.BrakeLevel = brakeVal;
+                    setTextMeshHint();
+                }
             }
+        }
+    }
+
+    private void setTextMeshHint()
+    {
+        if (textMeshHint != null)
+        {
+            textMeshHint.text = "Brake: " + (100f - brakeLeaver.BrakeLevel * 100f).ToString("n0") + "%";
         }
     }
 
@@ -50,10 +91,30 @@ public class InteractableFullBrake : Interactable
     public override void Interact()
     {
         eDown = true;
+        //mousePosStart = Input.mousePosition;
+        mousePosStart = Vector2.zero;
+
+        if (newSlideMode)
+        {
+            startBrakeVal = brakeLeaver.BrakeLevel;
+            FirstPersonPlayer.RotationsBlocked = true;
+        }
+
+        RaycastHit hit;
+        if (Physics.Raycast(Camera.main.ScreenPointToRay(new Vector2(Screen.width * 0.5f, Screen.height * 0.5f)), out hit, 2f, LayerMask.GetMask("Interactable")))
+        {
+            sliderStartVal = interactableCollider.transform.InverseTransformPoint(hit.point).y;
+        }
     }
 
     public override void InteractUp()
     {
+        if (newSlideMode)
+        {
+            FirstPersonPlayer.RotationsBlocked = false;
+        }
+
+        sliderStartValOld = sliderVal;
         eDown = false;
     }
 }

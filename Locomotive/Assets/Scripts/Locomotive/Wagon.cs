@@ -12,6 +12,8 @@ public class Wagon : TrainPart
     protected override void Start()
     {
         base.Start();
+
+        GlobalOffsetManager.Inst.RegisterQuickfireTransform(transform);
     }
 
     // Update is called once per frame

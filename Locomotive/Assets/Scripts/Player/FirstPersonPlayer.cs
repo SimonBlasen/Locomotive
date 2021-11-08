@@ -33,6 +33,14 @@ public class FirstPersonPlayer : MonoBehaviour
     private Transform outsideCamTrans = null;
     [SerializeField]
     private Transform outsideCamTransY = null;
+    [SerializeField]
+    private float outsideHeightMin = 1f;
+    [SerializeField]
+    private float outsideHeightMax = 1f;
+    [SerializeField]
+    private float outsideHeightSpeed = 1f;
+    [SerializeField]
+    private Transform debugRaycast = null;
 
     [SerializeField]
     private FMODUnity.StudioEventEmitter snapshotOutsideCam = null;
@@ -45,6 +53,7 @@ public class FirstPersonPlayer : MonoBehaviour
 
     private Transform locomotiveTransform = null;
 
+    private float lerpToInsideFor = 0f;
     private float curOutsideDistance = 0f;
 
     // Start is called before the first frame update
@@ -106,26 +115,76 @@ public class FirstPersonPlayer : MonoBehaviour
             {
                 snapshotOutsideCam.Play();
                 cam.transform.parent = null;
+                GlobalOffsetManager.Inst.RegisterQuickfireTransform(cam.transform);
             }
             else
             {
                 snapshotOutsideCam.Stop();
                 cam.transform.parent = xCamRot;
+                GlobalOffsetManager.Inst.DeregisterQuickfireTransform(cam.transform);
+                lerpToInsideFor = 0.3f;
             }
         }
     }
 
     private void FixedUpdate()
     {
-        yCamRot.Rotate(0f, mouseRotSpeed * Time.fixedDeltaTime * Input.GetAxis("Mouse X"), 0f);
-        outsideCamTransY.Rotate(0f, mouseRotSpeed * Time.fixedDeltaTime * Input.GetAxis("Mouse X"), 0f);
-        xCamRot.Rotate(mouseRotSpeed * Time.fixedDeltaTime * Input.GetAxis("Mouse Y") * -1f, 0f, 0f);
+
+
+
+        Debug.DrawRay(cam.ScreenPointToRay(new Vector2(Screen.width * 0.5f, Screen.height * 0.5f)).origin, cam.ScreenPointToRay(new Vector2(Screen.width * 0.5f, Screen.height * 0.5f)).direction * raycastDistance);
+
+        debugRaycast.position = cam.transform.position;
+        debugRaycast.forward = cam.transform.forward;
+
+        RaycastHit hit;
+        //if (Physics.Raycast(cam.ScreenPointToRay(new Vector2(Screen.width * 0.5f, Screen.height * 0.5f)), out hit, raycastDistance, LayerMask.GetMask("Interactable")))
+        if (Physics.Raycast(new Ray(cam.transform.position, cam.transform.forward), out hit, raycastDistance, LayerMask.GetMask("Interactable")))
+        {
+            Interactable interactable = hit.transform.GetComponent<InteractableCollider>().Interactable;
+            if (currentHoveredInteractable != interactable && currentHoveredInteractable != null)
+            {
+                currentHoveredInteractable.InteractUp();
+                currentHoveredInteractable.Hovered = false;
+            }
+            currentHoveredInteractable = interactable;
+            currentHoveredInteractable.Hovered = true;
+        }
+        else
+        {
+            if (currentHoveredInteractable != null)
+            {
+                currentHoveredInteractable.InteractUp();
+                currentHoveredInteractable.Hovered = false;
+                currentHoveredInteractable = null;
+            }
+        }
+
+
+
+
+
+
+
+
+
+        if (RotationsBlocked == false)
+        {
+            yCamRot.Rotate(0f, mouseRotSpeed * Time.fixedDeltaTime * Input.GetAxis("Mouse X"), 0f);
+            outsideCamTransY.Rotate(0f, mouseRotSpeed * Time.fixedDeltaTime * Input.GetAxis("Mouse X"), 0f);
+            outsideCamTrans.localPosition += new Vector3(0f, mouseRotSpeed * Time.fixedDeltaTime * Input.GetAxis("Mouse Y") * outsideHeightSpeed, 0f);
+            outsideCamTrans.localPosition = new Vector3(outsideCamTrans.localPosition.x, Mathf.Clamp(outsideCamTrans.localPosition.y, outsideHeightMin, outsideHeightMax), outsideCamTrans.localPosition.z);
+            if (camOutside == false)
+            {
+                xCamRot.Rotate(mouseRotSpeed * Time.fixedDeltaTime * Input.GetAxis("Mouse Y") * -1f, 0f, 0f);
+            }
+        }
 
 
         Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
 
-        transform.position += yCamRot.forward * movementSpeed * movement.z * Time.fixedDeltaTime;
-        transform.position += yCamRot.right * movementSpeed * movement.x * Time.fixedDeltaTime;
+        transform.localPosition += transform.InverseTransformVector(yCamRot.forward * movementSpeed * movement.z * Time.fixedDeltaTime);
+        transform.localPosition += transform.InverseTransformVector(yCamRot.right * movementSpeed * movement.x * Time.fixedDeltaTime);
 
         if (transform.localPosition.x < minLocomotivePos.localPosition.x)
         {
@@ -156,31 +215,6 @@ public class FirstPersonPlayer : MonoBehaviour
 
 
 
-        Debug.DrawRay(cam.ScreenPointToRay(new Vector2(Screen.width * 0.5f, Screen.height * 0.5f)).origin, cam.ScreenPointToRay(new Vector2(Screen.width * 0.5f, Screen.height * 0.5f)).direction * raycastDistance);
-
-        RaycastHit hit;
-        if (Physics.Raycast(cam.ScreenPointToRay(new Vector2(Screen.width * 0.5f, Screen.height * 0.5f)), out hit, raycastDistance, LayerMask.GetMask("Interactable")))
-        {
-            Interactable interactable = hit.transform.GetComponent<InteractableCollider>().Interactable;
-            if (currentHoveredInteractable != interactable && currentHoveredInteractable != null)
-            {
-                currentHoveredInteractable.Hovered = false;
-            }
-            currentHoveredInteractable = interactable;
-            currentHoveredInteractable.Hovered = true;
-        }
-        else
-        {
-            if (currentHoveredInteractable != null)
-            {
-                currentHoveredInteractable.InteractUp();
-                currentHoveredInteractable.Hovered = false;
-                currentHoveredInteractable = null;
-            }
-        }
-
-
-
 
 
 
@@ -198,10 +232,19 @@ public class FirstPersonPlayer : MonoBehaviour
         }
         else
         {
-            cam.transform.position = Vector3.Lerp(cam.transform.position, xCamRot.position, Time.fixedDeltaTime * 20f);
-            cam.transform.localRotation = Quaternion.Lerp(cam.transform.localRotation, Quaternion.identity, Time.fixedDeltaTime * 40f);
+            lerpToInsideFor -= Time.fixedDeltaTime;
+            if (lerpToInsideFor > 0f)
+            {
+                cam.transform.position = Vector3.Lerp(cam.transform.position, xCamRot.position, Time.fixedDeltaTime * 20f);
+                cam.transform.localRotation = Quaternion.Lerp(cam.transform.localRotation, Quaternion.identity, Time.fixedDeltaTime * 40f);
+            }
         }
     }
+
+    public static bool RotationsBlocked
+    {
+        get; set;
+    } = false;
 
     public static float RaycastDistance
     {

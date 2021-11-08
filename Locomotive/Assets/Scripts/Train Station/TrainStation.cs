@@ -14,6 +14,11 @@ public class TrainStation : MonoBehaviour
     private float personsExitSpeedMin = 0.1f;
     [SerializeField]
     private float personsExitSpeedMax = 0.3f;
+    [SerializeField]
+    private StaticTrainStation staticTrainStation = null;
+
+    [SerializeField]
+    public Vector3Int globalOffsetToSpawnPersons = new Vector3Int(-1, 0, 0);        // So that train stations, which have not set this variable don't spawn persons
 
     private List<Train> allTrains = new List<Train>();
 
@@ -25,13 +30,18 @@ public class TrainStation : MonoBehaviour
 
     private float personExitTrainCounter = 0f;
 
+    private bool wasInGlobalOffset = false;
+
     private Train[] currentTrainsInStation = new Train[0];
     private Platform[] platformsOn = new Platform[0];
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        for (int i = 0; i < platforms.Length; i++)
+        {
+            platforms[i].platformIndex = i;
+        }
     }
 
     // Update is called once per frame
@@ -43,8 +53,20 @@ public class TrainStation : MonoBehaviour
         {
             checkTrainsCounter = 0f;
 
+            checkGlobalOffsetChange();
+
             
             Train[] trainsInStation = getTrainsInsidePlatform(out platformsOn);
+
+            // Remove train station from old trains, add to current trains
+            for (int i = 0; i < currentTrainsInStation.Length; i++)
+            {
+                currentTrainsInStation[i].CurrentTrainStation = null;
+            }
+            for (int i = 0; i < trainsInStation.Length; i++)
+            {
+                trainsInStation[i].CurrentTrainStation = this;
+            }
 
             currentTrainsInStation = trainsInStation;
 
@@ -80,6 +102,29 @@ public class TrainStation : MonoBehaviour
                         sendPersonIntoTrain(currentTrainsInStation[i], platformsOn[i]);
                     }
                 }
+            }
+        }
+    }
+
+    private void checkGlobalOffsetChange()
+    {
+        if (IsGlobalOffsetMatching != wasInGlobalOffset)
+        {
+            wasInGlobalOffset = IsGlobalOffsetMatching;
+
+            if (IsGlobalOffsetMatching)
+            {
+                Debug.Log("Actually spawning train station persons");
+                while (toSpawnPersonsOnPlatform.Count > 0)
+                {
+                    actuallySpawnPerson(toSpawnPersonsOnPlatform[0]);
+                }
+            }
+            else
+            {
+                Debug.Log("De-Spawning train station persons");
+
+                despawnAllActualPersons();
             }
         }
     }
@@ -195,10 +240,10 @@ public class TrainStation : MonoBehaviour
         for (int i = 0; i < platforms.Length; i++)
         {
             Gizmos.color = Color.yellow;
-            Gizmos.DrawSphere(platforms[i].spline.GetSampleAtDistance(platforms[i].trainStationBegin).location, 2f);
+            Gizmos.DrawSphere(platforms[i].spline.GetSampleAtDistance(platforms[i].trainStationBegin).location + GlobalOffsetManager.Inst.GlobalOffset, 2f);
 
             Gizmos.color = Color.red;
-            Gizmos.DrawSphere(platforms[i].spline.GetSampleAtDistance(platforms[i].trainStationEnd).location, 2f);
+            Gizmos.DrawSphere(platforms[i].spline.GetSampleAtDistance(platforms[i].trainStationEnd).location + GlobalOffsetManager.Inst.GlobalOffset, 2f);
         }
     }
 
@@ -219,11 +264,32 @@ public class TrainStation : MonoBehaviour
     {
         get
         {
-            return instPersons.Count;
+            return instPersons.Count + toSpawnPersonsOnPlatform.Count;
         }
     }
 
-    public void SpawnPerson(int platform)
+    public bool IsGlobalOffsetMatching
+    {
+        get
+        {
+            return GlobalOffsetManager.Inst.GlobalOffset == globalOffsetToSpawnPersons;
+        }
+    }
+
+    private List<int> toSpawnPersonsOnPlatform = new List<int>();
+
+    private void despawnAllActualPersons()
+    {
+        while (instPersons.Count > 0)
+        {
+            toSpawnPersonsOnPlatform.Add(instPersons[0].WaitingPlatform.platformIndex);
+
+            Destroy(instPersons[0].gameObject);
+            instPersons.RemoveAt(0);
+        }
+    }
+
+    private void actuallySpawnPerson(int platform)
     {
         GameObject instPerson = Instantiate(Resources.Load<GameObject>("Train Station/TrainstationPerson"), transform);
 
@@ -236,6 +302,29 @@ public class TrainStation : MonoBehaviour
         person.GetComponent<NavMeshAgent>().enabled = false;
 
         instPersons.Add(person);
+
+        for (int i = 0; i < toSpawnPersonsOnPlatform.Count; i++)
+        {
+            if (toSpawnPersonsOnPlatform[i] == platform)
+            {
+                toSpawnPersonsOnPlatform.RemoveAt(i);
+                break;
+            }
+        }
+    }
+
+    public void SpawnPerson(int platform)
+    {
+        // TODO directly spawn person, if the platform is inside global offset
+
+        if (!IsGlobalOffsetMatching)
+        {
+            toSpawnPersonsOnPlatform.Add(platform);
+        }
+        else
+        {
+            actuallySpawnPerson(platform);
+        }
     }
 
     public int PeopleWaitingPlatform
@@ -248,6 +337,14 @@ public class TrainStation : MonoBehaviour
         get
         {
             return platforms.Length;
+        }
+    }
+
+    public Platform[] Platforms
+    {
+        get
+        {
+            return platforms;
         }
     }
 
@@ -268,4 +365,6 @@ public class Platform
     public Transform waitingAreaMinPos = null;
     public Transform waitingAreaMaxPos = null;
     public Transform platformExit = null;
+    [HideInInspector]
+    public int platformIndex = -1;
 }

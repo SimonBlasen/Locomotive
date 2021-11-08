@@ -63,9 +63,11 @@ public class Railroad : MonoBehaviour
 
         for (int i = 0; i < allRailSegments.Length; i++)
         {
-            if (allRailSegments[i].Spline.GetSample(0f).location.x + allRailSegments[i].Spline.GetSample(1f).location.x < min.x && allRailSegments[i].ID == -1)
+            Vector3 location0 = allRailSegments[i].Spline.GetSample(0f).location + GlobalOffsetManager.Inst.GlobalOffset;
+            Vector3 location1 = allRailSegments[i].Spline.GetSample(1f).location + GlobalOffsetManager.Inst.GlobalOffset;
+            if (location0.x + location1.x < min.x && allRailSegments[i].ID == -1)
             {
-                min = new Vector3(allRailSegments[i].Spline.GetSample(0f).location.x + allRailSegments[i].Spline.GetSample(1f).location.x, allRailSegments[i].Spline.GetSample(0f).location.y, allRailSegments[i].Spline.GetSample(0f).location.z);
+                min = new Vector3(location0.x + location1.x, location0.y, location0.z);
                 minIndex = i;
             }
         }
@@ -105,5 +107,26 @@ public class Railroad : MonoBehaviour
         }
 
         return true;
+    }
+
+    public RailSegment[] AllRailSegments
+    {
+        get
+        {
+            return allRailSegments;
+        }
+    }
+
+    public RailSegment GetRailSegment(int id)
+    {
+        for (int i = 0; i < allRailSegments.Length; i++)
+        {
+            if (allRailSegments[i].ID == id)
+            {
+                return allRailSegments[i];
+            }
+        }
+
+        return null;
     }
 }

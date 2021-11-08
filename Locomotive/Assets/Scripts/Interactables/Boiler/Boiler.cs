@@ -18,6 +18,8 @@ public class Boiler : MonoBehaviour
     private float maxPressure = 400f;
     [SerializeField]
     private float releaseValveStrength = 400f;
+    [SerializeField]
+    private float pressureExplosion = 601f;
 
     private float curTemp = 0f;
 

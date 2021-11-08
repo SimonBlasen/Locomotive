@@ -1,3 +1,4 @@
+using FMODUnity;
 using SplineMesh;
 using System.Collections;
 using System.Collections.Generic;
@@ -44,10 +45,14 @@ public class Train : MonoBehaviour
     [SerializeField]
     private SwitchSetting switchSetting = null;
     [SerializeField]
-    private FMODUnity.StudioEventEmitter tunnelEmitter = null;
+    private StudioEventEmitter tunnelEmitter = null;
+    [SerializeField]
+    private StudioEventEmitter eventEmitterLokSound = null;
+    [SerializeField]
+    private StudioEventEmitter[] waggonsEventEmitterSounds = null;
 
     [FMODUnity.EventRef]
-    public string fmodEventTrainSound;
+    public string fmodEventAmbientSound;
 
 
     public delegate void RailHandlerInitEvent(TrainRailHandler railHandler);
@@ -61,7 +66,7 @@ public class Train : MonoBehaviour
 
     private float distanceTotalTrain = 0f;
 
-    private FMOD.Studio.EventInstance instanceTrainSound;
+    private FMOD.Studio.EventInstance instanceAmbientSound;
 
     private TrainRailHandler railHandler = null;
 
@@ -73,8 +78,15 @@ public class Train : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        instanceTrainSound = FMODUnity.RuntimeManager.CreateInstance(fmodEventTrainSound);
-        instanceTrainSound.start();
+        instanceAmbientSound = FMODUnity.RuntimeManager.CreateInstance(fmodEventAmbientSound);
+        instanceAmbientSound.start();
+
+        //eventEmitterLokSound = GetComponent<StudioEventEmitter>();
+        eventEmitterLokSound.Play();
+        for (int i = 0; i < waggonsEventEmitterSounds.Length; i++)
+        {
+            waggonsEventEmitterSounds[i].Play();
+        }
 
 
         // Register in train stations
@@ -105,10 +117,10 @@ public class Train : MonoBehaviour
                 tunnelEmitter.Play();
             }
         }
+
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
+    private void moveTrain(float deltaTime)
     {
         if (!inited && railRoad.IsReady)
         {
@@ -119,7 +131,7 @@ public class Train : MonoBehaviour
 
         if (inited)
         {
-            float velocityStep = curVelocity * Time.fixedDeltaTime * actualPhysicalSpeedCorrection;
+            float velocityStep = curVelocity * deltaTime * actualPhysicalSpeedCorrection;
 
             float slopedGravityMass = 0f;
 
@@ -133,7 +145,7 @@ public class Train : MonoBehaviour
             }
             else
             {
-                locomotive.transform.position = curveSample.location;
+                locomotive.transform.position = curveSample.location + GlobalOffsetManager.Inst.GlobalOffset;
                 locomotive.transform.rotation = Quaternion.LookRotation(curveSample.tangent, curveSample.up);
 
                 float xAngle = Vector3.Angle(Vector3.up, locomotive.transform.forward) - 90f;
@@ -142,7 +154,7 @@ public class Train : MonoBehaviour
                 for (int i = 0; i < wagons.Length; i++)
                 {
                     CurveSample curveSampleWagon = curveSamples[i + 1];
-                    wagons[i].transform.position = curveSampleWagon.location;
+                    wagons[i].transform.position = curveSampleWagon.location + GlobalOffsetManager.Inst.GlobalOffset;
                     wagons[i].transform.rotation = Quaternion.LookRotation(curveSampleWagon.tangent, curveSampleWagon.up);
 
                     xAngle = Vector3.Angle(Vector3.up, wagons[i].transform.forward) - 90f;
@@ -152,7 +164,7 @@ public class Train : MonoBehaviour
 
 
             // Accelerating
-            float curAccStep = PressureWheels * Time.fixedDeltaTime * accelerationCurve.Evaluate(curVelocity);
+            float curAccStep = PressureWheels * deltaTime * accelerationCurve.Evaluate(curVelocity);
 
             curVelocity = Mathf.MoveTowards(curVelocity, DriveDirectionForward ? topSpeed : -topSpeed, curAccStep);
 
@@ -160,14 +172,33 @@ public class Train : MonoBehaviour
             //Debug.Log("SlopedGravMass: " + slopedGravityMass.ToString("n2"));
 
             // Slopes Gravity
-            curVelocity += slopedGravityMass * gravitySlopeStrength * Time.fixedDeltaTime;
+            curVelocity += slopedGravityMass * gravitySlopeStrength * deltaTime;
 
             // Braking
-            float curDeceleration = BrakeStrength * Time.fixedDeltaTime * deceleration;
+            float curDeceleration = BrakeStrength * deltaTime * deceleration;
             curVelocity = Mathf.MoveTowards(curVelocity, 0f, curDeceleration);
 
-            instanceTrainSound.setParameterByName("RPM", Mathf.Abs((CurrentSpeed / topSpeed) * 100f * audioFactor));
+            int rpmInt = (int)Mathf.Abs((CurrentSpeed / topSpeed) * 100f * audioFactor);
+            //Debug.Log("Rpm Val: " + rpmInt.ToString());
+            eventEmitterLokSound.SetParameter("RPM", Mathf.Abs((CurrentSpeed / topSpeed) * 100f * audioFactor));
+            for (int i = 0; i < waggonsEventEmitterSounds.Length; i++)
+            {
+                waggonsEventEmitterSounds[i].SetParameter("RPM", Mathf.Abs((CurrentSpeed / topSpeed) * 100f * audioFactor));
+            }
+
+            instanceAmbientSound.setParameterByName("Altitude", (locomotive.transform.position.y - 874.934f) * 10f);
+
+            //float rpmOut;
+            //instanceTrainSound.getParameterByName("RPM", out rpmOut);
+            //Debug.Log("Rpm Out: " + rpmOut.ToString());
+
         }
+    }
+
+    // Update is called once per frame
+    void FixedUpdate()
+    {
+        moveTrain(Time.fixedDeltaTime);
     }
 
 
@@ -180,6 +211,14 @@ public class Train : MonoBehaviour
         }
     }
 
+
+    public Locomotive Locomotive
+    {
+        get
+        {
+            return locomotive;
+        }
+    }
 
     public float TargetSpeed
     {
@@ -244,6 +283,11 @@ public class Train : MonoBehaviour
             return curVelocity;
         }
     }
+
+    public TrainStation CurrentTrainStation
+    {
+        get; set;
+    } = null;
 
     public bool DriveDirectionForward
     {
