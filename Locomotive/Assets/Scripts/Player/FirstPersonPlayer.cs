@@ -56,9 +56,12 @@ public class FirstPersonPlayer : MonoBehaviour
     private float lerpToInsideFor = 0f;
     private float curOutsideDistance = 0f;
 
+    private Train train;
+
     // Start is called before the first frame update
     void Start()
     {
+        train = GetComponentInParent<Train>();
         curOutsideDistance = minOutsideDistance;
         locomotiveTransform = transform.parent;
         cam = GetComponentInChildren<Camera>();
@@ -239,6 +242,8 @@ public class FirstPersonPlayer : MonoBehaviour
                 cam.transform.localRotation = Quaternion.Lerp(cam.transform.localRotation, Quaternion.identity, Time.fixedDeltaTime * 40f);
             }
         }
+
+        train.MoveTrain(Time.fixedDeltaTime);
     }
 
     public static bool RotationsBlocked

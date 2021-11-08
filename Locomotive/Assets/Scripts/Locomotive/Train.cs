@@ -120,7 +120,7 @@ public class Train : MonoBehaviour
 
     }
 
-    private void moveTrain(float deltaTime)
+    public void MoveTrain(float deltaTime)
     {
         if (!inited && railRoad.IsReady)
         {
@@ -198,8 +198,9 @@ public class Train : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        moveTrain(Time.fixedDeltaTime);
+        //moveTrain(Time.fixedDeltaTime);
     }
+
 
 
     private void OnDestroy()
