@@ -250,6 +250,7 @@ public class RailsLODManager : MonoBehaviour
         {
             if (mfs[k].sharedMesh != null)
             {
+#if UNITY_EDITOR
                 AssetDatabase.CreateAsset(mfs[k].sharedMesh, "Assets/" + assetsPath + "/" + genLODs.ToString() + ".asset");
 
                 Mesh resourcesMesh = (Mesh)Resources.Load(assetsPath.Replace("Resources/", "") + "/" + genLODs.ToString() + "");
@@ -270,6 +271,8 @@ public class RailsLODManager : MonoBehaviour
                 mfs[k].mesh = resourcesMesh;
 
                 genLODs++;
+
+#endif
             }
         }
     }
