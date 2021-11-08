@@ -5741,9 +5741,9 @@ MonoBehaviour:
   scrollSpeed: -16
   outsideCamTrans: {fileID: 2088515289615145134}
   outsideCamTransY: {fileID: 1101946810893509485}
-  outsideHeightMin: 1
-  outsideHeightMax: 1
-  outsideHeightSpeed: 1
+  outsideHeightMin: -1
+  outsideHeightMax: 5
+  outsideHeightSpeed: -0.1
   debugRaycast: {fileID: 0}
   snapshotOutsideCam: {fileID: 6019737999731726712}
 --- !u!1 &3980784863753801658

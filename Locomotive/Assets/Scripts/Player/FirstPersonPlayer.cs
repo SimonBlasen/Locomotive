@@ -172,7 +172,8 @@ public class FirstPersonPlayer : MonoBehaviour
         {
             yCamRot.Rotate(0f, mouseRotSpeed * Time.fixedDeltaTime * Input.GetAxis("Mouse X"), 0f);
             outsideCamTransY.Rotate(0f, mouseRotSpeed * Time.fixedDeltaTime * Input.GetAxis("Mouse X"), 0f);
-            outsideCamTrans.localPosition += new Vector3(0f, mouseRotSpeed * Time.fixedDeltaTime * Input.GetAxis("Mouse Y"), 0f);
+            outsideCamTrans.localPosition += new Vector3(0f, mouseRotSpeed * Time.fixedDeltaTime * Input.GetAxis("Mouse Y") * outsideHeightSpeed, 0f);
+            outsideCamTrans.localPosition = new Vector3(outsideCamTrans.localPosition.x, Mathf.Clamp(outsideCamTrans.localPosition.y, outsideHeightMin, outsideHeightMax), outsideCamTrans.localPosition.z);
             if (camOutside == false)
             {
                 xCamRot.Rotate(mouseRotSpeed * Time.fixedDeltaTime * Input.GetAxis("Mouse Y") * -1f, 0f, 0f);
