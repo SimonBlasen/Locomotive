@@ -5,7 +5,7 @@
 			<value>Steam 3D</value>
 		</property>
 		<property name="outputFormat">
-			<value>5</value>
+			<value>1</value>
 		</property>
 		<relationship name="folder">
 			<destination>{2ce3dbf1-e9f1-49c1-ab18-ac701bec8e4f}</destination>
