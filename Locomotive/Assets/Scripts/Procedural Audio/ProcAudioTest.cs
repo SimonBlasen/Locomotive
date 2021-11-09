@@ -63,15 +63,15 @@ public class ProcAudioTest : MonoBehaviour
         float[] vals = new float[0];
         for (int i = 0; i < procAudioGraph.nodes.Count; i++)
         {
-            if (typeof(PANodeTimedependend).IsAssignableFrom(procAudioGraph.nodes[i].GetType()))
+            if (typeof(PAParentTimedependend).IsAssignableFrom(procAudioGraph.nodes[i].GetType()))
             {
-                PANodeTimedependend pANodeTimedependend = (PANodeTimedependend)procAudioGraph.nodes[i];
+                PAParentTimedependend pANodeTimedependend = (PAParentTimedependend)procAudioGraph.nodes[i];
 
                 pANodeTimedependend.times = times;
             }
-            if (typeof(PANodeGenerator).IsAssignableFrom(procAudioGraph.nodes[i].GetType()))
+            if (typeof(PAParentGenerator).IsAssignableFrom(procAudioGraph.nodes[i].GetType()))
             {
-                PANodeGenerator pANodeGenerator = (PANodeGenerator)procAudioGraph.nodes[i];
+                PAParentGenerator pANodeGenerator = (PAParentGenerator)procAudioGraph.nodes[i];
 
                 pANodeGenerator.sampleSize = data.Length;
             }

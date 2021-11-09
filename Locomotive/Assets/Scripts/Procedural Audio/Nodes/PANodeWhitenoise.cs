@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using XNode;
 
-public class PANodeWhitenoise : PANodeGenerator
+public class PANodeWhitenoise : PAParentGenerator
 {
 
 	[Output]

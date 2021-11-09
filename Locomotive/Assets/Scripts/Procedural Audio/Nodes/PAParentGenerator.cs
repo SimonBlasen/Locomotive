@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using XNode;
 
-public class PANodeGenerator : PANodeTimedependend
+public class PAParentGenerator : PAParentTimedependend
 {
 
 	[HideInInspector]

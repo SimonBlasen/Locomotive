@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using XNode;
 
-public class PANodeTimedependend : Node {
+public class PAParentTimedependend : Node {
 
 	[HideInInspector]
 	public double[] times;

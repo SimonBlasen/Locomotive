@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using XNode;
 
-public class PANodeSine : PANodeGenerator
+public class PANodeSine : PAParentGenerator
 {
 	[Output]
 	public float[] noiseOutput;
+
+	public AnimationCurve curve;
 
 	public double frequency = 1f;
 
