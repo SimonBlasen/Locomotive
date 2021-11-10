@@ -13,11 +13,16 @@ public class PANodeOnepole : PAParentHistory
 	public float[] output;
 
 	public bool isLowPass = false;
-	public bool passthrough = false;
-	public float lp_fCut;
-	public float lp_fSampling;
-	public float hp_fCut;
-	public float hp_fSampling;
+
+	//public bool passthrough = false;
+	[Input]
+	public float[] lp_fCut;
+	[Input]
+	public float[] lp_fSampling;
+	[Input]
+	public float[] hp_fCut;
+	[Input]
+	public float[] hp_fSampling;
 
 	// Use this for initialization
 	protected override void Init()
@@ -43,8 +48,8 @@ public class PANodeOnepole : PAParentHistory
 
 				if (isLowPass)
 				{
-					float w = 2f * lp_fSampling;
-					float fCut = lp_fCut * 2f * Mathf.PI;
+					float w = 2f * lp_fSampling[i];
+					float fCut = lp_fCut[i] * 2f * Mathf.PI;
 					float norm = 1f / (fCut + w);
 					b1 = (w - fCut) * norm;
 					a0 = fCut * norm;
@@ -52,8 +57,8 @@ public class PANodeOnepole : PAParentHistory
 				}
                 else
 				{
-					float w = 2f * hp_fSampling;
-					float fCut = hp_fCut * 2f * Mathf.PI;
+					float w = 2f * hp_fSampling[i];
+					float fCut = hp_fCut[i] * 2f * Mathf.PI;
 					float norm = 1f / (fCut + w);
 					a0 = w * norm;
 					a1 = -a0;
@@ -68,11 +73,10 @@ public class PANodeOnepole : PAParentHistory
 
 				output_vals[i] = inp * a0 + inp_1 * a1 + out_1 * b1;
 
-				if (passthrough)
+				/*if (passthrough)
                 {
 					output_vals[i] = inp;
-
-				}
+				}*/
 
 
 				//float val_y = inp * lowpass_a + (1f - lowpass_a) * getLastOutputs(1)[0];

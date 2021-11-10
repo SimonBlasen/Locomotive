@@ -8,6 +8,7 @@ public class PAParentHistory : Node
 
 	private float[] prev_outputs = new float[2048];
 	private float[] prev_inputs = new float[2048];
+	private List<float[]> add_prevs = new List<float[]>();
 	private int prev_index = 0;
 
 	private int sanity_index_check_counter = 0;
@@ -74,5 +75,37 @@ public class PAParentHistory : Node
 		}
 
 		return last_inputs;
+	}
+
+	protected float[] getLastAdditionals(int amount, int additional_index)
+	{
+		while (add_prevs.Count <= additional_index)
+		{
+			add_prevs.Add(new float[2048]);
+		}
+
+		float[] last_additionals = new float[amount];
+		for (int i = 0; i < amount; i++)
+		{
+			int index = prev_index - i;
+			if (index < 0)
+			{
+				index += add_prevs[additional_index].Length;
+			}
+
+			last_additionals[i] = add_prevs[additional_index][index];
+		}
+
+		return last_additionals;
+	}
+
+	protected void trackAdditionals(int additional_index, float val)
+	{
+		while (add_prevs.Count <= additional_index)
+        {
+			add_prevs.Add(new float[2048]);
+        }
+
+		add_prevs[additional_index][prev_index] = val;
 	}
 }

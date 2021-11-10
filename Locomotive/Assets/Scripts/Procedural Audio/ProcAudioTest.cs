@@ -83,7 +83,12 @@ public class ProcAudioTest : MonoBehaviour
             if (procAudioGraph.nodes[i].GetType() == typeof(PANodeOutput))
             {
                 vals = (float[])procAudioGraph.nodes[i].GetValue(procAudioGraph.nodes[i].GetOutputPort("audioOutput"));
-                break;
+                //break;
+            }
+
+            if (procAudioGraph.nodes[i].HasPort("computeOutput"))
+            {
+                float[] tempVals = (float[])procAudioGraph.nodes[i].GetValue(procAudioGraph.nodes[i].GetOutputPort("computeOutput"));
             }
         }
 

@@ -8,8 +8,6 @@ public class PANodeSine : PAParentGenerator
 	[Output]
 	public float[] noiseOutput;
 
-	public AnimationCurve curve;
-
 	public double frequency = 1f;
 
 	// Use this for initialization
