@@ -373,7 +373,7 @@ public class ProcTerrainGen : MonoBehaviour
 
         for (int x = 50000; x < 50000 * 2; x += steps)
         {
-            for (int y = 0; y < 50000 * 1; y += steps)
+            for (int y = 50000; y < 50000 * 2; y += steps)
             {
                 JobProcGen jobProcGen = new JobProcGen();
                 jobProcGen.useTerrainIndices = true;
@@ -398,7 +398,7 @@ public class ProcTerrainGen : MonoBehaviour
 
     private void finalizeRunningJobs()
     {
-        PerlinNoise perlin = new PerlinNoise(0);
+        PerlinNoise perlin = new PerlinNoise(0); 
 
         Material mat = rendererPlane.sharedMaterial;
 
