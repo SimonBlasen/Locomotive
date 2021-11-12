@@ -255,7 +255,10 @@ public class RailSegmentEditor : MonoBehaviour
 
     private void adjustTerrainNow()
     {
-        deserializeTerrain(File.ReadAllBytes(OwnFilepathTerrain));
+        if (File.Exists(OwnFilepathTerrain))
+        {
+            deserializeTerrain(File.ReadAllBytes(OwnFilepathTerrain));
+        }
 
         if (terrainOriginals == null || terrainOriginals.Length == 0)
         {
