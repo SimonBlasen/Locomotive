@@ -371,7 +371,7 @@ public class ProcTerrainGen : MonoBehaviour
         int steps = 10000;
 
 
-        for (int x = 50000; x < 50000 * 2; x += steps)
+        for (int x = 0; x < 50000 * 1; x += steps)
         {
             for (int y = 50000; y < 50000 * 2; y += steps)
             {

@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class RailSegment : MonoBehaviour
 {
+    public string checkString = "";
+
     [SerializeField]
     private RailSegment[] followingSegments = null;
 
@@ -17,27 +19,44 @@ public class RailSegment : MonoBehaviour
     public void CalculateFollowingPrevious(RailSegment[] allRailSegments)
     {
         float epsilon = 2.3f;
+        float angleEpsilon = 20f;
         Vector3 beginPos = Spline.GetSampleAtDistance(0.1f).location + GlobalOffsetManager.Inst.GlobalOffset;
         Vector3 endPos = Spline.GetSampleAtDistance(spline.Length - 0.1f).location + GlobalOffsetManager.Inst.GlobalOffset;
 
         List<RailSegment> followingSegs = new List<RailSegment>();
         List<RailSegment> previousSegs = new List<RailSegment>();
 
+        if (checkString == "Debug0" || checkString == "Debug1")
+        {
+            Debug.Log("Debug");
+        }
+
         for (int i = 0; i < allRailSegments.Length; i++)
         {
             if (allRailSegments[i].transform.GetInstanceID() != transform.GetInstanceID())
             {
+                float dist0 = Vector3.Distance(beginPos, allRailSegments[i].Spline.GetSampleAtDistance(0.1f).location + GlobalOffsetManager.Inst.GlobalOffset);
+                float dist1 = Vector3.Distance(beginPos, allRailSegments[i].Spline.GetSampleAtDistance(allRailSegments[i].Spline.Length - 0.1f).location + GlobalOffsetManager.Inst.GlobalOffset);
+                float dist2 = Vector3.Distance(endPos, allRailSegments[i].Spline.GetSampleAtDistance(0.1f).location + GlobalOffsetManager.Inst.GlobalOffset);
+                float dist3 = Vector3.Distance(endPos, allRailSegments[i].Spline.GetSampleAtDistance(allRailSegments[i].Spline.Length - 0.1f).location + GlobalOffsetManager.Inst.GlobalOffset);
+
+                float angle0 = Vector3.Angle(-Spline.GetSampleAtDistance(0.1f).tangent, -allRailSegments[i].Spline.GetSampleAtDistance(0.1f).tangent);
+                float angle1 = Vector3.Angle(-Spline.GetSampleAtDistance(0.1f).tangent, allRailSegments[i].Spline.GetSampleAtDistance(allRailSegments[i].Spline.Length - 0.1f).tangent);
+                float angle2 = Vector3.Angle(Spline.GetSampleAtDistance(Spline.Length - 0.1f).tangent, -allRailSegments[i].Spline.GetSampleAtDistance(0.1f).tangent);
+                float angle3 = Vector3.Angle(Spline.GetSampleAtDistance(Spline.Length - 0.1f).tangent, allRailSegments[i].Spline.GetSampleAtDistance(allRailSegments[i].Spline.Length - 0.1f).tangent);
+
+
                 if ((Vector3.Distance(beginPos, allRailSegments[i].Spline.GetSampleAtDistance(0.1f).location + GlobalOffsetManager.Inst.GlobalOffset) <= epsilon
-                        && Vector3.Angle(-Spline.GetSampleAtDistance(0.1f).tangent, -allRailSegments[i].Spline.GetSampleAtDistance(0.1f).tangent) > 90f)
+                        && (angle0 <= angleEpsilon || (180f - angle0) <= angleEpsilon))
                     || (Vector3.Distance(beginPos, allRailSegments[i].Spline.GetSampleAtDistance(allRailSegments[i].Spline.Length - 0.1f).location + GlobalOffsetManager.Inst.GlobalOffset) <= epsilon
-                        && Vector3.Angle(-Spline.GetSampleAtDistance(0.1f).tangent, allRailSegments[i].Spline.GetSampleAtDistance(allRailSegments[i].Spline.Length - 0.1f).tangent) > 90f))
+                        && (angle1 <= angleEpsilon || (180f - angle1) <= angleEpsilon)))
                 {
                     previousSegs.Add(allRailSegments[i]);
                 }
                 else if ((Vector3.Distance(endPos, allRailSegments[i].Spline.GetSampleAtDistance(0.1f).location + GlobalOffsetManager.Inst.GlobalOffset) <= epsilon
-                        && Vector3.Angle(Spline.GetSampleAtDistance(Spline.Length - 0.1f).tangent, -allRailSegments[i].Spline.GetSampleAtDistance(0.1f).tangent) > 90f)
+                        && (angle2 <= angleEpsilon || (180f - angle2) <= angleEpsilon))
                     || (Vector3.Distance(endPos, allRailSegments[i].Spline.GetSampleAtDistance(allRailSegments[i].Spline.Length - 0.1f).location + GlobalOffsetManager.Inst.GlobalOffset) <= epsilon
-                        && Vector3.Angle(Spline.GetSampleAtDistance(Spline.Length - 0.1f).tangent, allRailSegments[i].Spline.GetSampleAtDistance(allRailSegments[i].Spline.Length - 0.1f).tangent) > 90f))
+                        && (angle3 <= angleEpsilon || (180f - angle3) <= angleEpsilon)))
                 {
                     followingSegs.Add(allRailSegments[i]);
                 }

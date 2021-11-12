@@ -7,11 +7,13 @@ using UnityEngine;
 public class SplineConnector : MonoBehaviour
 {
     [SerializeField]
-    private Spline spline0;
+    public Spline spline0;
     [SerializeField]
-    private Spline spline1;
+    public Spline spline1;
     [SerializeField]
-    private bool connect = false;
+    public bool connect = false;
+    [SerializeField]
+    public float distanceTolerance = 2f;
 
 
     // Start is called before the first frame update
@@ -27,131 +29,137 @@ public class SplineConnector : MonoBehaviour
         {
             connect = false;
 
-            int index0 = -1;
-            int index1 = -1;
-
-            if (Vector3.Distance(spline0.nodes[0].Position, spline1.nodes[0].Position) <= 2f)
-            {
-                index0 = 0;
-                index1 = 0;
-            }
-            if (index0 != -1 && index1 != -1)
-            {
-                spline1.nodes[index1].Position = spline0.nodes[index0].Position;
-
-                Vector3 tangent0 = spline0.nodes[index0].Direction - spline0.nodes[index0].Position;
-                Vector3 tangent1 = spline1.nodes[index1].Direction - spline1.nodes[index1].Position;
-
-                if (Vector3.Angle(tangent0, tangent1) >= 90f)
-                {
-                    spline1.nodes[index1].Direction = (-tangent0.normalized) * tangent1.magnitude + spline1.nodes[index1].Position;
-                }
-                else
-                {
-                    spline1.nodes[index1].Direction = (tangent0.normalized) * tangent1.magnitude + spline1.nodes[index1].Position;
-                }
-            }
-            index0 = -1;
-            index1 = -1;
-
-
-
-
-
-
-
-
-
-
-            if (Vector3.Distance(spline0.nodes[spline0.nodes.Count - 1].Position, spline1.nodes[0].Position) <= 2f)
-            {
-                index0 = spline0.nodes.Count - 1;
-                index1 = 0;
-            }
-            if (index0 != -1 && index1 != -1)
-            {
-                spline1.nodes[index1].Position = spline0.nodes[index0].Position;
-
-                Vector3 tangent0 = spline0.nodes[index0].Direction - spline0.nodes[index0].Position;
-                Vector3 tangent1 = spline1.nodes[index1].Direction - spline1.nodes[index1].Position;
-
-                if (Vector3.Angle(tangent0, tangent1) >= 90f)
-                {
-                    spline1.nodes[index1].Direction = (-tangent0.normalized) * tangent1.magnitude + spline1.nodes[index1].Position;
-                }
-                else
-                {
-                    spline1.nodes[index1].Direction = (tangent0.normalized) * tangent1.magnitude + spline1.nodes[index1].Position;
-                }
-            }
-            index0 = -1;
-            index1 = -1;
-
-
-
-
-
-
-
-
-
-            if (Vector3.Distance(spline0.nodes[0].Position, spline1.nodes[spline1.nodes.Count - 1].Position) <= 2f)
-            {
-                index0 = 0;
-                index1 = spline1.nodes.Count - 1;
-            }
-            if (index0 != -1 && index1 != -1)
-            {
-                spline1.nodes[index1].Position = spline0.nodes[index0].Position;
-
-                Vector3 tangent0 = spline0.nodes[index0].Direction - spline0.nodes[index0].Position;
-                Vector3 tangent1 = spline1.nodes[index1].Direction - spline1.nodes[index1].Position;
-
-                if (Vector3.Angle(tangent0, tangent1) >= 90f)
-                {
-                    spline1.nodes[index1].Direction = (-tangent0.normalized) * tangent1.magnitude + spline1.nodes[index1].Position;
-                }
-                else
-                {
-                    spline1.nodes[index1].Direction = (tangent0.normalized) * tangent1.magnitude + spline1.nodes[index1].Position;
-                }
-            }
-            index0 = -1;
-            index1 = -1;
-
-
-
-
-
-
-
-
-
-
-
-            if (Vector3.Distance(spline0.nodes[spline0.nodes.Count - 1].Position, spline1.nodes[spline1.nodes.Count - 1].Position) <= 2f)
-            {
-                index0 = spline0.nodes.Count - 1;
-                index1 = spline1.nodes.Count - 1;
-            }
-            if (index0 != -1 && index1 != -1)
-            {
-                spline1.nodes[index1].Position = spline0.nodes[index0].Position;
-
-                Vector3 tangent0 = spline0.nodes[index0].Direction - spline0.nodes[index0].Position;
-                Vector3 tangent1 = spline1.nodes[index1].Direction - spline1.nodes[index1].Position;
-
-                if (Vector3.Angle(tangent0, tangent1) >= 90f)
-                {
-                    spline1.nodes[index1].Direction = (-tangent0.normalized) * tangent1.magnitude + spline1.nodes[index1].Position;
-                }
-                else
-                {
-                    spline1.nodes[index1].Direction = (tangent0.normalized) * tangent1.magnitude + spline1.nodes[index1].Position;
-                }
-            }
-            index0 = -1;
-            index1 = -1;
+            ConnectSplines(spline0, spline1, distanceTolerance);
         }
+    }
+
+
+    public void ConnectSplines(Spline fixSpline, Spline changeSpline, float tolerance)
+    {
+        int index0 = -1;
+        int index1 = -1;
+
+        if (Vector3.Distance(fixSpline.nodes[0].Position, changeSpline.nodes[0].Position) <= tolerance)
+        {
+            index0 = 0;
+            index1 = 0;
+        }
+        if (index0 != -1 && index1 != -1)
+        {
+            changeSpline.nodes[index1].Position = fixSpline.nodes[index0].Position;
+
+            Vector3 tangent0 = fixSpline.nodes[index0].Direction - fixSpline.nodes[index0].Position;
+            Vector3 tangent1 = changeSpline.nodes[index1].Direction - changeSpline.nodes[index1].Position;
+
+            if (Vector3.Angle(tangent0, tangent1) >= 90f)
+            {
+                changeSpline.nodes[index1].Direction = (-tangent0.normalized) * tangent1.magnitude + changeSpline.nodes[index1].Position;
+            }
+            else
+            {
+                changeSpline.nodes[index1].Direction = (tangent0.normalized) * tangent1.magnitude + changeSpline.nodes[index1].Position;
+            }
+        }
+        index0 = -1;
+        index1 = -1;
+
+
+
+
+
+
+
+
+
+
+        if (Vector3.Distance(fixSpline.nodes[fixSpline.nodes.Count - 1].Position, changeSpline.nodes[0].Position) <= tolerance)
+        {
+            index0 = fixSpline.nodes.Count - 1;
+            index1 = 0;
+        }
+        if (index0 != -1 && index1 != -1)
+        {
+            changeSpline.nodes[index1].Position = fixSpline.nodes[index0].Position;
+
+            Vector3 tangent0 = fixSpline.nodes[index0].Direction - fixSpline.nodes[index0].Position;
+            Vector3 tangent1 = changeSpline.nodes[index1].Direction - changeSpline.nodes[index1].Position;
+
+            if (Vector3.Angle(tangent0, tangent1) >= 90f)
+            {
+                changeSpline.nodes[index1].Direction = (-tangent0.normalized) * tangent1.magnitude + changeSpline.nodes[index1].Position;
+            }
+            else
+            {
+                changeSpline.nodes[index1].Direction = (tangent0.normalized) * tangent1.magnitude + changeSpline.nodes[index1].Position;
+            }
+        }
+        index0 = -1;
+        index1 = -1;
+
+
+
+
+
+
+
+
+
+        if (Vector3.Distance(fixSpline.nodes[0].Position, changeSpline.nodes[changeSpline.nodes.Count - 1].Position) <= tolerance)
+        {
+            index0 = 0;
+            index1 = changeSpline.nodes.Count - 1;
+        }
+        if (index0 != -1 && index1 != -1)
+        {
+            changeSpline.nodes[index1].Position = fixSpline.nodes[index0].Position;
+
+            Vector3 tangent0 = fixSpline.nodes[index0].Direction - fixSpline.nodes[index0].Position;
+            Vector3 tangent1 = changeSpline.nodes[index1].Direction - changeSpline.nodes[index1].Position;
+
+            if (Vector3.Angle(tangent0, tangent1) >= 90f)
+            {
+                changeSpline.nodes[index1].Direction = (-tangent0.normalized) * tangent1.magnitude + changeSpline.nodes[index1].Position;
+            }
+            else
+            {
+                changeSpline.nodes[index1].Direction = (tangent0.normalized) * tangent1.magnitude + changeSpline.nodes[index1].Position;
+            }
+        }
+        index0 = -1;
+        index1 = -1;
+
+
+
+
+
+
+
+
+
+
+
+        if (Vector3.Distance(fixSpline.nodes[fixSpline.nodes.Count - 1].Position, changeSpline.nodes[changeSpline.nodes.Count - 1].Position) <= tolerance)
+        {
+            index0 = fixSpline.nodes.Count - 1;
+            index1 = changeSpline.nodes.Count - 1;
+        }
+        if (index0 != -1 && index1 != -1)
+        {
+            changeSpline.nodes[index1].Position = fixSpline.nodes[index0].Position;
+
+            Vector3 tangent0 = fixSpline.nodes[index0].Direction - fixSpline.nodes[index0].Position;
+            Vector3 tangent1 = changeSpline.nodes[index1].Direction - changeSpline.nodes[index1].Position;
+
+            if (Vector3.Angle(tangent0, tangent1) >= 90f)
+            {
+                changeSpline.nodes[index1].Direction = (-tangent0.normalized) * tangent1.magnitude + changeSpline.nodes[index1].Position;
+            }
+            else
+            {
+                changeSpline.nodes[index1].Direction = (tangent0.normalized) * tangent1.magnitude + changeSpline.nodes[index1].Position;
+            }
+        }
+        index0 = -1;
+        index1 = -1;
     }
 }
