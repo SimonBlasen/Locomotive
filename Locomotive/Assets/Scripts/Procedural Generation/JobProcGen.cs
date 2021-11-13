@@ -90,7 +90,7 @@ public class JobProcGen : ThreadedJob
     private float computeHeightAt(Vector2 pos, PerlinNoise perlin, RidgedMulti ridgedMulti, Billow billow, Perlin perlinLib)
     {
         float height = 0f;
-        float[] areaWeights = calcAreaWeights(perlin, procTerrainGen, pos.x, pos.y);
+        float[] areaWeights = calcAreaWeights(procTerrainGen, pos.x, pos.y);
 
 
 
@@ -335,7 +335,7 @@ public class JobProcGen : ThreadedJob
     }
 
 
-    public static float[] calcAreaWeights(PerlinNoise perlin, ProcTerrainGen procTerrainGen, float x, float y)
+    public static float[] calcAreaWeights(ProcTerrainGen procTerrainGen, float x, float y)
     {
         int amountOfAreas = procTerrainGen.amountOfAreas;
         float[] areas = new float[amountOfAreas];

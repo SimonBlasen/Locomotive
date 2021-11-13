@@ -435,7 +435,7 @@ public class ProcTerrainGen : MonoBehaviour
             {
                 Vector2 globalPos = new Vector2((x / ((float)textureArea.width)) * 100000f, (y / ((float)textureArea.width)) * 100000f);
 
-                float height = JobProcGen.calcAreaWeights(perlin, this, (int)globalPos.x, (int)globalPos.y)[(int)areaPreviewBlending];
+                float height = JobProcGen.calcAreaWeights(this, (int)globalPos.x, (int)globalPos.y)[(int)areaPreviewBlending];
                 textureArea.SetPixel(x, y, new Color(height, height, height));
             }
         }
@@ -463,7 +463,7 @@ public class ProcTerrainGen : MonoBehaviour
 
                 Vector3 colorVec = Vector3.zero;
 
-                float[] heights = JobProcGen.calcAreaWeights(perlin, this, (int)globalPos.x, (int)globalPos.y);
+                float[] heights = JobProcGen.calcAreaWeights(this, (int)globalPos.x, (int)globalPos.y);
                 for (int i = 0; i < areaColors.Length; i++)
                 {
                     colorVec += (new Vector3(areaColors[i].r, areaColors[i].g, areaColors[i].b)) * heights[i];
@@ -479,6 +479,11 @@ public class ProcTerrainGen : MonoBehaviour
 
         matArea.mainTexture = textureArea;
         matArea.mainTexture = textureArea;
+    }
+
+    public float[] GetAreaWeights(Vector2 pos)
+    {
+        return JobProcGen.calcAreaWeights(this, pos.x, pos.y);
     }
 
     private void refreshAreaBorders()
