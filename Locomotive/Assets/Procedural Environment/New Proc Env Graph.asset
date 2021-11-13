@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Object Variant
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 584, y: -1160}
+  position: {x: 2184, y: -1192}
   ports:
     keys:
     - occurence
@@ -1136,7 +1136,7 @@ MonoBehaviour:
   m_Name: Random
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 232, y: -1112}
+  position: {x: 1928, y: -1112}
   ports:
     keys:
     - minVal
