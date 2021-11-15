@@ -161,6 +161,24 @@ public class ProcEnvSpawner : MonoBehaviour
         float surfaceHeight = 0f;
         Vector3 surfaceNormal = Vector3.zero;
 
+        Vector3 raycastHitPos = Vector3.zero;
+
+
+        RaycastHit hit;
+        if (Physics.Raycast(new Ray(new Vector3(pos2D.x, 10000f, pos2D.y), Vector3.down), out hit, 11000f))
+        {
+            // Always make raycast
+            //nodeSlope.slopeAngle = Vector3.Angle(hit.normal, Vector3.up);
+            raycastHitPos = hit.point;
+            surfaceHeight = hit.point.y;
+            surfaceNormal = hit.normal;
+        }
+        else
+        {
+            Debug.LogError("Terrain not hit at: " + pos2D.ToString());
+            //nodeSlope.slopeAngle = 0f;
+        }
+
         for (int i = 0; i < graph.nodes.Count; i++)
         {
             if (graph.nodes[i].GetType() == typeof(AreaType))
@@ -173,19 +191,13 @@ public class ProcEnvSpawner : MonoBehaviour
             {
                 Slope nodeSlope = (Slope)graph.nodes[i];
 
-                RaycastHit hit;
-                if (Physics.Raycast(new Ray(new Vector3(pos2D.x, 10000f, pos2D.y), Vector3.down), out hit, 11000f))
-                {
-                    // Always make raycast
-                    nodeSlope.slopeAngle = Vector3.Angle(hit.normal, Vector3.up);
-                    surfaceHeight = hit.point.y;
-                    surfaceNormal = hit.normal;
-                }
-                else
-                {
-                    Debug.LogError("Terrain not hit at: " + pos2D.ToString());
-                    nodeSlope.slopeAngle = 0f;
-                }
+                nodeSlope.slopeAngle = Vector3.Angle(surfaceNormal, Vector3.up);
+            }
+            else if (graph.nodes[i].GetType() == typeof(ProcEnvXNode.Texture))
+            {
+                ProcEnvXNode.Texture nodeTexture = (ProcEnvXNode.Texture)graph.nodes[i];
+
+                nodeTexture.gridPos = gridPosition;
             }
             else if (graph.nodes[i].GetType() == typeof(RailsDistance))
             {

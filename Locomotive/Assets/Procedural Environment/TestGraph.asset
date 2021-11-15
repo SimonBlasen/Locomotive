@@ -332,7 +332,7 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  slopeAngle: 6.054856
+  slopeAngle: 12.681124
   angle: 0
   cosAngle: 0
   info: Angle is zero, if the surface is flat. It is 90, if the surface is a wall.
@@ -565,6 +565,7 @@ MonoBehaviour:
   - {fileID: -2489528588657434326}
   - {fileID: 7543703571791002680}
   - {fileID: 91143686026731053}
+  - {fileID: 7377176526149483590}
 --- !u!114 &91143686026731053
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -589,7 +590,10 @@ MonoBehaviour:
       _node: {fileID: 91143686026731053}
       _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
-      connections: []
+      connections:
+      - fieldName: scalar
+        node: {fileID: 7377176526149483590}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -933,6 +937,76 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   output: 0
+--- !u!114 &7377176526149483590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f8529b0d75c13147a4dca814010e511, type: 3}
+  m_Name: Texture
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 419.5, y: 203}
+  ports:
+    keys:
+    - scalar
+    - out_r
+    - out_g
+    - out_b
+    values:
+    - _fieldName: scalar
+      _node: {fileID: 7377176526149483590}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: a
+        node: {fileID: 91143686026731053}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: out_r
+      _node: {fileID: 7377176526149483590}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: out_g
+      _node: {fileID: 7377176526149483590}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: out_b
+      _node: {fileID: 7377176526149483590}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  texture: {fileID: 2800000, guid: 13b650946f67b8a42a468bff7b3536df, type: 3}
+  tilingX: 0.4
+  tilingY: 1
+  scalar: 0
+  out_r: 0
+  out_g: 0
+  out_b: 0
+  info: "A tiling of 1 means, that the whole texture is fitted on 100meters.\n With
+    0.1 it is fitted to 1000 meters, tiling=10 fits the whole texture to 10 meters."
+  gridPos: {x: 81377.23, y: 79169.69}
 --- !u!114 &7543703571791002680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -946,7 +1020,7 @@ MonoBehaviour:
   m_Name: Area Type
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1016, y: 232}
+  position: {x: 1128, y: 312}
   ports:
     keys:
     - curArea
@@ -1014,11 +1088,11 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 0
   areaWeights:
-  - 0.111269966
+  - 0.08495512
+  - 9.62861e-10
   - 0
-  - 0
-  - 3.2487402e-10
-  - 0.88873005
+  - 0.0000015866522
+  - 0.9150433
   - 0
   curArea: 0
   wMountains: 0
@@ -1233,7 +1307,7 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 0
   probability: 0.01
-  cellSize: 200
+  cellSize: 5
   randomOffset: 0
   objectVariant0:
     prefab: {fileID: 0}
