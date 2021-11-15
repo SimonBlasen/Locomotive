@@ -349,20 +349,6 @@
         {
             "m_OutputSlot": {
                 "m_Node": {
-                    "m_Id": "032e6b4ffeea413396b9f072ca1924c5"
-                },
-                "m_SlotId": 2
-            },
-            "m_InputSlot": {
-                "m_Node": {
-                    "m_Id": "698d771903f1454793429fb9df3b39c1"
-                },
-                "m_SlotId": 0
-            }
-        },
-        {
-            "m_OutputSlot": {
-                "m_Node": {
                     "m_Id": "04b97eed596c477cba4eda6d4757da11"
                 },
                 "m_SlotId": 0
@@ -790,6 +776,20 @@
             "m_InputSlot": {
                 "m_Node": {
                     "m_Id": "032e6b4ffeea413396b9f072ca1924c5"
+                },
+                "m_SlotId": 1
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "55b00487c76c4b0287922599546b3e52"
+                },
+                "m_SlotId": 2
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "dfb3f700062b4a7c9036b9c8de39e251"
                 },
                 "m_SlotId": 1
             }
@@ -1392,6 +1392,20 @@
             "m_InputSlot": {
                 "m_Node": {
                     "m_Id": "032e6b4ffeea413396b9f072ca1924c5"
+                },
+                "m_SlotId": 0
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "dfb3f700062b4a7c9036b9c8de39e251"
+                },
+                "m_SlotId": 2
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "698d771903f1454793429fb9df3b39c1"
                 },
                 "m_SlotId": 0
             }
@@ -9163,7 +9177,7 @@
     "m_Guid": {
         "m_GuidSerialized": "d9585f82-2baa-416d-b5fb-43b6a82230b8"
     },
-    "m_Name": "coverage",
+    "m_Name": "Coverage",
     "m_DefaultReferenceName": "Vector1_c87b2a7c12ca4c42b0423e9fd30eabd4",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
