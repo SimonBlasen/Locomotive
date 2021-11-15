@@ -42,6 +42,8 @@ public class TrainstationsConnector : MonoBehaviour
     private float howCloseHasNewDirBe = 0.8f;
     [SerializeField]
     private int maxSplineNodes = 10;
+    [SerializeField]
+    private float smoothDirFactor = 0.5f;
 
     [Space]
 
@@ -122,7 +124,7 @@ public class TrainstationsConnector : MonoBehaviour
                         float weightAngle = Mathf.Sin((angle * Mathf.PI * 90f) / (180f * maxAnglePerStep));
 
                         Vector3 hitPoint = Vector3.zero;
-                        RaycastHit[] hits = Physics.RaycastAll(new Ray(new Vector3(nextCP2.x, 6000f, nextCP2.y), Vector3.down), 7000f);
+                        RaycastHit[] hits = Physics.RaycastAll(new Ray(new Vector3(nextCP2.x, 10000f, nextCP2.y), Vector3.down), 10000f);
                         for (int k = 0; k < hits.Length; k++)
                         {
                             if (hits[k].transform.name.Contains("Terrain"))
@@ -201,6 +203,22 @@ public class TrainstationsConnector : MonoBehaviour
 
                 toAdjustSpline.nodes[i].Position = new Vector3(toAdjustSpline.nodes[i].Position.x, newHeight, toAdjustSpline.nodes[i].Position.z);
             }
+        }
+
+
+        // Smooth directions
+        for (int i = 1; i < toAdjustSpline.nodes.Count - 1; i++)
+        {
+            Vector3 dirFromTo = toAdjustSpline.nodes[i + 1].Position - toAdjustSpline.nodes[i - 1].Position;
+            Vector2 smoothDir = (new Vector2(dirFromTo.x, dirFromTo.z)).normalized;
+
+            Vector3 curDir3D = toAdjustSpline.nodes[i].Direction - toAdjustSpline.nodes[i].Position;
+            Vector2 curDir = (new Vector2(curDir3D.x, curDir3D.z)).normalized;
+
+            Vector2 smoothedDir = (smoothDirFactor * smoothDir + (1f - smoothDirFactor) * curDir).normalized;
+
+
+            toAdjustSpline.nodes[i].Direction = toAdjustSpline.nodes[i].Position + (new Vector3(smoothedDir.x, 0f, smoothedDir.y)) * stepDistance * 0.3f;
         }
 
 

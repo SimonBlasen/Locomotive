@@ -3,16 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using XNode;
 
-public class PAParentGenerator : PAParentTimedependend
+namespace ProcAudio
 {
-
-	[HideInInspector]
-	public int sampleSize;
-
-	// Use this for initialization
-	protected override void Init()
+	public class PAParentGenerator : PAParentTimedependend
 	{
-		base.Init();
 
+		[HideInInspector]
+		public int sampleSize;
+
+		// Use this for initialization
+		protected override void Init()
+		{
+			base.Init();
+
+		}
 	}
 }

@@ -3,14 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using XNode;
 
-public class PAParentTimedependend : Node {
+namespace ProcAudio
+{
+	public class PAParentTimedependend : Node
+	{
 
-	[HideInInspector]
-	public double[] times;
+		[HideInInspector]
+		public double[] times;
 
-	// Use this for initialization
-	protected override void Init() {
-		base.Init();
-		
+		// Use this for initialization
+		protected override void Init()
+		{
+			base.Init();
+
+		}
 	}
 }
