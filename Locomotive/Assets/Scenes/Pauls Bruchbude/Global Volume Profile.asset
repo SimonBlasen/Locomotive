@@ -74,7 +74,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ddb2cdd9f1ae924683bc49b3cab61ba, type: 3}
   m_Name: SimpleAtmosphericFog
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   m_AdvancedMode: 0
   on:
     m_OverrideState: 1
