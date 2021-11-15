@@ -12,6 +12,7 @@ public class ProcEnvSpawner : MonoBehaviour
     [Header("Generate")]
     public bool generateObjects = false;
     public int seed = 0;
+    public int maxObjects = 0;
     public Transform generateAreaMin = null;
     public Transform generateAreaMax = null;
     [Space]
@@ -42,6 +43,7 @@ public class ProcEnvSpawner : MonoBehaviour
 
     private void genObjects()
     {
+        int maxObjectsCounter = 0;
         ProcTerrainGen procTerrainGen = FindObjectOfType<ProcTerrainGen>();
 
         if (procTerrainGen == null)
@@ -96,7 +98,7 @@ public class ProcEnvSpawner : MonoBehaviour
                     Spawn nodeSpawn = (Spawn)graph.nodes[i];
 
                     gridSize = nodeSpawn.cellSize;
-                    randomInCell = nodeSpawn.randomInCell;
+                    randomInCell = nodeSpawn.randomOffset;
 
                     break;
                 }
@@ -116,9 +118,21 @@ public class ProcEnvSpawner : MonoBehaviour
                     float randVal3 = UnityEngine.Random.value;
                     float randVal4 = UnityEngine.Random.value;
 
-                    spawnObject(graph, new Vector2(x * gridSize + generateAreaMin.position.x, z * gridSize + generateAreaMin.position.z),
+                    bool hasSpawned = spawnObject(graph, new Vector2(x * gridSize + generateAreaMin.position.x, z * gridSize + generateAreaMin.position.z),
                                     randVal, randVal2, randVal3, randVal4, gridSize, randomInCell, procTerrainGen);
+                
+                    if (hasSpawned)
+                    {
+                        maxObjectsCounter++;
+                        if (maxObjectsCounter > maxObjects)
+                        {
+                            Debug.LogError("Max objects reached");
+                            return;
+                        }
+
+                    }
                 }
+
             }
 
 
@@ -137,7 +151,7 @@ public class ProcEnvSpawner : MonoBehaviour
         }
     }
 
-    private void spawnObject(ProcEnvGraph graph, Vector2 gridPosition, float randVal, float randVal2, float randVal3, float randVal4, float gridSize, float randomnessInCell, ProcTerrainGen procTerrainGen)
+    private bool spawnObject(ProcEnvGraph graph, Vector2 gridPosition, float randVal, float randVal2, float randVal3, float randVal4, float gridSize, float randomnessInCell, ProcTerrainGen procTerrainGen)
     {
         Vector2 random2DPos = new Vector2(gridPosition.x, gridPosition.y);
         random2DPos += new Vector2(randVal3 * gridSize, randVal4 * gridSize);
@@ -162,6 +176,7 @@ public class ProcEnvSpawner : MonoBehaviour
                 RaycastHit hit;
                 if (Physics.Raycast(new Ray(new Vector3(pos2D.x, 10000f, pos2D.y), Vector3.down), out hit, 11000f))
                 {
+                    // Always make raycast
                     nodeSlope.slopeAngle = Vector3.Angle(hit.normal, Vector3.up);
                     surfaceHeight = hit.point.y;
                     surfaceNormal = hit.normal;
@@ -172,8 +187,15 @@ public class ProcEnvSpawner : MonoBehaviour
                     nodeSlope.slopeAngle = 0f;
                 }
             }
+            else if (graph.nodes[i].GetType() == typeof(RailsDistance))
+            {
+                RailsDistance nodeRailDistance = (RailsDistance)graph.nodes[i];
+
+
+            }
         }
 
+        bool hasSpawned = false;
         for (int i = 0; i < graph.nodes.Count; i++)
         {
             if (graph.nodes[i].GetType() == typeof(Spawn))
@@ -198,7 +220,7 @@ public class ProcEnvSpawner : MonoBehaviour
                     {
                         takeVariant = j;
                         break;
-                    }
+                    } 
                 }
 
                 ObjectVariantData variant = objectVariants[takeVariant];
@@ -206,6 +228,7 @@ public class ProcEnvSpawner : MonoBehaviour
 
                 if (randVal <= outputProb)
                 {
+                    hasSpawned = true;
                     GameObject instObject = Instantiate(variant.prefab, transform);
                     instObject.transform.position = new Vector3(pos2D.x, surfaceHeight, pos2D.y);
                     instObject.transform.up = Vector3.Lerp(Vector3.up, surfaceNormal, variant.adjustToSlope);
@@ -221,5 +244,7 @@ public class ProcEnvSpawner : MonoBehaviour
 
             }
         }
+
+        return hasSpawned;
     }
 }
