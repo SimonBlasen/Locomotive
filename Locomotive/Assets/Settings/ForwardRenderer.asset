@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Active: 1
   useShaderGraphVersion: 0
-  renderPassEvent: 500
+  renderPassEvent: 450
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
