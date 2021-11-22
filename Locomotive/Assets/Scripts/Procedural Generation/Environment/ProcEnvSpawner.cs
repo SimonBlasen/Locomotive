@@ -33,6 +33,11 @@ public class ProcEnvSpawner : MonoBehaviour
     public bool storeInFile = false;
     public int fileID = -1;
 
+    [Space]
+    [Header("Store grid")]
+    public Vector2 tempCheckRailDistance;
+    public bool checkDistanceNow = false;
+
 
     private Spline[] railSegmentsCached = null;
 
@@ -66,6 +71,14 @@ public class ProcEnvSpawner : MonoBehaviour
                 genObjects(false);
 
                 railSegmentsCached = null;
+            }
+
+            if (checkDistanceNow)
+            {
+                checkDistanceNow = false;
+
+                float distance = getDistanceToRailSpline(tempCheckRailDistance);
+                Debug.Log(distance.ToString());
             }
 
             if (computeDistancesToRails)
@@ -435,7 +448,7 @@ public class ProcEnvSpawner : MonoBehaviour
 
     private float getDistanceToRailSpline(Vector2 pos)
     {
-        return procEnvRailsDistance.DistanceToRails(pos);
+        return procEnvRailsDistance.DistanceToRails(pos, toConsiderSplines);
         /*
         for (int i = 0; i < railSegmentsCached.Length; i++)
         {
