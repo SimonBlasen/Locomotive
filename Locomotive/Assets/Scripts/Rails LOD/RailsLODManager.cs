@@ -78,7 +78,7 @@ public class RailsLODManager : MonoBehaviour
 
     private void Awake()
     {
-        computeMeshes();
+        //ComputeMeshes();
     }
 
     // Start is called before the first frame update
@@ -100,25 +100,25 @@ public class RailsLODManager : MonoBehaviour
         {
             computeAllMeshes = false;
 
-            computeMeshes();
+            ComputeMeshes();
         }
         if (createMeshAssets)
         {
             createMeshAssets = false;
 
-            createAssetsMesh();
+            CreateAssetsMesh(meshAssetsParents);
         }
         if (deleteSplineComponents)
         {
             deleteSplineComponents = false;
 
-            deleteSplineComponentsM();
+            DeleteSplineComponentsM(railMeshesToDelete);
         }
         if (regenMeshbendMeshes)
         {
             regenMeshbendMeshes = false;
 
-            regenMeshbendMeshesM();
+            RegenMeshbendMeshesM(regenMeshbendMeshParents);
         }
         if (testResources)
         {
@@ -143,7 +143,7 @@ public class RailsLODManager : MonoBehaviour
     }
 
 
-    private void regenMeshbendMeshesM()
+    public void RegenMeshbendMeshesM(Transform[] regenMeshbendMeshParents)
     {
         List<MeshBender> meshBenders = new List<MeshBender>();
 
@@ -159,7 +159,14 @@ public class RailsLODManager : MonoBehaviour
         }
     }
 
-    private void deleteSplineComponentsM()
+    public void ResetDeletionStates()
+    {
+        deleteState = 0;
+        deleteIndex = 0;
+        genLODs = 0;
+    }
+
+    public bool DeleteSplineComponentsM(Transform[] railMeshesToDelete, string meshFilePre = "")
     {
         if (deleteState == 0)
         {
@@ -201,7 +208,7 @@ public class RailsLODManager : MonoBehaviour
             }
 
 
-            meshifySpline(railMeshesToDelete[deleteIndex].GetComponentInChildren<Spline>());
+            meshifySpline(railMeshesToDelete[deleteIndex].GetComponentInChildren<Spline>(), meshFilePre + "_");
 
             deleteState++;
         }
@@ -209,14 +216,22 @@ public class RailsLODManager : MonoBehaviour
         {
             railMeshesToDelete[deleteIndex].gameObject.SetActive(false);
             deleteIndex++;
+
+
+
             deleteState = 0;
         }
 
+        if (deleteIndex >= railMeshesToDelete.Length)
+        {
+            return true;
+        }
+        return false;
 
 
     }
 
-    private void createAssetsMesh()
+    public void CreateAssetsMesh(Transform[] meshAssetsParents)
     {
         for (int i = 0; i < meshAssetsParents.Length; i++)
         {
@@ -242,7 +257,7 @@ public class RailsLODManager : MonoBehaviour
     }
 
 
-    private void meshifySpline(Spline spline)
+    private void meshifySpline(Spline spline, string filenamePre = "")
     {
         MeshFilter[] mfs = spline.GetComponentsInChildren<MeshFilter>();
 
@@ -251,9 +266,12 @@ public class RailsLODManager : MonoBehaviour
             if (mfs[k].sharedMesh != null)
             {
 #if UNITY_EDITOR
-                AssetDatabase.CreateAsset(mfs[k].sharedMesh, "Assets/" + assetsPath + "/" + genLODs.ToString() + ".asset");
 
-                Mesh resourcesMesh = (Mesh)Resources.Load(assetsPath.Replace("Resources/", "") + "/" + genLODs.ToString() + "");
+                AssetDatabase.DeleteAsset("Assets/" + assetsPath + "/" + filenamePre + genLODs.ToString() + ".asset");
+
+                AssetDatabase.CreateAsset(mfs[k].sharedMesh, "Assets/" + assetsPath + "/" + filenamePre + genLODs.ToString() + ".asset");
+
+                Mesh resourcesMesh = (Mesh)Resources.Load(assetsPath.Replace("Resources/", "") + "/" + filenamePre + genLODs.ToString() + "");
 
                 /*
                 GameObject go = GameObject.CreatePrimitive(PrimitiveType.Sphere);
@@ -317,11 +335,13 @@ public class RailsLODManager : MonoBehaviour
         Debug.Log("Generated " + genLODs.ToString() + " LOD splines");
     }
 
-    private void computeMeshes()
+    public void ComputeMeshes()
     {
         Spline[] allSplines = FindObjectsOfType<Spline>();
 
         List<PairedRailSegmentMesh> pairedMeshes = new List<PairedRailSegmentMesh>();
+
+        pairedMeshes.AddRange(pairedRailSegmentMeshes);
 
         List<Spline> firstSplines = new List<Spline>();
         List<Vector3> cp0 = new List<Vector3>();
@@ -331,47 +351,66 @@ public class RailsLODManager : MonoBehaviour
         {
             // Try to find matching first spline
 
-            Spline foundFirstSpline = null;
-            for (int j = 0; j < firstSplines.Count; j++)
+            if (allSplines[i].transform.childCount > 0)
             {
-                if (Vector3.Distance(allSplines[i].nodes[0].Position, firstSplines[j].nodes[0].Position) <= 0.1f
-                    && Vector3.Distance(allSplines[i].nodes[1].Position, firstSplines[j].nodes[1].Position) <= 0.1f)
+                Spline foundFirstSpline = null;
+                for (int j = 0; j < firstSplines.Count; j++)
                 {
-                    foundFirstSpline = firstSplines[j];
-                    break;
-                }
-            }
-
-            if (foundFirstSpline == null)
-            {
-                firstSplines.Add(allSplines[i]);
-            }
-            else
-            {
-                Spline splineRail = allSplines[i];
-                Spline splineLOD = foundFirstSpline;
-
-                Transform[] childTrans = splineLOD.GetComponentsInChildren<Transform>();
-                for (int j = 0; j < childTrans.Length; j++)
-                {
-                    if (childTrans[j].gameObject.name.Contains("LeftRailing"))
+                    if (Vector3.Distance(allSplines[i].nodes[0].Position, firstSplines[j].nodes[0].Position) <= 0.1f
+                        && Vector3.Distance(allSplines[i].nodes[1].Position, firstSplines[j].nodes[1].Position) <= 0.1f)
                     {
-                        splineRail = foundFirstSpline;
-                        splineLOD = allSplines[i];
+                        foundFirstSpline = firstSplines[j];
                         break;
                     }
                 }
-                /*if (splineRail.GetComponentInChildren<SplineMeshTiling>() == false)
+
+                if (foundFirstSpline == null)
                 {
-                    splineRail = foundFirstSpline;
-                    splineLOD = allSplines[i];
-                }*/
+                    firstSplines.Add(allSplines[i]);
+                }
+                else
+                {
+                    Spline splineRail = allSplines[i];
+                    Spline splineLOD = foundFirstSpline;
+
+                    Transform[] childTrans = splineLOD.GetComponentsInChildren<Transform>();
+                    for (int j = 0; j < childTrans.Length; j++)
+                    {
+                        if (childTrans[j].gameObject.name.Contains("LeftRailing"))
+                        {
+                            splineRail = foundFirstSpline;
+                            splineLOD = allSplines[i];
+                            break;
+                        }
+                    }
+                    /*if (splineRail.GetComponentInChildren<SplineMeshTiling>() == false)
+                    {
+                        splineRail = foundFirstSpline;
+                        splineLOD = allSplines[i];
+                    }*/
 
 
 
-                pairedMeshes.AddRange(computePairedMeshes(splineRail, splineLOD));
+                    pairedMeshes.AddRange(computePairedMeshes(splineRail, splineLOD));
+                }
+            }
+
+        }
+
+
+        for (int i = 0; i < pairedMeshes.Count; i++)
+        {
+            if (pairedMeshes[i].lodMesh == null || pairedMeshes[i].railMesh == null || pairedMeshes[i].railMeshWood == null)
+            {
+                pairedMeshes.RemoveAt(i);
+                i--;
             }
         }
+
+
+
+
+
 
         pairedRailSegmentMeshes = pairedMeshes.ToArray();
     }

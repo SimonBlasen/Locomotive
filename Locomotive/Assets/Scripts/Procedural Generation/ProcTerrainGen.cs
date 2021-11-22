@@ -16,9 +16,16 @@ public enum ProcAreaType
 public class ProcTerrainGen : MonoBehaviour
 {
     [SerializeField]
+    private long seed = 0;
+
+    [Space]
+
+    [SerializeField]
     private bool generatePreview = false;
     [SerializeField]
     public ProcAreaType areaPreview = ProcAreaType.MOUNTAINS;
+    [SerializeField]
+    public Color[] areaColors = null;
 
 
     [Space]
@@ -99,7 +106,7 @@ public class ProcTerrainGen : MonoBehaviour
 
     [Space]
 
-    [Header("Forrest")]
+    [Header("Planes")]
 
     [SerializeField]
     public float aTanPlanesX = 0.5f;
@@ -125,6 +132,29 @@ public class ProcTerrainGen : MonoBehaviour
     public float planesLowFreqPerlinAmplOffset = 0.5f;
     [SerializeField]
     public float planesLowFreqInfluence = 1f;
+
+    [Space]
+
+    [Header("Desert")]
+
+    [SerializeField]
+    public float desertPerlinFreq = 0.5f;
+    [SerializeField]
+    public float desertPerlinAmpl = 0.5f;
+    [SerializeField]
+    public float desertRigFreq = 0.5f;
+    [SerializeField]
+    public float desertRigAmpl = 0.5f;
+    [SerializeField]
+    public float desertRigOffset = 0.5f;
+    [SerializeField]
+    public float desertLowFreqPerlinFreq = 0.5f;
+    [SerializeField]
+    public float desertLowFreqPerlinAmpl = 0.5f;
+    [SerializeField]
+    public float desertLowFreqPerlinAmplOffset = 0.5f;
+    [SerializeField]
+    public float desertLowFreqInfluence = 1f;
 
     public float minDistanceToBorder = 50f;
     public int amountOfAreas = 6;
@@ -292,7 +322,6 @@ public class ProcTerrainGen : MonoBehaviour
         //PerlinNoise perlin = new PerlinNoise(0);
 
         int steps = 2500;
-        long seed = 0;
 
 
         for (int x = 0; x < 10000 * 1; x += steps)
@@ -317,6 +346,8 @@ public class ProcTerrainGen : MonoBehaviour
 
     private void previewRender(bool onlyPreview)
     {
+        refreshAreaBorders();
+
         terrainAccessor.OpenData();
 
         inputTextureHeight.OpenData();
@@ -338,10 +369,9 @@ public class ProcTerrainGen : MonoBehaviour
         //PerlinNoise perlin = new PerlinNoise(0);
 
         int steps = 10000;
-        long seed = 0;
 
 
-        for (int x = 50000; x < 50000 * 2; x += steps)
+        for (int x = 0; x < 50000 * 1; x += steps)
         {
             for (int y = 50000; y < 50000 * 2; y += steps)
             {
@@ -368,7 +398,7 @@ public class ProcTerrainGen : MonoBehaviour
 
     private void finalizeRunningJobs()
     {
-        PerlinNoise perlin = new PerlinNoise(0);
+        PerlinNoise perlin = new PerlinNoise(0); 
 
         Material mat = rendererPlane.sharedMaterial;
 
@@ -405,7 +435,7 @@ public class ProcTerrainGen : MonoBehaviour
             {
                 Vector2 globalPos = new Vector2((x / ((float)textureArea.width)) * 100000f, (y / ((float)textureArea.width)) * 100000f);
 
-                float height = JobProcGen.calcAreaWeights(perlin, this, (int)globalPos.x, (int)globalPos.y)[(int)areaPreviewBlending];
+                float height = JobProcGen.calcAreaWeights(this, (int)globalPos.x, (int)globalPos.y)[(int)areaPreviewBlending];
                 textureArea.SetPixel(x, y, new Color(height, height, height));
             }
         }
@@ -418,6 +448,8 @@ public class ProcTerrainGen : MonoBehaviour
 
     private void showOnlyAreaPreview()
     {
+        refreshAreaBorders();
+
         PerlinNoise perlin = new PerlinNoise(0);
         Material matArea = areaRenderPlane.sharedMaterial;
 
@@ -429,8 +461,17 @@ public class ProcTerrainGen : MonoBehaviour
             {
                 Vector2 globalPos = new Vector2((x / ((float)textureArea.width)) * 100000f, (y / ((float)textureArea.width)) * 100000f);
 
-                float height = JobProcGen.calcAreaWeights(perlin, this, (int)globalPos.x, (int)globalPos.y)[(int)areaPreviewBlending];
-                textureArea.SetPixel(x, y, new Color(height, height, height));
+                Vector3 colorVec = Vector3.zero;
+
+                float[] heights = JobProcGen.calcAreaWeights(this, (int)globalPos.x, (int)globalPos.y);
+                for (int i = 0; i < areaColors.Length; i++)
+                {
+                    colorVec += (new Vector3(areaColors[i].r, areaColors[i].g, areaColors[i].b)) * heights[i];
+                }
+
+                //colorVec /= areaColors.Length;
+
+                textureArea.SetPixel(x, y, new Color(colorVec.x, colorVec.y, colorVec.z));
             }
         }
 
@@ -438,5 +479,18 @@ public class ProcTerrainGen : MonoBehaviour
 
         matArea.mainTexture = textureArea;
         matArea.mainTexture = textureArea;
+    }
+
+    public float[] GetAreaWeights(Vector2 pos)
+    {
+        return JobProcGen.calcAreaWeights(this, pos.x, pos.y);
+    }
+
+    private void refreshAreaBorders()
+    {
+        for (int i = 0; i < areaBorders.Length; i++)
+        {
+            areaBorders[i].position = areaBorders[i].transform.position;
+        }
     }
 }
