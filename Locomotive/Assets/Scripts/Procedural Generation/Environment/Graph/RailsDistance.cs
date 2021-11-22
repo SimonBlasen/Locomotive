@@ -32,7 +32,7 @@ namespace ProcEnvXNode
 			{
 				float distanceVal = distanceFromRail;
 
-				return 100f;
+				//return 100f;
 				return distanceVal;
 			}
 			return null;

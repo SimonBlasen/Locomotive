@@ -23,6 +23,7 @@ public class ProcEnvSpawner : MonoBehaviour
 
     [Space]
     [Header("Generate")]
+    public Spline[] toConsiderSplines = null;
     public bool computeDistancesToRails = false;
     public bool writeoutDistancefield = false;
     public bool loadDistanceToRailsFromFile = false;
@@ -85,7 +86,15 @@ public class ProcEnvSpawner : MonoBehaviour
                         }
                     }
                 }
-                procEnvRailsDistance.ComputeDistancefield(splines.ToArray());
+
+                if (toConsiderSplines == null || toConsiderSplines.Length <= 0)
+                {
+                    procEnvRailsDistance.ComputeDistancefield(splines.ToArray());
+                }
+                else
+                {
+                    procEnvRailsDistance.ComputeDistancefield(toConsiderSplines);
+                }
 
                 //byte[] bytes = procEnvRailsDistance.ToBytes();
                 //File.WriteAllBytes("./envobjects/railsDistances.perd", bytes);
@@ -334,6 +343,13 @@ public class ProcEnvSpawner : MonoBehaviour
                 RailsDistance nodeRailDistance = (RailsDistance)graph.nodes[i];
 
                 float distance = getDistanceToRailSpline(gridPosition);
+
+                if (distance <= 1000f)
+                {
+                    int fdsfew = 0;
+                    fdsfew++;
+                }
+
                 nodeRailDistance.distanceFromRail = distance;
             }
         }
