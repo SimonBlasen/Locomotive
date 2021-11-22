@@ -23,10 +23,10 @@ public class EnvObjectsPool : MonoBehaviour
 
     public GameObject SpawnObject(EnvSpawnObjectInfo objectInfo)
     {
-        GameObject prefab = envObjectsManager.ObjectPrefabs[objectInfo.objectID];
+        GameObject prefab = envObjectsManager.ObjectPrefabs[objectInfo.objectID].prefabLOD0;
 
         GameObject obj = Instantiate(prefab, transform);
-        obj.transform.position = objectInfo.pos;
+        obj.transform.position = objectInfo.pos + GlobalOffsetManager.Inst.GlobalOffset;
         obj.transform.up = objectInfo.upVec;
         obj.transform.Rotate(0f, objectInfo.yRot, 0f, Space.Self);
         obj.transform.localScale = objectInfo.scale;
@@ -34,6 +34,8 @@ public class EnvObjectsPool : MonoBehaviour
         {
             obj.transform.rotation = Quaternion.Euler(objectInfo.rot);
         }
+
+        obj.AddComponent<GlobalOffsetTransform>();
 
         return obj;
     }

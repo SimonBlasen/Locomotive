@@ -13,9 +13,13 @@ public class EnvObjectsManager : MonoBehaviour
     [SerializeField]
     private int sqrtElementsPerFile = 0;
     [SerializeField]
-    private GameObject[] envObjectsIDList;
+    private EnvObjectLOD[] envObjectsIDList;
+    [SerializeField]
+    private EnvObjectsPool envObjectsPool = null;
 
     private EnvObjectsGrid[] grids;
+
+    private Dictionary<Vector2Int, GameObject> spawnedObjects = new System.Collections.Generic.Dictionary<Vector2Int, GameObject>();
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +31,29 @@ public class EnvObjectsManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void SpawnObject(EnvSpawnObjectInfo objInfo, int gridArrayIndex, int objectArrayIndex)
+    {
+        Vector2Int key = new Vector2Int(gridArrayIndex, objectArrayIndex);
+        if (spawnedObjects.ContainsKey(key) == false)
+        {
+            GameObject spawnedObject = envObjectsPool.SpawnObject(objInfo);
+            spawnedObjects.Add(key, spawnedObject);
+        }
+    }
+
+    public void DespawnObject(int gridArrayIndex, int objectArrayIndex)
+    {
+        Vector2Int key = new Vector2Int(gridArrayIndex, objectArrayIndex);
+
+        if (spawnedObjects.ContainsKey(key))
+        {
+            GameObject instGameObject = spawnedObjects[key];
+            envObjectsPool.DespawnObject(instGameObject);
+
+            spawnedObjects.Remove(key);
+        }
     }
 
     private void loadEnvObjectsGrid()
@@ -55,7 +82,7 @@ public class EnvObjectsManager : MonoBehaviour
     {
         for (int i = 0; i < envObjectsIDList.Length; i++)
         {
-            if (envObjectsIDList[i] == prefab)
+            if (envObjectsIDList[i].prefabLOD0 == prefab)
             {
                 return i;
             }
@@ -64,7 +91,7 @@ public class EnvObjectsManager : MonoBehaviour
         return -1;
     }
 
-    public GameObject[] ObjectPrefabs
+    public EnvObjectLOD[] ObjectPrefabs
     {
         get
         {
@@ -85,7 +112,8 @@ public class EnvObjectsManager : MonoBehaviour
 [Serializable]
 public class EnvObjectsGrid
 {
-    public EnvSpawnObjectInfo[,] spawnObjects;
+    //public EnvSpawnObjectInfo[,] spawnObjects;
+    public EnvSpawnObjectInfo[] spawnObjects1D;
     public float gridSize;
     public int gridOffsetX;
     public int gridOffsetZ;
@@ -148,6 +176,16 @@ public struct EnvSpawnObjectInfo
     public Vector3 upVec;
     public float yRot;
     public Vector3 scale;
+}
+
+
+[Serializable]
+public struct EnvObjectLOD
+{
+    public GameObject prefabLOD0;
+    public float distanceLOD0;
+    public GameObject prefabLOD1;
+    public float distanceLOD1;
 }
 
 

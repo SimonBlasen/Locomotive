@@ -66,7 +66,7 @@ MonoBehaviour:
   m_Name: Random
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -488, y: 88}
+  position: {x: -552, y: -120}
   ports:
     keys:
     - minVal
@@ -332,7 +332,7 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  slopeAngle: 12.681124
+  slopeAngle: 30.965298
   angle: 0
   cosAngle: 0
   info: Angle is zero, if the surface is flat. It is 90, if the surface is a wall.
@@ -590,10 +590,7 @@ MonoBehaviour:
       _node: {fileID: 91143686026731053}
       _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: scalar
-        node: {fileID: 7377176526149483590}
-        reroutePoints: []
+      connections: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -603,7 +600,7 @@ MonoBehaviour:
       _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
-      - fieldName: wMountains
+      - fieldName: wForrest
         node: {fileID: 7543703571791002680}
         reroutePoints: []
       _direction: 0
@@ -622,7 +619,7 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  a: 1
+  a: 0.5
   b: 0
   output: 0
 --- !u!114 &539894149971877993
@@ -962,10 +959,7 @@ MonoBehaviour:
       _node: {fileID: 7377176526149483590}
       _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: a
-        node: {fileID: 91143686026731053}
-        reroutePoints: []
+      connections: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
@@ -1006,7 +1000,7 @@ MonoBehaviour:
   out_b: 0
   info: "A tiling of 1 means, that the whole texture is fitted on 100meters.\n With
     0.1 it is fitted to 1000 meters, tiling=10 fits the whole texture to 10 meters."
-  gridPos: {x: 81377.23, y: 79169.69}
+  gridPos: {x: 99950, y: 99950}
 --- !u!114 &7543703571791002680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1043,10 +1037,7 @@ MonoBehaviour:
       _node: {fileID: 7543703571791002680}
       _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: b
-        node: {fileID: 91143686026731053}
-        reroutePoints: []
+      connections: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
@@ -1082,17 +1073,20 @@ MonoBehaviour:
       _node: {fileID: 7543703571791002680}
       _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
-      connections: []
+      connections:
+      - fieldName: b
+        node: {fileID: 91143686026731053}
+        reroutePoints: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
   areaWeights:
-  - 0.08495512
-  - 9.62861e-10
+  - 0.979287
   - 0
-  - 0.0000015866522
-  - 0.9150433
+  - 0
+  - 0
+  - 0.020713028
   - 0
   curArea: 0
   wMountains: 0
@@ -1307,7 +1301,7 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 0
   probability: 0.01
-  cellSize: 15
+  cellSize: 25
   randomOffset: 0
   objectVariant0:
     prefab: {fileID: 0}

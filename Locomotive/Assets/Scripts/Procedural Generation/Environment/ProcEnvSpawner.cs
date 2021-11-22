@@ -170,9 +170,11 @@ public class ProcEnvSpawner : MonoBehaviour
             {
                 for (int xOffset = 0; xOffset * envObjectsManager.SqrtElementsPerFile < sizeX; xOffset++)
                 {
+                    List<EnvSpawnObjectInfo> objectsInfoList = new List<EnvSpawnObjectInfo>();
+
                     EnvObjectsGrid eog = new EnvObjectsGrid();
                     eog.gridSize = gridSize;
-                    eog.spawnObjects = new EnvSpawnObjectInfo[envObjectsManager.SqrtElementsPerFile, envObjectsManager.SqrtElementsPerFile];
+                    //eog.spawnObjects = new EnvSpawnObjectInfo[envObjectsManager.SqrtElementsPerFile, envObjectsManager.SqrtElementsPerFile];
                     eog.gridOffsetX = xOffset;
                     eog.gridOffsetZ = zOffset;
 
@@ -186,7 +188,7 @@ public class ProcEnvSpawner : MonoBehaviour
                             float randVal3 = UnityEngine.Random.value;
                             float randVal4 = UnityEngine.Random.value;
 
-                            bool hasSpawned = spawnObject(onlyWriteDatastructure, eog, new Vector2Int(x, z), graph,
+                            bool hasSpawned = spawnObject(onlyWriteDatastructure, objectsInfoList, eog, new Vector2Int(x, z), graph,
                                 new Vector2((x + xOffset * envObjectsManager.SqrtElementsPerFile) * gridSize + generateAreaMin.position.x, (z + zOffset * envObjectsManager.SqrtElementsPerFile) * gridSize + generateAreaMin.position.z),
                                             randVal, randVal2, randVal3, randVal4, gridSize, randomInCell, procTerrainGen);
 
@@ -206,6 +208,8 @@ public class ProcEnvSpawner : MonoBehaviour
                         }
                     }
 
+                    eog.spawnObjects1D = objectsInfoList.ToArray();
+
                     File.WriteAllBytes("./envobjects/envobjectsgrid" + fileID.ToString()
                                                                     + "_" + xOffset.ToString() + "_" + zOffset.ToString()
                                                                     + "_" + gridSize.ToString()
@@ -213,7 +217,7 @@ public class ProcEnvSpawner : MonoBehaviour
                 }
             }
 
-
+            fileID++;
 
             float outputProb = 0f;
 
@@ -230,7 +234,7 @@ public class ProcEnvSpawner : MonoBehaviour
         }
     }
 
-    private bool spawnObject(bool onlyWriteDataStructure, EnvObjectsGrid eog, Vector2Int intPos, ProcEnvGraph graph, Vector2 gridPosition, float randVal, float randVal2, float randVal3, float randVal4, float gridSize, float randomnessInCell, ProcTerrainGen procTerrainGen)
+    private bool spawnObject(bool onlyWriteDataStructure, List<EnvSpawnObjectInfo> objectsInfoList, EnvObjectsGrid eog, Vector2Int intPos, ProcEnvGraph graph, Vector2 gridPosition, float randVal, float randVal2, float randVal3, float randVal4, float gridSize, float randomnessInCell, ProcTerrainGen procTerrainGen)
     {
         Vector2 random2DPos = new Vector2(gridPosition.x, gridPosition.y);
         random2DPos += new Vector2(randVal3 * gridSize, randVal4 * gridSize);
@@ -338,23 +342,25 @@ public class ProcEnvSpawner : MonoBehaviour
                     }
                     else
                     {
-                        eog.spawnObjects[intPos.x, intPos.y] = new EnvSpawnObjectInfo();
-                        eog.spawnObjects[intPos.x, intPos.y].objectID = envObjectsManager.GetObjectID(variant.prefab);
-                        eog.spawnObjects[intPos.x, intPos.y].pos = new Vector3(pos2D.x, surfaceHeight, pos2D.y);
-                        eog.spawnObjects[intPos.x, intPos.y].upVec = Vector3.Lerp(Vector3.up, surfaceNormal, variant.adjustToSlope);
-                        eog.spawnObjects[intPos.x, intPos.y].yRot = variant.rotY;
-                        eog.spawnObjects[intPos.x, intPos.y].scale = new Vector3(variant.scaleX, variant.scaleY, variant.scaleZ);
-                        eog.spawnObjects[intPos.x, intPos.y].pos += eog.spawnObjects[intPos.x, intPos.y].upVec.normalized * variant.offsetY;
+                        EnvSpawnObjectInfo esoi = new EnvSpawnObjectInfo();
+
+                        esoi.objectID = envObjectsManager.GetObjectID(variant.prefab);
+                        esoi.pos = new Vector3(pos2D.x, surfaceHeight, pos2D.y);
+                        esoi.upVec = Vector3.Lerp(Vector3.up, surfaceNormal, variant.adjustToSlope);
+                        esoi.yRot = variant.rotY;
+                        esoi.scale = new Vector3(variant.scaleX, variant.scaleY, variant.scaleZ);
+                        esoi.pos += esoi.upVec.normalized * variant.offsetY;
                         if (variant.randomRot)
                         {
-                            eog.spawnObjects[intPos.x, intPos.y].rot = new Vector3(randVal * 360f, randVal2 * 360f, randVal3 * 360f);
-                            eog.spawnObjects[intPos.x, intPos.y].yRot = 0f;
-                            eog.spawnObjects[intPos.x, intPos.y].upVec = Vector3.zero;
+                            esoi.rot = new Vector3(randVal * 360f, randVal2 * 360f, randVal3 * 360f);
+                            esoi.yRot = 0f;
+                            esoi.upVec = Vector3.zero;
                         }
                         else
                         {
-                            eog.spawnObjects[intPos.x, intPos.y].rot = Vector3.zero;
+                            esoi.rot = Vector3.zero;
                         }
+                        objectsInfoList.Add(esoi);
                     }
                 }
 
