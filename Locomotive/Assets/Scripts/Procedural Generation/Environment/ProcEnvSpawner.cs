@@ -1,6 +1,8 @@
 using ProcEnvXNode;
+using SplineMesh;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 [ExecuteInEditMode]
@@ -19,6 +21,19 @@ public class ProcEnvSpawner : MonoBehaviour
     [SerializeField]
     private ProcEnvGraph[] envObjects;
 
+    [Space]
+    [Header("Generate")]
+    public bool computeDistancesToRails = false;
+
+    [Space]
+    [Header("Store grid")]
+    public bool storeInFile = false;
+    public int fileID = -1;
+
+
+    private Spline[] railSegmentsCached = null;
+
+    private EnvObjectsManager envObjectsManager;
 
     // Start is called before the first frame update
     void Start()
@@ -35,14 +50,54 @@ public class ProcEnvSpawner : MonoBehaviour
             {
                 generateObjects = false;
 
-                genObjects();
+                envObjectsManager = FindObjectOfType<EnvObjectsManager>();
+
+                RailSegment[] railSegmentsCachedRS = FindObjectsOfType<RailSegment>();
+                railSegmentsCached = new Spline[railSegmentsCachedRS.Length];
+                for (int i = 0; i < railSegmentsCachedRS.Length; i++)
+                {
+                    railSegmentsCached[i] = railSegmentsCachedRS[i].GetComponentInChildren<Spline>();
+                }
+                genObjects(false);
+
+                railSegmentsCached = null;
+            }
+
+            if (storeInFile)
+            {
+                storeInFile = false;
+
+                envObjectsManager = FindObjectOfType<EnvObjectsManager>();
+
+                if (fileID == -1)
+                {
+                    Debug.LogError("File ID was -1");
+                }
+                else
+                {
+                    if (generateAreaMin.position.x > 0.01f || generateAreaMin.position.y > 0.01f || generateAreaMin.position.z > 0.01f)
+                    {
+                        Debug.LogError("Min pos is not at (0,0,0)");
+                    }
+                    else
+                    {
+                        if (File.Exists("./envobjects/envobjectsgrid" + fileID.ToString() + ".eog"))
+                        {
+                            Debug.LogError("File already exsits");
+                        }
+                        else
+                        {
+                            genObjects(true);
+                        }
+                    }
+                }
             }
         }
     }
 
-
-    private void genObjects()
+    private void genObjects(bool onlyWriteDatastructure)
     {
+
         int maxObjectsCounter = 0;
         ProcTerrainGen procTerrainGen = FindObjectOfType<ProcTerrainGen>();
 
@@ -88,7 +143,7 @@ public class ProcEnvSpawner : MonoBehaviour
         {
             ProcEnvGraph graph = envObjects[g];
 
-            float gridSize = 0f;
+            int gridSize = 0;
             float randomInCell = 0f;
 
             for (int i = 0; i < graph.nodes.Count; i++)
@@ -104,37 +159,65 @@ public class ProcEnvSpawner : MonoBehaviour
                 }
             }
 
+
             int sizeX = (int)((generateAreaMax.position.x - generateAreaMin.position.x) / gridSize);
             int sizeZ = (int)((generateAreaMax.position.z - generateAreaMin.position.z) / gridSize);
 
+
             UnityEngine.Random.InitState(seed);
 
-            for (int z = 0; z < sizeZ; z++)
+            for (int zOffset = 0; zOffset * envObjectsManager.SqrtElementsPerFile < sizeZ; zOffset++)
             {
-                for (int x = 0; x < sizeX; x++)
+                for (int xOffset = 0; xOffset * envObjectsManager.SqrtElementsPerFile < sizeX; xOffset++)
                 {
-                    float randVal = UnityEngine.Random.value;
-                    float randVal2 = UnityEngine.Random.value;
-                    float randVal3 = UnityEngine.Random.value;
-                    float randVal4 = UnityEngine.Random.value;
+                    List<EnvSpawnObjectInfo> objectsInfoList = new List<EnvSpawnObjectInfo>();
 
-                    bool hasSpawned = spawnObject(graph, new Vector2(x * gridSize + generateAreaMin.position.x, z * gridSize + generateAreaMin.position.z),
-                                    randVal, randVal2, randVal3, randVal4, gridSize, randomInCell, procTerrainGen);
-                
-                    if (hasSpawned)
+                    EnvObjectsGrid eog = new EnvObjectsGrid();
+                    eog.gridSize = gridSize;
+                    //eog.spawnObjects = new EnvSpawnObjectInfo[envObjectsManager.SqrtElementsPerFile, envObjectsManager.SqrtElementsPerFile];
+                    eog.gridOffsetX = xOffset;
+                    eog.gridOffsetZ = zOffset;
+
+
+                    for (int z = 0; z < envObjectsManager.SqrtElementsPerFile; z++)
                     {
-                        maxObjectsCounter++;
-                        if (maxObjectsCounter > maxObjects)
+                        for (int x = 0; x < envObjectsManager.SqrtElementsPerFile; x++)
                         {
-                            Debug.LogError("Max objects reached");
-                            return;
+                            float randVal = UnityEngine.Random.value;
+                            float randVal2 = UnityEngine.Random.value;
+                            float randVal3 = UnityEngine.Random.value;
+                            float randVal4 = UnityEngine.Random.value;
+
+                            bool hasSpawned = spawnObject(onlyWriteDatastructure, objectsInfoList, eog, new Vector2Int(x, z), graph,
+                                new Vector2((x + xOffset * envObjectsManager.SqrtElementsPerFile) * gridSize + generateAreaMin.position.x, (z + zOffset * envObjectsManager.SqrtElementsPerFile) * gridSize + generateAreaMin.position.z),
+                                            randVal, randVal2, randVal3, randVal4, gridSize, randomInCell, procTerrainGen);
+
+                            if (hasSpawned)
+                            {
+                                if (!onlyWriteDatastructure)
+                                {
+                                    maxObjectsCounter++;
+                                    if (maxObjectsCounter > maxObjects)
+                                    {
+                                        Debug.LogError("Max objects reached");
+                                        return;
+                                    }
+                                }
+
+                            }
                         }
-
                     }
-                }
 
+                    eog.spawnObjects1D = objectsInfoList.ToArray();
+
+                    File.WriteAllBytes("./envobjects/envobjectsgrid" + fileID.ToString()
+                                                                    + "_" + xOffset.ToString() + "_" + zOffset.ToString()
+                                                                    + "_" + gridSize.ToString()
+                                                                    + ".eog", eog.ToBytes());
+                }
             }
 
+            fileID++;
 
             float outputProb = 0f;
 
@@ -151,7 +234,7 @@ public class ProcEnvSpawner : MonoBehaviour
         }
     }
 
-    private bool spawnObject(ProcEnvGraph graph, Vector2 gridPosition, float randVal, float randVal2, float randVal3, float randVal4, float gridSize, float randomnessInCell, ProcTerrainGen procTerrainGen)
+    private bool spawnObject(bool onlyWriteDataStructure, List<EnvSpawnObjectInfo> objectsInfoList, EnvObjectsGrid eog, Vector2Int intPos, ProcEnvGraph graph, Vector2 gridPosition, float randVal, float randVal2, float randVal3, float randVal4, float gridSize, float randomnessInCell, ProcTerrainGen procTerrainGen)
     {
         Vector2 random2DPos = new Vector2(gridPosition.x, gridPosition.y);
         random2DPos += new Vector2(randVal3 * gridSize, randVal4 * gridSize);
@@ -203,7 +286,8 @@ public class ProcEnvSpawner : MonoBehaviour
             {
                 RailsDistance nodeRailDistance = (RailsDistance)graph.nodes[i];
 
-
+                float distance = getDistanceToRailSpline(gridPosition);
+                nodeRailDistance.distanceFromRail = distance;
             }
         }
 
@@ -241,16 +325,42 @@ public class ProcEnvSpawner : MonoBehaviour
                 if (randVal <= outputProb)
                 {
                     hasSpawned = true;
-                    GameObject instObject = Instantiate(variant.prefab, transform);
-                    instObject.transform.position = new Vector3(pos2D.x, surfaceHeight, pos2D.y);
-                    instObject.transform.up = Vector3.Lerp(Vector3.up, surfaceNormal, variant.adjustToSlope);
-                    instObject.transform.Rotate(0f, variant.rotY, 0f, Space.Self);
-                    instObject.transform.localScale = new Vector3(variant.scaleX, variant.scaleY, variant.scaleZ);
-                    instObject.transform.position += instObject.transform.up.normalized * variant.offsetY;
 
-                    if (variant.randomRot)
+                    if (!onlyWriteDataStructure)
                     {
-                        instObject.transform.rotation = Quaternion.Euler(randVal * 360f, randVal2 * 360f, randVal3 * 360f);
+                        GameObject instObject = Instantiate(variant.prefab, transform);
+                        instObject.transform.position = new Vector3(pos2D.x, surfaceHeight, pos2D.y);
+                        instObject.transform.up = Vector3.Lerp(Vector3.up, surfaceNormal, variant.adjustToSlope);
+                        instObject.transform.Rotate(0f, variant.rotY, 0f, Space.Self);
+                        instObject.transform.localScale = new Vector3(variant.scaleX, variant.scaleY, variant.scaleZ);
+                        instObject.transform.position += instObject.transform.up.normalized * variant.offsetY;
+
+                        if (variant.randomRot)
+                        {
+                            instObject.transform.rotation = Quaternion.Euler(randVal * 360f, randVal2 * 360f, randVal3 * 360f);
+                        }
+                    }
+                    else
+                    {
+                        EnvSpawnObjectInfo esoi = new EnvSpawnObjectInfo();
+
+                        esoi.objectID = envObjectsManager.GetObjectID(variant.prefab);
+                        esoi.pos = new Vector3(pos2D.x, surfaceHeight, pos2D.y);
+                        esoi.upVec = Vector3.Lerp(Vector3.up, surfaceNormal, variant.adjustToSlope);
+                        esoi.yRot = variant.rotY;
+                        esoi.scale = new Vector3(variant.scaleX, variant.scaleY, variant.scaleZ);
+                        esoi.pos += esoi.upVec.normalized * variant.offsetY;
+                        if (variant.randomRot)
+                        {
+                            esoi.rot = new Vector3(randVal * 360f, randVal2 * 360f, randVal3 * 360f);
+                            esoi.yRot = 0f;
+                            esoi.upVec = Vector3.zero;
+                        }
+                        else
+                        {
+                            esoi.rot = Vector3.zero;
+                        }
+                        objectsInfoList.Add(esoi);
                     }
                 }
 
@@ -258,5 +368,18 @@ public class ProcEnvSpawner : MonoBehaviour
         }
 
         return hasSpawned;
+    }
+
+    private float getDistanceToRailSpline(Vector2 pos)
+    {
+        for (int i = 0; i < railSegmentsCached.Length; i++)
+        {
+            for (int n = 0; n < railSegmentsCached[i].nodes.Count; n++)
+            {
+
+            }
+        }
+
+        return 0f;
     }
 }
