@@ -24,6 +24,8 @@ public class ProcEnvSpawner : MonoBehaviour
     [Space]
     [Header("Generate")]
     public bool computeDistancesToRails = false;
+    public bool writeoutDistancefield = false;
+    public bool loadDistanceToRailsFromFile = false;
 
     [Space]
     [Header("Store grid")]
@@ -34,6 +36,8 @@ public class ProcEnvSpawner : MonoBehaviour
     private Spline[] railSegmentsCached = null;
 
     private EnvObjectsManager envObjectsManager;
+
+    private ProcEnvRailsDistance procEnvRailsDistance = null;
 
     // Start is called before the first frame update
     void Start()
@@ -61,6 +65,49 @@ public class ProcEnvSpawner : MonoBehaviour
                 genObjects(false);
 
                 railSegmentsCached = null;
+            }
+
+            if (computeDistancesToRails)
+            {
+                computeDistancesToRails = false;
+
+                procEnvRailsDistance = new ProcEnvRailsDistance();
+                RailSegment[] railSegments = FindObjectsOfType<RailSegment>();
+                List<Spline> splines = new List<Spline>();
+                for (int i = 0; i < railSegments.Length; i++)
+                {
+                    if (railSegments[i].GetComponentInChildren<Spline>() != null)
+                    {
+                        Spline spline = railSegments[i].GetComponentInChildren<Spline>();
+                        if (spline.gameObject.activeInHierarchy)
+                        {
+                            splines.Add(spline);
+                        }
+                    }
+                }
+                procEnvRailsDistance.ComputeDistancefield(splines.ToArray());
+
+                //byte[] bytes = procEnvRailsDistance.ToBytes();
+                //File.WriteAllBytes("./envobjects/railsDistances.perd", bytes);
+
+                Debug.Log("Computed distance field");
+            }
+            if (writeoutDistancefield)
+            {
+                writeoutDistancefield = false;
+
+                byte[] bytes = procEnvRailsDistance.ToBytes();
+                File.WriteAllBytes("./envobjects/railsDistances.perd", bytes);
+
+                Debug.Log("Written out distance to rails file");
+            }
+            if (loadDistanceToRailsFromFile)
+            {
+                loadDistanceToRailsFromFile = false;
+
+                procEnvRailsDistance = ProcEnvRailsDistance.FromBytes(File.ReadAllBytes("./envobjects/railsDistances.perd"));
+
+                Debug.Log("Loaded distance to rails file");
             }
 
             if (storeInFile)
@@ -372,6 +419,8 @@ public class ProcEnvSpawner : MonoBehaviour
 
     private float getDistanceToRailSpline(Vector2 pos)
     {
+        return procEnvRailsDistance.DistanceToRails(pos);
+        /*
         for (int i = 0; i < railSegmentsCached.Length; i++)
         {
             for (int n = 0; n < railSegmentsCached[i].nodes.Count; n++)
@@ -380,6 +429,6 @@ public class ProcEnvSpawner : MonoBehaviour
             }
         }
 
-        return 0f;
+        return 0f;*/
     }
 }

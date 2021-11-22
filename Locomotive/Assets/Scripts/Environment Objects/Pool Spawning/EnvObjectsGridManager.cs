@@ -187,12 +187,16 @@ public class EnvObjectsGridInfo
 
         string[] filenameSplit = filepath.Split('_');
 
-        gridOffset = new Vector2Int(System.Convert.ToInt32(filenameSplit[filenameSplit.Length - 3]), System.Convert.ToInt32(filenameSplit[filenameSplit.Length - 2]));
-        gridSize = System.Convert.ToInt32(filenameSplit[filenameSplit.Length - 1].Split('.')[0]);
+        if (filenameSplit.Length >= 2)
+        {
+            gridOffset = new Vector2Int(System.Convert.ToInt32(filenameSplit[filenameSplit.Length - 3]), System.Convert.ToInt32(filenameSplit[filenameSplit.Length - 2]));
+            gridSize = System.Convert.ToInt32(filenameSplit[filenameSplit.Length - 1].Split('.')[0]);
 
-        diagonalDistance = sqrtObjects * gridSize * Mathf.Sqrt(2f);
+            diagonalDistance = sqrtObjects * gridSize * Mathf.Sqrt(2f);
 
-        midWorldPos = gridOffset * sqrtObjects * gridSize + new Vector2(sqrtObjects * gridSize * 0.5f, sqrtObjects * gridSize * 0.5f);
+            midWorldPos = gridOffset * sqrtObjects * gridSize + new Vector2(sqrtObjects * gridSize * 0.5f, sqrtObjects * gridSize * 0.5f);
+        }
+
     }
 
     public Vector2Int GridOffset
