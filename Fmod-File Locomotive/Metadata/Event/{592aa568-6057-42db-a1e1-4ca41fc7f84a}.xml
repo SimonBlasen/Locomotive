@@ -106,7 +106,7 @@
 	</object>
 	<object class="SingleSound" id="{0fac49a4-babe-4c5c-9bb2-e622fced7b62}">
 		<property name="length">
-			<value>101</value>
+			<value>100</value>
 		</property>
 		<property name="looping">
 			<value>true</value>
