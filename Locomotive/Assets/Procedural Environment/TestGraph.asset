@@ -109,7 +109,7 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  a: 0
+  a: 1
   b: 0
   output: 0
 --- !u!114 &-8106447332187318254
@@ -378,7 +378,7 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  distanceFromRail: 0
+  distanceFromRail: 1500
   distance: 0
   info: DOES NOT WORK YET
 --- !u!114 &-2489528588657434326
@@ -491,7 +491,7 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  slopeAngle: 30.965298
+  slopeAngle: 37.412354
   angle: 0
   cosAngle: 0
   info: Angle is zero, if the surface is flat. It is 90, if the surface is a wall.
@@ -782,7 +782,7 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  a: 0.5
+  a: 1
   b: 0
   output: 0
 --- !u!114 &539894149971877993
@@ -1154,7 +1154,7 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 90
+      time: 1199
       value: 0
       inSlope: 0
       outSlope: 0
@@ -1163,7 +1163,7 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 100
+      time: 1200
       value: 1
       inSlope: 0.00003566665
       outSlope: 0.00003566665
@@ -1241,7 +1241,7 @@ MonoBehaviour:
   out_b: 0
   info: "A tiling of 1 means, that the whole texture is fitted on 100meters.\n With
     0.1 it is fitted to 1000 meters, tiling=10 fits the whole texture to 10 meters."
-  gridPos: {x: 99950, y: 99950}
+  gridPos: {x: 99975, y: 99975}
 --- !u!114 &7543703571791002680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1323,11 +1323,11 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 0
   areaWeights:
-  - 0.979287
+  - 0.9793732
   - 0
   - 0
   - 0
-  - 0.020713028
+  - 0.020626755
   - 0
   curArea: 0
   wMountains: 0
