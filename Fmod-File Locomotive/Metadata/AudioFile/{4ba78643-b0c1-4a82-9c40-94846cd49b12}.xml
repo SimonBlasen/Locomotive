@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="AudioFile" id="{4ba78643-b0c1-4a82-9c40-94846cd49b12}">
+		<property name="assetPath">
+			<value>Steam_FilesNeuNEU/46-52_01.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>96</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>2.26665625</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{29a80aed-39f0-4f1e-b0a5-df58b5de11ec}</destination>
+		</relationship>
+	</object>
+</objects>

@@ -2,13 +2,13 @@
 <objects serializationModel="Studio.02.01.00">
 	<object class="Event" id="{dbe77ffc-9932-49a7-8a2b-97bb1f3fa4e1}">
 		<property name="name">
-			<value>SchaufelAUF BOMBE</value>
+			<value>COAL_Schaufel-Bombe</value>
 		</property>
 		<property name="outputFormat">
 			<value>2</value>
 		</property>
 		<relationship name="folder">
-			<destination>{cddbb473-9f80-4feb-9a0c-5ace0da4521f}</destination>
+			<destination>{bbf00d70-ce34-4146-a683-58b22960cf3e}</destination>
 		</relationship>
 		<relationship name="mixer">
 			<destination>{a4aea7db-702b-4f3e-80e8-55423c6996c6}</destination>

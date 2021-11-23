@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="AudioFile" id="{73a4198d-3322-4340-8be7-f93441f4867a}">
+		<property name="assetPath">
+			<value>LOK_INNEN/HEBEL_RW_VW.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>96</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.81886458333333334</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{29a80aed-39f0-4f1e-b0a5-df58b5de11ec}</destination>
+		</relationship>
+	</object>
+</objects>
