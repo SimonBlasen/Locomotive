@@ -2,13 +2,13 @@
 <objects serializationModel="Studio.02.01.00">
 	<object class="Event" id="{59b82efb-19c9-42ae-baa1-f6785f26fc07}">
 		<property name="name">
-			<value>Lok_Hupe</value>
+			<value>Lok_Hupe-Old</value>
 		</property>
 		<property name="outputFormat">
 			<value>2</value>
 		</property>
 		<relationship name="folder">
-			<destination>{cddbb473-9f80-4feb-9a0c-5ace0da4521f}</destination>
+			<destination>{b06c4b31-3dd3-4e83-93d8-76c775d011fd}</destination>
 		</relationship>
 		<relationship name="mixer">
 			<destination>{369ede47-49e9-478a-baae-9c584dc9b658}</destination>
@@ -30,9 +30,6 @@
 		</relationship>
 		<relationship name="timeline">
 			<destination>{f1acf90b-035d-4a0d-b3a1-ecf78116a2b5}</destination>
-		</relationship>
-		<relationship name="banks">
-			<destination>{f72a1e21-bfaf-4fbd-9cb2-5952d3997c06}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixer" id="{369ede47-49e9-478a-baae-9c584dc9b658}">

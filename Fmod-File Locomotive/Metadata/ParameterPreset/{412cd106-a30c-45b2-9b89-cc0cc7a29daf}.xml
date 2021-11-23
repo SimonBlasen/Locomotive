@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="ParameterPreset" id="{412cd106-a30c-45b2-9b89-cc0cc7a29daf}">
+		<property name="note">
+			<value>VW&gt;RW = 0; RW&gt;VW = 1</value>
+		</property>
+		<property name="name">
+			<value>HEBEL_VW-RW</value>
+		</property>
+		<relationship name="folder">
+			<destination>{d5bfd474-df49-4aa4-a952-1aa25be2066a}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{6d6f9a4e-645e-41b9-935e-b2f4189e59ff}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{6d6f9a4e-645e-41b9-935e-b2f4189e59ff}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

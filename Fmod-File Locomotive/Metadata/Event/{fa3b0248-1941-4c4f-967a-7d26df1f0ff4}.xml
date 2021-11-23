@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.01.00">
 	<object class="Event" id="{fa3b0248-1941-4c4f-967a-7d26df1f0ff4}">
 		<property name="name">
-			<value>Glocke_Bahnübergang</value>
+			<value>BELL_Crossing</value>
 		</property>
 		<property name="outputFormat">
 			<value>2</value>
