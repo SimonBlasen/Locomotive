@@ -5,7 +5,7 @@
 			<value>Lok_Event2D</value>
 		</property>
 		<property name="outputFormat">
-			<value>5</value>
+			<value>1</value>
 		</property>
 		<relationship name="folder">
 			<destination>{cddbb473-9f80-4feb-9a0c-5ace0da4521f}</destination>
@@ -116,11 +116,8 @@
 	<object class="MixerBusPanner" id="{15cd2ef3-d031-4431-944d-cc72db115956}" />
 	<object class="EventSound" id="{d7967038-1ac5-4a76-96e3-087e88717818}">
 		<property name="length">
-			<value>101</value>
+			<value>100</value>
 		</property>
-		<relationship name="parameters">
-			<destination>{94b16ac6-f17d-4894-9d27-26654f64d849}</destination>
-		</relationship>
 		<relationship name="event">
 			<destination>{f6959068-826b-47c6-8c7c-769fd34eff58}</destination>
 		</relationship>
@@ -191,11 +188,6 @@
 	</object>
 	<object class="MixerBusPanner" id="{c45f5276-4020-470e-8fa7-43b45c65bd4b}" />
 	<object class="MixerBusFader" id="{79122664-ae22-4d56-8404-4898bd8e92d6}" />
-	<object class="ParameterProperty" id="{94b16ac6-f17d-4894-9d27-26654f64d849}">
-		<relationship name="parameter">
-			<destination>{a56674bb-8ba5-418a-beeb-698c52f6393b}</destination>
-		</relationship>
-	</object>
 	<object class="MixerBusEffectChain" id="{b3156012-a0d0-4eba-ab69-8279bdbda86c}">
 		<relationship name="effects">
 			<destination>{8709eba6-daf0-40ea-aaa9-6821579ba008}</destination>

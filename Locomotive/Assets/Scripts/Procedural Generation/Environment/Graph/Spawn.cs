@@ -11,7 +11,7 @@ namespace ProcEnvXNode
 		[Input]
 		public float probability;
 
-		public float cellSize;
+		public int cellSize;
 
 		public float randomOffset;
 

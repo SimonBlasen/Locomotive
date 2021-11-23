@@ -5,7 +5,7 @@
 			<value>Steam 3D</value>
 		</property>
 		<property name="outputFormat">
-			<value>5</value>
+			<value>1</value>
 		</property>
 		<relationship name="folder">
 			<destination>{2ce3dbf1-e9f1-49c1-ab18-ac701bec8e4f}</destination>
@@ -535,9 +535,6 @@
 		<property name="start">
 			<value>64.5</value>
 		</property>
-		<relationship name="parameters">
-			<destination>{f1afbcbc-8e8f-4e70-8954-3f90791382f4}</destination>
-		</relationship>
 		<relationship name="event">
 			<destination>{166b721a-4649-44e0-b261-31753318bf98}</destination>
 		</relationship>
@@ -5852,11 +5849,6 @@
 	</object>
 	<object class="MixerBusPanner" id="{99be6ebc-2602-42c4-b07f-abe773fa91f7}" />
 	<object class="MixerBusFader" id="{fdf8dcfc-eef3-4830-a49d-5a25890e9bf5}" />
-	<object class="ParameterProperty" id="{f1afbcbc-8e8f-4e70-8954-3f90791382f4}">
-		<relationship name="parameter">
-			<destination>{e78e8ad2-8697-4e2b-85a3-8f26d5d74014}</destination>
-		</relationship>
-	</object>
 	<object class="MixerBusEffectChain" id="{fcd237e4-3ddd-411b-971f-31212f475825}">
 		<relationship name="effects">
 			<destination>{b24b5f80-7e8d-485a-9417-0632faf424db}</destination>
