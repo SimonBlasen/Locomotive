@@ -80,6 +80,29 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 1
+--- !u!114 &-8661763956231639589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/LOK-STUFF/AUSSEN MOVEMENT/Lok_Movement
+  m_EditorClassIdentifier: 
+  Path: event:/LOK-STUFF/AUSSEN MOVEMENT/Lok_Movement
+  guid: 9ef0f645cede5145b0626b0e4d3c5344
+  Banks:
+  - {fileID: -1867817987732486219}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 10
+  MaxDistance: 500
+  Length: 0
 --- !u!114 &-8514344916831407251
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -103,6 +126,29 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 10
   Length: 1682
+--- !u!114 &-8292883606249371215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/LOK-STUFF/INNEN/HEBEL_Bremse
+  m_EditorClassIdentifier: 
+  Path: event:/LOK-STUFF/INNEN/HEBEL_Bremse
+  guid: 66fb6475080f2f418c3cd917b1120f8f
+  Banks:
+  - {fileID: -1867817987732486219}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2318
 --- !u!114 &-8278728691099253043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -392,6 +438,29 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 10
   Length: 762
+--- !u!114 &-6920245340044440671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/LOK-STUFF/INNEN/COAL_Schaufel-Auf
+  m_EditorClassIdentifier: 
+  Path: event:/LOK-STUFF/INNEN/COAL_Schaufel-Auf
+  guid: 43bdf2be2bff54498d99146b83455c14
+  Banks:
+  - {fileID: -1867817987732486219}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 10
+  Length: 1682
 --- !u!114 &-6849521359895763374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -841,6 +910,29 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 1
+--- !u!114 &-4295419637989211830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/LOK-STUFF/ZZ_Old/References/Fire_Hits
+  m_EditorClassIdentifier: 
+  Path: event:/LOK-STUFF/ZZ_Old/References/Fire_Hits
+  guid: 4c0d54c58c338e45acda5d12cb9400db
+  Banks:
+  - {fileID: -1867817987732486219}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 10000
 --- !u!114 &-4218165072755926884
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -941,6 +1033,52 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 1
+--- !u!114 &-3409803887084686913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/LOK-STUFF/INNEN/LOK_Hupe
+  m_EditorClassIdentifier: 
+  Path: event:/LOK-STUFF/INNEN/LOK_Hupe
+  guid: 4c08b00562feb94b9b14ba5b1a08b585
+  Banks:
+  - {fileID: -1867817987732486219}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1733
+--- !u!114 &-2750939666320979115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/LOK-STUFF/AUSSEN MOVEMENT/Lok_Breaks
+  m_EditorClassIdentifier: 
+  Path: event:/LOK-STUFF/AUSSEN MOVEMENT/Lok_Breaks
+  guid: 775d18d9ab0eea47be182539c6565122
+  Banks:
+  - {fileID: -1867817987732486219}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 10351
 --- !u!114 &-2679934886011300879
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1056,10 +1194,33 @@ MonoBehaviour:
   Path: ../Fmod-File Locomotive/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637732654599268367
+  lastModified: 637732893198743450
   LoadResult: 0
   FileSizes: []
   Exists: 1
+--- !u!114 &-1744857725478363287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/WORLD/AMBIENCES/AMB-Forest
+  m_EditorClassIdentifier: 
+  Path: event:/WORLD/AMBIENCES/AMB-Forest
+  guid: da62e20cbb64f944b7d22863996537fb
+  Banks:
+  - {fileID: -1867817987732486219}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 0
 --- !u!114 &-1725054522601263872
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1206,6 +1367,29 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 1
+--- !u!114 &-670063743269980903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/LOK-STUFF/INNEN/VENTIL_Druckablass
+  m_EditorClassIdentifier: 
+  Path: event:/LOK-STUFF/INNEN/VENTIL_Druckablass
+  guid: 49437ba597466445beb763588ecfd1b6
+  Banks:
+  - {fileID: -1867817987732486219}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1789
 --- !u!114 &-497126597176838734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1302,30 +1486,32 @@ MonoBehaviour:
   - {fileID: 1941433785304137193}
   - {fileID: -1867817987732486219}
   EditorEvents:
-  - {fileID: -8514344916831407251}
-  - {fileID: -5383724534403045064}
-  - {fileID: 2318464752267237839}
-  - {fileID: -6948763524807859021}
-  - {fileID: 2086604694415734299}
-  - {fileID: -1456311818974341338}
   - {fileID: -7247871044151453851}
   - {fileID: 4287926913497195192}
-  - {fileID: 672579678153010858}
-  - {fileID: 5883457866019340071}
-  - {fileID: 3147603840430003437}
-  - {fileID: -6849223750750624894}
-  - {fileID: 8884446396554424283}
-  - {fileID: -6427264661871998690}
-  - {fileID: -7313025076101560368}
-  - {fileID: 566386657534416795}
-  EditorParameters:
-  - {fileID: -4326422646355806108}
-  - {fileID: 3545596774088468518}
+  - {fileID: 8770539421353625746}
+  - {fileID: -6920245340044440671}
+  - {fileID: 6734015057544344852}
+  - {fileID: -670063743269980903}
+  - {fileID: -3409803887084686913}
+  - {fileID: -4295419637989211830}
+  - {fileID: 4006086806416915220}
+  - {fileID: -8292883606249371215}
+  - {fileID: -2750939666320979115}
+  - {fileID: 8397096286506783839}
+  - {fileID: -8661763956231639589}
+  - {fileID: 5128010819494027973}
+  - {fileID: 7158889879780393110}
+  - {fileID: 6255710953947350721}
+  - {fileID: -1744857725478363287}
+  - {fileID: 966479483604213084}
+  - {fileID: 1810201619214120706}
+  - {fileID: 4195933117917081439}
+  EditorParameters: []
   MasterBanks:
   - {fileID: -1867817987732486219}
   StringsBanks:
   - {fileID: 1941433785304137193}
-  stringsBankWriteTime: 637732654599298292
+  stringsBankWriteTime: 637732893198753454
   cacheVersion: 6
 --- !u!114 &566386657534416795
 MonoBehaviour:
@@ -1455,6 +1641,29 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 0
+--- !u!114 &966479483604213084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/WORLD/STATION/WHISTLE_Go
+  m_EditorClassIdentifier: 
+  Path: event:/WORLD/STATION/WHISTLE_Go
+  guid: e9c9dc756e455e47bd60e5eb814bcff3
+  Banks:
+  - {fileID: -1867817987732486219}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 2420
 --- !u!114 &1629845801003868400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1495,6 +1704,30 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 1
+--- !u!114 &1810201619214120706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/LOK-STUFF/INNEN/VENTIL_Gas
+  m_EditorClassIdentifier: 
+  Path: event:/LOK-STUFF/INNEN/VENTIL_Gas
+  guid: f76000a6cddb7844813ffdd404d529b2
+  Banks:
+  - {fileID: -1867817987732486219}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters:
+  - {fileID: 2336816894621438549}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 9985
 --- !u!114 &1941433785304137193
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1510,11 +1743,31 @@ MonoBehaviour:
   Path: ../Fmod-File Locomotive/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637732654599298292
+  lastModified: 637732893198753454
   LoadResult: 0
   FileSizes:
   - Name: Desktop
-    Value: 1814
+    Value: 2158
+  Exists: 1
+--- !u!114 &1955994571846469444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: "parameter:/HEBEL_VorZur\xFCck/HEBEL_VW-RW"
+  m_EditorClassIdentifier: 
+  Name: HEBEL_VW-RW
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
   Exists: 1
 --- !u!114 &2069017410445941382
 MonoBehaviour:
@@ -1602,6 +1855,46 @@ MonoBehaviour:
   MinDistance: 10
   MaxDistance: 500
   Length: 3123
+--- !u!114 &2336816894621438549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/VENTIL_Gas/VENTIL-Druck_OnOff
+  m_EditorClassIdentifier: 
+  Name: VENTIL-Druck_OnOff
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
+--- !u!114 &2452789743839977506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/FIRE_Event/FireValue
+  m_EditorClassIdentifier: 
+  Name: FireValue
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
 --- !u!114 &2515981234855781616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1951,6 +2244,30 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 1
+--- !u!114 &4006086806416915220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: "event:/LOK-STUFF/INNEN/HEBEL_VorZur\xFCck"
+  m_EditorClassIdentifier: 
+  Path: "event:/LOK-STUFF/INNEN/HEBEL_VorZur\xFCck"
+  guid: 6574f2f1d925c14d882f882f6a65b124
+  Banks:
+  - {fileID: -1867817987732486219}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters:
+  - {fileID: 1955994571846469444}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &4150897761893567677
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1991,6 +2308,29 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 1
+--- !u!114 &4195933117917081439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/LOK-STUFF/INNEN/COAL_Schaufel-Bombe
+  m_EditorClassIdentifier: 
+  Path: event:/LOK-STUFF/INNEN/COAL_Schaufel-Bombe
+  guid: fc7fe7db3299a7498a2b97bb1f3fa4e1
+  Banks:
+  - {fileID: -1867817987732486219}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 10
+  Length: 9720
 --- !u!114 &4219891258466846203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2134,6 +2474,29 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 1
+--- !u!114 &5128010819494027973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/WORLD/AMBIENCES/AMB-Station
+  m_EditorClassIdentifier: 
+  Path: event:/WORLD/AMBIENCES/AMB-Station
+  guid: a5e13fd6f7c9a446a705f081cfbe9d4e
+  Banks:
+  - {fileID: -1867817987732486219}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 30675
 --- !u!114 &5200539244012477378
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2318,6 +2681,29 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 1
+--- !u!114 &6255710953947350721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/LOK-STUFF/INNEN/COAL_Schaufel-Ab
+  m_EditorClassIdentifier: 
+  Path: event:/LOK-STUFF/INNEN/COAL_Schaufel-Ab
+  guid: bcbcc2d5d0dfa141a45e6af65bd1daeb
+  Banks:
+  - {fileID: -1867817987732486219}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 10
+  Length: 2955
 --- !u!114 &6363728582982571831
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2400,6 +2786,52 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 10000
+--- !u!114 &6734015057544344852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/WORLD/BELL_Crossing
+  m_EditorClassIdentifier: 
+  Path: event:/WORLD/BELL_Crossing
+  guid: 48023bfa41194f4c967a7d26df1f0ff4
+  Banks:
+  - {fileID: -1867817987732486219}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 65
+  Length: 1000
+--- !u!114 &7158889879780393110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/LOK-STUFF/INNEN/HEBEL_Weiche
+  m_EditorClassIdentifier: 
+  Path: event:/LOK-STUFF/INNEN/HEBEL_Weiche
+  guid: ba7bf7a186f06542b7bf789e06ab7f82
+  Banks:
+  - {fileID: -1867817987732486219}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1068
 --- !u!114 &7188335006679499222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2520,6 +2952,29 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 1
+--- !u!114 &8397096286506783839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/LOK-STUFF/AUSSEN MOVEMENT/Rail_Klonk
+  m_EditorClassIdentifier: 
+  Path: event:/LOK-STUFF/AUSSEN MOVEMENT/Rail_Klonk
+  guid: 8732d4539f07144c9438c06131d8f6f6
+  Banks:
+  - {fileID: -1867817987732486219}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 5
+  MaxDistance: 20
+  Length: 1589
 --- !u!114 &8454266531497171100
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2540,6 +2995,30 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 1
+--- !u!114 &8770539421353625746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/LOK-STUFF/INNEN/FIRE_Event
+  m_EditorClassIdentifier: 
+  Path: event:/LOK-STUFF/INNEN/FIRE_Event
+  guid: 41263889434eb94380821ea2fabd0c68
+  Banks:
+  - {fileID: -1867817987732486219}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 2452789743839977506}
+  MinDistance: 3
+  MaxDistance: 15
+  Length: 0
 --- !u!114 &8884446396554424283
 MonoBehaviour:
   m_ObjectHideFlags: 0

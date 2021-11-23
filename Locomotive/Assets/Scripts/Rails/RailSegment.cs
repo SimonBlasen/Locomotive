@@ -47,16 +47,16 @@ public class RailSegment : MonoBehaviour
 
 
                 if ((Vector3.Distance(beginPos, allRailSegments[i].Spline.GetSampleAtDistance(0.1f).location + GlobalOffsetManager.Inst.GlobalOffset) <= epsilon
-                        && (angle0 <= angleEpsilon || (180f - angle0) <= angleEpsilon))
+                        && angle0 >= 90f) // (angle0 <= angleEpsilon || (180f - angle0) <= angleEpsilon))
                     || (Vector3.Distance(beginPos, allRailSegments[i].Spline.GetSampleAtDistance(allRailSegments[i].Spline.Length - 0.1f).location + GlobalOffsetManager.Inst.GlobalOffset) <= epsilon
-                        && (angle1 <= angleEpsilon || (180f - angle1) <= angleEpsilon)))
+                        && angle1 >= 90f)) // (angle1 <= angleEpsilon || (180f - angle1) <= angleEpsilon)))
                 {
                     previousSegs.Add(allRailSegments[i]);
                 }
                 else if ((Vector3.Distance(endPos, allRailSegments[i].Spline.GetSampleAtDistance(0.1f).location + GlobalOffsetManager.Inst.GlobalOffset) <= epsilon
-                        && (angle2 <= angleEpsilon || (180f - angle2) <= angleEpsilon))
+                        && angle2 >= 90f) // (angle2 <= angleEpsilon || (180f - angle2) <= angleEpsilon))
                     || (Vector3.Distance(endPos, allRailSegments[i].Spline.GetSampleAtDistance(allRailSegments[i].Spline.Length - 0.1f).location + GlobalOffsetManager.Inst.GlobalOffset) <= epsilon
-                        && (angle3 <= angleEpsilon || (180f - angle3) <= angleEpsilon)))
+                        && angle3 >= 90f)) // (angle3 <= angleEpsilon || (180f - angle3) <= angleEpsilon)))
                 {
                     followingSegs.Add(allRailSegments[i]);
                 }
