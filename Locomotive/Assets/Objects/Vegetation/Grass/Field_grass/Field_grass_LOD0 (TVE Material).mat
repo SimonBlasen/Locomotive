@@ -46,12 +46,12 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _AlphaCutoff: 0.333
+    - _AlphaCutoff: 0.189
     - _AlphaVariationValue: 1
     - _ColorsMaskMaxValue: 1
     - _ColorsMaskMinValue: 0
     - _ColorsVariationValue: 0
-    - _Cutoff: 0.333
+    - _Cutoff: 0.189
     - _DetailBlendMode: 1
     - _DetailCat: 0
     - _DetailMode: 0

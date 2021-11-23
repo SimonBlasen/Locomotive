@@ -801,6 +801,26 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 1
+--- !u!114 &-4326422646355806108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Daytime
+  m_EditorClassIdentifier: 
+  Name: Daytime
+  Min: 0
+  Max: 24
+  Default: 0
+  ID:
+    data1: 2423054786
+    data2: 3714711003
+  Exists: 1
 --- !u!114 &-4323806980739990614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -894,6 +914,26 @@ MonoBehaviour:
   m_Name: parameter:/Ambience/TreeCount
   m_EditorClassIdentifier: 
   Name: TreeCount
+  Min: 0
+  Max: 50
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
+--- !u!114 &-3548950626238628147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ambience/Altitude
+  m_EditorClassIdentifier: 
+  Name: Altitude
   Min: 0
   Max: 50
   Default: 0
@@ -1016,9 +1056,29 @@ MonoBehaviour:
   Path: ../Fmod-File Locomotive/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637731955084134807
+  lastModified: 637732654599268367
   LoadResult: 0
   FileSizes: []
+  Exists: 1
+--- !u!114 &-1725054522601263872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Fire_Event/FireValue
+  m_EditorClassIdentifier: 
+  Name: FireValue
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
   Exists: 1
 --- !u!114 &-1542454612208347041
 MonoBehaviour:
@@ -1105,7 +1165,7 @@ MonoBehaviour:
   ID:
     data1: 0
     data2: 0
-  Exists: 1
+  Exists: 0
 --- !u!114 &-1086660622462953013
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1258,12 +1318,14 @@ MonoBehaviour:
   - {fileID: -6427264661871998690}
   - {fileID: -7313025076101560368}
   - {fileID: 566386657534416795}
-  EditorParameters: []
+  EditorParameters:
+  - {fileID: -4326422646355806108}
+  - {fileID: 3545596774088468518}
   MasterBanks:
   - {fileID: -1867817987732486219}
   StringsBanks:
   - {fileID: 1941433785304137193}
-  stringsBankWriteTime: 637731955084144805
+  stringsBankWriteTime: 637732654599298292
   cacheVersion: 6
 --- !u!114 &566386657534416795
 MonoBehaviour:
@@ -1328,8 +1390,8 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 7188335006679499222}
-  - {fileID: -1235765586072164107}
+  - {fileID: -3548950626238628147}
+  - {fileID: 7215258222431691552}
   MinDistance: 0
   MaxDistance: 0
   Length: 24125
@@ -1448,7 +1510,7 @@ MonoBehaviour:
   Path: ../Fmod-File Locomotive/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637731955084144805
+  lastModified: 637732654599298292
   LoadResult: 0
   FileSizes:
   - Name: Desktop
@@ -1805,6 +1867,26 @@ MonoBehaviour:
   ID:
     data1: 0
     data2: 0
+  Exists: 1
+--- !u!114 &3545596774088468518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/RPM
+  m_EditorClassIdentifier: 
+  Name: RPM
+  Min: 0
+  Max: 100
+  Default: 0
+  ID:
+    data1: 2579403646
+    data2: 3235192666
   Exists: 1
 --- !u!114 &3652804600604223657
 MonoBehaviour:
@@ -2192,7 +2274,7 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 0
   Parameters:
-  - {fileID: 9210736558321619318}
+  - {fileID: -1725054522601263872}
   MinDistance: 3
   MaxDistance: 15
   Length: 0
@@ -2331,6 +2413,26 @@ MonoBehaviour:
   m_Name: parameter:/Ambience/Altitude
   m_EditorClassIdentifier: 
   Name: Altitude
+  Min: 0
+  Max: 50
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 0
+--- !u!114 &7215258222431691552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ambience/TreeCount
+  m_EditorClassIdentifier: 
+  Name: TreeCount
   Min: 0
   Max: 50
   Default: 0
@@ -2540,4 +2642,4 @@ MonoBehaviour:
   ID:
     data1: 0
     data2: 0
-  Exists: 1
+  Exists: 0
