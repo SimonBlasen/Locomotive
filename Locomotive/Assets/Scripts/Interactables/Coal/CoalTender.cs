@@ -8,6 +8,13 @@ public class CoalTender : MonoBehaviour
     private GameObject prefabCoal = null;
     [SerializeField]
     private Vector3 coalLocalPos = Vector3.zero;
+    [SerializeField]
+    private float maxTenderFill = 1000f;
+    [SerializeField]
+    private float weightPerCoal = 0.5f;
+    [SerializeField]
+    private CoalKGAmount coalKGAmount = null;
+
 
     private GameObject coalInHand = null;
 
@@ -17,6 +24,8 @@ public class CoalTender : MonoBehaviour
     void Start()
     {
         cam = Camera.main;
+        coalKGAmount.CoalWeight = maxTenderFill;
+        coalKGAmount.MaxCoalWeight = maxTenderFill;
     }
 
     // Update is called once per frame
@@ -54,9 +63,13 @@ public class CoalTender : MonoBehaviour
     {
         if (coalInHand == null)
         {
-            coalInHand = Instantiate(prefabCoal, cam.transform);
+            if (coalKGAmount.CoalWeight > 0f)
+            {
+                coalKGAmount.CoalWeight -= weightPerCoal;
+                coalInHand = Instantiate(prefabCoal, cam.transform);
 
-            coalInHand.transform.localPosition = coalLocalPos;
+                coalInHand.transform.localPosition = coalLocalPos;
+            }
         }
     }
 }

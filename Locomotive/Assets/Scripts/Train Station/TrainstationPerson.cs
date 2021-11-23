@@ -16,6 +16,7 @@ public class TrainstationPerson : MonoBehaviour
     private int ticksOnTrainArea = 0;
 
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +29,7 @@ public class TrainstationPerson : MonoBehaviour
         if (!inited)
         {
             inited = true;
+
             navAgent = GetComponent<NavMeshAgent>();
         }
     }
@@ -100,9 +102,11 @@ public class TrainstationPerson : MonoBehaviour
                     List<TrainStation> possibleTrainstations = new List<TrainStation>();
                     possibleTrainstations.AddRange(TrainStation.AllTrainstations);
                     possibleTrainstations.Remove(OriginTrainstation);
-                    int randomDestStation = Random.Range(0, possibleTrainstations.Count);
+                    //int randomDestStation = Random.Range(0, possibleTrainstations.Count);
 
-                    DestinationTrain.PersonEntersTrain(this, possibleTrainstations[randomDestStation]);
+                    TrainStation randomDestStation = PersonsManager.Inst.SampleDestinationTrainstation(possibleTrainstations);
+
+                    DestinationTrain.PersonEntersTrain(this, randomDestStation);
 
                     Destroy(gameObject);
                 }
