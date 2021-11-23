@@ -13,6 +13,12 @@ namespace DialogX
 
 		[Space]
 
+
+		[TextArea(8, 3)]
+		public string topText = "";
+
+		[Space]
+
 		[Output]
 		public bool option0;
 		[TextArea(8, 3)]
