@@ -15,7 +15,7 @@ namespace ProcEnvXNode
 
 		[TextArea(8, 3)]
 		//public string info = "Distance is the closest distance to the next rails in meters";
-		public string info = "DOES NOT WORK YET";
+		public string info = "Does work now. Puts out the distance to the next rails in meters";
 
 
 		// Use this for initialization

@@ -348,7 +348,7 @@ MonoBehaviour:
   a: 1
   b: 0
   output: 0
---- !u!114 &-3029238365806310965
+--- !u!114 &-2880801971301040859
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -361,13 +361,13 @@ MonoBehaviour:
   m_Name: Rails Distance
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 808, y: 431}
+  position: {x: 808, y: 472}
   ports:
     keys:
     - distance
     values:
     - _fieldName: distance
-      _node: {fileID: -3029238365806310965}
+      _node: {fileID: -2880801971301040859}
       _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
       connections:
@@ -378,9 +378,9 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  distanceFromRail: 1500
+  distanceFromRail: 0
   distance: 0
-  info: DOES NOT WORK YET
+  info: Does work now. Puts out the distance to the next rails in meters
 --- !u!114 &-2489528588657434326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -725,10 +725,10 @@ MonoBehaviour:
   - {fileID: 7543703571791002680}
   - {fileID: 91143686026731053}
   - {fileID: 7377176526149483590}
-  - {fileID: -3029238365806310965}
   - {fileID: -4562612733820359679}
   - {fileID: -8791384418058105504}
   - {fileID: 7251145292077841509}
+  - {fileID: -2880801971301040859}
 --- !u!114 &91143686026731053
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1122,7 +1122,7 @@ MonoBehaviour:
         PublicKeyToken=b77a5c561934e089
       connections:
       - fieldName: distance
-        node: {fileID: -3029238365806310965}
+        node: {fileID: -2880801971301040859}
         reroutePoints: []
       _direction: 0
       _connectionType: 0

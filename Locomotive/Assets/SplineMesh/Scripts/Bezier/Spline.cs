@@ -301,6 +301,29 @@ namespace SplineMesh {
             }
             return closest;
         }
+
+        public CurveSample GetProjectionSample(Vector2 point2DToProject)
+        {
+            CurveSample closest = default(CurveSample);
+            float minSqrDistance = float.MaxValue;
+            foreach (var curve in curves)
+            {
+                var projection = curve.GetProjectionSample(point2DToProject);
+                if (curve == curves[0])
+                {
+                    closest = projection;
+                    minSqrDistance = (new Vector2(projection.location.x, projection.location.z) - point2DToProject).sqrMagnitude;
+                    continue;
+                }
+                var sqrDist = (new Vector2(projection.location.x, projection.location.z) - point2DToProject).sqrMagnitude;
+                if (sqrDist < minSqrDistance)
+                {
+                    minSqrDistance = sqrDist;
+                    closest = projection;
+                }
+            }
+            return closest;
+        }
     }
 
     public enum ListChangeType {

@@ -7,6 +7,8 @@ public class Boiler : MonoBehaviour
     [SerializeField]
     private Fire fire = null;
     [SerializeField]
+    private WaterLevelCylinder waterLevelCylinder = null;
+    [SerializeField]
     private float tempLerpSpeed = 0.1f;
     [SerializeField]
     private float pressureIncreaseSpeed = 1f;
@@ -71,7 +73,14 @@ public class Boiler : MonoBehaviour
 
     private void generatePressure()
     {
-        pressure += generatedPressure.Evaluate(curTemp) * Time.deltaTime * pressureIncreaseSpeed;
+        float pressureDelta = pressure;
+        if (waterLevelCylinder.WaterFill > 0f)
+        {
+            pressure += generatedPressure.Evaluate(curTemp) * Time.deltaTime * pressureIncreaseSpeed;
+        }
+
+        pressureDelta = pressure - pressureDelta;
+        waterLevelCylinder.UseupWater(pressureDelta);
 
         pressure -= Time.deltaTime * generalPressureDecrease;
     }

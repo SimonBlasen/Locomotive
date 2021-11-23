@@ -239,5 +239,54 @@ namespace SplineMesh {
             var result = CurveSample.Lerp(previous, next, rate);
             return result;
         }
+
+        public CurveSample GetProjectionSample(Vector2 point2DToProject)
+        {
+            float minSqrDistance = float.PositiveInfinity;
+            int closestIndex = -1;
+            int i = 0;
+            foreach (var sample in samples)
+            {
+                float sqrDistance = (new Vector2(sample.location.x, sample.location.z) - point2DToProject).sqrMagnitude;
+                if (sqrDistance < minSqrDistance)
+                {
+                    minSqrDistance = sqrDistance;
+                    closestIndex = i;
+                }
+                i++;
+            }
+            CurveSample previous, next;
+            if (closestIndex == 0)
+            {
+                previous = samples[closestIndex];
+                next = samples[closestIndex + 1];
+            }
+            else if (closestIndex == samples.Count - 1)
+            {
+                previous = samples[closestIndex - 1];
+                next = samples[closestIndex];
+            }
+            else
+            {
+                var toPreviousSample = (point2DToProject - new Vector2(samples[closestIndex - 1].location.x, samples[closestIndex - 1].location.z)).sqrMagnitude;
+                var toNextSample = (point2DToProject - new Vector2(samples[closestIndex + 1].location.x, samples[closestIndex + 1].location.z)).sqrMagnitude;
+                if (toPreviousSample < toNextSample)
+                {
+                    previous = samples[closestIndex - 1];
+                    next = samples[closestIndex];
+                }
+                else
+                {
+                    previous = samples[closestIndex];
+                    next = samples[closestIndex + 1];
+                }
+            }
+
+            var onCurve = Vector3.Project(new Vector3(point2DToProject.x, 0f, point2DToProject.y) - new Vector3(previous.location.x, 0f, previous.location.z), new Vector3(next.location.x, 0f, next.location.z) - new Vector3(previous.location.x, 0f, previous.location.z)) + new Vector3(previous.location.x, 0f, previous.location.z);
+            var rate = (onCurve - new Vector3(previous.location.x, 0f, previous.location.z)).sqrMagnitude / (new Vector3(next.location.x, 0f, next.location.z) - new Vector3(previous.location.x, 0f, previous.location.z)).sqrMagnitude;
+            rate = Mathf.Clamp(rate, 0, 1);
+            var result = CurveSample.Lerp(previous, next, rate);
+            return result;
+        }
     }
 }

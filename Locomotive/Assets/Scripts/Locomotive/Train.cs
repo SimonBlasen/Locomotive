@@ -45,6 +45,12 @@ public class Train : MonoBehaviour
     [SerializeField]
     private SwitchSetting switchSetting = null;
     [SerializeField]
+    private WaterLevelCylinder waterLevelCylinder = null;
+    [SerializeField]
+    private EarnedMoney earnedMoney = null;
+    [SerializeField]
+    private CoalKGAmount coalKGAmount = null;
+    [SerializeField]
     private StudioEventEmitter tunnelEmitter = null;
     [SerializeField]
     private StudioEventEmitter eventEmitterLokSound = null;
@@ -72,6 +78,7 @@ public class Train : MonoBehaviour
 
     private bool inited = false;
 
+
     private Dictionary<TrainStation, int> personsInTrain = new Dictionary<TrainStation, int>();
 
 
@@ -94,6 +101,13 @@ public class Train : MonoBehaviour
         for (int i = 0; i < trainStations.Length; i++)
         {
             trainStations[i].RegisterTrain(this);
+        }
+
+        // Register in refill stations
+        RefillStation[] refillStations = FindObjectsOfType<RefillStation>();
+        for (int i = 0; i < refillStations.Length; i++)
+        {
+            refillStations[i].RegisterTrain(this);
         }
 
         totalWeight += locomotive.Weight;
@@ -210,6 +224,12 @@ public class Train : MonoBehaviour
         {
             trainStations[i].DeregisterTrain(this);
         }
+
+        RefillStation[] refillStations = FindObjectsOfType<RefillStation>();
+        for (int i = 0; i < refillStations.Length; i++)
+        {
+            refillStations[i].DeregisterTrain(this);
+        }
     }
 
 
@@ -290,10 +310,35 @@ public class Train : MonoBehaviour
         get; set;
     } = null;
 
+    public RefillStation CurrentRefillStation
+    {
+        get; set;
+    } = null;
+
     public bool DriveDirectionForward
     {
         get; set;
     } = true;
+
+    public EarnedMoney EarnedMoney
+    {
+        get
+        {
+            return earnedMoney;
+        }
+    }
+
+    public void Refill(bool coal, bool water, float deltaTime)
+    {
+        if (water)
+        {
+            waterLevelCylinder.Refill(deltaTime);
+        }
+        if (coal)
+        {
+            coalKGAmount.Refill(deltaTime);
+        }
+    }
 
     public void PersonEntersTrain(TrainstationPerson person, TrainStation destination)
     {
@@ -319,6 +364,15 @@ public class Train : MonoBehaviour
         if (personsInTrain.ContainsKey(trainStation))
         {
             personsInTrain[trainStation]--;
+
+            // TODO adapt nice price system
+            int rand = Random.Range(0, 10);
+            if (rand <= 5)
+                EarnedMoney.Money += 10.0f;
+            else if (rand <= 8)
+                EarnedMoney.Money += 12.5f;
+            else if (rand == 9)
+                EarnedMoney.Money += 80.0f;
         }
     }
 

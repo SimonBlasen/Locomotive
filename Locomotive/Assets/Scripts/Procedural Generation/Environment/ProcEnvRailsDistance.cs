@@ -72,8 +72,10 @@ public class ProcEnvRailsDistance
         return closestDistance;
     }
 
-    public float DistanceToRails(Vector2 pos)
+    public float DistanceToRails(Vector2 pos, Spline[] splines)
     {
+        //float tempDist = computeFor(2127, 2756, splines);
+
         Vector2Int arrayPos = new Vector2Int((int)(pos.x / resolution), (int)(pos.y / resolution));
         if (arrayPos.x >= 0 && arrayPos.x < distanceField.GetLength(0) && arrayPos.y >= 0 && arrayPos.y < distanceField.GetLength(1))
         {
