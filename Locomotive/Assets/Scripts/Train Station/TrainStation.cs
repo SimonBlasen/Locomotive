@@ -20,6 +20,8 @@ public class TrainStation : MonoBehaviour
     [SerializeField]
     public Vector3Int globalOffsetToSpawnPersons = new Vector3Int(-1, 0, 0);        // So that train stations, which have not set this variable don't spawn persons
 
+    private PersonsManager personsManager = null;
+
     private List<Train> allTrains = new List<Train>();
 
     private float checkTrainsCounter = 0f;
@@ -38,6 +40,8 @@ public class TrainStation : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        personsManager = FindObjectOfType<PersonsManager>();
+
         for (int i = 0; i < platforms.Length; i++)
         {
             platforms[i].platformIndex = i;
@@ -73,6 +77,7 @@ public class TrainStation : MonoBehaviour
             if (platformsOn.Length > 0)
             {
                 Debug.Log("Train is in station");
+                personsManager.TrainInStation(this);
             }
         }
 
@@ -358,7 +363,7 @@ public class TrainStation : MonoBehaviour
 public class Platform
 {
     public RailSegment railSegment = null;
-    public Spline spline= null;
+    public Spline spline = null;
     public float trainStationBegin = 0f;
     public float trainStationEnd = 0f;
     public Transform waitingArea = null;

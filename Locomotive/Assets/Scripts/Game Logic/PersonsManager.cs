@@ -4,7 +4,24 @@ using UnityEngine;
 
 public class PersonsManager : MonoBehaviour
 {
+    [SerializeField]
+    private float averageTimeSpawnPerson = 10f;
+    [SerializeField]
+    private float averageTimeNewDestStation = 60f * 5f;
+    [SerializeField]
+    private float[] trainStationsProbDistr = null;
+    [SerializeField]
+    private float[] trainStationsDestProbDistr = null;
+
     private float personSpawnCounter = 10f;
+
+    private float selectMainStationIn = 10f;
+    private float selectMainDestStationIn = 10f;
+
+    private int mainStationIndex = -1;
+    private int mainDestStationIndex = -1;
+    private int oldMainStationIndex = -1;
+
 
     // Start is called before the first frame update
     void Start()
@@ -15,30 +32,87 @@ public class PersonsManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        personSpawnCounter -= Time.deltaTime;
-
-        if (personSpawnCounter <= 0f)
+        if (selectMainStationIn > 0f)
         {
-            personSpawnCounter = Random.Range(5f, 25f);
+            selectMainStationIn -= Time.deltaTime;
 
-            spawnRandomPerson();
+            if (selectMainStationIn <= 0f)
+            {
+                mainStationIndex = oldMainStationIndex;
+                while (oldMainStationIndex == mainStationIndex)
+                {
+                    mainStationIndex = Random.Range(0, TrainStation.AllTrainstations.Length);
+                }
+
+                trainStationsProbDistr = new float[TrainStation.AllTrainstations.Length];
+                for (int i = 0; i < trainStationsProbDistr.Length; i++)
+                {
+                    trainStationsProbDistr[i] = (i == mainStationIndex) ? 1f : 0.07f;
+                }
+            }
+        }
+        else
+        {
+            personSpawnCounter -= Time.deltaTime;
+
+            if (personSpawnCounter <= 0f)
+            {
+                personSpawnCounter = averageTimeSpawnPerson + Random.Range(-averageTimeSpawnPerson * 0.5f, averageTimeSpawnPerson * 0.5f);
+
+                spawnRandomPerson();
+            }
+        }
+
+
+        if (selectMainDestStationIn > 0f)
+        {
+            selectMainDestStationIn -= Time.deltaTime;
+
+            if (selectMainDestStationIn <= 0f)
+            {
+                selectMainDestStationIn = Random.Range(-60f, 60f) + averageTimeNewDestStation;
+
+                mainDestStationIndex = Random.Range(0, TrainStation.AllTrainstations.Length);
+                trainStationsDestProbDistr = new float[TrainStation.AllTrainstations.Length];
+                for (int i = 0; i < trainStationsDestProbDistr.Length; i++)
+                {
+                    trainStationsDestProbDistr[i] = (i == mainDestStationIndex) ? 1f : 0.07f;
+                }
+            }
         }
     }
 
     private void spawnRandomPerson()
     {
         List<TrainStation> possibleTrainstations = new List<TrainStation>();
+        List<float> possProbabilities = new List<float>();
         possibleTrainstations.AddRange(TrainStation.AllTrainstations);
+        possProbabilities.AddRange(trainStationsProbDistr);
         for (int i = 0; i < possibleTrainstations.Count; i++)
         {
             Platform[] platforms;
             if (possibleTrainstations[i].GetTrainsInStation(out platforms).Length > 0)
             {
                 possibleTrainstations.RemoveAt(i);
+                possProbabilities.RemoveAt(i);
                 i--;
             }
         }
 
+        int randIndex = sampleIndex(possProbabilities);
+
+        if (randIndex != -1)
+        {
+            int randomTrainstation = randIndex;
+
+            if (possibleTrainstations[randomTrainstation].PeopleWaiting == 0)
+            {
+                possibleTrainstations[randomTrainstation].PeopleWaitingPlatform = Random.Range(0, possibleTrainstations[randomTrainstation].PlatformsAmount);
+            }
+            possibleTrainstations[randomTrainstation].SpawnPerson(possibleTrainstations[randomTrainstation].PeopleWaitingPlatform);
+        }
+
+        /*
         if (possibleTrainstations.Count > 0)
         {
             int randomTrainstation = Random.Range(0, possibleTrainstations.Count);
@@ -48,6 +122,85 @@ public class PersonsManager : MonoBehaviour
                 possibleTrainstations[randomTrainstation].PeopleWaitingPlatform = Random.Range(0, possibleTrainstations[randomTrainstation].PlatformsAmount);
             }
             possibleTrainstations[randomTrainstation].SpawnPerson(possibleTrainstations[randomTrainstation].PeopleWaitingPlatform);
+        }*/
+    }
+
+    private int sampleIndex(List<float> probDistr)
+    {
+        float sum = 0f;
+        for (int i = 0; i < probDistr.Count; i++)
+        {
+            sum += probDistr[i];
+        }
+
+
+        float randVal = Random.Range(0f, sum);
+
+        int randIndex = -1;
+        for (int i = 0; i < probDistr.Count; i++)
+        {
+            if (i == 0 && randVal <= probDistr[i])
+            {
+                randIndex = i;
+                break;
+            }
+            else if (i > 0 && randVal > probDistr[i - 1] && randVal <= probDistr[i])
+            {
+                randIndex = i;
+                break;
+            }
+        }
+
+        return randIndex;
+    }
+
+    public void TrainInStation(TrainStation trainStation)
+    {
+        if (mainStationIndex != -1)
+        {
+            for (int i = 0; i < TrainStation.AllTrainstations.Length; i++)
+            {
+                if (TrainStation.AllTrainstations[i] == trainStation)
+                {
+                    oldMainStationIndex = mainStationIndex;
+                    mainStationIndex = -1;
+                    Debug.Log("Train is in main station");
+                    selectMainStationIn = 10f;
+                }
+            }
+        }
+    }
+
+    public TrainStation SampleDestinationTrainstation(List<TrainStation> possibleTrainStations)
+    {
+        List<float> possProbs = new List<float>();
+        possProbs.AddRange(trainStationsDestProbDistr);
+
+        int randIndex = -1;
+        TrainStation selTrainStation = null;
+
+        while (possibleTrainStations.Contains(selTrainStation) == false || randIndex == -1)
+        {
+            randIndex = sampleIndex(possProbs);
+            if (randIndex != -1)
+            {
+                selTrainStation = TrainStation.AllTrainstations[randIndex];
+            }
+        }
+
+        return selTrainStation;
+    }
+
+    private static PersonsManager inst = null;
+    public static PersonsManager Inst
+    {
+        get
+        {
+            if (inst == null)
+            {
+                inst = FindObjectOfType<PersonsManager>();
+            }
+            return inst;
         }
     }
 }
