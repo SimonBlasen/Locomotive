@@ -1,3 +1,4 @@
+using FMODUnity;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,8 +15,11 @@ public class InteractableFullBrake : Interactable
     private bool useXAxe = true;
     [SerializeField]
     private float slideFactor = 0.01f;
+    [SerializeField]
+    private StudioEventEmitter leaverSoundEmitter = null;
 
     private bool eDown = false;
+    private bool playedAudio = false;
 
     private float sliderVal = 0f;
     private float sliderStartVal = 0f;
@@ -48,8 +52,22 @@ public class InteractableFullBrake : Interactable
 
                 float slideVal = useXAxe ? mousePosStart.x : mousePosStart.y;
 
+                float oldBrakeLevel = brakeLeaver.BrakeLevel;
                 brakeLeaver.BrakeLevel = Mathf.Clamp(startBrakeVal + slideVal, 0f, 1f);
                 setTextMeshHint();
+
+                if (oldBrakeLevel != brakeLeaver.BrakeLevel && playedAudio == false)
+                {
+                    playedAudio = true;
+                    leaverSoundEmitter.Play();
+                }
+            }
+            else
+            {
+                if (playedAudio)
+                {
+                    playedAudio = false;
+                }
             }
 
 
@@ -57,7 +75,7 @@ public class InteractableFullBrake : Interactable
     }
 
     private void FixedUpdate()
-    {
+    {/*
         if (!newSlideMode)
         {
             if (eDown)
@@ -72,11 +90,20 @@ public class InteractableFullBrake : Interactable
                     float brakeVal = (sliderVal * 1.5f + 0.5f);
                     brakeVal = Mathf.Clamp(brakeVal, 0f, 1f);
 
+                    float oldBrakeLevel = brakeLeaver.BrakeLevel;
                     brakeLeaver.BrakeLevel = brakeVal;
                     setTextMeshHint();
+
                 }
             }
-        }
+            else
+            {
+                if (playedAudio)
+                {
+                    playedAudio = false;
+                }
+            }
+        }*/
     }
 
     private void setTextMeshHint()

@@ -328,6 +328,14 @@ public class Train : MonoBehaviour
         }
     }
 
+    public float[] DistancesBetween
+    {
+        get
+        {
+            return distancesBetween;
+        }
+    }
+
     public void Refill(bool coal, bool water, float deltaTime)
     {
         if (water)
