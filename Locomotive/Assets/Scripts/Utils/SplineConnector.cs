@@ -15,6 +15,15 @@ public class SplineConnector : MonoBehaviour
     [SerializeField]
     public float distanceTolerance = 2f;
 
+    [Space]
+
+    [SerializeField]
+    public Spline splineRemoveNodes = null;
+    [SerializeField]
+    private bool removeFront = false;
+    [SerializeField]
+    private bool removeBack = false;
+
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +39,22 @@ public class SplineConnector : MonoBehaviour
             connect = false;
 
             ConnectSplines(spline0, spline1, distanceTolerance);
+        }
+
+        if (removeBack)
+        {
+            removeBack = false;
+
+            splineRemoveNodes.RemoveNode(splineRemoveNodes.nodes[splineRemoveNodes.nodes.Count - 1]);
+            splineRemoveNodes.RefreshCurves();
+        }
+
+        if (removeFront)
+        {
+            removeFront = false;
+
+            splineRemoveNodes.RemoveNode(splineRemoveNodes.nodes[0]);
+            splineRemoveNodes.RefreshCurves();
         }
     }
 
