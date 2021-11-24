@@ -27,6 +27,7 @@ public class TrainStation : MonoBehaviour
     private float checkTrainsCounter = 0f;
 
     private List<TrainstationPerson> instPersons = new List<TrainstationPerson>();
+    private List<TrainstationPerson> personsEnteringTrain = new List<TrainstationPerson>();
 
     private List<TrainstationPerson> personsExitingTrain = new List<TrainstationPerson>();
 
@@ -199,11 +200,28 @@ public class TrainStation : MonoBehaviour
             person.DestinationTrain = train;
             person.OriginTrainstation = this;
 
+            personsEnteringTrain.Add(person);
             instPersons.Remove(person);
         }
         else
         {
             Debug.Log("Did send all persons into train");
+
+            int previousCount = personsEnteringTrain.Count;
+
+            for (int i = 0; i < personsEnteringTrain.Count; i++)
+            {
+                if (personsEnteringTrain[i] == null)
+                {
+                    personsEnteringTrain.RemoveAt(i);
+                    i--;
+                }
+            }
+
+            if (personsEnteringTrain.Count == 0 && previousCount > 0)
+            {
+                TrainstationWhistle.Inst.BlowWhistle();
+            }
         }
     }
 

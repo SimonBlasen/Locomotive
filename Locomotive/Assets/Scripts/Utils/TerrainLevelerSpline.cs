@@ -265,10 +265,10 @@ public class TerrainLevelerSpline : MonoBehaviour
         for (int i = 0; i < excludes.Length; i++)
         {
             Gizmos.color = Color.yellow;
-            Gizmos.DrawSphere(spline.GetCurve(excludes[i].begin + excludes[i].nodeBegin).GetSample(excludes[i].begin).location + GlobalOffsetManager.Inst.GlobalOffset, 2f);
+            Gizmos.DrawSphere(spline.GetCurve(excludes[i].begin + excludes[i].nodeBegin).GetSample(excludes[i].begin).location + GlobalOffsetManager.Inst.GlobalOffset, 20f);
 
             Gizmos.color = Color.red;
-            Gizmos.DrawSphere(spline.GetCurve(excludes[i].end + excludes[i].nodeEnd).GetSample(excludes[i].end).location + GlobalOffsetManager.Inst.GlobalOffset, 2f);
+            Gizmos.DrawSphere(spline.GetCurve(excludes[i].end + excludes[i].nodeEnd).GetSample(excludes[i].end).location + GlobalOffsetManager.Inst.GlobalOffset, 20f);
         }
     }
 }
