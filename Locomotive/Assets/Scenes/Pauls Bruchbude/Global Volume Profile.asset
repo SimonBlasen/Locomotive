@@ -198,7 +198,7 @@ MonoBehaviour:
     m_Value: 1
   directionalColor:
     m_OverrideState: 1
-    m_Value: {r: 1.7411011, g: 0.40477303, b: 0, a: 1}
+    m_Value: {r: 1.7411011, g: 0.22241324, b: 0, a: 1}
     hdr: 1
     showAlpha: 0
     showEyeDropper: 0
