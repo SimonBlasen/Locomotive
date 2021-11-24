@@ -56,6 +56,9 @@ public class InteractableDirectionSwitch : Interactable
     public override void Interact()
     {
         train.DriveDirectionForward = !train.DriveDirectionForward;
+
+        stevem.SetParameter("HEBEL_VW-RW", (train.DriveDirectionForward ? 1f : 0f));
+
         stevem.Play();
     }
 }

@@ -103,6 +103,26 @@ MonoBehaviour:
   MinDistance: 10
   MaxDistance: 500
   Length: 0
+--- !u!114 &-8658335737076076536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/VENTIL_Gas/VENTIL-Druck_OnOff
+  m_EditorClassIdentifier: 
+  Name: VENTIL-Druck_OnOff
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
 --- !u!114 &-8514344916831407251
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -770,6 +790,29 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 1
+--- !u!114 &-5342517666677305103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/UI/MONEY_Ching
+  m_EditorClassIdentifier: 
+  Path: event:/UI/MONEY_Ching
+  guid: 29bfafc2df9e9b40b4a928964e52650a
+  Banks:
+  - {fileID: -1867817987732486219}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 1710
 --- !u!114 &-5297884972693461078
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -863,6 +906,26 @@ MonoBehaviour:
   m_Name: parameter:/Fire_Event3D/FireValue
   m_EditorClassIdentifier: 
   Name: FireValue
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
+--- !u!114 &-4825183335214411317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: "parameter:/HEBEL_VorZur\xFCck/HEBEL_VW-RW"
+  m_EditorClassIdentifier: 
+  Name: HEBEL_VW-RW
   Min: 0
   Max: 1
   Default: 0
@@ -1116,6 +1179,29 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1733
+--- !u!114 &-2893106460017426406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/UI/MAP_Off
+  m_EditorClassIdentifier: 
+  Path: event:/UI/MAP_Off
+  guid: 3f9685c3db05be4e9d5ac7cbddb12380
+  Banks:
+  - {fileID: -1867817987732486219}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 751
 --- !u!114 &-2750939666320979115
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1239,6 +1325,26 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 1
+--- !u!114 &-1951040426000041514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/RPM
+  m_EditorClassIdentifier: 
+  Name: RPM
+  Min: 0
+  Max: 100
+  Default: 0
+  ID:
+    data1: 2579403646
+    data2: 3235192666
+  Exists: 0
 --- !u!114 &-1867817987732486219
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1254,7 +1360,7 @@ MonoBehaviour:
   Path: ../Fmod-File Locomotive/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637732922969772517
+  lastModified: 637733449710178191
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -1566,12 +1672,15 @@ MonoBehaviour:
   - {fileID: 966479483604213084}
   - {fileID: 1810201619214120706}
   - {fileID: 4195933117917081439}
+  - {fileID: -5342517666677305103}
+  - {fileID: -2893106460017426406}
+  - {fileID: 5978172269135369334}
   EditorParameters: []
   MasterBanks:
   - {fileID: -1867817987732486219}
   StringsBanks:
   - {fileID: 1941433785304137193}
-  stringsBankWriteTime: 637732922969782220
+  stringsBankWriteTime: 637733449710188191
   cacheVersion: 6
 --- !u!114 &566386657534416795
 MonoBehaviour:
@@ -1784,7 +1893,7 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 1
   Parameters:
-  - {fileID: 3355693333789078032}
+  - {fileID: -8658335737076076536}
   MinDistance: 1
   MaxDistance: 20
   Length: 9985
@@ -1803,11 +1912,11 @@ MonoBehaviour:
   Path: ../Fmod-File Locomotive/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637732922969782220
+  lastModified: 637733449710188191
   LoadResult: 0
   FileSizes:
   - Name: Desktop
-    Value: 2158
+    Value: 2296
   Exists: 1
 --- !u!114 &1955994571846469444
 MonoBehaviour:
@@ -1935,6 +2044,26 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 1
+--- !u!114 &2402580018350883064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Daytime
+  m_EditorClassIdentifier: 
+  Name: Daytime
+  Min: 0
+  Max: 24
+  Default: 0
+  ID:
+    data1: 2423054786
+    data2: 3714711003
+  Exists: 0
 --- !u!114 &2452789743839977506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2344,7 +2473,7 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 1
   Parameters:
-  - {fileID: -7710830788930687135}
+  - {fileID: -4825183335214411317}
   MinDistance: 1
   MaxDistance: 20
   Length: 0
@@ -2741,6 +2870,29 @@ MonoBehaviour:
   MinDistance: 3
   MaxDistance: 15
   Length: 0
+--- !u!114 &5978172269135369334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/UI/MAP_On
+  m_EditorClassIdentifier: 
+  Path: event:/UI/MAP_On
+  guid: bf50e16cd2e6234980a66561cd9c9e57
+  Banks:
+  - {fileID: -1867817987732486219}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 1274
 --- !u!114 &6019251715201182863
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2932,6 +3084,26 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1068
+--- !u!114 &7180621908637895983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/FIRE_Event/FireValue
+  m_EditorClassIdentifier: 
+  Name: FireValue
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
 --- !u!114 &7188335006679499222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3115,7 +3287,7 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 0
   Parameters:
-  - {fileID: 5361778901718111166}
+  - {fileID: 7180621908637895983}
   MinDistance: 3
   MaxDistance: 15
   Length: 0

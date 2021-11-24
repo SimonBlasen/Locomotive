@@ -85,8 +85,8 @@ public class Train : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        instanceAmbientSound = FMODUnity.RuntimeManager.CreateInstance(fmodEventAmbientSound);
-        instanceAmbientSound.start();
+        //instanceAmbientSound = FMODUnity.RuntimeManager.CreateInstance(fmodEventAmbientSound);
+        //instanceAmbientSound.start();
 
         //eventEmitterLokSound = GetComponent<StudioEventEmitter>();
         eventEmitterLokSound.Play();
@@ -200,7 +200,7 @@ public class Train : MonoBehaviour
                 waggonsEventEmitterSounds[i].SetParameter("RPM", Mathf.Abs((CurrentSpeed / topSpeed) * 100f * audioFactor));
             }
 
-            instanceAmbientSound.setParameterByName("Altitude", (locomotive.transform.position.y - 874.934f) * 10f);
+            //instanceAmbientSound.setParameterByName("Altitude", (locomotive.transform.position.y - 874.934f) * 10f);
 
             //float rpmOut;
             //instanceTrainSound.getParameterByName("RPM", out rpmOut);

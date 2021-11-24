@@ -1,3 +1,4 @@
+using FMODUnity;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,6 +21,8 @@ public class InteractableSpeedValve : Interactable
     private bool useXAxe = true;
     [SerializeField]
     private float slideFactor = 0.01f;
+    [SerializeField]
+    private StudioEventEmitter valveSound;
 
     public float pressureOnWheels = 0f;
 
@@ -32,6 +35,16 @@ public class InteractableSpeedValve : Interactable
     private Vector2 mousePosStart = Vector2.zero;
     private float startSpeedValue = 0f;
 
+    private bool soundPlaying = false;
+
+    private void resetValveSoundParam()
+    {
+        if (!soundPlaying)
+        {
+            valveSound.SetParameter("VENTIL-Druck_OnOff", 0f);
+        }
+    }
+
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -39,6 +52,7 @@ public class InteractableSpeedValve : Interactable
 
         speedValve.ValveOpening = 0f;
         setTextMeshHint();
+
     }
 
     // Update is called once per frame
@@ -56,8 +70,25 @@ public class InteractableSpeedValve : Interactable
 
                 float slideVal = useXAxe ? mousePosStart.x : mousePosStart.y;
 
+                float oldValveOpening = speedValve.ValveOpening;
                 speedValve.ValveOpening = Mathf.Clamp(startSpeedValue + slideVal, 0f, 1f);
                 setTextMeshHint();
+
+                if (oldValveOpening != speedValve.ValveOpening && soundPlaying == false)
+                {
+                    soundPlaying = true;
+                    valveSound.SetParameter("VENTIL-Druck_OnOff", 0f);
+                    valveSound.Play();
+                }
+            }
+            else
+            {
+                if (soundPlaying)
+                {
+                    soundPlaying = false;
+                    valveSound.SetParameter("VENTIL-Druck_OnOff", 1f);
+                    Invoke("resetValveSoundParam", 1f);
+                }
             }
 
 
