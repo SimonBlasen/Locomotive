@@ -749,7 +749,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CollisionTag: 
-  Event: event:/Lok/Lok_Hupe
+  Event: event:/LOK-STUFF/INNEN/LOK_Hupe
   PlayEvent: 0
   StopEvent: 0
   AllowFadeout: 1
@@ -2040,7 +2040,7 @@ MonoBehaviour:
   textMeshHint: {fileID: 0}
   firePanel: {fileID: 3442835131044663151}
   interactableColliderBlocker: {fileID: 2636918726934115044}
-  fmodEventTrainSound: event:/Lok/Hebel_Weiche
+  fmodEventTrainSound: event:/LOK-STUFF/INNEN/HEBEL_Weiche
 --- !u!114 &9121071129224233868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2054,7 +2054,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CollisionTag: 
-  Event: event:/Lok/Hebel_Weiche
+  Event: event:/LOK-STUFF/INNEN/HEBEL_Weiche
   PlayEvent: 0
   StopEvent: 0
   AllowFadeout: 1
@@ -2450,7 +2450,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CollisionTag: 
-  Event: event:/Lok/Fire_Event
+  Event: event:/LOK-STUFF/INNEN/FIRE_Event
   PlayEvent: 0
   StopEvent: 0
   AllowFadeout: 1
@@ -7756,7 +7756,7 @@ MonoBehaviour:
   coalTender: {fileID: 8581370673278519054}
   fireMid: {fileID: 8020695411455076126}
   flySpeed: 10
-  fmodEventTrainSound: event:/Lok/SchaufelAB
+  fmodEventTrainSound: event:/LOK-STUFF/INNEN/COAL_Schaufel-Ab
 --- !u!1 &5294228639416819075
 GameObject:
   m_ObjectHideFlags: 0
@@ -8295,7 +8295,7 @@ MonoBehaviour:
   hoveredObjsAdditional: []
   textMeshHint: {fileID: 0}
   coalTender: {fileID: 8581370673278519054}
-  fmodEventTrainSound: event:/Lok/SchaufelAUF
+  fmodEventTrainSound: event:/LOK-STUFF/INNEN/COAL_Schaufel-Auf
 --- !u!1 &5438046184934114179
 GameObject:
   m_ObjectHideFlags: 0
@@ -11131,7 +11131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CollisionTag: 
-  Event: event:/Lok/Hebel_Weiche
+  Event: event:/LOK-STUFF/INNEN/HEBEL_Weiche
   PlayEvent: 0
   StopEvent: 0
   AllowFadeout: 1
@@ -12122,7 +12122,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CollisionTag: 
-  Event: event:/Lok/Hebel_Standard
+  Event: "event:/LOK-STUFF/INNEN/HEBEL_VorZur\xFCck"
   PlayEvent: 0
   StopEvent: 0
   AllowFadeout: 1
@@ -13472,7 +13472,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CollisionTag: 
-  Event: event:/Lok/Waggon_Mov
+  Event: event:/LOK-STUFF/AUSSEN MOVEMENT/Lok_Movement
   PlayEvent: 0
   StopEvent: 0
   AllowFadeout: 1
@@ -13549,7 +13549,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CollisionTag: 
-  Event: event:/Lok/Waggon_Mov
+  Event: event:/LOK-STUFF/AUSSEN MOVEMENT/Lok_Movement
   PlayEvent: 0
   StopEvent: 0
   AllowFadeout: 1
@@ -13737,7 +13737,7 @@ MonoBehaviour:
   waggonsEventEmitterSounds:
   - {fileID: 6635786073480118585}
   - {fileID: 4659119273989592855}
-  fmodEventAmbientSound: event:/World/Ambience
+  fmodEventAmbientSound: event:/WORLD/AMBIENCES/AMB-Station
   curVelocity: 0
   curPos: 0
 --- !u!1 &8286837207289450167
@@ -13825,7 +13825,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CollisionTag: 
-  Event: event:/Lok/Lok_Mov
+  Event: event:/LOK-STUFF/AUSSEN MOVEMENT/Lok_Movement
   PlayEvent: 0
   StopEvent: 0
   AllowFadeout: 1
@@ -14035,7 +14035,7 @@ MonoBehaviour:
   textMeshHint: {fileID: 0}
   boiler: {fileID: 5025350137992398721}
   pressureReleaseValve: {fileID: 927478719548681786}
-  fmodEventTrainSound: event:/Lok/Ventil_Dampf
+  fmodEventTrainSound: event:/LOK-STUFF/INNEN/VENTIL_Druckablass
 --- !u!114 &4249596656507239002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14049,7 +14049,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CollisionTag: 
-  Event: event:/Lok/Ventil_Dampf
+  Event: event:/LOK-STUFF/INNEN/VENTIL_Druckablass
   PlayEvent: 0
   StopEvent: 0
   AllowFadeout: 1
