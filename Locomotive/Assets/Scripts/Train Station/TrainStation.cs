@@ -217,7 +217,7 @@ public class TrainStation : MonoBehaviour
         List<Train> trainsIn = new List<Train>();
         List<Platform> plats = new List<Platform>();
 
-        for (int i = 0; i < allTrains.Count; i++)
+            for (int i = 0; i < allTrains.Count; i++)
         {
             if (allTrains[i].CurrentSpeed <= 0.1f)
             {
