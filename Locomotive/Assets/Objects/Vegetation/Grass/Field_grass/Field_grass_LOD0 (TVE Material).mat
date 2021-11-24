@@ -59,7 +59,7 @@ Material:
     - _DetailTypeMode: 0
     - _EmissiveCat: 1
     - _EmissiveFlagMode: 0
-    - _FadeCameraValue: 1
+    - _FadeCameraValue: 0
     - _FadeGlancingValue: 0
     - _FadeSpace: 0
     - _GlobalAlpha: 1
@@ -84,9 +84,9 @@ Material:
     - _LayerReactValue: 0
     - _LayersSpace: 0
     - _MainCat: 0
-    - _MainLightAngleValue: 8
+    - _MainLightAngleValue: 2.9
     - _MainLightNormalValue: 0.5
-    - _MainLightScatteringValue: 8
+    - _MainLightScatteringValue: 5.3
     - _MainNormalValue: 1
     - _MainOcclusionValue: 1
     - _MainSmoothnessValue: 0.5
@@ -162,7 +162,7 @@ Material:
     - _EmissiveUVs: {r: 1, g: 1, b: 0, a: 0}
     - _GradientColorOne: {r: 1, g: 1, b: 1, a: 1}
     - _GradientColorTwo: {r: 1, g: 1, b: 1, a: 1}
-    - _GradientMaskRemap: {r: 0, g: 0, b: 0, a: 0}
+    - _GradientMaskRemap: {r: 0, g: 0.99999994, b: 0, a: 0}
     - _MainColor: {r: 3.732132, g: 3.732132, b: 3.732132, a: 1}
     - _MainUVs: {r: 1, g: 1, b: 0, a: 0}
     - _MaxBoundsInfo: {r: 1.0507498, g: 1.5683314, b: 1.5683314, a: 0}
@@ -170,11 +170,11 @@ Material:
     - _NoiseColorTwo: {r: 1, g: 1, b: 1, a: 1}
     - _NoiseMaskRemap: {r: 0, g: 0, b: 0, a: 0}
     - _OverlayMaskRemap: {r: 0, g: 0, b: 0, a: 0}
-    - _SubsurfaceColor: {r: 0.4, g: 0.4, b: 0.1, a: 1}
+    - _SubsurfaceColor: {r: 2.1185474, g: 2.1185474, b: 0.5435017, a: 1}
     - _SubsurfaceDiffusion_Asset: {r: 2.2888926e+38, g: 1.2389358e-26, b: 7.69327e-37, a: 0.00018220427}
     - _SubsurfaceDiffusion_asset: {r: 2.2888926e+38, g: 1.2389358e-26, b: 7.69327e-37, a: 0.00018220427}
-    - _SubsurfaceMaskRemap: {r: 0, g: 0, b: 0, a: 0}
-    - _VertexOcclusionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _VertexOcclusionRemap: {r: 0, g: 0, b: 0, a: 0}
+    - _SubsurfaceMaskRemap: {r: 0, g: 1, b: 0, a: 0}
+    - _VertexOcclusionColor: {r: 0.04070667, g: 0.1509434, b: 0, a: 1}
+    - _VertexOcclusionRemap: {r: 0, g: 0.99999994, b: 0, a: 0}
     - _render_normals_options: {r: -1, g: -1, b: -1, a: 0}
   m_BuildTextureStacks: []
