@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="MixerGroup" id="{11a17472-ca03-4507-a657-73c34f341636}">
+		<property name="color">
+			<value>Green</value>
+		</property>
+		<property name="name">
+			<value>EXT_LOK-Mov</value>
+		</property>
+		<relationship name="effectChain">
+			<destination>{ba372e82-5a5d-4460-a012-94f0f25eec0f}</destination>
+		</relationship>
+		<relationship name="panner">
+			<destination>{3b14c403-80e6-4f44-b2e7-5b983f4c2d05}</destination>
+		</relationship>
+		<relationship name="output">
+			<destination>{7e2c535d-1d14-4c6e-b4bd-3bfd964227d7}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusEffectChain" id="{ba372e82-5a5d-4460-a012-94f0f25eec0f}">
+		<relationship name="effects">
+			<destination>{81ad2019-6da8-468e-b7ea-f32e13ff5f68}</destination>
+			<destination>{cdfb6bc1-ca32-4030-b4cd-2c666c2814a5}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusPanner" id="{3b14c403-80e6-4f44-b2e7-5b983f4c2d05}" />
+	<object class="MixerBusFader" id="{81ad2019-6da8-468e-b7ea-f32e13ff5f68}" />
+	<object class="MixerSend" id="{cdfb6bc1-ca32-4030-b4cd-2c666c2814a5}">
+		<property name="level">
+			<value>-9</value>
+		</property>
+		<property name="inputFormat">
+			<value>2</value>
+		</property>
+		<relationship name="mixerReturn">
+			<destination>{9c6d3e8b-a371-4405-9f59-aa77edcbed05}</destination>
+		</relationship>
+	</object>
+</objects>
