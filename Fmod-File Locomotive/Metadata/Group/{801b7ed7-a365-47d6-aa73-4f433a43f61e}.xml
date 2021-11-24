@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.01.00">
 	<object class="MixerGroup" id="{801b7ed7-a365-47d6-aa73-4f433a43f61e}">
+		<property name="color">
+			<value>Green</value>
+		</property>
 		<property name="name">
-			<value>EXT</value>
+			<value>EXT_LOK-Steam</value>
 		</property>
 		<relationship name="effectChain">
 			<destination>{187de08d-a609-434d-986d-0137f0f564ce}</destination>
@@ -16,45 +19,30 @@
 	</object>
 	<object class="MixerBusEffectChain" id="{187de08d-a609-434d-986d-0137f0f564ce}">
 		<relationship name="effects">
+			<destination>{d6cf3017-adf7-4350-bacb-bf58fab1d642}</destination>
 			<destination>{eea18d8e-6cca-49eb-8ffa-fd25b8143eae}</destination>
-			<destination>{10089afd-c3e1-4ebb-bae5-241c4d2937b6}</destination>
-			<destination>{3d69634f-2972-4aa2-8961-c67538a22ae2}</destination>
+			<destination>{7b013b01-d96e-4ee9-8256-38f8d93904ab}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{8085b815-abba-4615-82eb-ff62448fb341}" />
-	<object class="MixerBusFader" id="{eea18d8e-6cca-49eb-8ffa-fd25b8143eae}" />
-	<object class="SFXReverbEffect" id="{10089afd-c3e1-4ebb-bae5-241c4d2937b6}">
-		<property name="bypass">
-			<value>true</value>
+	<object class="MultibandEqEffect" id="{d6cf3017-adf7-4350-bacb-bf58fab1d642}">
+		<property name="filterTypeA">
+			<value>0</value>
 		</property>
-		<property name="decayTime">
-			<value>1700</value>
-		</property>
-		<property name="earlyDelay">
+		<property name="filterTypeE">
 			<value>8</value>
 		</property>
-		<property name="lateDelay">
-			<value>12</value>
-		</property>
-		<property name="HFDecayRatio">
-			<value>100</value>
-		</property>
-		<property name="highCut">
-			<value>20000</value>
-		</property>
-		<property name="earlyLateMix">
-			<value>56</value>
-		</property>
-		<property name="wetLevel">
-			<value>-19.5</value>
-		</property>
 	</object>
-	<object class="MixerSend" id="{3d69634f-2972-4aa2-8961-c67538a22ae2}">
+	<object class="MixerBusFader" id="{eea18d8e-6cca-49eb-8ffa-fd25b8143eae}" />
+	<object class="MixerSend" id="{7b013b01-d96e-4ee9-8256-38f8d93904ab}">
+		<property name="level">
+			<value>-9</value>
+		</property>
 		<property name="inputFormat">
-			<value>1</value>
+			<value>2</value>
 		</property>
 		<relationship name="mixerReturn">
-			<destination>{aaf1a115-a5b1-47f9-9a20-ba07f7829dfb}</destination>
+			<destination>{9c6d3e8b-a371-4405-9f59-aa77edcbed05}</destination>
 		</relationship>
 	</object>
 </objects>

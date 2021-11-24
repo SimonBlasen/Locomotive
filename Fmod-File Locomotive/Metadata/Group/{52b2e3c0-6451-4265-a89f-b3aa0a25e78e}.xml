@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="MixerGroup" id="{52b2e3c0-6451-4265-a89f-b3aa0a25e78e}">
+		<property name="color">
+			<value>Yellow</value>
+		</property>
+		<property name="name">
+			<value>AMBIENCE_Forest</value>
+		</property>
+		<relationship name="effectChain">
+			<destination>{f03567d6-1291-4c85-990d-ec7ccd22df3b}</destination>
+		</relationship>
+		<relationship name="panner">
+			<destination>{6fdd1ebc-ff50-495b-b757-ffc04129e0d4}</destination>
+		</relationship>
+		<relationship name="output">
+			<destination>{7e2c535d-1d14-4c6e-b4bd-3bfd964227d7}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusEffectChain" id="{f03567d6-1291-4c85-990d-ec7ccd22df3b}">
+		<relationship name="effects">
+			<destination>{3a129691-fb2f-4973-ace7-07aa04168749}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusPanner" id="{6fdd1ebc-ff50-495b-b757-ffc04129e0d4}" />
+	<object class="MixerBusFader" id="{3a129691-fb2f-4973-ace7-07aa04168749}" />
+</objects>

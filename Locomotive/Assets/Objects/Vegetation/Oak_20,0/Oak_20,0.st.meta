@@ -4,9 +4,9 @@ SpeedTreeImporter:
   externalObjects: {}
   serializedVersion: 6
   mainColor: {r: 1, g: 1, b: 1, a: 1}
-  hueVariation: {r: 1, g: 0.5, b: 0, a: 0.1}
+  hueVariation: {r: 1, g: 1, b: 1, a: 0}
   alphaTestRef: 0.33
-  bestWindQuality: 0
+  bestWindQuality: 2
   hasBillboard: 0
   lODSettings:
   - height: 0.01
@@ -17,7 +17,7 @@ SpeedTreeImporter:
     enableBump: 1
     enableHue: 1
     enableSubsurface: 1
-    windQuality: 0
+    windQuality: 2
   enableSmoothLODTransition: 1
   animateCrossFading: 1
   billboardTransitionCrossFadeWidth: 0.25
