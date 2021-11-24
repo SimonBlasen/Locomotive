@@ -27,6 +27,9 @@ public class BrakeLeaver : MonoBehaviour
         train.BrakeStrength = 1f - BrakeLevel;
     }
 
+    /// <summary>
+    /// Between 0 and 1
+    /// </summary>
     public float BrakeLevel
     {
         get; set;

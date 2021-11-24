@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.01.00">
 	<object class="MixerGroup" id="{9d07360b-89f2-4a68-9c2d-772218f7597c}">
+		<property name="color">
+			<value>Red</value>
+		</property>
 		<property name="name">
 			<value>INT</value>
 		</property>
@@ -16,39 +19,48 @@
 	</object>
 	<object class="MixerBusEffectChain" id="{2ed541bf-beb0-4452-b740-8d004abbc17f}">
 		<relationship name="effects">
-			<destination>{a25ed0bf-d56f-4850-8938-39d1925e3ae1}</destination>
 			<destination>{9a66d19b-83c2-4516-ad5b-bc106c276df2}</destination>
+			<destination>{3e333d8b-25fd-4d93-a182-7358e90022bc}</destination>
+			<destination>{a25ed0bf-d56f-4850-8938-39d1925e3ae1}</destination>
 			<destination>{f4f43201-f85d-4d3d-9020-3d3c7cb29d68}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{8fb0bfd2-d729-49c2-88a9-9a6a44eca799}" />
-	<object class="MixerBusFader" id="{a25ed0bf-d56f-4850-8938-39d1925e3ae1}" />
 	<object class="SFXReverbEffect" id="{9a66d19b-83c2-4516-ad5b-bc106c276df2}">
-		<property name="bypass">
-			<value>true</value>
+		<property name="decayTime">
+			<value>2000</value>
 		</property>
 		<property name="earlyDelay">
-			<value>7</value>
+			<value>12</value>
 		</property>
 		<property name="lateDelay">
-			<value>11</value>
+			<value>17</value>
 		</property>
 		<property name="HFDecayRatio">
-			<value>54</value>
-		</property>
-		<property name="density">
-			<value>60</value>
+			<value>36.5</value>
 		</property>
 		<property name="highCut">
-			<value>2900</value>
+			<value>7800</value>
 		</property>
 		<property name="earlyLateMix">
-			<value>68</value>
+			<value>71</value>
 		</property>
 		<property name="wetLevel">
-			<value>-5</value>
+			<value>-8</value>
 		</property>
 	</object>
+	<object class="CompressorEffect" id="{3e333d8b-25fd-4d93-a182-7358e90022bc}">
+		<property name="ratio">
+			<value>1.95000005</value>
+		</property>
+		<property name="attackTime">
+			<value>9</value>
+		</property>
+		<property name="gain">
+			<value>2</value>
+		</property>
+	</object>
+	<object class="MixerBusFader" id="{a25ed0bf-d56f-4850-8938-39d1925e3ae1}" />
 	<object class="MixerSend" id="{f4f43201-f85d-4d3d-9020-3d3c7cb29d68}">
 		<property name="inputFormat">
 			<value>2</value>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="ParameterPreset" id="{c0a9ec5e-c2d9-4b58-beba-45ce508d7919}">
+		<property name="name">
+			<value>Außenkamera_Zoom</value>
+		</property>
+		<relationship name="folder">
+			<destination>{d5bfd474-df49-4aa4-a952-1aa25be2066a}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{e00418f8-2d3a-4f38-8c6f-a001cad6f0e5}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{e00418f8-2d3a-4f38-8c6f-a001cad6f0e5}">
+		<property name="isGlobal">
+			<value>true</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+		<property name="isExposedRecursively">
+			<value>false</value>
+		</property>
+	</object>
+</objects>
