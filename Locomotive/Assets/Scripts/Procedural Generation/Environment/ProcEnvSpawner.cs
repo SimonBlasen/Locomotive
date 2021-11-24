@@ -448,6 +448,12 @@ public class ProcEnvSpawner : MonoBehaviour
 
     private float getDistanceToRailSpline(Vector2 pos)
     {
+        if (procEnvRailsDistance == null)
+        {
+            procEnvRailsDistance = ProcEnvRailsDistance.FromBytes(File.ReadAllBytes("./envobjects/railsDistances.perd"));
+
+            Debug.Log("Loaded distance to rails file");
+        }
         return procEnvRailsDistance.DistanceToRails(pos, toConsiderSplines);
         /*
         for (int i = 0; i < railSegmentsCached.Length; i++)
