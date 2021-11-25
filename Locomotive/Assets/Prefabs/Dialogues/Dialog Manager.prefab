@@ -43,6 +43,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adb9e54b0b159684b97840b653588024, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogGraphs: []
+  dialogGraphs:
+  - {fileID: 11400000, guid: b620421b3c7b6ef429a43c81c6da96a6, type: 2}
+  - {fileID: 11400000, guid: ad968997dd47c0141bdefb3aaff0e625, type: 2}
+  - {fileID: 11400000, guid: 9d2c6f3d614936a4189d70f50d098604, type: 2}
+  - {fileID: 11400000, guid: 78d41fbd20b7f56438c09caf1e5ed055, type: 2}
+  - {fileID: 11400000, guid: 62ac48a618fd2964b8d7d10f51ccd7a9, type: 2}
   train: {fileID: 0}
   radio: {fileID: 0}

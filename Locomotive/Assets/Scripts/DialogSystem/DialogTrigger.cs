@@ -12,6 +12,8 @@ public class DialogTrigger : MonoBehaviour
     private string triggerID = "";
     [SerializeField]
     private bool isOneShot = false;
+    [SerializeField]
+    private bool isForward = false;
 
     [SerializeField]
     private RailSegment railSegment = null;
@@ -62,7 +64,8 @@ public class DialogTrigger : MonoBehaviour
         {
             int sideNow = (dialogManager.Train.TrainRailHandler.GetTrainPoses()[0].splineS > splineS) ? 1 : -1;
             
-            if (prevSide != 0 && sideNow != 0 && prevSide != sideNow)
+            if (prevSide != 0 && sideNow != 0 && prevSide != sideNow
+                && isForward == (sideNow == -1))
             {
                 dialogManager.TriggerActivated(this);
                 wasActivated = true;
@@ -88,13 +91,18 @@ public class DialogTrigger : MonoBehaviour
         }
     }
 
+
+    private RailSegment oldGizmosRailSegment = null;
     private void OnDrawGizmosSelected()
     {
-        if (spline == null)
+        if (spline == null || oldGizmosRailSegment != railSegment)
         {
             spline = railSegment.GetComponentInChildren<Spline>();
+            oldGizmosRailSegment = railSegment;
         }
         Gizmos.color = Color.yellow;
-        Gizmos.DrawSphere(spline.GetSampleAtDistance(splineS).location + GlobalOffsetManager.Inst.GlobalOffset, 20f);
+        Gizmos.DrawSphere(spline.GetSampleAtDistance(Mathf.Clamp(splineS, 0f, spline.Length - 0.01f)).location + GlobalOffsetManager.Inst.GlobalOffset, 20f);
+        Gizmos.color = Color.green;
+        Gizmos.DrawSphere(spline.GetSampleAtDistance(Mathf.Clamp(splineS + (isForward ? 20f : -20f), 0f, spline.Length - 0.01f)).location + GlobalOffsetManager.Inst.GlobalOffset, 4f);
     }
 }

@@ -74,6 +74,7 @@ public class DialogManager : MonoBehaviour
         {
             RadioMessage radioMessage = (RadioMessage)curNode;
 
+            radio.DialIn();
             radio.ShowDialogue(radioMessage.text, radioMessage.audioClip);
         }
         if (typeof(Answer).IsAssignableFrom(curNode.GetType()))
@@ -102,6 +103,7 @@ public class DialogManager : MonoBehaviour
         }
         if (typeof(End).IsAssignableFrom(curNode.GetType()))
         {
+            radio.DialOut();
             curNode = null;
             curGraph = null;
             Debug.Log("Dialog finished");

@@ -131,4 +131,4 @@ MonoBehaviour:
     Warnung. Falls sie dich attackieren sollten, musst du nur wissen dass sie kein
     Licht m\xF6gen. Aber hoffentlich kommst du gar nicht erst in die Situation. Gl\xFCck
     sei mit dir..\u201D * KNIRSCH*"
-  audioClip: {fileID: 0}
+  audioClip: {fileID: 8300000, guid: 0d1493e14656c43e59768e7f0f6e46b2, type: 3}

@@ -130,4 +130,4 @@ MonoBehaviour:
     willst. Du bist jetzt im *Gars Gebiet* hier w\xE4chst haupts\xE4chlich Gras,
     viel Gras.. aber nicht das zum Rauchen, also komm blo\xDF nicht auf dumme Gedanken.\u201D
     * KNIRSCH*"
-  audioClip: {fileID: 0}
+  audioClip: {fileID: 8300000, guid: 6d256d9859ca145c99501aa0e702549c, type: 3}
