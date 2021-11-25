@@ -60,7 +60,7 @@ Material:
     - _DetailTypeMode: 0
     - _EmissiveCat: 1
     - _EmissiveFlagMode: 0
-    - _FadeCameraValue: 1
+    - _FadeCameraValue: 0
     - _FadeGlancingValue: 0
     - _FadeSpace: 0
     - _GlobalAlpha: 1
@@ -85,7 +85,7 @@ Material:
     - _LayerReactValue: 0
     - _LayersSpace: 0
     - _MainCat: 0
-    - _MainLightAngleValue: 2.9
+    - _MainLightAngleValue: 5
     - _MainLightNormalValue: 0.5
     - _MainLightScatteringValue: 0.6
     - _MainNormalValue: 1
@@ -171,11 +171,11 @@ Material:
     - _NoiseColorTwo: {r: 1, g: 1, b: 1, a: 1}
     - _NoiseMaskRemap: {r: 0, g: 0, b: 0, a: 0}
     - _OverlayMaskRemap: {r: 0, g: 0, b: 0, a: 0}
-    - _SubsurfaceColor: {r: 1.5157166, g: 1.4638183, b: 0, a: 1}
+    - _SubsurfaceColor: {r: 1.5157166, g: 1.3473035, b: 0, a: 1}
     - _SubsurfaceDiffusion_Asset: {r: 2.2888926e+38, g: 1.2389358e-26, b: 7.69327e-37, a: 0.00018220427}
     - _SubsurfaceDiffusion_asset: {r: 2.2888926e+38, g: 1.2389358e-26, b: 7.69327e-37, a: 0.00018220427}
     - _SubsurfaceMaskRemap: {r: 0, g: 0.0681818, b: 0, a: 0}
     - _VertexOcclusionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _VertexOcclusionRemap: {r: 0, g: 0, b: 0, a: 0}
+    - _VertexOcclusionRemap: {r: 0, g: 1, b: 0, a: 0}
     - _render_normals_options: {r: -1, g: -1, b: -1, a: 0}
   m_BuildTextureStacks: []

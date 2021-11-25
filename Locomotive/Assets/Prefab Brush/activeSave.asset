@@ -14,22 +14,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabList: []
   prefabData:
-  - prefab: {fileID: 8694919077692555909, guid: 24744fa8eeb384b4aa889d8ee58c6392, type: 3}
+  - prefab: {fileID: 6300811831676002598, guid: 7b2d7ccc0370fef40897040ea096f9b8, type: 3}
     selected: 1
   - prefab: {fileID: 327033840224542803, guid: 95c7920b1a8314549a23c4e153d91817, type: 3}
     selected: 1
-  - prefab: {fileID: 4946040017257617796, guid: d91d5f4a995d7134295a1b133c54616e, type: 3}
+  - prefab: {fileID: 5477963063785172647, guid: 56a5dffc1180e89428fbf7a6e530c317, type: 3}
     selected: 1
   paintType: 0
-  brushSize: 1.62
+  brushSize: 100
   minBrushSize: 0.1
-  maxBrushSize: 20
+  maxBrushSize: 100
   paintDeltaDistance: 0.4
   maxPaintDeltaDistance: 3
   minPaintDeltaDistance: 0.1
-  prefabsPerStroke: 1
-  maxprefabsPerStroke: 20
-  minprefabsPerStroke: 1
+  prefabsPerStroke: 2
+  maxprefabsPerStroke: 2
+  minprefabsPerStroke: 5
   spawnHeight: 10
   addRigidbodyToPaintedPrefab: 1
   physicsIterations: 100
@@ -46,7 +46,7 @@ MonoBehaviour:
   maxRequiredSlope: 0
   prefabOriginOffset: {x: 0, y: 0, z: 0}
   prefabRotationOffset: {x: 0, y: 359, z: 0}
-  draggingAction: 0
+  draggingAction: 1
   rotationAxis: 0
   rotationSensitivity: 10
   parentingStyle: 2
@@ -62,7 +62,7 @@ MonoBehaviour:
   maxZRotation: 0
   scaleType: 1
   scaleApplicationType: 1
-  minScale: 1
+  minScale: 0.8
   maxScale: 1.4
   minXScale: 1
   maxXScale: 1
@@ -71,7 +71,7 @@ MonoBehaviour:
   minZScale: 1
   maxZScale: 1
   parentList: []
-  eraseBrushSize: 1
+  eraseBrushSize: 20
   minEraseBrushSize: 0.1
   maxEraseBrushSize: 20
   eraseType: 0
