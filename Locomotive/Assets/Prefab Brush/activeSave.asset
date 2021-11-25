@@ -15,21 +15,21 @@ MonoBehaviour:
   prefabList: []
   prefabData:
   - prefab: {fileID: 6300811831676002598, guid: 7b2d7ccc0370fef40897040ea096f9b8, type: 3}
-    selected: 1
+    selected: 0
   - prefab: {fileID: 327033840224542803, guid: 95c7920b1a8314549a23c4e153d91817, type: 3}
-    selected: 1
+    selected: 0
   - prefab: {fileID: 5477963063785172647, guid: 56a5dffc1180e89428fbf7a6e530c317, type: 3}
     selected: 1
   paintType: 0
-  brushSize: 100
+  brushSize: 36.9
   minBrushSize: 0.1
   maxBrushSize: 100
-  paintDeltaDistance: 0.4
+  paintDeltaDistance: 3
   maxPaintDeltaDistance: 3
   minPaintDeltaDistance: 0.1
-  prefabsPerStroke: 2
+  prefabsPerStroke: 1
   maxprefabsPerStroke: 2
-  minprefabsPerStroke: 5
+  minprefabsPerStroke: 1
   spawnHeight: 10
   addRigidbodyToPaintedPrefab: 1
   physicsIterations: 100
@@ -46,7 +46,7 @@ MonoBehaviour:
   maxRequiredSlope: 0
   prefabOriginOffset: {x: 0, y: 0, z: 0}
   prefabRotationOffset: {x: 0, y: 359, z: 0}
-  draggingAction: 1
+  draggingAction: 0
   rotationAxis: 0
   rotationSensitivity: 10
   parentingStyle: 2
@@ -71,9 +71,9 @@ MonoBehaviour:
   minZScale: 1
   maxZScale: 1
   parentList: []
-  eraseBrushSize: 20
+  eraseBrushSize: 50
   minEraseBrushSize: 0.1
-  maxEraseBrushSize: 20
+  maxEraseBrushSize: 50
   eraseType: 0
   checkLayerForErase: 0
   checkTagForErase: 0

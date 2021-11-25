@@ -81,7 +81,7 @@ MonoBehaviour:
     m_Value: 1
   fogDensity:
     m_OverrideState: 1
-    m_Value: 0.001
+    m_Value: 0.0001
   fogPower:
     m_OverrideState: 1
     m_Value: 1.35
