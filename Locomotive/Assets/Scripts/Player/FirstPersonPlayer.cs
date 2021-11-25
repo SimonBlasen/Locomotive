@@ -65,7 +65,7 @@ public class FirstPersonPlayer : MonoBehaviour
         curOutsideDistance = minOutsideDistance;
         locomotiveTransform = transform.parent;
         cam = GetComponentInChildren<Camera>();
-        RaycastDistance = raycastDistance;
+        RaycastDistance = raycastDistance;//Auﬂenkamera_Zoom
     }
 
     // Update is called once per frame

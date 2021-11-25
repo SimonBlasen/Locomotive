@@ -12,6 +12,7 @@ public class TerrainMaterialAssigner : MonoBehaviour
     public bool stayRefresh = false;
 
     public bool paintTextures = false;
+    public bool assignMaterialLayers = false;
     public float baseMapDistance = 10000f;
     public Terrain[] paintTerrains = null;
     public int layersAmount = 3;
@@ -52,6 +53,26 @@ public class TerrainMaterialAssigner : MonoBehaviour
                 terrains[i].materialTemplate = toAssignMaterial;
                 terrains[i].heightmapPixelError = pixelError;
             }
+        }
+
+        if (assignMaterialLayers)
+        {
+            assignMaterialLayers = false;
+
+            TerrainLayer[] terrainLayers = paintTerrains[0].terrainData.terrainLayers;
+
+            for (int t = 0; t < paintTerrains.Length; t++)
+            {
+                Terrain paintTerrain = paintTerrains[t];
+
+                //paintTerrain.basemapDistance = baseMapDistance;
+
+                if (t > 0)
+                {
+                    paintTerrain.terrainData.terrainLayers = terrainLayers;
+                }
+            }
+
         }
 
         if (paintTextures)
