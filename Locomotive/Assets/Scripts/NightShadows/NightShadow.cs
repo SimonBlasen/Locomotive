@@ -40,7 +40,7 @@ public class NightShadow : MonoBehaviour
     {
         float randAngle = Random.Range(0f, 360f);
 
-        transform.position = Train.Locomotive.transform.position + (Quaternion.Euler(0f, randAngle, 0f) * Vector3.forward) * NightShadowsManager.DistanceToLoc * multipleOfDistanceSpawn;
+        transform.position = Train.Locomotive.transform.position + (Quaternion.Euler(0f, randAngle, 0f) * Vector3.forward) * distanceToLoc * multipleOfDistanceSpawn;
 
         sideAngle = Random.Range(-maxSideAngle, maxSideAngle);
     }

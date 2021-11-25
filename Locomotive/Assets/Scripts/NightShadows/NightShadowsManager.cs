@@ -7,20 +7,15 @@ public class NightShadowsManager : MonoBehaviour
     [SerializeField]
     private Train train = null;
     [SerializeField]
-    private float distanceToLoc = 0f;
-    [SerializeField]
     private GameObject prefabNightShadows = null;
     [SerializeField]
     private int instancesAmount = 0;
-    [SerializeField]
-    private float distanceToLocMoveSpeed = 4f;
 
 
     private int oldInstancesAmount = 0;
 
     private List<NightShadow> instShadows = new List<NightShadow>();
 
-    private float targetTrainDistance = 0f;
 
     // Start is called before the first frame update
     void Start()
@@ -44,11 +39,6 @@ public class NightShadowsManager : MonoBehaviour
             oldInstancesAmount = instancesAmount;
         }
 
-        distanceToLoc = Mathf.MoveTowards(distanceToLoc, targetTrainDistance, Time.deltaTime * distanceToLocMoveSpeed);
-        if (Mathf.Abs(distanceToLoc - targetTrainDistance) <= 0.1f)
-        {
-            targetTrainDistance = Random.Range(0f, 200f);
-        }
     }
 
     private void spawnShadow()
@@ -69,14 +59,6 @@ public class NightShadowsManager : MonoBehaviour
 
             instShadows[randomDeletion].KillShadow();
             instShadows.RemoveAt(randomDeletion);
-        }
-    }
-
-    public float DistanceToLoc
-    {
-        get
-        {
-            return distanceToLoc;
         }
     }
 }
