@@ -1253,7 +1253,7 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 40
+      time: 400
       value: 0
       inSlope: 0
       outSlope: 0
@@ -1262,7 +1262,7 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 80
+      time: 420
       value: 1
       inSlope: 0.00003566665
       outSlope: 0.00003566665
