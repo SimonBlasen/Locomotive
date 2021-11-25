@@ -250,7 +250,7 @@ MonoBehaviour:
   input: 0
   output: 0
   text: "\u201CWitzig. Fahren sie auf Gleis 3.\u201D"
-  audioClip: {fileID: 8300000, guid: 5762b297c50dc42fd83c1a8512f8f702, type: 3}
+  audioClip: {fileID: 8300000, guid: 325770f97b9564d1f8f731c61e23baa0, type: 3}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -317,7 +317,7 @@ MonoBehaviour:
   input: 0
   output: 0
   text: "\u201C<Spielername>, sind sie da?\u201D *KNIRSCH*"
-  audioClip: {fileID: 8300000, guid: 56d3f6c6717224afe9dc4d5d011fe17c, type: 3}
+  audioClip: {fileID: 8300000, guid: 4ac66d4f2e04b4d6a990d40dea7de083, type: 3}
 --- !u!114 &2171111458935180086
 MonoBehaviour:
   m_ObjectHideFlags: 0
