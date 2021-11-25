@@ -81,7 +81,7 @@ MonoBehaviour:
     du mich fragst *lacht*. Wenn du mehr von dem M\xE4rchen h\xF6ren willst dann
     kann ich die die Frequenz von ner alten Freundin geben. Die steckt da ganz tief
     drin. *h\xF6h\xF6*\u201D"
-  audioClip: {fileID: 8300000, guid: f86b561dc96a247089f03769bcd98e1a, type: 3}
+  audioClip: {fileID: 8300000, guid: 95df981fbb6e24a20b731512ad6e7db5, type: 3}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0

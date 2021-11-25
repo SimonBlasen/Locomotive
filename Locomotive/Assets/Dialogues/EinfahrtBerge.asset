@@ -67,7 +67,7 @@ MonoBehaviour:
   text: "Coach:\n\u201CJa wusste ich doch tiffeny wollte dich blo\xDF testen!.. Aber
     namen zur seite die Berge sind atem Beraubend, funk mich mal an wenn du in *Stadt
     xyz* landest. Ich kenn da ein paar \xF6rtchen.\u201D"
-  audioClip: {fileID: 8300000, guid: dd0699125eb494c6ca76c34dbd7a5526, type: 3}
+  audioClip: {fileID: 8300000, guid: 026f8709e2334469bb426d5d1b5a5cb1, type: 3}
 --- !u!114 &3332369721990934376
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,7 +206,7 @@ MonoBehaviour:
   text: "Coach:\r\n\u201CAch sind die Berge nicht sch\xF6n.. Die strecken sind dreifach
     so lang, es ist Arschkalt, die Frauen sind komplett zugekn\xF6pft\u2026 also
     keine Kn\xF6chel zusehen A.J.!\u201D * KNIRSCH*"
-  audioClip: {fileID: 8300000, guid: 6273de5bcf922458a82864d2cf1b30bf, type: 3}
+  audioClip: {fileID: 8300000, guid: 9ee0eacbce41b44a899621f60dd98e9b, type: 3}
 --- !u!114 &3536217190847190263
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -287,7 +287,7 @@ MonoBehaviour:
   output: 0
   text: "Coach: \r\n\u201CKn\xF6chel zur seite die Berge sind atem Berauben, funk
     mich mal an wenn du in *Stadt xyz* landest. Ich kenn da ein paar \xF6rtchen.\u201D"
-  audioClip: {fileID: 8300000, guid: 31d5dad03286c4a3e8a1552a9d75aa89, type: 3}
+  audioClip: {fileID: 8300000, guid: 4f80b3572556940ff879549b715d8fe2, type: 3}
 --- !u!114 &8027751248789513394
 MonoBehaviour:
   m_ObjectHideFlags: 0
