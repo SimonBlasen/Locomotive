@@ -28,6 +28,8 @@ public class RailroadMapTrainstation : MonoBehaviour
     private TextMeshPro textMeshTrainstationInfo = null;
     [SerializeField]
     private MeshRenderer blinkingMeshRenderer = null;
+    [SerializeField]
+    private TextMeshPro textMeshStationName = null;
 
     private Color colorOnTrack = Color.yellow;
     private Color colorStoppedInStation = Color.blue;
@@ -63,6 +65,8 @@ public class RailroadMapTrainstation : MonoBehaviour
             trainStationsYet.AddRange(TrainStation.AllTrainstations);
             trainStationsYet.Add(trainStation);
             TrainStation.AllTrainstations = trainStationsYet.ToArray();
+
+            textMeshStationName.text = trainStation.TrainstationName;
         }
     }
 

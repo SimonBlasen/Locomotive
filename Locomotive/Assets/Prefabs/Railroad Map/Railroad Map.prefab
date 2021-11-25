@@ -450,6 +450,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Map Trainstation
       objectReference: {fileID: 0}
+    - target: {fileID: 7369033443829008712, guid: bab70e78cdc5aaa45b2cad4a3a0a9741, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8607740898282560020, guid: bab70e78cdc5aaa45b2cad4a3a0a9741, type: 3}
       propertyPath: m_RootOrder
       value: 1

@@ -9,14 +9,16 @@ public class PersonsManager : MonoBehaviour
     [SerializeField]
     private float averageTimeNewDestStation = 60f * 5f;
     [SerializeField]
+    private float averageTimeNewMainStation = 60f * 5f;
+    [SerializeField]
     private float[] trainStationsProbDistr = null;
     [SerializeField]
     private float[] trainStationsDestProbDistr = null;
 
     private float personSpawnCounter = 10f;
 
-    private float selectMainStationIn = 10f;
-    private float selectMainDestStationIn = 10f;
+    private float selectMainStationIn = 2f;
+    private float selectMainDestStationIn = 2f;
 
     private int mainStationIndex = -1;
     private int mainDestStationIndex = -1;
@@ -38,6 +40,7 @@ public class PersonsManager : MonoBehaviour
 
             if (selectMainStationIn <= 0f)
             {
+                selectMainStationIn = Random.Range(-120f, 120f) + averageTimeNewMainStation;
                 mainStationIndex = oldMainStationIndex;
                 while (oldMainStationIndex == mainStationIndex)
                 {
@@ -49,18 +52,19 @@ public class PersonsManager : MonoBehaviour
                 {
                     trainStationsProbDistr[i] = (i == mainStationIndex) ? 1f : 0.07f;
                 }
+
+                Debug.Log("Selected new main station: " + TrainStation.AllTrainstations[mainStationIndex].TrainstationName);
             }
         }
-        else
+
+
+        personSpawnCounter -= Time.deltaTime;
+
+        if (personSpawnCounter <= 0f)
         {
-            personSpawnCounter -= Time.deltaTime;
+            personSpawnCounter = averageTimeSpawnPerson + Random.Range(-averageTimeSpawnPerson * 0.5f, averageTimeSpawnPerson * 0.5f);
 
-            if (personSpawnCounter <= 0f)
-            {
-                personSpawnCounter = averageTimeSpawnPerson + Random.Range(-averageTimeSpawnPerson * 0.5f, averageTimeSpawnPerson * 0.5f);
-
-                spawnRandomPerson();
-            }
+            spawnRandomPerson();
         }
 
 
@@ -78,6 +82,7 @@ public class PersonsManager : MonoBehaviour
                 {
                     trainStationsDestProbDistr[i] = (i == mainDestStationIndex) ? 1f : 0.07f;
                 }
+                Debug.Log("Selected new destination station: " + TrainStation.AllTrainstations[mainDestStationIndex].TrainstationName);
             }
         }
     }

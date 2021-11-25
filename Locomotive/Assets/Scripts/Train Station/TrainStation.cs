@@ -9,6 +9,8 @@ public class TrainStation : MonoBehaviour
 {
     [Header("Settings")]
     [SerializeField]
+    private string trainStationName = "NoName";
+    [SerializeField]
     private Platform[] platforms = null;
     [SerializeField]
     private float personsExitSpeedMin = 0.1f;
@@ -162,11 +164,11 @@ public class TrainStation : MonoBehaviour
 
         if (Vector3.Distance(platform.waitingAreaMinPos.position, selectedDoor.position + selectedDoor.right * 3f) < Vector3.Distance(platform.waitingAreaMinPos.position, selectedDoor.position + selectedDoor.right * -3f))
         {
-            person.NavDestination = selectedDoor.position + selectedDoor.right * 3f;
+            person.NavDestination = selectedDoor.position + selectedDoor.right * 5f;
         }
         else
         {
-            person.NavDestination = selectedDoor.position + selectedDoor.right * -3f;
+            person.NavDestination = selectedDoor.position + selectedDoor.right * -5f;
         }
 
         personsExitingTrain.Add(person);
@@ -375,6 +377,14 @@ public class TrainStation : MonoBehaviour
     {
         get; set;
     } = new TrainStation[0];
+
+    public string TrainstationName
+    {
+        get
+        {
+            return trainStationName;
+        }
+    }
 }
 
 [Serializable]
