@@ -14342,9 +14342,9 @@ MonoBehaviour:
   distancesBetween:
   - 12
   - 15
-  acceleration: 1
-  deceleration: 1
-  topSpeed: 100
+  acceleration: 3
+  deceleration: 4
+  topSpeed: 170
   accelerationCurve:
     serializedVersion: 2
     m_Curve:
@@ -14358,7 +14358,7 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0.029944839
     - serializedVersion: 3
-      time: 100
+      time: 170
       value: 0
       inSlope: 0.00025046582
       outSlope: 0.00025046582

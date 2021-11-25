@@ -132,10 +132,13 @@ public class PersonsManager : MonoBehaviour
 
     private int sampleIndex(List<float> probDistr)
     {
+        List<float> summedProbDistr = new List<float>();
+
         float sum = 0f;
         for (int i = 0; i < probDistr.Count; i++)
         {
             sum += probDistr[i];
+            summedProbDistr.Add(sum);
         }
 
 
@@ -144,12 +147,12 @@ public class PersonsManager : MonoBehaviour
         int randIndex = -1;
         for (int i = 0; i < probDistr.Count; i++)
         {
-            if (i == 0 && randVal <= probDistr[i])
+            if (i == 0 && randVal <= summedProbDistr[i])
             {
                 randIndex = i;
                 break;
             }
-            else if (i > 0 && randVal > probDistr[i - 1] && randVal <= probDistr[i])
+            else if (i > 0 && randVal > summedProbDistr[i - 1] && randVal <= summedProbDistr[i])
             {
                 randIndex = i;
                 break;
