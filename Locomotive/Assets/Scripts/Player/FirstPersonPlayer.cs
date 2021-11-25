@@ -65,7 +65,7 @@ public class FirstPersonPlayer : MonoBehaviour
         curOutsideDistance = minOutsideDistance;
         locomotiveTransform = transform.parent;
         cam = GetComponentInChildren<Camera>();
-        RaycastDistance = raycastDistance;//Auﬂenkamera_Zoom
+        RaycastDistance = raycastDistance;
     }
 
     // Update is called once per frame
@@ -232,6 +232,11 @@ public class FirstPersonPlayer : MonoBehaviour
             curOutsideDistance += Input.GetAxis("Mouse ScrollWheel") * scrollSpeed;
 
             curOutsideDistance = Mathf.Clamp(curOutsideDistance, minOutsideDistance, maxOutsideDistance);
+
+            float outsideS = (curOutsideDistance - minOutsideDistance) / (maxOutsideDistance - minOutsideDistance);
+            FMODUnity.RuntimeManager.StudioSystem.setParameterByName("Auﬂenkamera_Zoom", outsideS);
+
+
         }
         else
         {

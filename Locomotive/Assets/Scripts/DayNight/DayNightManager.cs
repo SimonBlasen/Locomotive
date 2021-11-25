@@ -4,10 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-[ExecuteInEditMode]
 public class DayNightManager : MonoBehaviour
 {
+    [SerializeField]
+    private float minutesPerCycle = 5f;
     public float hourOfDay = 0f;
+
 
     public bool doIt = false;
 
@@ -30,6 +32,13 @@ public class DayNightManager : MonoBehaviour
             {
                 Debug.Log(see[i].gameObject.name);
             }
+        }
+
+        hourOfDay += (Time.deltaTime / (minutesPerCycle * 60f)) * 24f;
+        if (hourOfDay >= 24f)
+        {
+            hourOfDay -= 24f;
+            Debug.Log("Midnight");
         }
     }
 
