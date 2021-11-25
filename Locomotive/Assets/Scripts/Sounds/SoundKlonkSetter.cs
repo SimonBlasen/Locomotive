@@ -10,6 +10,8 @@ public class SoundKlonkSetter : MonoBehaviour
     [SerializeField]
     private float metersSpawnInfrontLoc = 1f;
     [SerializeField]
+    private int amountOfWaggons = 0;
+    [SerializeField]
     private Train train = null;
     [SerializeField]
     private Transform[] soundEmitters = null;
@@ -72,7 +74,7 @@ public class SoundKlonkSetter : MonoBehaviour
         distancesTillSound[klonkEmitterRunningIndex].Add(0f);
 
         float sum = 0f;
-        for (int i = 0; i < train.DistancesBetween.Length; i++)
+        for (int i = 0; i < Mathf.Min(amountOfWaggons, train.DistancesBetween.Length); i++)
         {
             distancesTillSound[klonkEmitterRunningIndex].Add(train.DistancesBetween[i] + sum);
             sum += train.DistancesBetween[i];

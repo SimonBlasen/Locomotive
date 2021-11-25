@@ -9,9 +9,13 @@ public class FirePanel : Interactable
     private FirePanelMover firePanel = null;
     [SerializeField]
     private GameObject interactableColliderBlocker = null;
+    [SerializeField]
+    private StudioEventEmitter snapshotPanelOpenClose = null;
 
     [FMODUnity.EventRef]
-    public string fmodEventTrainSound;
+    public string eventOpenPanel;
+    [FMODUnity.EventRef]
+    public string eventClosePanel;
 
     private StudioEventEmitter stevem = null;
 
@@ -38,6 +42,17 @@ public class FirePanel : Interactable
     {
         firePanel.PanelOpened = !firePanel.PanelOpened;
         interactableColliderBlocker.SetActive(!firePanel.PanelOpened);
+
+        if (firePanel.PanelOpened)
+        {
+            snapshotPanelOpenClose.Play();
+            stevem.Event = eventOpenPanel;
+        }
+        else
+        {
+            snapshotPanelOpenClose.Stop();
+            stevem.Event = eventClosePanel;
+        }
 
         stevem.Play();
         //instanceTrainSound.start();

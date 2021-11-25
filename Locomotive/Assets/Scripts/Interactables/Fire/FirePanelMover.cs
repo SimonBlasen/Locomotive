@@ -7,7 +7,11 @@ public class FirePanelMover : MonoBehaviour
     [SerializeField]
     private AnimationCurve animCurve = null;
     [SerializeField]
+    private AnimationCurve animCurveClose = null;
+    [SerializeField]
     private float animTime = 1f;
+    [SerializeField]
+    private float animTimeClose = 1f;
     [SerializeField]
     private Transform[] panelTransforms = null;
     [SerializeField]
@@ -38,12 +42,12 @@ public class FirePanelMover : MonoBehaviour
         }
         else if (panelOpened == false && animS > 0f)
         {
-            animS -= Time.deltaTime / animTime;
+            animS -= Time.deltaTime / animTimeClose;
             animS = Mathf.Clamp(animS, 0f, 1f);
 
             for (int i = 0; i < panelTransforms.Length; i++)
             {
-                panelTransforms[i].localRotation = Quaternion.Lerp(panelClosedPos.localRotation, panelOpenedPos.localRotation, animCurve.Evaluate(animS));
+                panelTransforms[i].localRotation = Quaternion.Lerp(panelClosedPos.localRotation, panelOpenedPos.localRotation, animCurveClose.Evaluate(animS));
             }
         }
     }

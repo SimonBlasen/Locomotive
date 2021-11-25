@@ -19,7 +19,7 @@ public class SingleTerrain : MonoBehaviour
 
         aabbColliderObj.AddComponent<GlobalOffsetTransform>();
 
-        aabbColliderObj.transform.localScale = new Vector3(10000f, 10000f, 10000f);
+        aabbColliderObj.transform.localScale = new Vector3(10000f, 30000f, 10000f);
         aabbColliderObj.transform.position = transform.position + new Vector3(5000f, 0f, 5000f);
 
         aabbCollider.isTrigger = true;
