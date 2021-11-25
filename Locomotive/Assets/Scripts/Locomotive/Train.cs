@@ -119,7 +119,7 @@ public class Train : MonoBehaviour
     }
 
     private void Update()
-    {
+    {/*
         if (Input.GetKeyDown(KeyCode.T))
         {
             if (tunnelEmitter.IsPlaying())
@@ -130,7 +130,7 @@ public class Train : MonoBehaviour
             {
                 tunnelEmitter.Play();
             }
-        }
+        }*/
 
     }
 
@@ -178,7 +178,7 @@ public class Train : MonoBehaviour
 
 
             // Accelerating
-            float curAccStep = PressureWheels * deltaTime * accelerationCurve.Evaluate(curVelocity);
+            float curAccStep = PressureWheels * deltaTime * accelerationCurve.Evaluate(curVelocity) * acceleration;
 
             curVelocity = Mathf.MoveTowards(curVelocity, DriveDirectionForward ? topSpeed : -topSpeed, curAccStep);
 
@@ -195,7 +195,7 @@ public class Train : MonoBehaviour
             int rpmInt = (int)Mathf.Abs((CurrentSpeed / topSpeed) * 100f * audioFactor);
             //Debug.Log("Rpm Val: " + rpmInt.ToString());
             //eventEmitterLokSound.SetParameter("RPM", Mathf.Abs((CurrentSpeed / topSpeed) * 100f * audioFactor));
-            FMODUnity.RuntimeManager.StudioSystem.setParameterByName("RPM", 1f + Mathf.Abs((CurrentSpeed / topSpeed) * 100f * audioFactor));
+            FMODUnity.RuntimeManager.StudioSystem.setParameterByName("RPM", Mathf.Abs((CurrentSpeed / topSpeed) * 100f * audioFactor));
             for (int i = 0; i < waggonsEventEmitterSounds.Length; i++)
             {
                 waggonsEventEmitterSounds[i].SetParameter("RPM", Mathf.Abs((CurrentSpeed / topSpeed) * 100f * audioFactor));

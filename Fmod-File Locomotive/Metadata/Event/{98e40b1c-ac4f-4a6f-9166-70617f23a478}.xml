@@ -59,6 +59,7 @@
 	<object class="GroupTrack" id="{c9725190-808a-4e2d-993d-01f1cfa4b847}">
 		<relationship name="modules">
 			<destination>{8765ad7e-2282-4239-b7dd-1501bdd22282}</destination>
+			<destination>{fe6af096-f27e-4d83-95ec-75fe1303b78c}</destination>
 		</relationship>
 		<relationship name="mixerGroup">
 			<destination>{2a6ee784-7bc3-453a-8a3d-080dc0870f60}</destination>
@@ -67,6 +68,7 @@
 	<object class="GroupTrack" id="{0391462b-9adc-4620-b3f7-b8110c1db7f4}">
 		<relationship name="modules">
 			<destination>{4b71fa04-56fd-4e23-b5ab-63dd83e7beea}</destination>
+			<destination>{f75c5f2f-e8c6-489f-9759-e1bc845c6340}</destination>
 		</relationship>
 		<relationship name="mixerGroup">
 			<destination>{373c67b4-e94e-4442-af3e-18d25c4403fc}</destination>
@@ -81,6 +83,8 @@
 		<relationship name="modules">
 			<destination>{8765ad7e-2282-4239-b7dd-1501bdd22282}</destination>
 			<destination>{4b71fa04-56fd-4e23-b5ab-63dd83e7beea}</destination>
+			<destination>{f75c5f2f-e8c6-489f-9759-e1bc845c6340}</destination>
+			<destination>{fe6af096-f27e-4d83-95ec-75fe1303b78c}</destination>
 		</relationship>
 		<relationship name="preset">
 			<destination>{32882665-6e0b-4861-87a8-8a84c1027c3e}</destination>
@@ -120,6 +124,14 @@
 			<destination>{426ee8ac-cb62-4313-b9bc-bd06b6d0eb0d}</destination>
 		</relationship>
 	</object>
+	<object class="MultiSound" id="{fe6af096-f27e-4d83-95ec-75fe1303b78c}">
+		<property name="looping">
+			<value>true</value>
+		</property>
+		<relationship name="sounds">
+			<destination>{02bde4f5-1ecd-4361-843d-df0db34fc7ac}</destination>
+		</relationship>
+	</object>
 	<object class="EventMixerGroup" id="{2a6ee784-7bc3-453a-8a3d-080dc0870f60}">
 		<property name="name">
 			<value>Metal_Mov</value>
@@ -148,6 +160,14 @@
 			<destination>{aa3a1bc6-d901-4d57-aa91-05d6e92de0d8}</destination>
 		</relationship>
 	</object>
+	<object class="MultiSound" id="{f75c5f2f-e8c6-489f-9759-e1bc845c6340}">
+		<property name="looping">
+			<value>true</value>
+		</property>
+		<relationship name="sounds">
+			<destination>{479153b7-f41e-4f12-9756-7e0ee8a98bd7}</destination>
+		</relationship>
+	</object>
 	<object class="EventMixerGroup" id="{373c67b4-e94e-4442-af3e-18d25c4403fc}">
 		<property name="name">
 			<value>Metal_Rolling</value>
@@ -169,12 +189,14 @@
 	</object>
 	<object class="MixerBusPanner" id="{b2bf302d-5f95-4aa6-8f44-2f614ef5d49c}" />
 	<object class="MixerBusFader" id="{5d3b4459-982c-4079-bcbf-0199cdb2d9bb}" />
+	<object class="SilenceSound" id="{02bde4f5-1ecd-4361-843d-df0db34fc7ac}" />
 	<object class="MixerBusEffectChain" id="{92f38fd3-63dd-4cb5-a8e7-ef0d8b7a60f0}">
 		<relationship name="effects">
 			<destination>{4d9573d6-7976-4093-995e-d947f7ffe0c6}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{f085d871-dd21-4c55-b397-4e998418dec9}" />
+	<object class="SilenceSound" id="{479153b7-f41e-4f12-9756-7e0ee8a98bd7}" />
 	<object class="MixerBusEffectChain" id="{9478776a-81b1-4411-ab01-2fc776a71a60}">
 		<relationship name="effects">
 			<destination>{053d44e3-74f1-4742-8721-9bf57cf416a4}</destination>

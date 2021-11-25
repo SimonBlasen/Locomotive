@@ -9,11 +9,19 @@ public class FirePanel : Interactable
     private FirePanelMover firePanel = null;
     [SerializeField]
     private GameObject interactableColliderBlocker = null;
+    [SerializeField]
+    private StudioEventEmitter snapshotPanelOpenClose = null;
+    [SerializeField]
+    private StudioEventEmitter emitterClosePanel = null;
+    [SerializeField]
+    private StudioEventEmitter emitterOpenPanel = null;
 
-    [FMODUnity.EventRef]
-    public string fmodEventTrainSound;
+    //[FMODUnity.EventRef]
+    //public string eventOpenPanel;
+    //[FMODUnity.EventRef]
+    //public string eventClosePanel;
 
-    private StudioEventEmitter stevem = null;
+    //private StudioEventEmitter stevem = null;
 
     private FMOD.Studio.EventInstance instanceTrainSound;
 
@@ -21,7 +29,7 @@ public class FirePanel : Interactable
     protected override void Start()
     {
         base.Start();
-        stevem = GetComponent<StudioEventEmitter>();
+        //stevem = GetComponent<StudioEventEmitter>();
         //instanceTrainSound = FMODUnity.RuntimeManager.CreateInstance(fmodEventTrainSound);
 
         interactableColliderBlocker.SetActive(true);
@@ -39,7 +47,21 @@ public class FirePanel : Interactable
         firePanel.PanelOpened = !firePanel.PanelOpened;
         interactableColliderBlocker.SetActive(!firePanel.PanelOpened);
 
-        stevem.Play();
+        if (firePanel.PanelOpened)
+        {
+            snapshotPanelOpenClose.Play();
+            emitterOpenPanel.Play();
+            // Doesn't work, cause LookUp() isnt called in the studio event emitter
+            //stevem.Event = eventOpenPanel;
+        }
+        else
+        {
+            snapshotPanelOpenClose.Stop();
+            emitterClosePanel.Play();
+            //stevem.Event = eventClosePanel;
+        }
+
+
         //instanceTrainSound.start();
     }
 
