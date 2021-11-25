@@ -277,10 +277,10 @@
 	</object>
 	<object class="TransitionRegion" id="{83ad4fa6-68f3-4453-8f07-ae0f8640a541}">
 		<property name="position">
-			<value>0.72669791666666672</value>
+			<value>0.40000000000000002</value>
 		</property>
 		<property name="length">
-			<value>5.2733020833333333</value>
+			<value>5.5999999999999996</value>
 		</property>
 		<relationship name="timeline">
 			<destination>{d0531e97-3a86-4a7b-9e97-90b8b93c2e73}</destination>
@@ -427,7 +427,7 @@
 	</object>
 	<object class="AutomationPoint" id="{06035c56-5306-481b-8b72-49dc956852eb}">
 		<property name="position">
-			<value>0.69999999999999996</value>
+			<value>0.60000000000000009</value>
 		</property>
 		<property name="value">
 			<value>1</value>
