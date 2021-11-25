@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class GlobalOffsetTransform : MonoBehaviour
 {
+    [SerializeField]
+    private bool isQuickfire = false;
+
     private Vector3 originalPosition = Vector3.zero;
 
     // Start is called before the first frame update
@@ -13,7 +16,14 @@ public class GlobalOffsetTransform : MonoBehaviour
 
         if (GlobalOffsetManager.Inst != null)
         {
-            GlobalOffsetManager.Inst.RegisterTransform(this);
+            if (isQuickfire)
+            {
+                GlobalOffsetManager.Inst.RegisterQuickfireTransform(transform);
+            }
+            else
+            {
+                GlobalOffsetManager.Inst.RegisterTransform(this);
+            }
             originalPosition -= GlobalOffsetManager.Inst.GlobalOffset;
         }
         else
@@ -32,7 +42,14 @@ public class GlobalOffsetTransform : MonoBehaviour
     {
         if (GlobalOffsetManager.Inst != null)
         {
-            GlobalOffsetManager.Inst.DeregisterTransform(this);
+            if (isQuickfire)
+            {
+                GlobalOffsetManager.Inst.DeregisterQuickfireTransform(transform);
+            }
+            else
+            {
+                GlobalOffsetManager.Inst.DeregisterTransform(this);
+            }
         }
         else
         {
