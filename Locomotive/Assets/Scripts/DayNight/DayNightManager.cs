@@ -20,6 +20,8 @@ public class DayNightManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        FMODUnity.RuntimeManager.StudioSystem.setParameterByName("Daytime", hourOfDay);
+
         if (doIt)
         {
             doIt = false;
