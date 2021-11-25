@@ -16,6 +16,7 @@
 /Locomotive2/[Bb]uilds/
 /Locomotive2/[Ll]ogs/
 /Locomotive2/[Mm]emoryCaptures/
+/Locomotive/UserSettings/EditorUserSettings.asset
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/Locomotive/[Aa]ssets/**/*.meta
