@@ -186,7 +186,7 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 1
   Parameters: []
-  MinDistance: 1
+  MinDistance: 5
   MaxDistance: 20
   Length: 1271
 --- !u!114 &-8278728691099253043
@@ -558,7 +558,7 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 1
   Parameters: []
-  MinDistance: 1
+  MinDistance: 5
   MaxDistance: 10
   Length: 1682
 --- !u!114 &-6872519771621754606
@@ -670,6 +670,26 @@ MonoBehaviour:
   MinDistance: 20
   MaxDistance: 450
   Length: 0
+--- !u!114 &-6332522660985427002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Daytime
+  m_EditorClassIdentifier: 
+  Name: Daytime
+  Min: 0
+  Max: 24
+  Default: 0
+  ID:
+    data1: 2423054786
+    data2: 3714711003
+  Exists: 1
 --- !u!114 &-6283298214367633337
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -830,6 +850,29 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 1
+--- !u!114 &-5733695023721116586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: snapshot:/FirePanel_Closed
+  m_EditorClassIdentifier: 
+  Path: snapshot:/FirePanel_Closed
+  guid: 45819abf32b0a04487c1780a625fa9e9
+  Banks:
+  - {fileID: -1867817987732486219}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 0
 --- !u!114 &-5609193610870637584
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1402,8 +1445,8 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 1
   Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
+  MinDistance: 5
+  MaxDistance: 80
   Length: 1733
 --- !u!114 &-2893106460017426406
 MonoBehaviour:
@@ -1614,9 +1657,9 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 1
   Parameters: []
-  MinDistance: 1
+  MinDistance: 5
   MaxDistance: 20
-  Length: 0
+  Length: 1539
 --- !u!114 &-2101835702338379032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1692,7 +1735,7 @@ MonoBehaviour:
   Path: ../Fmod-File Locomotive/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637734509860000000
+  lastModified: 637734555130000000
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -1719,6 +1762,26 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 0
+--- !u!114 &-1731779534551658130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/RPM
+  m_EditorClassIdentifier: 
+  Name: RPM
+  Min: 0
+  Max: 100
+  Default: 0
+  ID:
+    data1: 2579403646
+    data2: 3235192666
+  Exists: 1
 --- !u!114 &-1725054522601263872
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1845,6 +1908,26 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 1
+--- !u!114 &-1058284806692785474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: "parameter:/Au\xDFenkamera_Zoom"
+  m_EditorClassIdentifier: 
+  Name: "Au\xDFenkamera_Zoom"
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 891859566
+    data2: 1116994703
+  Exists: 1
 --- !u!114 &-852595822812184097
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1885,7 +1968,7 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 1
   Parameters: []
-  MinDistance: 1
+  MinDistance: 5
   MaxDistance: 20
   Length: 1789
 --- !u!114 &-497126597176838734
@@ -2012,12 +2095,13 @@ MonoBehaviour:
   - {fileID: -4029575868743214008}
   - {fileID: 7209969420629062311}
   - {fileID: -2122083198760358909}
+  - {fileID: -5733695023721116586}
   EditorParameters: []
   MasterBanks:
   - {fileID: -1867817987732486219}
   StringsBanks:
   - {fileID: 1941433785304137193}
-  stringsBankWriteTime: 637734509860000000
+  stringsBankWriteTime: 637734555130000000
   cacheVersion: 6
 --- !u!114 &149699424814682534
 MonoBehaviour:
@@ -2039,6 +2123,26 @@ MonoBehaviour:
     data1: 2423054786
     data2: 3714711003
   Exists: 0
+--- !u!114 &239167825615681677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: "parameter:/HEBEL_VorZur\xFCck/HEBEL_VW-RW"
+  m_EditorClassIdentifier: 
+  Name: HEBEL_VW-RW
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
 --- !u!114 &446960036242579627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2310,10 +2414,10 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 1
   Parameters:
-  - {fileID: -3982245268288113874}
-  MinDistance: 1
+  - {fileID: 8005858120845266142}
+  MinDistance: 5
   MaxDistance: 20
-  Length: 9985
+  Length: 9285
 --- !u!114 &1941433785304137193
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2329,11 +2433,11 @@ MonoBehaviour:
   Path: ../Fmod-File Locomotive/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637734509860000000
+  lastModified: 637734555130000000
   LoadResult: 0
   FileSizes:
   - Name: Desktop
-    Value: 2776
+    Value: 2870
   Exists: 1
 --- !u!114 &1955994571846469444
 MonoBehaviour:
@@ -2950,8 +3054,8 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 1
   Parameters:
-  - {fileID: 1002746045074435413}
-  MinDistance: 1
+  - {fileID: 239167825615681677}
+  MinDistance: 5
   MaxDistance: 20
   Length: 0
 --- !u!114 &4150897761893567677
@@ -3014,7 +3118,7 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 1
   Parameters: []
-  MinDistance: 1
+  MinDistance: 5
   MaxDistance: 10
   Length: 9720
 --- !u!114 &4219891258466846203
@@ -3490,7 +3594,7 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 1
   Parameters: []
-  MinDistance: 1
+  MinDistance: 5
   MaxDistance: 10
   Length: 2955
 --- !u!114 &6363728582982571831
@@ -3678,7 +3782,7 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 1
   Parameters: []
-  MinDistance: 1
+  MinDistance: 5
   MaxDistance: 20
   Length: 2221
 --- !u!114 &7180621908637895983
@@ -3741,9 +3845,9 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 1
   Parameters: []
-  MinDistance: 1
+  MinDistance: 5
   MaxDistance: 20
-  Length: 0
+  Length: 1044
 --- !u!114 &7215258222431691552
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3779,6 +3883,26 @@ MonoBehaviour:
   Name: Altitude
   Min: 0
   Max: 50
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
+--- !u!114 &7348411910162991346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/FIRE_Event/FireValue
+  m_EditorClassIdentifier: 
+  Name: FireValue
+  Min: 0
+  Max: 1
   Default: 0
   ID:
     data1: 0
@@ -3844,6 +3968,26 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 0
+--- !u!114 &8005858120845266142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/VENTIL_Gas/VENTIL-Druck_OnOff
+  m_EditorClassIdentifier: 
+  Name: VENTIL-Druck_OnOff
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
 --- !u!114 &8040152490173037386
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3947,7 +4091,7 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 0
   Parameters:
-  - {fileID: 7380900706639014948}
+  - {fileID: 7348411910162991346}
   MinDistance: 3
   MaxDistance: 15
   Length: 0
