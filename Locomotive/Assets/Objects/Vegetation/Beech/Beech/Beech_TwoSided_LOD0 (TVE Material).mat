@@ -167,7 +167,7 @@ Material:
     - _MainColor: {r: 1, g: 1, b: 1, a: 1}
     - _MainUVs: {r: 1, g: 1, b: 0, a: 0}
     - _MaxBoundsInfo: {r: 10.61005, g: 38.285984, b: 38.285984, a: 0}
-    - _NoiseColorOne: {r: 1, g: 1, b: 1, a: 1}
+    - _NoiseColorOne: {r: 1, g: 0.74312145, b: 0.20188677, a: 1}
     - _NoiseColorTwo: {r: 1, g: 1, b: 1, a: 1}
     - _NoiseMaskRemap: {r: 0, g: 0, b: 0, a: 0}
     - _OverlayMaskRemap: {r: 0, g: 0, b: 0, a: 0}

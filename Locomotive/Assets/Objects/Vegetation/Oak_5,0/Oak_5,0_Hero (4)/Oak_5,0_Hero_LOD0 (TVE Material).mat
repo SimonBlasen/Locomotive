@@ -107,7 +107,7 @@ Material:
     - _MotionVariation_32: 20
     - _NoiseCat: 1
     - _NoiseMaxValue: 1
-    - _NoiseMinValue: 0
+    - _NoiseMinValue: 0.52
     - _NoiseScaleValue: 0.01
     - _OcclusionCat: 1
     - _OverlayBottomValue: 0.5
@@ -167,9 +167,9 @@ Material:
     - _MainColor: {r: 1, g: 1, b: 1, a: 1}
     - _MainUVs: {r: 1, g: 1, b: 0, a: 0}
     - _MaxBoundsInfo: {r: 9.210187, g: 26.790121, b: 26.790121, a: 0}
-    - _NoiseColorOne: {r: 1, g: 1, b: 1, a: 1}
+    - _NoiseColorOne: {r: 0.92168975, g: 1, b: 0, a: 1}
     - _NoiseColorTwo: {r: 1, g: 1, b: 1, a: 1}
-    - _NoiseMaskRemap: {r: 0, g: 0, b: 0, a: 0}
+    - _NoiseMaskRemap: {r: 0.52, g: 1, b: 0, a: 0}
     - _OverlayMaskRemap: {r: 0, g: 0, b: 0, a: 0}
     - _SubsurfaceColor: {r: 1.5157166, g: 1.4307232, b: 0, a: 1}
     - _SubsurfaceDiffusion_Asset: {r: 2.2888926e+38, g: 1.2389358e-26, b: 7.69327e-37, a: 0.00018220427}

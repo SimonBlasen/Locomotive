@@ -47,7 +47,7 @@ Material:
     - _AI_Parallax: 1
     - _AI_ShadowBias: 0.25
     - _AI_ShadowView: 1
-    - _AI_TextureBias: -1
+    - _AI_TextureBias: -2.63
     - _AlphaCutoff: 0.333
     - _AlphaVariationValue: 1
     - _ColorsMaskMaxValue: 1
