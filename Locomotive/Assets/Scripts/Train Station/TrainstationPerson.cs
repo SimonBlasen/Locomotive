@@ -96,7 +96,7 @@ public class TrainstationPerson : MonoBehaviour
                 Vector2 flatDest = new Vector2(navAgent.destination.x, navAgent.destination.z);
                 Vector2 flatPos = new Vector2(transform.position.x, transform.position.z);
                 // TODO: Ticks on train needs to only work, if agent doesn't move anymore
-                if (Vector2.Distance(flatDest, flatPos) <= 0.2f)// || ticksOnTrainArea >= 10)
+                if (Vector2.Distance(flatDest, flatPos) <= 0.5f)// || ticksOnTrainArea >= 10)
                 {
                     Debug.Log("Person entered waggon");
                     List<TrainStation> possibleTrainstations = new List<TrainStation>();
