@@ -13,10 +13,9 @@ Material:
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2450
+  m_CustomRenderQueue: -1
   stringTagMap:
     NatureRendererInstancing: true
-    RenderType: AlphaTest
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
@@ -39,11 +38,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _AI_Clip: 0.5
-    - _AI_DepthSize: 559.1135
-    - _AI_Frames: 12
-    - _AI_FramesX: 12
-    - _AI_FramesY: 12
-    - _AI_ImpostorSize: 559.6857
+    - _AI_DepthSize: -0
+    - _AI_Frames: 10
+    - _AI_FramesX: 10
+    - _AI_FramesY: 10
+    - _AI_ImpostorSize: -0
     - _AI_Parallax: 1
     - _AI_ShadowBias: 0.25
     - _AI_ShadowView: 1
@@ -114,8 +113,8 @@ Material:
     - _TranslucencyShadowValue: 1
     - _subsurface_shadow: 1
     m_Colors:
-    - _AI_Offset: {r: 6.053055, g: 26.60341, b: 2.4883575, a: 0.0021929825}
-    - _AI_SizeOffset: {r: 559.6857, g: 559.1135, b: 0, a: -0.00018274854}
+    - _AI_Offset: {r: 0, g: 0, b: 0, a: NaN}
+    - _AI_SizeOffset: {r: -0, g: -0, b: NaN, a: NaN}
     - _ColorsMaskRemap: {r: 0, g: 0, b: 0, a: 0}
     - _DetailBlendRemap: {r: 0, g: 0, b: 0, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
@@ -152,24 +151,16 @@ MonoBehaviour:
   Version: 9713
   ImpostorType: 2
   LockedSizes: 1
-  SelectedSize: 4096
-  TexSize: {x: 4096, y: 4096}
+  SelectedSize: 2048
+  TexSize: {x: 2048, y: 2048}
   DecoupleAxisFrames: 0
-  HorizontalFrames: 12
-  VerticalFrames: 12
-  PixelPadding: 64
+  HorizontalFrames: 10
+  VerticalFrames: 10
+  PixelPadding: 32
   MaxVertices: 8
   Tolerance: 0.15
   NormalScale: 0.01
-  ShapePoints:
-  - {x: 0, y: 0.64338183}
-  - {x: 0.19778903, y: 0.9735902}
-  - {x: 0.78520936, y: 0.9737284}
-  - {x: 1, y: 0.6587545}
-  - {x: 1, y: 0.21665013}
-  - {x: 0.664886, y: 0.025473177}
-  - {x: 0.20342417, y: 0.026422739}
-  - {x: 0, y: 0.3696645}
+  ShapePoints: []
   Preset: {fileID: 11400000, guid: 968b495bf56f4d940ba51cee77f7a371, type: 2}
   OverrideOutput: []
 --- !u!43 &788597161492721910
@@ -183,14 +174,14 @@ Mesh:
   m_SubMeshes:
   - serializedVersion: 2
     firstByte: 0
-    indexCount: 18
+    indexCount: 0
     topology: 0
     baseVertex: 0
     firstVertex: 0
-    vertexCount: 8
+    vertexCount: 0
     localAABB:
-      m_Center: {x: 0, y: -1.003952, z: 0}
-      m_Extent: {x: 279.84286, y: 265.3625, z: 0}
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0, y: 0, z: 0}
   m_Shapes:
     vertices: []
     shapes: []
@@ -207,31 +198,19 @@ Mesh:
   m_KeepVertices: 1
   m_KeepIndices: 1
   m_IndexFormat: 0
-  m_IndexBuffer: 070005000300030001000700070006000500050004000300030002000100010000000700
+  m_IndexBuffer: 
   m_VertexData:
     serializedVersion: 3
-    m_VertexCount: 8
+    m_VertexCount: 0
     m_Channels:
     - stream: 0
       offset: 0
       format: 0
       dimension: 3
     - stream: 0
-      offset: 12
-      format: 0
-      dimension: 3
-    - stream: 0
       offset: 0
       format: 0
       dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 24
-      format: 0
-      dimension: 2
     - stream: 0
       offset: 0
       format: 0
@@ -268,8 +247,20 @@ Mesh:
       offset: 0
       format: 0
       dimension: 0
-    m_DataSize: 256
-    _typelessdata: e3eb8bc3caf3a2c2000000000000000000000000000080bf00000000a896b63ea72429c3002585c3000000000000000000000000000080bf35894a3e6059d83caba01f43e72e85c3000000000000000000000000ffff7fbf7b03493f8037d73ce3eb8b43f928b4c2000000000000000000000000000080bf0000803fbab7ae3ee3eb8b43085c1d43000000000000000000000000000080bf0000803f9e89483f9591b842e42d8443000000000000000000000000000080bff8352a3f977a793f40fd25c3dde98343000000000000000000000000000080bf6d4e503e5c3c793fe3eb8bc368708f42000000000000000000000000000080bf00000000ab5d213f
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    m_DataSize: 0
+    _typelessdata: 
   m_CompressedMesh:
     m_Vertices:
       m_NumItems: 0
@@ -323,8 +314,8 @@ Mesh:
       m_BitSize: 0
     m_UVInfo: 0
   m_LocalAABB:
-    m_Center: {x: 6.053055, y: 26.60341, z: 2.4883575}
-    m_Extent: {x: 224.9318, y: 26.987389, z: 220.39108}
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
   m_MeshUsageFlags: 0
   m_BakedConvexCollisionMesh: 
   m_BakedTriangleCollisionMesh: 
