@@ -15,22 +15,24 @@ MonoBehaviour:
   prefabList: []
   prefabData:
   - prefab: {fileID: 5477963063785172647, guid: 56a5dffc1180e89428fbf7a6e530c317, type: 3}
-    selected: 1
+    selected: 0
   - prefab: {fileID: 327033840224542803, guid: 95c7920b1a8314549a23c4e153d91817, type: 3}
-    selected: 1
+    selected: 0
   - prefab: {fileID: 6300811831676002598, guid: 7b2d7ccc0370fef40897040ea096f9b8, type: 3}
-    selected: 1
+    selected: 0
   - prefab: {fileID: 8694919077692555909, guid: 24744fa8eeb384b4aa889d8ee58c6392, type: 3}
+    selected: 1
+  - prefab: {fileID: 1992412529881764248, guid: 46a700d8d5767484ca391bcd3a816b8a, type: 3}
     selected: 0
   paintType: 0
-  brushSize: 45.4
+  brushSize: 50
   minBrushSize: 0.1
-  maxBrushSize: 100
+  maxBrushSize: 2000
   paintDeltaDistance: 3
   maxPaintDeltaDistance: 3
   minPaintDeltaDistance: 0.1
-  prefabsPerStroke: 2
-  maxprefabsPerStroke: 50
+  prefabsPerStroke: 10
+  maxprefabsPerStroke: 10
   minprefabsPerStroke: 1
   spawnHeight: 10
   addRigidbodyToPaintedPrefab: 1
