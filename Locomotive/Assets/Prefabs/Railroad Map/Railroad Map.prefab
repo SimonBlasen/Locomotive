@@ -39,7 +39,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 198385277142930287}
-  - component: {fileID: 7474963960277100096}
   m_Layer: 0
   m_Name: Refill
   m_TagString: Untagged
@@ -62,23 +61,6 @@ Transform:
   m_Father: {fileID: 3114713894521397242}
   m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7474963960277100096
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 438179370659797488}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5aceae2e63fcca4a9133a8b0c65e39d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  leftBottomPos: {fileID: 7536861977524991445}
-  rightTopPos: {fileID: 6408806842489657800}
-  worldLeftBottomPos: {fileID: 0}
-  worldRightTopPos: {fileID: 0}
-  yRotOffset: 0
 --- !u!1 &576623094074177235
 GameObject:
   m_ObjectHideFlags: 0
@@ -648,7 +630,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2171392397703767024}
-  - component: {fileID: 2957534807262140519}
   m_Layer: 0
   m_Name: Refill (4)
   m_TagString: Untagged
@@ -671,23 +652,6 @@ Transform:
   m_Father: {fileID: 3114713894521397242}
   m_RootOrder: 24
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2957534807262140519
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3513244707613197048}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5aceae2e63fcca4a9133a8b0c65e39d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  leftBottomPos: {fileID: 7536861977524991445}
-  rightTopPos: {fileID: 6408806842489657800}
-  worldLeftBottomPos: {fileID: 0}
-  worldRightTopPos: {fileID: 0}
-  yRotOffset: 0
 --- !u!1 &3765863097476568173
 GameObject:
   m_ObjectHideFlags: 0
@@ -1021,7 +985,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7341296060792300914}
-  - component: {fileID: 198262075651961303}
   m_Layer: 0
   m_Name: Refill (3)
   m_TagString: Untagged
@@ -1044,23 +1007,6 @@ Transform:
   m_Father: {fileID: 3114713894521397242}
   m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &198262075651961303
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5834583058908737657}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5aceae2e63fcca4a9133a8b0c65e39d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  leftBottomPos: {fileID: 7536861977524991445}
-  rightTopPos: {fileID: 6408806842489657800}
-  worldLeftBottomPos: {fileID: 0}
-  worldRightTopPos: {fileID: 0}
-  yRotOffset: 0
 --- !u!1 &7866668794857656790
 GameObject:
   m_ObjectHideFlags: 0
@@ -1070,7 +1016,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8048430566399745216}
-  - component: {fileID: 2353883248872629045}
   m_Layer: 0
   m_Name: Refill (2)
   m_TagString: Untagged
@@ -1093,23 +1038,6 @@ Transform:
   m_Father: {fileID: 3114713894521397242}
   m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2353883248872629045
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7866668794857656790}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5aceae2e63fcca4a9133a8b0c65e39d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  leftBottomPos: {fileID: 7536861977524991445}
-  rightTopPos: {fileID: 6408806842489657800}
-  worldLeftBottomPos: {fileID: 0}
-  worldRightTopPos: {fileID: 0}
-  yRotOffset: 0
 --- !u!1 &7892160128962741840
 GameObject:
   m_ObjectHideFlags: 0
@@ -1119,7 +1047,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 848274608253469437}
-  - component: {fileID: 5845582396593869698}
   m_Layer: 0
   m_Name: Refill (1)
   m_TagString: Untagged
@@ -1142,23 +1069,6 @@ Transform:
   m_Father: {fileID: 3114713894521397242}
   m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5845582396593869698
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7892160128962741840}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5aceae2e63fcca4a9133a8b0c65e39d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  leftBottomPos: {fileID: 7536861977524991445}
-  rightTopPos: {fileID: 6408806842489657800}
-  worldLeftBottomPos: {fileID: 0}
-  worldRightTopPos: {fileID: 0}
-  yRotOffset: 0
 --- !u!1001 &293062358218097871
 PrefabInstance:
   m_ObjectHideFlags: 0

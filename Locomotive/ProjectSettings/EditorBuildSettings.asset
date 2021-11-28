@@ -8,7 +8,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Terrain Level.unity
     guid: 12fefc66c4f7208418ea624931c65b89
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Game.unity
     guid: 9500397a08aea984089703bd9c07daed
+  - enabled: 1
+    path: Assets/Scenes/Simon Terrain Scene.unity
+    guid: 6ec07721f32a3cb4d9f693b6a7d2619e
   m_configObjects: {}

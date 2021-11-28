@@ -22,6 +22,8 @@ public class Boiler : MonoBehaviour
     private float releaseValveStrength = 400f;
     [SerializeField]
     private float pressureExplosion = 601f;
+    [SerializeField]
+    private Canvas explodeCanvas = null;
 
     private float curTemp = 0f;
 
@@ -30,7 +32,7 @@ public class Boiler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        explodeCanvas.enabled = false;
     }
 
     // Update is called once per frame
@@ -53,6 +55,8 @@ public class Boiler : MonoBehaviour
         else if (pressure > maxPressure)
         {
             pressure = maxPressure;
+
+            explodeCanvas.enabled = true;
         }
 
         if (Input.GetKeyDown(KeyCode.Q))

@@ -11,6 +11,8 @@ public class WaterLevelCylinder : MonoBehaviour
     private float waterUseupFactor = 1f;
     [SerializeField]
     private float refillSpeed = 1f;
+    [SerializeField]
+    private Canvas explodeCanvas = null;
 
     [Space]
 
@@ -34,6 +36,12 @@ public class WaterLevelCylinder : MonoBehaviour
     {
         currentFill -= waterUseupFactor * pressureDelta;
         currentFill = Mathf.Clamp(currentFill, 0f, fullFill);
+
+        if (currentFill <= 0f)
+        {
+            explodeCanvas.enabled = false;
+        }
+
         refreshCylinderTransform();
     }
 

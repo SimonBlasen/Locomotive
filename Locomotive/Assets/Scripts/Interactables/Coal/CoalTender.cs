@@ -14,6 +14,8 @@ public class CoalTender : MonoBehaviour
     private float weightPerCoal = 0.5f;
     [SerializeField]
     private CoalKGAmount coalKGAmount = null;
+    [SerializeField]
+    private Canvas explodeCanvas = null;
 
 
     private GameObject coalInHand = null;
@@ -56,6 +58,11 @@ public class CoalTender : MonoBehaviour
                 coalInHand.transform.parent = null;
                 coalInHand = null;
             }
+        }
+
+        if (coalKGAmount.CoalWeight <= 0f)
+        {
+            explodeCanvas.enabled = true;
         }
     }
 
