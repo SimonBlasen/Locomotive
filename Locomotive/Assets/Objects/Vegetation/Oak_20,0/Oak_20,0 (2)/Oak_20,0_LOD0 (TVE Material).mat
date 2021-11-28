@@ -108,7 +108,7 @@ Material:
     - _NoiseCat: 1
     - _NoiseMaxValue: 1
     - _NoiseMinValue: 0
-    - _NoiseScaleValue: 0.03
+    - _NoiseScaleValue: 0.01
     - _OcclusionCat: 1
     - _OverlayBottomValue: 0.5
     - _OverlayMaskMaxValue: 0.55
@@ -154,7 +154,7 @@ Material:
     - _render_zw: 1
     - _subsurface_shadow: 1
     m_Colors:
-    - _Color: {r: 1.8443027, g: 1.8443027, b: 1.8443027, a: 1}
+    - _Color: {r: 1.9766746, g: 1.9766746, b: 1.9766746, a: 1}
     - _ColorsMaskRemap: {r: 0, g: 0, b: 0, a: 0}
     - _DetailBlendRemap: {r: 0, g: 0, b: 0, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
@@ -164,14 +164,14 @@ Material:
     - _GradientColorOne: {r: 1, g: 1, b: 1, a: 1}
     - _GradientColorTwo: {r: 1, g: 1, b: 1, a: 1}
     - _GradientMaskRemap: {r: 0, g: 0, b: 0, a: 0}
-    - _MainColor: {r: 1.8443027, g: 1.8443027, b: 1.8443027, a: 1}
+    - _MainColor: {r: 1.9766746, g: 1.9766746, b: 1.9766746, a: 1}
     - _MainUVs: {r: 1, g: 1, b: 0, a: 0}
     - _MaxBoundsInfo: {r: 21.508787, g: 27.266008, b: 27.266008, a: 0}
     - _NoiseColorOne: {r: 0.71699995, g: 0.55110586, b: 0.55110586, a: 1}
     - _NoiseColorTwo: {r: 1, g: 0.9673198, b: 0.63584906, a: 1}
     - _NoiseMaskRemap: {r: 0, g: 0, b: 0, a: 0}
     - _OverlayMaskRemap: {r: 0, g: 0, b: 0, a: 0}
-    - _SubsurfaceColor: {r: 2.199902, g: 2.3245068, b: 0.97164375, a: 1}
+    - _SubsurfaceColor: {r: 1.5676355, g: 1.7207954, b: 0, a: 1}
     - _SubsurfaceDiffusion_Asset: {r: 2.2888926e+38, g: 1.2389358e-26, b: 7.69327e-37, a: 0.00018220427}
     - _SubsurfaceDiffusion_asset: {r: 2.2888926e+38, g: 1.2389358e-26, b: 7.69327e-37, a: 0.00018220427}
     - _SubsurfaceMaskRemap: {r: 0, g: 0.29954544, b: 0, a: 0}

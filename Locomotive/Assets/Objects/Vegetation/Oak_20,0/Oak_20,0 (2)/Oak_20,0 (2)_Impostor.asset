@@ -75,14 +75,14 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _AI_Clip: 0.5
+    - _AI_Clip: 0.728
     - _AI_DepthSize: 44.96561
     - _AI_Frames: 16
     - _AI_FramesX: 16
     - _AI_FramesY: 16
     - _AI_ImpostorSize: 44.81899
     - _AI_Parallax: 1
-    - _AI_ShadowBias: 2
+    - _AI_ShadowBias: 0.25
     - _AI_ShadowView: 1
     - _AI_TextureBias: -1
     - _AlphaCutoff: 0.333
@@ -159,15 +159,15 @@ Material:
     - _EmissiveColor: {r: 0, g: 0, b: 0, a: 0}
     - _EmissiveIntensityParams: {r: 1, g: 1, b: 1, a: 0}
     - _GradientMaskRemap: {r: 0, g: 0, b: 0, a: 0}
-    - _ImpostorBarkColor: {r: 0.5471698, g: 0.5471698, b: 0.5471698, a: 1}
+    - _ImpostorBarkColor: {r: 0.41900003, g: 0.41900003, b: 0.41900003, a: 1}
     - _ImpostorGrassColor: {r: 1, g: 1, b: 1, a: 1}
     - _ImpostorLeafColor: {r: 1, g: 1, b: 1, a: 1}
     - _MotionHighlightColor: {r: 2, g: 2, b: 2, a: 1}
-    - _NoiseColorOne: {r: 1, g: 1, b: 1, a: 1}
-    - _NoiseColorTwo: {r: 1, g: 1, b: 1, a: 1}
+    - _NoiseColorOne: {r: 0.71699995, g: 0.55110586, b: 0.55110586, a: 1}
+    - _NoiseColorTwo: {r: 1, g: 0.9673198, b: 0.63584906, a: 1}
     - _NoiseMaskRemap: {r: 0, g: 0, b: 0, a: 0}
     - _OverlayMaskRemap: {r: 0, g: 0, b: 0, a: 0}
-    - _SubsurfaceColor: {r: 2.199902, g: 2.3245068, b: 0.97164375, a: 1}
+    - _SubsurfaceColor: {r: 1.5676355, g: 1.7207954, b: 0, a: 1}
     - _SubsurfaceDiffusion_Asset: {r: 2.2888926e+38, g: 1.2389358e-26, b: 7.69327e-37, a: 0.00018220427}
     - _SubsurfaceDiffusion_asset: {r: 2.2888926e+38, g: 1.2389358e-26, b: 7.69327e-37, a: 0.00018220427}
     - _SubsurfaceMaskRemap: {r: 0, g: 0.29954544, b: 0, a: 0}
