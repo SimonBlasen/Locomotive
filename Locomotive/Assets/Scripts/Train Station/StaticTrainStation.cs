@@ -23,7 +23,7 @@ public class StaticTrainStation : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        sanityCheck();
     }
 
     // Update is called once per frame
@@ -45,6 +45,8 @@ public class StaticTrainStation : MonoBehaviour
             Debug.Log("Spline loc: " + splineLoc.ToString());
 
             Vector3Int clampedOffsetPos = GlobalOffsetManager.Inst.GetPotentialGlobalOffset(splineLoc);
+
+            sanityCheck();
 
             for (int i = 1; i < trainStation.Platforms.Length; i++)
             {
@@ -68,6 +70,21 @@ public class StaticTrainStation : MonoBehaviour
 
             trainStation.globalOffsetToSpawnPersons = -clampedOffsetPos;
 
+        }
+
+    }
+
+    private void sanityCheck()
+    {
+        Vector3 splineLoc0 = trainStation.Platforms[0].spline.GetSampleAtDistance(trainStation.Platforms[0].trainStationBegin).location;
+        Vector3 splineLoc1 = trainStation.Platforms[0].spline.GetSampleAtDistance(trainStation.Platforms[0].trainStationEnd).location;
+
+        Vector3Int clampedOffsetPos0 = GlobalOffsetManager.Inst.GetPotentialGlobalOffset(splineLoc0);
+        Vector3Int clampedOffsetPos1 = GlobalOffsetManager.Inst.GetPotentialGlobalOffset(splineLoc1);
+
+        if (clampedOffsetPos0 != clampedOffsetPos1)
+        {
+            Debug.LogError("Train station is inbetween two different global offsets!");
         }
     }
 }
