@@ -1,0 +1,338 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7ba7a43222473d4292f91ae936fe2cc, type: 3}
+  m_Name: wood_01_1_Impostor
+  m_EditorClassIdentifier: 
+  Material: {fileID: 3165922973906339563}
+  Mesh: {fileID: 7685554212064428399}
+  Version: 9713
+  ImpostorType: 2
+  LockedSizes: 1
+  SelectedSize: 2048
+  TexSize: {x: 2048, y: 2048}
+  DecoupleAxisFrames: 0
+  HorizontalFrames: 10
+  VerticalFrames: 10
+  PixelPadding: 32
+  MaxVertices: 8
+  Tolerance: 0.15
+  NormalScale: 0.01
+  ShapePoints:
+  - {x: 0, y: 0.6056813}
+  - {x: 0.18112092, y: 0.9578065}
+  - {x: 0.77923185, y: 0.9685409}
+  - {x: 1, y: 0.65299475}
+  - {x: 1, y: 0.40080786}
+  - {x: 0.8189234, y: 0.038321495}
+  - {x: 0.19240144, y: 0.038179994}
+  - {x: 0, y: 0.37524247}
+  Preset: {fileID: 11400000, guid: 968b495bf56f4d940ba51cee77f7a371, type: 2}
+  OverrideOutput: []
+--- !u!21 &3165922973906339563
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: wood_01_1_Impostor
+  m_Shader: {fileID: 4800000, guid: fc5f27e8a12515748af34961b5f7215a, type: 3}
+  m_ShaderKeywords: TVE_IS_VEGETATION_SHADER _HEMI_ON
+  m_LightmapFlags: 0
+  m_EnableInstancingVariants: 1
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: 2450
+  stringTagMap:
+    NatureRendererInstancing: true
+    RenderType: AlphaTest
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _Albedo:
+        m_Texture: {fileID: 2800000, guid: 5dea7e9600fda7b4c9431a683886ac05, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Emissive:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Mask:
+        m_Texture: {fileID: 2800000, guid: c9fb8a3053cc2044d866b393434ccee9, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Normals:
+        m_Texture: {fileID: 2800000, guid: 2878a491706ed0142a19b855a978c531, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _AI_Clip: 0.5
+    - _AI_DepthSize: 581.24677
+    - _AI_Frames: 10
+    - _AI_FramesX: 10
+    - _AI_FramesY: 10
+    - _AI_ImpostorSize: 582.3123
+    - _AI_Parallax: 1
+    - _AI_ShadowBias: 0.25
+    - _AI_ShadowView: 1
+    - _AI_TextureBias: -1
+    - _AlphaCutoff: 0.333
+    - _AlphaVariationValue: 1
+    - _ColorsMaskMaxValue: 1
+    - _ColorsMaskMinValue: 0
+    - _ColorsVariationValue: 0
+    - _DetailBlendMode: 1
+    - _DetailCat: 0
+    - _DetailMode: 0
+    - _EmissiveCat: 1
+    - _EmissiveFlagMode: 0
+    - _GlobalAlpha: 1
+    - _GlobalCat: 0
+    - _GlobalColors: 1
+    - _GlobalEmissive: 1
+    - _GlobalOverlay: 1
+    - _GlobalSize: 0
+    - _GlobalWetness: 1
+    - _ImpostorBarkSaturationValue: 1
+    - _ImpostorCat: 0
+    - _ImpostorGrassSaturationValue: 1
+    - _ImpostorLeafSaturationValue: 1
+    - _ImpostorSmoothnessValue: 1
+    - _InteractionAmplitude: 1
+    - _IsInitialized: 1
+    - _IsTVEAIShader: 1
+    - _IsVegetationShader: 1
+    - _IsVersion: 210
+    - _LayerColorsValue: 0
+    - _LayerExtrasValue: 0
+    - _LayerMotionValue: 0
+    - _LayerReactValue: 0
+    - _LayersSpace: 0
+    - _MainLightAngleValue: 5
+    - _MainLightNormalValue: 0.5
+    - _MainLightScatteringValue: 0.6
+    - _MaterialType: 10
+    - _MotionAmplitude_10: 0.05
+    - _MotionCat: 0
+    - _MotionScale_10: 0
+    - _MotionSpace: 0
+    - _MotionSpeed_10: 2
+    - _NoiseCat: 1
+    - _NoiseMaxValue: 1
+    - _NoiseMinValue: 0
+    - _NoiseScaleValue: 0.01
+    - _OverlayMaskMaxValue: 0.55
+    - _OverlayMaskMinValue: 0.45
+    - _OverlayVariationValue: 0
+    - _PivotsMessage: 0
+    - _RenderSpecular: 1
+    - _SizeFadeCat: 0
+    - _SizeFadeMessage: 0
+    - _SubsurfaceCat: 1
+    - _SubsurfaceDiffusion: 3.5648174
+    - _SubsurfaceMaskMaxValue: 0.0681818
+    - _SubsurfaceMaskMinValue: 0
+    - _SubsurfaceValue: 1
+    - _TranslucencyAmbientValue: 0.2
+    - _TranslucencyDirectValue: 1
+    - _TranslucencyHDMessage: 0
+    - _TranslucencyIntensityValue: 1
+    - _TranslucencyNormalValue: 0.1
+    - _TranslucencyScatteringValue: 2
+    - _TranslucencyShadowValue: 1
+    - _subsurface_shadow: 1
+    m_Colors:
+    - _AI_Offset: {r: -0.26391602, g: 26.879671, b: -10.306564, a: 0.006521739}
+    - _AI_SizeOffset: {r: 582.3123, g: 581.24677, b: 0, a: -0.0006521739}
+    - _ColorsMaskRemap: {r: 0, g: 0, b: 0, a: 0}
+    - _DetailBlendRemap: {r: 0, g: 0, b: 0, a: 0}
+    - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
+    - _EmissiveColor: {r: 0, g: 0, b: 0, a: 0}
+    - _EmissiveIntensityParams: {r: 1, g: 1, b: 1, a: 0}
+    - _GradientMaskRemap: {r: 0, g: 0, b: 0, a: 0}
+    - _ImpostorBarkColor: {r: 1, g: 1, b: 1, a: 1}
+    - _ImpostorGrassColor: {r: 1, g: 1, b: 1, a: 1}
+    - _ImpostorLeafColor: {r: 0.874, g: 0.8544907, b: 0.687838, a: 1}
+    - _MotionHighlightColor: {r: 2, g: 2, b: 2, a: 1}
+    - _NoiseColorOne: {r: 1, g: 0.74312145, b: 0.20188677, a: 1}
+    - _NoiseColorTwo: {r: 1, g: 1, b: 1, a: 1}
+    - _NoiseMaskRemap: {r: 0, g: 1, b: 0, a: 0}
+    - _OverlayMaskRemap: {r: 0, g: 0, b: 0, a: 0}
+    - _SubsurfaceColor: {r: 1.5157166, g: 1.3473035, b: 0, a: 1}
+    - _SubsurfaceDiffusion_Asset: {r: 2.2888926e+38, g: 1.2389358e-26, b: 7.69327e-37, a: 0.00018220427}
+    - _SubsurfaceDiffusion_asset: {r: 2.2888926e+38, g: 1.2389358e-26, b: 7.69327e-37, a: 0.00018220427}
+    - _SubsurfaceMaskRemap: {r: 0, g: 0.0681818, b: 0, a: 0}
+  m_BuildTextureStacks: []
+--- !u!43 &7685554212064428399
+Mesh:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: wood_01_1_Impostor
+  serializedVersion: 10
+  m_SubMeshes:
+  - serializedVersion: 2
+    firstByte: 0
+    indexCount: 18
+    topology: 0
+    baseVertex: 0
+    firstVertex: 0
+    vertexCount: 8
+    localAABB:
+      m_Center: {x: 0, y: -5.7545166, z: 0}
+      m_Extent: {x: 291.15616, y: 270.8803, z: 0}
+  m_Shapes:
+    vertices: []
+    shapes: []
+    channels: []
+    fullWeights: []
+  m_BindPose: []
+  m_BoneNameHashes: 
+  m_RootBoneNameHash: 0
+  m_BonesAABB: []
+  m_VariableBoneCountWeights:
+    m_Data: 
+  m_MeshCompression: 0
+  m_IsReadable: 1
+  m_KeepVertices: 1
+  m_KeepIndices: 1
+  m_IndexFormat: 0
+  m_IndexBuffer: 070005000300030001000700070006000500050004000300030002000100010000000700
+  m_VertexData:
+    serializedVersion: 3
+    m_VertexCount: 8
+    m_Channels:
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 3
+    - stream: 0
+      offset: 12
+      format: 0
+      dimension: 3
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 24
+      format: 0
+      dimension: 2
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    m_DataSize: 256
+    _typelessdata: fd9391c3a7ac82c2000000000000000000000000000080bf0000000024e4c93eedaf39c3293187c3000000000000000000000000ffff7fbfc377393e10d32c3da399224342518ac3000000000000000000000000000080bfbd7b473f40db003dfd939143dfc6b9c2000000000000000000000000ffff7fbf0000803facaab13efd9391433bda5742000000000000000000000000000080bf0000803fa864193f89b639438e858443000000000000000000000000000080bff7a4513f9030763f511e33c31a908443000000000000000000000000000080bfe204453ed639763ffd9391c348b38942000000000000000000000000000080bf000000001cf01f3f
+  m_CompressedMesh:
+    m_Vertices:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_UV:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Normals:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Tangents:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Weights:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_NormalSigns:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_TangentSigns:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_FloatColors:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_BoneIndices:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Triangles:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_UVInfo: 0
+  m_LocalAABB:
+    m_Center: {x: -0.26391602, y: 26.879671, z: -10.306564}
+    m_Extent: {x: 227.7558, y: 27.207912, z: 232.04736}
+  m_MeshUsageFlags: 0
+  m_BakedConvexCollisionMesh: 
+  m_BakedTriangleCollisionMesh: 
+  m_MeshMetrics[0]: 1
+  m_MeshMetrics[1]: 1
+  m_MeshOptimizationFlags: 1
+  m_StreamData:
+    serializedVersion: 2
+    offset: 0
+    size: 0
+    path: 

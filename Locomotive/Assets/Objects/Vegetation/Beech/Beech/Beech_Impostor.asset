@@ -327,7 +327,7 @@ Material:
     - _ImpostorGrassColor: {r: 1, g: 1, b: 1, a: 1}
     - _ImpostorLeafColor: {r: 0.8156863, g: 0.8012437, b: 0.71127844, a: 1}
     - _MotionHighlightColor: {r: 2, g: 2, b: 2, a: 1}
-    - _NoiseColorOne: {r: 1, g: 1, b: 1, a: 1}
+    - _NoiseColorOne: {r: 1, g: 0.74312145, b: 0.20188677, a: 1}
     - _NoiseColorTwo: {r: 1, g: 1, b: 1, a: 1}
     - _NoiseMaskRemap: {r: 0, g: 0, b: 0, a: 0}
     - _OverlayMaskRemap: {r: 0, g: 0, b: 0, a: 0}
