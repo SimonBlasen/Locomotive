@@ -62,10 +62,15 @@ public class DialogTrigger : MonoBehaviour
         }
         else
         {
-            int sideNow = (dialogManager.Train.TrainRailHandler.GetTrainPoses()[0].splineS > splineS) ? 1 : -1;
-            
+            int sideNow = (dialogManager.Train.TrainRailHandler.GetTrainPoses()[0].splineSNotFlipped > splineS) ? 1 : -1;
+
+            if (prevSide != 0 && sideNow != 0 && prevSide != sideNow)
+            {
+                Debug.Log("Driver over trigger.\nSide: " + sideNow.ToString() + "\nPrevSide: " + prevSide.ToString());
+            }
+
             if (prevSide != 0 && sideNow != 0 && prevSide != sideNow
-                && isForward == (sideNow == -1))
+                && isForward == (sideNow == 1))
             {
                 dialogManager.TriggerActivated(this);
                 wasActivated = true;

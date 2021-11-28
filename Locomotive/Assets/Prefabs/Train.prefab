@@ -636,7 +636,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabCoal: {fileID: 3173500912261618121, guid: 0271c0c68c88b5345a0c2fd38c420561, type: 3}
   coalLocalPos: {x: 0, y: 0, z: 0.4}
-  maxTenderFill: 1000
+  maxTenderFill: 100
   weightPerCoal: 0.5
   coalKGAmount: {fileID: 2073322350453220284}
 --- !u!1 &717922975668011977
@@ -2420,7 +2420,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ed3f00173bbcd44eab17c270313c08d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coalBurnStrength: 0.3
+  coalBurnStrength: 0.6
   coalLifetime: 180
   maxTemp: 350
   coalBurnCurve:
@@ -2436,14 +2436,14 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 34.468082
+      time: 15
       value: 0.9812207
-      inSlope: 0
-      outSlope: 0
+      inSlope: -0.00075746886
+      outSlope: -0.00075746886
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
-      outWeight: 0.33333334
+      outWeight: 0.055287056
     - serializedVersion: 3
       time: 180
       value: 0
@@ -6913,7 +6913,7 @@ MonoBehaviour:
   fire: {fileID: 5935794902618536634}
   waterLevelCylinder: {fileID: 1847469195766936604}
   tempLerpSpeed: 0.1
-  pressureIncreaseSpeed: 2
+  pressureIncreaseSpeed: 3.5
   generatedPressure:
     serializedVersion: 2
     m_Curve:
@@ -14596,21 +14596,21 @@ MonoBehaviour:
   - 15
   acceleration: 3
   deceleration: 4
-  topSpeed: 170
+  topSpeed: 250
   accelerationCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
       value: 1
-      inSlope: -0.014502408
-      outSlope: -0.014502408
+      inSlope: -0.008176504
+      outSlope: -0.008176504
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.029944839
+      outWeight: 0.037873268
     - serializedVersion: 3
-      time: 170
+      time: 250
       value: 0
       inSlope: 0.00025046582
       outSlope: 0.00025046582

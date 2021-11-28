@@ -122,5 +122,6 @@ public class TrainPartPose
 {
     public int splineID;
     public float splineS;
+    public float splineSNotFlipped;
     public bool flipped;
 }

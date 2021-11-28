@@ -164,6 +164,7 @@ public class TrainRailHandler
 
         curveSamples[0] = flippedAcc(0, curPos);
         curTrainPartPoses[0].splineS = curPos;
+        curTrainPartPoses[0].splineSNotFlipped = segmentsFlippsd[0] ? runningSegments[0].Length - curPos : curPos;
         curTrainPartPoses[0].flipped = segmentsFlippsd[0];
         curTrainPartPoses[0].splineID = runningSegments[0].ID;
 

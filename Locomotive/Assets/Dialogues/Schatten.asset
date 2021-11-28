@@ -78,7 +78,7 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 0
   output: 0
-  triggerType: 1
+  triggerType: 0
   triggerName: Schatten
 --- !u!114 &6534249143635324845
 MonoBehaviour:
