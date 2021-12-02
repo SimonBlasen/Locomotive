@@ -239,7 +239,7 @@ public class TrainStation : MonoBehaviour
 
             for (int i = 0; i < allTrains.Count; i++)
         {
-            if (allTrains[i].CurrentSpeed <= 0.1f)
+            if (Mathf.Abs(allTrains[i].CurrentSpeed) <= 0.1f)
             {
                 RailSegment curRailSeg = allTrains[i].CurrentRailSegment;
 

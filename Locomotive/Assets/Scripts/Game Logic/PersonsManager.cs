@@ -166,15 +166,12 @@ public class PersonsManager : MonoBehaviour
     {
         if (mainStationIndex != -1)
         {
-            for (int i = 0; i < TrainStation.AllTrainstations.Length; i++)
+            if (TrainStation.AllTrainstations[mainStationIndex] == trainStation)
             {
-                if (TrainStation.AllTrainstations[i] == trainStation)
-                {
-                    oldMainStationIndex = mainStationIndex;
-                    mainStationIndex = -1;
-                    Debug.Log("Train is in main station");
-                    selectMainStationIn = 10f;
-                }
+                oldMainStationIndex = mainStationIndex;
+                mainStationIndex = -1;
+                Debug.Log("Train is in main station");
+                selectMainStationIn = 10f;
             }
         }
     }

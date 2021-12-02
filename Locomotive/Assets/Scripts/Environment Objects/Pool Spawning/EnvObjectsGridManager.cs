@@ -115,8 +115,11 @@ public class EnvObjectsGridManager : MonoBehaviour
                 EnvSpawnObjectInfo objInfo = envObjects.spawnObjects1D[i];
 
                 float lod0Distance = envObjectsManager.ObjectPrefabs[objInfo.objectID].distanceLOD0;
+                float lod0DistanceMin = envObjectsManager.ObjectPrefabs[objInfo.objectID].minDistanceLOD0;
 
-                if (Vector2.Distance(new Vector2(playerPos.x, playerPos.z), new Vector2(objInfo.pos.x, objInfo.pos.z)) <= lod0Distance)
+                float distanceToPlayer = Vector2.Distance(new Vector2(playerPos.x, playerPos.z), new Vector2(objInfo.pos.x, objInfo.pos.z));
+                if (distanceToPlayer <= lod0Distance
+                    && distanceToPlayer >= lod0DistanceMin)
                 {
                     envObjectsManager.SpawnObject(objInfo, index, i);
                 }

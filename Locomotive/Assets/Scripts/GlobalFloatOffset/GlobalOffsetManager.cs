@@ -7,6 +7,10 @@ public class GlobalOffsetManager : MonoBehaviour
     [Header("References")]
     [SerializeField]
     private Transform playerTransform = null;
+    [SerializeField]
+    private float snapDistance = 0f;
+    [SerializeField]
+    private Transform[] snapTransforms = null;
 
     [Space]
 
@@ -65,7 +69,18 @@ public class GlobalOffsetManager : MonoBehaviour
 
     private void refresh()
     {
-        Vector3 pos = new Vector3(playerTransform.position.x + moveThresh * 0.5f, playerTransform.position.y + moveThresh * 0.5f, playerTransform.position.z + moveThresh * 0.5f);
+        Vector3 overridePlayerPos = playerTransform.position;
+        for (int i = 0; i < snapTransforms.Length; i++)
+        {
+            float distance = Vector2.Distance(new Vector2(snapTransforms[i].position.x, snapTransforms[i].position.z), new Vector2(playerTransform.position.x, playerTransform.position.z));
+
+            if (distance <= snapDistance)
+            {
+                overridePlayerPos = snapTransforms[i].position;
+            }
+        }
+
+        Vector3 pos = new Vector3(overridePlayerPos.x + moveThresh * 0.5f, overridePlayerPos.y + moveThresh * 0.5f, overridePlayerPos.z + moveThresh * 0.5f);
         Vector3Int clampedPlayerPos = new Vector3Int((int)(pos.x / moveThresh), (int)(pos.y / moveThresh), (int)(pos.z / moveThresh));
         if (pos.x < 0f)
         {
