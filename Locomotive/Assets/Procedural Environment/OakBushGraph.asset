@@ -1,5 +1,58 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8956384421181267411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b72dc61c4179204ba83b9d3b20838e1, type: 3}
+  m_Name: Add
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 1017.50525, y: 181.09483}
+  ports:
+    keys:
+    - a
+    - b
+    - output
+    values:
+    - _fieldName: a
+      _node: {fileID: -8956384421181267411}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: b
+      _node: {fileID: -8956384421181267411}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: random
+        node: {fileID: 6153792867075385552}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: output
+      _node: {fileID: -8956384421181267411}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  a: 0
+  b: 0
+  output: 0
 --- !u!114 &-8791384418058105504
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -311,6 +364,7 @@ MonoBehaviour:
   - {fileID: 7251145292077841509}
   - {fileID: -2880801971301040859}
   - {fileID: 6153792867075385552}
+  - {fileID: -8956384421181267411}
 --- !u!114 &539894149971877993
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -432,7 +486,7 @@ MonoBehaviour:
   m_Name: Random
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 855.0283, y: 259.46503}
+  position: {x: 680, y: -56}
   ports:
     keys:
     - minVal
@@ -467,6 +521,9 @@ MonoBehaviour:
         reroutePoints: []
       - fieldName: rotY
         node: {fileID: -830631858508112043}
+        reroutePoints: []
+      - fieldName: b
+        node: {fileID: -8956384421181267411}
         reroutePoints: []
       _direction: 1
       _connectionType: 0

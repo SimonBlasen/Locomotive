@@ -53,62 +53,6 @@ MonoBehaviour:
   a: 0
   b: 0.01
   output: 0
---- !u!114 &-8791384418058105504
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d963660020121b1418a2aa449429ceb6, type: 3}
-  m_Name: Multiply
-  m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
-  position: {x: 1672, y: -152}
-  ports:
-    keys:
-    - a
-    - b
-    - output
-    values:
-    - _fieldName: a
-      _node: {fileID: -8791384418058105504}
-      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: b
-      _node: {fileID: -8791384418058105504}
-      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: output
-        node: {fileID: -4562612733820359679}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: output
-      _node: {fileID: -8791384418058105504}
-      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: probability
-        node: {fileID: 8489362539919358287}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-  a: 1
-  b: 0
-  output: 0
 --- !u!114 &-8106447332187318254
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,6 +116,60 @@ MonoBehaviour:
   maxVal: 60
   random: 0
   info: Completely random value between min and max
+--- !u!114 &-6645496269379595348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eb3a341d86cac14fba539f04d33816b, type: 3}
+  m_Name: Random
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -680, y: -776}
+  ports:
+    keys:
+    - minVal
+    - maxVal
+    - random
+    values:
+    - _fieldName: minVal
+      _node: {fileID: -6645496269379595348}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: maxVal
+      _node: {fileID: -6645496269379595348}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: random
+      _node: {fileID: -6645496269379595348}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: b
+        node: {fileID: 7743013932471696682}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  minVal: 0.5
+  maxVal: 1.5
+  random: 0
+  info: Completely random value between min and max
 --- !u!114 &-4562612733820359679
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -227,10 +225,7 @@ MonoBehaviour:
       _node: {fileID: -4562612733820359679}
       _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: b
-        node: {fileID: -8791384418058105504}
-        reroutePoints: []
+      connections: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
@@ -381,7 +376,7 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  distanceFromRail: 1500
+  distanceFromRail: 0
   distance: 0
   info: Does work now. Puts out the distance to the next rails in meters
 --- !u!114 &-2489528588657434326
@@ -494,7 +489,7 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  slopeAngle: 0
+  slopeAngle: 25.378283
   angle: 0
   cosAngle: 0
   info: Angle is zero, if the surface is flat. It is 90, if the surface is a wall.
@@ -539,7 +534,10 @@ MonoBehaviour:
       _node: {fileID: -830631858508112043}
       _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
-      connections: []
+      connections:
+      - fieldName: output
+        node: {fileID: 7743013932471696682}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -548,7 +546,10 @@ MonoBehaviour:
       _node: {fileID: -830631858508112043}
       _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
-      connections: []
+      connections:
+      - fieldName: output
+        node: {fileID: 7743013932471696682}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -557,7 +558,10 @@ MonoBehaviour:
       _node: {fileID: -830631858508112043}
       _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
-      connections: []
+      connections:
+      - fieldName: output
+        node: {fileID: 7743013932471696682}
+        reroutePoints: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0
@@ -613,7 +617,7 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  prefab: {fileID: 3216425887403634761, guid: e314f89af6d72964e9623b2d5687dfef, type: 3}
+  prefab: {fileID: 8881956588414593117, guid: 3f80718536a6fd347947e7deb3a7e2fb, type: 3}
   occurence: 1
   scaleX: 1
   scaleY: 1
@@ -726,11 +730,12 @@ MonoBehaviour:
   - {fileID: 91143686026731053}
   - {fileID: 7377176526149483590}
   - {fileID: -4562612733820359679}
-  - {fileID: -8791384418058105504}
   - {fileID: 7251145292077841509}
   - {fileID: -2880801971301040859}
   - {fileID: 68240731890823141}
   - {fileID: 3036746537620374271}
+  - {fileID: 7743013932471696682}
+  - {fileID: -6645496269379595348}
 --- !u!114 &68240731890823141
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -744,7 +749,7 @@ MonoBehaviour:
   m_Name: Multiply
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -488, y: -184}
+  position: {x: -536, y: -168}
   ports:
     keys:
     - a
@@ -1340,7 +1345,7 @@ MonoBehaviour:
   out_b: 0
   info: "A tiling of 1 means, that the whole texture is fitted on 100meters.\n With
     0.1 it is fitted to 1000 meters, tiling=10 fits the whole texture to 10 meters."
-  gridPos: {x: 139720, y: 139720}
+  gridPos: {x: 5600, y: 0}
 --- !u!114 &7543703571791002680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1422,18 +1427,80 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 0
   areaWeights:
-  - NaN
-  - NaN
-  - NaN
-  - NaN
-  - NaN
-  - NaN
+  - 1
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
   curArea: 0
   wMountains: 0
   wSnow: 0
   wDesert: 0
   wPlane: 0
   wForrest: 0
+--- !u!114 &7743013932471696682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d963660020121b1418a2aa449429ceb6, type: 3}
+  m_Name: Multiply
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -424, y: -648}
+  ports:
+    keys:
+    - a
+    - b
+    - output
+    values:
+    - _fieldName: a
+      _node: {fileID: 7743013932471696682}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: b
+      _node: {fileID: 7743013932471696682}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: random
+        node: {fileID: -6645496269379595348}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: output
+      _node: {fileID: 7743013932471696682}
+      _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: scaleZ
+        node: {fileID: -830631858508112043}
+        reroutePoints: []
+      - fieldName: scaleY
+        node: {fileID: -830631858508112043}
+        reroutePoints: []
+      - fieldName: scaleX
+        node: {fileID: -830631858508112043}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  a: 1
+  b: 0
+  output: 0
 --- !u!114 &8489362539919358287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1473,10 +1540,7 @@ MonoBehaviour:
       _node: {fileID: 8489362539919358287}
       _typeQualifiedName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
-      connections:
-      - fieldName: output
-        node: {fileID: -8791384418058105504}
-        reroutePoints: []
+      connections: []
       _direction: 0
       _connectionType: 0
       _typeConstraint: 0

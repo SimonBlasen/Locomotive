@@ -356,6 +356,18 @@ public class ProcEnvSpawner : MonoBehaviour
 
                 nodeTexture.gridPos = gridPosition;
             }
+            else if (graph.nodes[i].GetType() == typeof(ProcEnvXNode.Random))
+            {
+                ProcEnvXNode.Random randNode = (ProcEnvXNode.Random)graph.nodes[i];
+
+                randNode.ComputeRandom();
+            }
+            else if (graph.nodes[i].GetType() == typeof(ProcEnvXNode.NormDistr))
+            {
+                ProcEnvXNode.NormDistr normNode = (ProcEnvXNode.NormDistr)graph.nodes[i];
+
+                normNode.ComputeRandom();
+            }
             else if (graph.nodes[i].GetType() == typeof(RailsDistance))
             {
                 RailsDistance nodeRailDistance = (RailsDistance)graph.nodes[i];

@@ -8,6 +8,10 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class RailSegmentEditor : MonoBehaviour
 {
+    private bool enableRuntimeGeneration = false;
+    private float renderDistance = 500f;
+    private float refreshTime = 2f;
+
     [SerializeField]
     private bool active = false;
     [Space]
@@ -50,21 +54,88 @@ public class RailSegmentEditor : MonoBehaviour
 
     private float waitDelCounter = 0f;
 
+    private float refreshCounter = 0f;
+    private GameObject runtimeInstHighPoly = null;
+
 
     [Space]
     [Header("Info")]
     public bool waitingForSplineCompDeletion = false;
 
+    private static Locomotive locomotive = null;
+    private static RailsLODManager lodManStatic = null;
+    private int genLODRuntimeCounter = -1;
+    private int genLODRuntimeCounter2 = 0;
+
+    private static bool blocked = false;
+    private bool isSelfRunning = false;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (locomotive == null)
+        {
+            locomotive = FindObjectOfType<Locomotive>();
+        }
+        if (originalSplineHighPoly == null)
+        {
+            originalSplineHighPoly = Resources.Load<GameObject>("RailSegments/RailSegmentHighPoly");
+        }
+        if (lodManStatic == null)
+        {
+            lodManStatic = FindObjectOfType<RailsLODManager>();
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Application.isPlaying && enableRuntimeGeneration)
+        {
+            refreshCounter += Time.deltaTime;
+
+            if (refreshCounter >= refreshTime)
+            {
+                refreshCounter = 0f;
+
+                runtimeRefreshMesh();
+            }
+
+            else if (genLODRuntimeCounter >= 0)
+            {
+                if (!isSelfRunning && !blocked)
+                {
+                    blocked = true;
+                    isSelfRunning = true;
+                }
+
+
+                if (isSelfRunning)
+                {
+                    genLODRuntimeCounter2++;
+                    if (genLODRuntimeCounter2 >= 20)
+                    {
+                        genLODRuntimeCounter2 = 0;
+                        bool isDone = lodManStatic.DeleteSplineComponentsM(new Transform[] { runtimeInstHighPoly.transform }, "", false, genLODRuntimeCounter, 0);
+                        genLODRuntimeCounter++;
+                        if (genLODRuntimeCounter >= 4)
+                        {
+                            Debug.Log("Done generating spline");
+                            runtimeInstHighPoly.SetActive(true);
+                            genLODRuntimeCounter = -1;
+
+                            blocked = false;
+                            isSelfRunning = false;
+                        }
+                    }
+                }
+
+
+
+            }
+        }
+
         if (Application.isEditor && !Application.isPlaying && active)
         {
             if (originalSplineHighPoly == null)
@@ -136,6 +207,50 @@ public class RailSegmentEditor : MonoBehaviour
         
     }
 
+
+    private void runtimeRefreshMesh()
+    {
+        bool isRendered = false;
+
+        for (int i = 0; i < shapeSpline.nodes.Count; i++)
+        {
+            if (Vector3.Distance(shapeSpline.nodes[i].Position, locomotive.transform.position - GlobalOffsetManager.Inst.GlobalOffset) <= renderDistance)
+            {
+                isRendered = true;
+                break;
+            }
+        }
+
+        if (isRendered)
+        {
+            if (runtimeInstHighPoly == null)
+            {
+                runtimeInstHighPoly = Instantiate(originalSplineHighPoly, transform);
+                runtimeInstHighPoly.transform.position = Vector3.zero;
+                Spline splineHP = runtimeInstHighPoly.GetComponentInChildren<Spline>();
+
+                SplineMeshTiling splineHPMeshTiling = runtimeInstHighPoly.GetComponentInChildren<SplineMeshTiling>();
+
+
+                copySplineNodes(shapeSpline, splineHP);
+                splineHP.RefreshCurves();
+                splineHPMeshTiling.CreateMeshes();
+
+                genLODRuntimeCounter = 0;
+                isSelfRunning = false;
+
+                Debug.Log("Inst high poly spline");
+            }
+        }
+        else
+        {
+            if (runtimeInstHighPoly != null)
+            {
+                Debug.Log("Destroy HP spline");
+                Destroy(runtimeInstHighPoly);
+            }
+        }
+    }
 
     private void tickRailLODCompDel()
     {
@@ -309,6 +424,12 @@ public class RailSegmentEditor : MonoBehaviour
         {
             Vector3 pos = splineFrom.nodes[i].Position;
             Vector3 dir = splineFrom.nodes[i].Direction;
+
+            if (Application.isPlaying)
+            {
+                pos += GlobalOffsetManager.Inst.GlobalOffset;
+            }
+
             if (i >= splineTo.nodes.Count)
             {
                 splineTo.AddNode(new SplineNode(pos, dir));

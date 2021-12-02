@@ -162,7 +162,7 @@ public class EnvObjectsGridManager : MonoBehaviour
             jobCacheGrid.Start();
             runningCacheJobs.Add(jobCacheGrid);
 
-            Debug.Log("[EnvObjGridMan]: Cached grid [" + index.ToString() + "]");
+            //Debug.Log("[EnvObjGridMan]: Cached grid [" + index.ToString() + "]");
 
             return null;
             //EnvObjectsGrid envObjectsGrid = EnvObjectsGrid.FromBytes(File.ReadAllBytes(grids[index].FilePath));

@@ -166,33 +166,51 @@ public class RailsLODManager : MonoBehaviour
         genLODs = 0;
     }
 
-    public bool DeleteSplineComponentsM(Transform[] railMeshesToDelete, string meshFilePre = "")
+    public bool DeleteSplineComponentsM(Transform[] railMeshesToDelete, string meshFilePre = "", bool meshify = true, int overrideDeleteState = -1, int overrideDeleteIndex = -1)
     {
-        if (deleteState == 0)
+        int deleteStateTake = deleteState;
+        int deleteIndexTake = deleteIndex;
+
+        if (overrideDeleteState != -1)
+        {
+            deleteStateTake = overrideDeleteState;
+        }
+        if (overrideDeleteIndex != -1)
+        {
+            deleteIndexTake = overrideDeleteIndex;
+        }
+
+        if (deleteStateTake == 0)
         {
             for (int i = 0; i < railMeshesToDelete.Length; i++)
             {
                 railMeshesToDelete[i].gameObject.SetActive(false);
             }
-            deleteState++;
-        }
-        else if (deleteState == 1)
-        {
-            railMeshesToDelete[deleteIndex].gameObject.SetActive(true);
-            railMeshesToDelete[deleteIndex].GetComponentInChildren<Spline>().RefreshCurves();
-            deleteState++;
-        }
-        else if (deleteState == 2)
-        {
-            DestroyImmediate(railMeshesToDelete[deleteIndex].GetComponentInChildren<SplineExtrusion>());
-            if (railMeshesToDelete[deleteIndex].GetComponentInChildren<SplineMeshTiling>() != null)
+            if (overrideDeleteState != -1)
             {
-                DestroyImmediate(railMeshesToDelete[deleteIndex].GetComponentInChildren<SplineMeshTiling>());
+                deleteState++;
+            }
+        }
+        else if (deleteStateTake == 1)
+        {
+            railMeshesToDelete[deleteIndexTake].gameObject.SetActive(true);
+            railMeshesToDelete[deleteIndexTake].GetComponentInChildren<Spline>().RefreshCurves();
+            if (overrideDeleteState != -1)
+            {
+                deleteState++;
+            }
+        }
+        else if (deleteStateTake == 2)
+        {
+            DestroyImmediate(railMeshesToDelete[deleteIndexTake].GetComponentInChildren<SplineExtrusion>());
+            if (railMeshesToDelete[deleteIndexTake].GetComponentInChildren<SplineMeshTiling>() != null)
+            {
+                DestroyImmediate(railMeshesToDelete[deleteIndexTake].GetComponentInChildren<SplineMeshTiling>());
             }
 
-            ExtrusionSegment[] extrusionSegments = railMeshesToDelete[deleteIndex].GetComponentsInChildren<ExtrusionSegment>();
-            MeshBender[] meshBenders = railMeshesToDelete[deleteIndex].GetComponentsInChildren<MeshBender>();
-            MeshCollider[] meshColliders = railMeshesToDelete[deleteIndex].GetComponentsInChildren<MeshCollider>();
+            ExtrusionSegment[] extrusionSegments = railMeshesToDelete[deleteIndexTake].GetComponentsInChildren<ExtrusionSegment>();
+            MeshBender[] meshBenders = railMeshesToDelete[deleteIndexTake].GetComponentsInChildren<MeshBender>();
+            MeshCollider[] meshColliders = railMeshesToDelete[deleteIndexTake].GetComponentsInChildren<MeshCollider>();
 
             for (int j = 0; j < extrusionSegments.Length; j++)
             {
@@ -208,21 +226,33 @@ public class RailsLODManager : MonoBehaviour
             }
 
 
-            meshifySpline(railMeshesToDelete[deleteIndex].GetComponentInChildren<Spline>(), meshFilePre + "_");
+            if (meshify)
+            {
+                meshifySpline(railMeshesToDelete[deleteIndexTake].GetComponentInChildren<Spline>(), meshFilePre + "_");
+            }
 
-            deleteState++;
+            if (overrideDeleteState != -1)
+            {
+                deleteState++;
+            }
         }
-        else if (deleteState == 3)
+        else if (deleteStateTake == 3)
         {
-            railMeshesToDelete[deleteIndex].gameObject.SetActive(false);
-            deleteIndex++;
+            railMeshesToDelete[deleteIndexTake].gameObject.SetActive(false);
+            if (overrideDeleteIndex != -1)
+            {
+                deleteIndex++;
+            }
 
 
 
-            deleteState = 0;
+            if (overrideDeleteState != -1)
+            {
+                deleteState = 0;
+            }
         }
 
-        if (deleteIndex >= railMeshesToDelete.Length)
+        if (deleteIndexTake >= railMeshesToDelete.Length)
         {
             return true;
         }

@@ -16,6 +16,7 @@ namespace ProcEnvXNode
 		[Output]
 		public float random;
 
+		private float randVal = 0f;
 
 		[TextArea(8, 3)]
 		public string info = "Completely random value between min and max";
@@ -37,11 +38,18 @@ namespace ProcEnvXNode
 				float inputMin = GetInputValue<float>("minVal", minVal);
 				float inputMax = GetInputValue<float>("maxVal", maxVal);
 
-				float val = UnityEngine.Random.Range(inputMin, inputMax);
+				float val = Mathf.Lerp(inputMin, inputMax, randVal);
+				//float val = UnityEngine.Random.Range(inputMin, inputMax);
 
 				return val;
 			}
 			return null;
+		}
+
+		public void ComputeRandom()
+		{
+			float val = UnityEngine.Random.Range(0f, 1f);
+			randVal = val;
 		}
 	}
 }

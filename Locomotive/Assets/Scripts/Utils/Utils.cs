@@ -7,10 +7,20 @@ namespace Sappph
 {
     public class Utils
     {
-        public static float NormalDistribution(float mean, float stdDev)
+        public static float NormalDistribution(float mean, float stdDev, float randVal0 = -1f, float randVal1 = -1f)
         {
             float rand0 = UnityEngine.Random.Range(0f, 1f);
             float rand1 = UnityEngine.Random.Range(0f, 1f);
+
+            if (randVal0 >= 0f)
+            {
+                rand0 = randVal0;
+            }
+            if (randVal1 >= 0f)
+            {
+                rand1 = randVal1;
+            }
+
             float u1 = 1.0f - rand0; //uniform(0,1] random doubles
             float u2 = 1.0f - rand1;
             float randStdNormal = Mathf.Sqrt(-2.0f * Mathf.Log(u1)) *
