@@ -224,86 +224,91 @@ public class ProcEnvSpawner : MonoBehaviour
                     gridSize = nodeSpawn.cellSize;
                     randomInCell = nodeSpawn.randomOffset;
 
-                    break;
-                }
-            }
 
 
-            int sizeX = (int)((generateAreaMax.position.x - generateAreaMin.position.x) / gridSize);
-            int sizeZ = (int)((generateAreaMax.position.z - generateAreaMin.position.z) / gridSize);
+
+                    int sizeX = (int)((generateAreaMax.position.x - generateAreaMin.position.x) / gridSize);
+                    int sizeZ = (int)((generateAreaMax.position.z - generateAreaMin.position.z) / gridSize);
 
 
-            UnityEngine.Random.InitState(seed);
+                    UnityEngine.Random.InitState(seed);
 
-            for (int zOffset = 0; zOffset * envObjectsManager.SqrtElementsPerFile < sizeZ; zOffset++)
-            {
-                for (int xOffset = 0; xOffset * envObjectsManager.SqrtElementsPerFile < sizeX; xOffset++)
-                {
-                    List<EnvSpawnObjectInfo> objectsInfoList = new List<EnvSpawnObjectInfo>();
-
-                    EnvObjectsGrid eog = new EnvObjectsGrid();
-                    eog.gridSize = gridSize;
-                    //eog.spawnObjects = new EnvSpawnObjectInfo[envObjectsManager.SqrtElementsPerFile, envObjectsManager.SqrtElementsPerFile];
-                    eog.gridOffsetX = xOffset;
-                    eog.gridOffsetZ = zOffset;
-
-
-                    for (int z = 0; z < envObjectsManager.SqrtElementsPerFile; z++)
+                    for (int zOffset = 0; zOffset * envObjectsManager.SqrtElementsPerFile < sizeZ; zOffset++)
                     {
-                        for (int x = 0; x < envObjectsManager.SqrtElementsPerFile; x++)
+                        for (int xOffset = 0; xOffset * envObjectsManager.SqrtElementsPerFile < sizeX; xOffset++)
                         {
-                            float randVal = UnityEngine.Random.value;
-                            float randVal2 = UnityEngine.Random.value;
-                            float randVal3 = UnityEngine.Random.value;
-                            float randVal4 = UnityEngine.Random.value;
+                            List<EnvSpawnObjectInfo> objectsInfoList = new List<EnvSpawnObjectInfo>();
 
-                            bool hasSpawned = spawnObject(onlyWriteDatastructure, objectsInfoList, eog, new Vector2Int(x, z), graph,
-                                new Vector2((x + xOffset * envObjectsManager.SqrtElementsPerFile) * gridSize + generateAreaMin.position.x, (z + zOffset * envObjectsManager.SqrtElementsPerFile) * gridSize + generateAreaMin.position.z),
-                                            randVal, randVal2, randVal3, randVal4, gridSize, randomInCell, procTerrainGen);
+                            EnvObjectsGrid eog = new EnvObjectsGrid();
+                            eog.gridSize = gridSize;
+                            //eog.spawnObjects = new EnvSpawnObjectInfo[envObjectsManager.SqrtElementsPerFile, envObjectsManager.SqrtElementsPerFile];
+                            eog.gridOffsetX = xOffset;
+                            eog.gridOffsetZ = zOffset;
 
-                            if (hasSpawned)
+
+                            for (int z = 0; z < envObjectsManager.SqrtElementsPerFile; z++)
                             {
-                                if (!onlyWriteDatastructure)
+                                for (int x = 0; x < envObjectsManager.SqrtElementsPerFile; x++)
                                 {
-                                    maxObjectsCounter++;
-                                    if (maxObjectsCounter > maxObjects)
+                                    float randVal = UnityEngine.Random.value;
+                                    float randVal2 = UnityEngine.Random.value;
+                                    float randVal3 = UnityEngine.Random.value;
+                                    float randVal4 = UnityEngine.Random.value;
+
+                                    bool hasSpawned = spawnObject(nodeSpawn, onlyWriteDatastructure, objectsInfoList, eog, new Vector2Int(x, z), graph,
+                                        new Vector2((x + xOffset * envObjectsManager.SqrtElementsPerFile) * gridSize + generateAreaMin.position.x, (z + zOffset * envObjectsManager.SqrtElementsPerFile) * gridSize + generateAreaMin.position.z),
+                                                    randVal, randVal2, randVal3, randVal4, gridSize, randomInCell, procTerrainGen);
+
+                                    if (hasSpawned)
                                     {
-                                        Debug.LogError("Max objects reached");
-                                        return;
+                                        if (!onlyWriteDatastructure)
+                                        {
+                                            maxObjectsCounter++;
+                                            if (maxObjectsCounter > maxObjects)
+                                            {
+                                                Debug.LogError("Max objects reached");
+                                                return;
+                                            }
+                                        }
+
                                     }
                                 }
-
                             }
+
+                            eog.spawnObjects1D = objectsInfoList.ToArray();
+
+                            File.WriteAllBytes("./envobjects/envobjectsgrid" + fileID.ToString()
+                                                                            + "_" + xOffset.ToString() + "_" + zOffset.ToString()
+                                                                            + "_" + gridSize.ToString()
+                                                                            + ".eog", eog.ToBytes());
                         }
                     }
 
-                    eog.spawnObjects1D = objectsInfoList.ToArray();
+                    fileID++;
 
-                    File.WriteAllBytes("./envobjects/envobjectsgrid" + fileID.ToString()
-                                                                    + "_" + xOffset.ToString() + "_" + zOffset.ToString()
-                                                                    + "_" + gridSize.ToString()
-                                                                    + ".eog", eog.ToBytes());
+                    float outputProb = 0f;
+
+                    outputProb = (float)nodeSpawn.GetValue(nodeSpawn.GetOutputPort("output"));
+
+                    Debug.Log("Output val: " + outputProb);
+
+
+
+
+
+
+
+
+
                 }
             }
 
-            fileID++;
 
-            float outputProb = 0f;
-
-            for (int i = 0; i < graph.nodes.Count; i++)
-            {
-                if (graph.nodes[i].GetType() == typeof(Spawn))
-                {
-                    outputProb = (float)graph.nodes[i].GetValue(graph.nodes[i].GetOutputPort("output"));
-                    //break;
-                }
-            }
-
-            Debug.Log("Output val: " + outputProb);
+            
         }
     }
 
-    private bool spawnObject(bool onlyWriteDataStructure, List<EnvSpawnObjectInfo> objectsInfoList, EnvObjectsGrid eog, Vector2Int intPos, ProcEnvGraph graph, Vector2 gridPosition, float randVal, float randVal2, float randVal3, float randVal4, float gridSize, float randomnessInCell, ProcTerrainGen procTerrainGen)
+    private bool spawnObject(Spawn spawnNode, bool onlyWriteDataStructure, List<EnvSpawnObjectInfo> objectsInfoList, EnvObjectsGrid eog, Vector2Int intPos, ProcEnvGraph graph, Vector2 gridPosition, float randVal, float randVal2, float randVal3, float randVal4, float gridSize, float randomnessInCell, ProcTerrainGen procTerrainGen)
     {
         Vector2 random2DPos = new Vector2(gridPosition.x, gridPosition.y);
         random2DPos += new Vector2(randVal3 * gridSize, randVal4 * gridSize);
@@ -368,78 +373,72 @@ public class ProcEnvSpawner : MonoBehaviour
         }
 
         bool hasSpawned = false;
-        for (int i = 0; i < graph.nodes.Count; i++)
+
+        float outputProb = (float)spawnNode.GetValue(spawnNode.GetOutputPort("output"));
+        ObjectVariantData[] objectVariants = (ObjectVariantData[])spawnNode.GetValue(spawnNode.GetOutputPort("outputObjectVariants"));
+
+        float occSum = 0f;
+        float[] occurencesSummed = new float[objectVariants.Length];
+        for (int j = 0; j < objectVariants.Length; j++)
         {
-            if (graph.nodes[i].GetType() == typeof(Spawn))
+            occSum += objectVariants[j].occurence;
+            occurencesSummed[j] = occSum;
+        }
+
+        randVal2 *= occSum;
+
+        int takeVariant = 0;
+        for (int j = 1; j < objectVariants.Length; j++)
+        {
+            if (randVal2 >= occurencesSummed[j - 1] && randVal2 < occurencesSummed[j])
             {
-                float outputProb = (float)graph.nodes[i].GetValue(graph.nodes[i].GetOutputPort("output"));
-                ObjectVariantData[] objectVariants = (ObjectVariantData[])graph.nodes[i].GetValue(graph.nodes[i].GetOutputPort("outputObjectVariants"));
+                takeVariant = j;
+                break;
+            }
+        }
 
-                float occSum = 0f;
-                float[] occurencesSummed = new float[objectVariants.Length];
-                for (int j = 0; j < objectVariants.Length; j++)
+        ObjectVariantData variant = objectVariants[takeVariant];
+
+
+        if (randVal <= outputProb)
+        {
+            hasSpawned = true;
+
+            if (!onlyWriteDataStructure)
+            {
+                GameObject instObject = Instantiate(variant.prefab, transform);
+                instObject.transform.position = new Vector3(pos2D.x, surfaceHeight, pos2D.y);
+                instObject.transform.up = Vector3.Lerp(Vector3.up, surfaceNormal, variant.adjustToSlope);
+                instObject.transform.Rotate(0f, variant.rotY, 0f, Space.Self);
+                instObject.transform.localScale = new Vector3(variant.scaleX, variant.scaleY, variant.scaleZ);
+                instObject.transform.position += instObject.transform.up.normalized * variant.offsetY;
+
+                if (variant.randomRot)
                 {
-                    occSum += objectVariants[j].occurence;
-                    occurencesSummed[j] = occSum;
+                    instObject.transform.rotation = Quaternion.Euler(randVal * 360f, randVal2 * 360f, randVal3 * 360f);
                 }
+            }
+            else
+            {
+                EnvSpawnObjectInfo esoi = new EnvSpawnObjectInfo();
 
-                randVal2 *= occSum;
-
-                int takeVariant = 0;
-                for (int j = 1; j < objectVariants.Length; j++)
+                esoi.objectID = envObjectsManager.GetObjectID(variant.prefab);
+                esoi.pos = new Vector3(pos2D.x, surfaceHeight, pos2D.y);
+                esoi.upVec = Vector3.Lerp(Vector3.up, surfaceNormal, variant.adjustToSlope);
+                esoi.yRot = variant.rotY;
+                esoi.scale = new Vector3(variant.scaleX, variant.scaleY, variant.scaleZ);
+                esoi.pos += esoi.upVec.normalized * variant.offsetY;
+                if (variant.randomRot)
                 {
-                    if (randVal2 >= occurencesSummed[j - 1] && randVal2 < occurencesSummed[j])
-                    {
-                        takeVariant = j;
-                        break;
-                    } 
+                    esoi.rot = new Vector3(randVal * 360f, randVal2 * 360f, randVal3 * 360f);
+                    esoi.yRot = 0f;
+                    esoi.upVec = Vector3.zero;
                 }
-
-                ObjectVariantData variant = objectVariants[takeVariant];
-
-
-                if (randVal <= outputProb)
+                else
                 {
-                    hasSpawned = true;
-
-                    if (!onlyWriteDataStructure)
-                    {
-                        GameObject instObject = Instantiate(variant.prefab, transform);
-                        instObject.transform.position = new Vector3(pos2D.x, surfaceHeight, pos2D.y);
-                        instObject.transform.up = Vector3.Lerp(Vector3.up, surfaceNormal, variant.adjustToSlope);
-                        instObject.transform.Rotate(0f, variant.rotY, 0f, Space.Self);
-                        instObject.transform.localScale = new Vector3(variant.scaleX, variant.scaleY, variant.scaleZ);
-                        instObject.transform.position += instObject.transform.up.normalized * variant.offsetY;
-
-                        if (variant.randomRot)
-                        {
-                            instObject.transform.rotation = Quaternion.Euler(randVal * 360f, randVal2 * 360f, randVal3 * 360f);
-                        }
-                    }
-                    else
-                    {
-                        EnvSpawnObjectInfo esoi = new EnvSpawnObjectInfo();
-
-                        esoi.objectID = envObjectsManager.GetObjectID(variant.prefab);
-                        esoi.pos = new Vector3(pos2D.x, surfaceHeight, pos2D.y);
-                        esoi.upVec = Vector3.Lerp(Vector3.up, surfaceNormal, variant.adjustToSlope);
-                        esoi.yRot = variant.rotY;
-                        esoi.scale = new Vector3(variant.scaleX, variant.scaleY, variant.scaleZ);
-                        esoi.pos += esoi.upVec.normalized * variant.offsetY;
-                        if (variant.randomRot)
-                        {
-                            esoi.rot = new Vector3(randVal * 360f, randVal2 * 360f, randVal3 * 360f);
-                            esoi.yRot = 0f;
-                            esoi.upVec = Vector3.zero;
-                        }
-                        else
-                        {
-                            esoi.rot = Vector3.zero;
-                        }
-                        objectsInfoList.Add(esoi);
-                    }
+                    esoi.rot = Vector3.zero;
                 }
-
+                objectsInfoList.Add(esoi);
             }
         }
 

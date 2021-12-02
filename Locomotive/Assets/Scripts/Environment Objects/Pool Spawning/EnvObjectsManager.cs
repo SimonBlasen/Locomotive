@@ -183,9 +183,10 @@ public struct EnvSpawnObjectInfo
 public struct EnvObjectLOD
 {
     public GameObject prefabLOD0;
+    public float minDistanceLOD0;
     public float distanceLOD0;
-    public GameObject prefabLOD1;
-    public float distanceLOD1;
+    //public GameObject prefabLOD1;
+    //public float distanceLOD1;
 }
 
 
