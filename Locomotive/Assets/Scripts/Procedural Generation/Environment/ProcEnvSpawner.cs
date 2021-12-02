@@ -255,9 +255,15 @@ public class ProcEnvSpawner : MonoBehaviour
                                     float randVal3 = UnityEngine.Random.value;
                                     float randVal4 = UnityEngine.Random.value;
 
+                                    bool isCanceled = false;
                                     bool hasSpawned = spawnObject(nodeSpawn, onlyWriteDatastructure, objectsInfoList, eog, new Vector2Int(x, z), graph,
                                         new Vector2((x + xOffset * envObjectsManager.SqrtElementsPerFile) * gridSize + generateAreaMin.position.x, (z + zOffset * envObjectsManager.SqrtElementsPerFile) * gridSize + generateAreaMin.position.z),
-                                                    randVal, randVal2, randVal3, randVal4, gridSize, randomInCell, procTerrainGen);
+                                                    randVal, randVal2, randVal3, randVal4, gridSize, randomInCell, procTerrainGen, out isCanceled);
+
+                                    if (isCanceled)
+                                    {
+                                        return;
+                                    }
 
                                     if (hasSpawned)
                                     {
@@ -308,8 +314,9 @@ public class ProcEnvSpawner : MonoBehaviour
         }
     }
 
-    private bool spawnObject(Spawn spawnNode, bool onlyWriteDataStructure, List<EnvSpawnObjectInfo> objectsInfoList, EnvObjectsGrid eog, Vector2Int intPos, ProcEnvGraph graph, Vector2 gridPosition, float randVal, float randVal2, float randVal3, float randVal4, float gridSize, float randomnessInCell, ProcTerrainGen procTerrainGen)
+    private bool spawnObject(Spawn spawnNode, bool onlyWriteDataStructure, List<EnvSpawnObjectInfo> objectsInfoList, EnvObjectsGrid eog, Vector2Int intPos, ProcEnvGraph graph, Vector2 gridPosition, float randVal, float randVal2, float randVal3, float randVal4, float gridSize, float randomnessInCell, ProcTerrainGen procTerrainGen, out bool isCanceled)
     {
+        isCanceled = false;
         Vector2 random2DPos = new Vector2(gridPosition.x, gridPosition.y);
         random2DPos += new Vector2(randVal3 * gridSize, randVal4 * gridSize);
         Vector2 midPos = new Vector2(gridPosition.x + gridSize * 0.5f, gridPosition.y + gridSize * 0.5f);
@@ -435,6 +442,12 @@ public class ProcEnvSpawner : MonoBehaviour
                 EnvSpawnObjectInfo esoi = new EnvSpawnObjectInfo();
 
                 esoi.objectID = envObjectsManager.GetObjectID(variant.prefab);
+                if (esoi.objectID == -1)
+                {
+                    Debug.LogError("Objects ID is -1");
+                    isCanceled = true;
+                    return false;
+                }
                 esoi.pos = new Vector3(pos2D.x, surfaceHeight, pos2D.y);
                 esoi.upVec = Vector3.Lerp(Vector3.up, surfaceNormal, variant.adjustToSlope);
                 esoi.yRot = variant.rotY;
