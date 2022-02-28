@@ -422,10 +422,60 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabTerrainChunk: {fileID: 5336623838613717298, guid: 3f24b94852b91f54d8e123e9e98733e3, type: 3}
   playerTransform: {fileID: 643014635}
-  maxChunkSpawnDistance: 100
-  chunkSize: {x: 10, y: 10}
+  maxChunkSpawnDistance: 30000
+  chunkSize: {x: 500, y: 500}
   chunkRefreshRate: 5
   chunksRefreshAmount: 20
+  maxDivisionPotency: 7
+  divisionDistanceCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1.2
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 2500
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  refreshTessellationCurveDistance:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 50
+      value: 0.5
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  refreshTessellationTime: 3
   reInitialize: 0
 --- !u!4 &1677783452
 Transform:
