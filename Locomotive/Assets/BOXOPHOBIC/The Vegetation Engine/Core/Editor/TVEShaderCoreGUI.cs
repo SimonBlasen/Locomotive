@@ -52,7 +52,7 @@ public class TVEShaderCoreGUI : ShaderGUI
             {
                 var prop = props[i];
 
-                if (prop.flags == MaterialProperty.PropFlags.HideInInspector)
+                if (prop.propertyFlags == UnityEngine.Rendering.ShaderPropertyFlags.HideInInspector)
                     continue;
 
                 if (material.HasProperty("_LocalColors"))
@@ -70,7 +70,7 @@ public class TVEShaderCoreGUI : ShaderGUI
             {
                 var prop = props[i];
 
-                if (prop.flags == MaterialProperty.PropFlags.HideInInspector && !showHiddenProperties)
+                if (prop.propertyFlags == UnityEngine.Rendering.ShaderPropertyFlags.HideInInspector && !showHiddenProperties)
                 {
                     continue;
                 }

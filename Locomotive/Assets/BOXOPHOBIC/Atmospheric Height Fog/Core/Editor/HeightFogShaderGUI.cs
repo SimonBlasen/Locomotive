@@ -67,7 +67,7 @@ public class HeightFogShaderGUI : ShaderGUI
         {
             var prop = props[i];
 
-            if (prop.flags == MaterialProperty.PropFlags.HideInInspector)
+            if (prop.propertyFlags == UnityEngine.Rendering.ShaderPropertyFlags.HideInInspector)
             {
                 continue;
             }
@@ -86,7 +86,7 @@ public class HeightFogShaderGUI : ShaderGUI
         {
             var prop = customPropsList[i];
 
-            if (prop.type == MaterialProperty.PropType.Texture)
+            if (prop.propertyType == UnityEngine.Rendering.ShaderPropertyType.Texture)
             {
                 EditorGUI.BeginChangeCheck();
 

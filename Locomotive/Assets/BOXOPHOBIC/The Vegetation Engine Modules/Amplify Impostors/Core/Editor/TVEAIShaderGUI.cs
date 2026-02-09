@@ -60,7 +60,7 @@ public class TVEAIShaderGUI : ShaderGUI
             {
                 var prop = props[i];
 
-                if (prop.flags == MaterialProperty.PropFlags.HideInInspector)
+                if (prop.propertyFlags == UnityEngine.Rendering.ShaderPropertyFlags.HideInInspector)
                     continue;
 
                 customPropsList.Add(prop);
@@ -72,7 +72,7 @@ public class TVEAIShaderGUI : ShaderGUI
             {
                 var prop = props[i];
 
-                if (prop.flags == MaterialProperty.PropFlags.HideInInspector && !showHiddenProperties)
+                if (prop.propertyFlags == UnityEngine.Rendering.ShaderPropertyFlags.HideInInspector && !showHiddenProperties)
                 {
                     continue;
                 }
@@ -240,7 +240,7 @@ public class TVEAIShaderGUI : ShaderGUI
         {
             var prop = customPropsList[i];
 
-            if (prop.type == MaterialProperty.PropType.Texture)
+            if (prop.propertyType == UnityEngine.Rendering.ShaderPropertyType.Texture)
             {
                 var label = customPropsList[i].displayName;
 

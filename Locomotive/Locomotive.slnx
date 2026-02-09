@@ -1,0 +1,20 @@
+﻿<Solution>
+  <Project Path="Assembly-CSharp.csproj" />
+  <Project Path="Assembly-CSharp-Editor.csproj" />
+  <Project Path="Boxophobic.Utils.Editor.csproj" />
+  <Project Path="AmplifyImpostors.csproj" />
+  <Project Path="FMODUnity.csproj" />
+  <Project Path="Tayx.Graphy.csproj" />
+  <Project Path="XNodeEditor.csproj" />
+  <Project Path="Boxophobic.TheVehetationEngine.Runtime.csproj" />
+  <Project Path="BOXOPHOBIC.AmplifyImpostors.Editor.csproj" />
+  <Project Path="FMODUnityEditor.csproj" />
+  <Project Path="Boxophobic.TheVegetationEngine.Editor.csproj" />
+  <Project Path="FMODUnityResonanceEditor.csproj" />
+  <Project Path="Boxophobic.AtmosphericHeightFog.Editor.csproj" />
+  <Project Path="Boxophobic.Utils.Scripts.csproj" />
+  <Project Path="FMODUnityResonance.csproj" />
+  <Project Path="XNode.csproj" />
+  <Project Path="Boxophobic.AtmosphericHeightFog.Runtime.csproj" />
+  <Project Path="Tayx.Graphy.Editor.csproj" />
+</Solution>

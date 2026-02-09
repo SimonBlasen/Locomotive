@@ -38,7 +38,7 @@ namespace OG {
 
             public RenderTargetIdentifier source;
 
-            RenderTargetHandle tempTexture;
+            RTHandle tempTexture;
             Material material;
             Texture2D fogGradient = null;
 
@@ -84,7 +84,7 @@ namespace OG {
             }
 
             public override void Configure(CommandBuffer cmd, RenderTextureDescriptor cameraTextureDescriptor){
-                cmd.GetTemporaryRT(tempTexture.id, cameraTextureDescriptor);
+                cmd.GetTemporaryRT(tempTexture.GetInstanceID(), cameraTextureDescriptor);
             }
 
             public override void Execute(ScriptableRenderContext context, ref RenderingData renderingData){
@@ -150,8 +150,8 @@ namespace OG {
 
                 //
 
-                cmd.Blit(source, tempTexture.Identifier(), material, 0);
-                cmd.Blit(tempTexture.Identifier(), source);
+                cmd.Blit(source, tempTexture.GetInstanceID(), material, 0);
+                cmd.Blit(tempTexture.GetInstanceID(), source);
 
                 context.ExecuteCommandBuffer(cmd);
                 cmd.Clear();
@@ -175,7 +175,7 @@ namespace OG {
         }
 
         public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData){
-            m_ScriptablePass.source = renderer.cameraColorTarget;
+            m_ScriptablePass.source = renderer.cameraColorTargetHandle;
             m_ScriptablePass.renderPassEvent = renderPassEvent;
 
             renderer.EnqueuePass(m_ScriptablePass);
